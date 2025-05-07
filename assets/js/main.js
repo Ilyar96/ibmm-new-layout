@@ -16,16 +16,26 @@ function initSliders() {
 			el: ".recommends__slider-scrollbar",
 		},
 	});
+
+	new Swiper("#shipment-slider", {
+		slidesPerView: "auto",
+		scrollbar: {
+			el: ".channel__section-head-scrollbar",
+		},
+	});
 }
 
 function initHeaderScroll() {
+	checkScroll();
+	window.addEventListener("scroll", checkScroll);
+}
+
+function checkScroll() {
 	const header = document.querySelector(".header");
 
-	window.addEventListener("scroll", () => {
-		if (window.scrollY > 0) {
-			header.classList.add("scrolled");
-		} else {
-			header.classList.remove("scrolled");
-		}
-	});
+	if (window.scrollY > 0) {
+		header.classList.add("scrolled");
+	} else {
+		header.classList.remove("scrolled");
+	}
 }

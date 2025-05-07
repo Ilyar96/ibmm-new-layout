@@ -2,7 +2,7 @@
 	/* Colors */
 	--color-background: #070809;
 	--color-text-primary: #ffffff;
-	--color-text-secondary: #999999;
+	--color-text-secondary: #99999b;
 	--color-text-tertiary: #626262;
 	--color-text-dark: #000000;
 	--color-accent: #2467e0;
@@ -11,10 +11,12 @@
 	--color-gray: #333333;
 	--color-white: #ffffff;
 	--color-border: #434343;
+	--color-border-dark: #3f3f3f;
 	--color-accent-light: rgba(36, 103, 224, 0.3);
 	--color-accent-green: #26f64c;
 	--color-button-hover: rgba(255, 255, 255, 0.1);
 	--white-100: #fff;
+	--white-10: rgba(255, 255, 255, 0.1);
 	--black-100: #000;
 
 	/* Fonts */
