@@ -384,6 +384,30 @@ hr {
 	color: var(--color-text-primary);
 }
 
+.title {
+	font-family: var(--font-family-tertiary);
+	font-size: var(--font-size-4xl);
+	font-weight: 700;
+	line-height: 1.5;
+	letter-spacing: -1.197px;
+	text-transform: uppercase;
+}
+
+.label {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 10px 20px;
+	border: 1px solid var(--color-border);
+	background-color: var(--white-10);
+	border-radius: 58px;
+	font-weight: 600;
+	letter-spacing: -0.48px;
+	text-transform: uppercase;
+	color: var(--color-text-primary);
+}
+
 /* Header */
 .header {
 	padding: 60px 0;
@@ -670,7 +694,8 @@ hr {
 
 .hero::before,
 .hero::after,
-.channel::before {
+.channel::before,
+.projects::before {
 	position: absolute;
 	top: -524px;
 	left: -164px;
@@ -763,12 +788,6 @@ hr {
 	flex: 0 0 576px;
 	margin: 0;
 	padding: 30px 0 0;
-	font-family: var(--font-family-tertiary);
-	font-size: var(--font-size-4xl);
-	font-weight: 700;
-	line-height: 1.5;
-	letter-spacing: -1.197px;
-	text-transform: uppercase;
 }
 
 .recommends__description {
@@ -1236,6 +1255,177 @@ hr {
 .shipment-list__slide {
 	max-width: 425px;
 	padding: 0 calc(var(--slider-gap) / 2);
+}
+
+/* projects */
+.projects {
+	position: relative;
+	padding: 164px 0;
+}
+.projects::before {
+	top: -240px;
+	left: -280px;
+}
+.projects__container {
+	position: relative;
+	z-index: 2;
+	display: grid;
+	grid-template-columns: 458px 1fr;
+	gap: 67px;
+}
+.projects__sidebar {
+}
+.projects__label {
+}
+.label {
+}
+.projects__title {
+	margin: 18px 0 0;
+}
+.projects__desc {
+	max-width: 390px;
+	margin: 12px 0 0;
+}
+.projects__button {
+	margin: 47px 0 0;
+}
+.projects__list {
+	display: grid;
+	gap: 58px;
+}
+.solution-card {
+	display: grid;
+	grid-template-columns: 1fr 391px;
+	gap: 20px;
+}
+
+.solution-card__info {
+	position: relative;
+	overflow: hidden;
+	padding: 81px 33px 96px;
+	border-radius: 18px;
+	background: var(--white-100);
+	color: var(--color-text-dark);
+}
+
+.solution-card__info::before {
+	content: "";
+	position: absolute;
+	top: -58px;
+	right: -211px;
+	width: 758px;
+	height: 758px;
+	background: radial-gradient(
+		50% 50% at 50% 50%,
+		rgba(38, 98, 246, 0.2) 0%,
+		rgba(38, 98, 246, 0) 100%
+	);
+}
+
+.solution-card--dark .solution-card__info {
+	background: var(--color-card-background);
+	color: var(--white-100);
+}
+
+.solution-card--dark .solution-card__info::before {
+	background: radial-gradient(
+		50% 50% at 50% 50%,
+		rgba(255, 255, 255, 0.2) 0%,
+		rgba(255, 255, 255, 0) 100%
+	);
+}
+
+.solution-card__tag {
+	display: inline-flex;
+	padding: 2px 9px;
+	justify-content: center;
+	align-items: center;
+	gap: 9px;
+	border-radius: 9px;
+	border: 1px solid var(--color-border);
+	background: var(--white-10);
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 1.5;
+	letter-spacing: -0.3px;
+}
+.solution-card__tag--fast {
+}
+.solution-card__title {
+	margin: 20px 0 0;
+	font-family: var(--font-family-secondary);
+	font-size: 22px;
+	font-weight: 600;
+	line-height: 150%;
+	letter-spacing: -0.434px;
+}
+.solution-card__desc {
+	max-width: 266px;
+	margin: 12px 0 0;
+	font-size: 13px;
+	letter-spacing: -0.379px;
+}
+.solution-card__gallery {
+}
+.solution-card__image {
+	width: 100%;
+	height: 100%;
+	border-radius: 14px;
+	object-fit: cover;
+}
+.solution-card__image--main {
+}
+.solution-card__images {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 18px 8px;
+}
+.solution-card__tag--economy {
+}
+.solution-card__tag--custom {
+}
+
+.solution-card__info-body {
+	position: relative;
+	z-index: 2;
+}
+
+.solution-card__info-image {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.solution-card__info-image--container {
+	bottom: -60px;
+	right: -143px;
+	width: 624px;
+	height: 621px;
+}
+
+.solution-card__info-image--gas {
+	bottom: -100px;
+	right: -235px;
+	width: 724px;
+	height: 497px;
+}
+
+.solution-card__info-image--cooling {
+	bottom: -231px;
+	right: -200px;
+	width: 643px;
+	height: 643px;
+}
+
+.solution-card__info-image--hotel {
+	bottom: -84px;
+	right: -210px;
+	width: 726px;
+	height: 408px;
 }
 
 @media (hover: hover) {
