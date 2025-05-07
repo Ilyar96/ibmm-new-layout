@@ -3,10 +3,16 @@
 	--color-background: #070809;
 	--color-text-primary: #ffffff;
 	--color-text-secondary: #999999;
+	--color-text-tertiary: #626262;
+	--color-text-dark: #000000;
 	--color-accent: #2467e0;
+	--color-accent-hover: #1e56b6;
+	--color-card-background: #191e20;
+	--color-gray: #333333;
+	--color-white: #ffffff;
+	--color-border: #434343;
 	--color-accent-light: rgba(36, 103, 224, 0.3);
 	--color-accent-green: #26f64c;
-	--color-border: #434343;
 	--color-button-hover: rgba(255, 255, 255, 0.1);
 	--white-100: #fff;
 	--black-100: #000;
@@ -25,18 +31,7 @@
 	--font-size-xl: 24px;
 	--font-size-2xl: 32px;
 	--font-size-3xl: 48px;
-	--font-size-4xl: 64px;
-
-	/* Spacing */
-	--spacing-xs: 5px;
-	--spacing-sm: 10px;
-	--spacing-md: 20px;
-	--spacing-md-lg: 24px;
-	--spacing-lg: 30px;
-	--spacing-xl: 40px;
-	--spacing-2xl: 50px;
-	--spacing-3xl: 60px;
-	--spacing-4xl: 70px;
+	--font-size-4xl: 60px;
 
 	--gap-xs: 5px;
 	--gap-sx: 8px;
@@ -50,8 +45,18 @@
 	/* Border radius */
 	--border-radius-sm: 8px;
 	--border-radius-md: 10px;
-	--border-radius-lg: 100px;
+	--border-radius-lg: 20px;
+	--border-radius-badge: 42px;
 
 	/* Container */
 	--container-padding: 120px;
+
+	/* Transitions */
+	--transition-base: 0.3s ease;
+
+	/* Slider */
+	--swiper-scrollbar-width: 3px;
+	--swiper-scrollbar-bg-color: #252525;
+	--swiper-scrollbar-drag-bg-color: #bbb;
+	--swiper-scrollbar-border-radius: 0;
 }
