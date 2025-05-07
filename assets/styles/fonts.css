@@ -1,0 +1,92 @@
+@font-face {
+	font-family: "TT Travels Next Trl";
+	src: url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Bd.eot");
+	src: local("TT Travels Next Trl Bd"), local("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Bd"),
+		url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Bd.eot?#iefix") format("embedded-opentype"),
+		url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Bd.woff2") format("woff2"),
+		url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Bd.woff") format("woff"),
+		url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Bd.ttf") format("truetype");
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "TT Travels Next Trl Md";
+	src: url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Md.eot");
+	src: local("TT Travels Next Trl Md"), local("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Md"),
+		url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Md.eot?#iefix") format("embedded-opentype"),
+		url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Md.woff2") format("woff2"),
+		url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Md.woff") format("woff"),
+		url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Md.ttf") format("truetype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "TT Travels Next Trl";
+	src: url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Rg.eot");
+	src: local("TT Travels Next Trl Rg"), local("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Rg"),
+		url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Rg.eot?#iefix") format("embedded-opentype"),
+		url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Rg.woff2") format("woff2"),
+		url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Rg.woff") format("woff"),
+		url("../fonts/tt-travel-next-trl/TTTravelsNextTrl-Rg.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Involve";
+	src: url("../fonts/involve/Involve-Bold.eot");
+	src: local("Involve Bold"), local("../fonts/involve/Involve-Bold"),
+		url("../fonts/involve/Involve-Bold.eot?#iefix") format("embedded-opentype"),
+		url("../fonts/involve/Involve-Bold.woff2") format("woff2"),
+		url("../fonts/involve/Involve-Bold.woff") format("woff"),
+		url("../fonts/involve/Involve-Bold.ttf") format("truetype");
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Involve";
+	src: url("../fonts/involve/Involve-Regular.eot");
+	src: local("Involve Regular"), local("../fonts/involve/Involve-Regular"),
+		url("../fonts/involve/Involve-Regular.eot?#iefix") format("embedded-opentype"),
+		url("../fonts/involve/Involve-Regular.woff2") format("woff2"),
+		url("../fonts/involve/Involve-Regular.woff") format("woff"),
+		url("../fonts/involve/Involve-Regular.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Involve";
+	src: url("../fonts/involve/Involve-SemiBold.eot");
+	src: local("Involve SemiBold"), local("../fonts/involve/Involve-SemiBold"),
+		url("../fonts/involve/Involve-SemiBold.eot?#iefix") format("embedded-opentype"),
+		url("../fonts/involve/Involve-SemiBold.woff2") format("woff2"),
+		url("../fonts/involve/Involve-SemiBold.woff") format("woff"),
+		url("../fonts/involve/Involve-SemiBold.ttf") format("truetype");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Aktiv Grotesk Ex Trial";
+	src: url("../fonts/active-grotesk-ex-trl/AktivGroteskExTrial-SemiBold.eot");
+	src: local("Aktiv Grotesk Ex Trial SemiBold"),
+		local("../fonts/active-grotesk-ex-trl/AktivGroteskExTrial-SemiBold"),
+		url("../fonts/active-grotesk-ex-trl/AktivGroteskExTrial-SemiBold.eot?#iefix")
+			format("embedded-opentype"),
+		url("../fonts/active-grotesk-ex-trl/AktivGroteskExTrial-SemiBold.woff2") format("woff2"),
+		url("../fonts/active-grotesk-ex-trl/AktivGroteskExTrial-SemiBold.woff") format("woff"),
+		url("../fonts/active-grotesk-ex-trl/AktivGroteskExTrial-SemiBold.ttf") format("truetype");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}

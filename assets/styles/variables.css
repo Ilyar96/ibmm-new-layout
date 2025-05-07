@@ -1,0 +1,57 @@
+:root {
+	/* Colors */
+	--color-background: #070809;
+	--color-text-primary: #ffffff;
+	--color-text-secondary: #999999;
+	--color-accent: #2467e0;
+	--color-accent-light: rgba(36, 103, 224, 0.3);
+	--color-accent-green: #26f64c;
+	--color-border: #434343;
+	--color-button-hover: rgba(255, 255, 255, 0.1);
+	--white-100: #fff;
+	--black-100: #000;
+
+	/* Fonts */
+	--font-family: "Involve", sans-serif;
+	--font-family-secondary: "Aktiv Grotesk Ex Trial", sans-serif;
+	--font-family-tertiary: "TT Travels Next Trl", sans-serif;
+	--font-family-quaternary: "Inter", sans-serif;
+
+	/* Typography */
+	--font-size-xs: 12px;
+	--font-size-sm: 14px;
+	--font-size-base: 16px;
+	--font-size-lg: 18px;
+	--font-size-xl: 24px;
+	--font-size-2xl: 32px;
+	--font-size-3xl: 48px;
+	--font-size-4xl: 64px;
+
+	/* Spacing */
+	--spacing-xs: 5px;
+	--spacing-sm: 10px;
+	--spacing-md: 20px;
+	--spacing-md-lg: 24px;
+	--spacing-lg: 30px;
+	--spacing-xl: 40px;
+	--spacing-2xl: 50px;
+	--spacing-3xl: 60px;
+	--spacing-4xl: 70px;
+
+	--gap-xs: 5px;
+	--gap-sx: 8px;
+	--gap-sm: 10px;
+	--gap-md: 20px;
+	--gap-lg: 30px;
+	--gap-xl: 40px;
+	--gap-2xl: 50px;
+	--gap-3xl: 70px;
+
+	/* Border radius */
+	--border-radius-sm: 8px;
+	--border-radius-md: 10px;
+	--border-radius-lg: 100px;
+
+	/* Container */
+	--container-padding: 120px;
+}
