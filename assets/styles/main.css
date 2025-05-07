@@ -397,11 +397,20 @@ hr {
 /* Header */
 .header {
 	padding: 60px 0;
-	position: sticky;
+	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
 	z-index: 100;
+	transition: all 0.3s ease;
+}
+
+.header.scrolled {
+	padding: 20px 0;
+	background-color: var(--color-background);
+	/* TODO Удалить */
+	opacity: 0;
+	visibility: hidden;
 }
 
 .header__container {
@@ -533,19 +542,20 @@ hr {
 
 /* Hero */
 .hero {
-	padding: 60px 0 196px;
+	position: relative;
+	overflow: hidden;
+	padding: 220px 0 196px;
 	min-height: 100vh;
 	display: flex;
 	align-items: center;
 }
 
 .hero__container {
-	position: relative;
 }
 
 .hero__bg {
 	position: absolute;
-	top: -224px;
+	bottom: 0;
 	right: 0;
 	z-index: 1;
 	width: 1662px;
@@ -665,6 +675,30 @@ hr {
 .hero__partner--canaan {
 	width: 131px;
 	height: 35px;
+}
+
+.hero::before,
+.hero::after {
+	position: absolute;
+	top: -524px;
+	left: -164px;
+	z-index: -1;
+	content: "";
+	width: 752px;
+	height: 2104px;
+	background: radial-gradient(
+		50% 50% at 50% 50%,
+		rgba(38, 98, 246, 0.3) 0%,
+		rgba(38, 98, 246, 0) 100%
+	);
+	transform: rotate(32deg);
+}
+
+.hero::after {
+	top: -724px;
+	left: auto;
+	right: -64px;
+	transform: rotate(-49deg);
 }
 
 /* Expert Recommendations Section */
@@ -917,30 +951,36 @@ hr {
 }
 
 /* Background Effects */
-.recommends::before,
-.recommends::after {
-	content: "";
+.recommends::before {
 	position: absolute;
-	width: 1328px;
-	height: 1328px;
+	top: -424px;
+	left: -534px;
+	z-index: -1;
+	content: "";
+	width: 752px;
+	height: 2104px;
 	border-radius: 50%;
 	background: radial-gradient(
 		50% 50% at 50% 50%,
 		rgba(38, 98, 246, 0.3) 0%,
 		rgba(38, 98, 246, 0) 100%
 	);
-	z-index: -1;
-}
-
-.recommends::before {
-	top: -245px;
-	right: -324px;
+	transform: rotate(32deg);
 }
 
 .recommends::after {
-	top: -464px;
-	left: -694px;
-	transform: rotate(-31.5deg);
+	content: "";
+	position: absolute;
+	top: -245px;
+	right: -334px;
+	z-index: -1;
+	width: 1328px;
+	height: 1328px;
+	background: radial-gradient(
+		50% 50% at 50% 50%,
+		rgba(38, 98, 246, 0.3) 0%,
+		rgba(38, 98, 246, 0) 100%
+	);
 }
 
 @media (hover: hover) {
