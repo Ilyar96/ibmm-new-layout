@@ -28,39 +28,51 @@
 	--font-family-quaternary: "Inter", sans-serif;
 
 	/* Typography */
-	--font-size-xs: 12px;
-	--font-size-sm: 14px;
-	--font-size-base: 16px;
-	--font-size-lg: 18px;
-	--font-size-xl: 24px;
-	--font-size-2xl: 32px;
-	--font-size-3xl: 48px;
-	--font-size-4xl: 60px;
+	--font-size-xs: 0.75rem;
+	--font-size-sm: 0.875rem;
+	--font-size-base: 1rem;
+	--font-size-lg: 1.125rem;
+	--font-size-xl: 1.5rem;
+	--font-size-2xl: 2rem;
+	--font-size-3xl: 3rem;
+	--font-size-4xl: 3.75rem;
 
-	--gap-xs: 5px;
-	--gap-sx: 8px;
-	--gap-sm: 10px;
-	--gap-md: 20px;
-	--gap-lg: 30px;
-	--gap-xl: 40px;
-	--gap-2xl: 50px;
-	--gap-3xl: 70px;
+	--gap-xs: 0.3125rem;
+	--gap-sx: 0.5rem;
+	--gap-sm: 0.625rem;
+	--gap-md: 1.25rem;
+	--gap-lg: 1.875rem;
+	--gap-xl: 2.5rem;
+	--gap-2xl: 3.125rem;
+	--gap-3xl: 4.375rem;
 
 	/* Border radius */
-	--border-radius-sm: 8px;
-	--border-radius-md: 10px;
-	--border-radius-lg: 20px;
-	--border-radius-badge: 42px;
+	--border-radius-sm: 0.5rem;
+	--border-radius-md: 0.625rem;
+	--border-radius-lg: 1.25rem;
+	--border-radius-badge: 2.625rem;
 
 	/* Container */
-	--container-padding: 120px;
+	--container-padding: 7.5rem;
 
 	/* Transitions */
 	--transition-base: 0.3s ease;
 
 	/* Slider */
-	--swiper-scrollbar-width: 3px;
+	--swiper-scrollbar-width: 0.1875rem;
 	--swiper-scrollbar-bg-color: #252525;
 	--swiper-scrollbar-drag-bg-color: #bbb;
 	--swiper-scrollbar-border-radius: 0;
+}
+
+@media (max-width: 1199px) {
+	:root {
+		--container-padding: 2.5rem;
+	}
+}
+
+@media (max-width: 768px) {
+	:root {
+		--container-padding: 0.9375rem;
+	}
 }
