@@ -8,10 +8,12 @@
 	--color-accent: #2467e0;
 	--color-accent-hover: #1e56b6;
 	--color-card-background: #191e20;
+	--color-card-background-light: #ffffff;
 	--color-gray: #333333;
 	--color-white: #ffffff;
 	--color-border: #434343;
 	--color-border-dark: #3f3f3f;
+	--color-border-darker: #2e2e2e;
 	--color-accent-light: rgba(36, 103, 224, 0.3);
 	--color-accent-green: #26f64c;
 	--color-button-hover: rgba(255, 255, 255, 0.1);
