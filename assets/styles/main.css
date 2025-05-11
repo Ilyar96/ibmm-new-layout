@@ -819,9 +819,6 @@ hr {
 	font-weight: 600;
 }
 
-.recommends__badge span {
-}
-
 .recommends__content {
 	display: flex;
 	gap: 3.875rem;
@@ -1383,9 +1380,20 @@ hr {
 }
 
 .solution-card {
+	position: relative;
 	display: grid;
 	grid-template-columns: 1fr 24.4375rem;
 	gap: 1.25rem;
+}
+
+.solution-card + .solution-card::before {
+	content: "";
+	position: absolute;
+	top: -1.8125rem;
+	right: 0;
+	width: 70.6%;
+	height: 1px;
+	background: var(--color-border-dark);
 }
 
 .solution-card__info {
@@ -1409,6 +1417,7 @@ hr {
 		rgba(38, 98, 246, 0.2) 0%,
 		rgba(38, 98, 246, 0) 100%
 	);
+	pointer-events: none;
 }
 
 .solution-card--dark .solution-card__info {
@@ -1496,6 +1505,7 @@ hr {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	pointer-events: none;
 }
 
 .solution-card__info-image--container {
@@ -1956,6 +1966,45 @@ hr {
 		width: 1062px;
 		height: 1062px;
 	}
+
+	.projects__container {
+		grid-template-columns: 1fr;
+	}
+
+	.projects__list {
+		gap: 40px;
+	}
+
+	.solution-card__info-image--container {
+		width: 499px;
+		height: 497px;
+	}
+
+	.solution-card__info-image--gas {
+		bottom: -81px;
+		width: 659px;
+		height: 452px;
+	}
+
+	.solution-card__info-image--cooling {
+		bottom: -161px;
+		width: 514px;
+		height: 514px;
+	}
+
+	.solution-card__info-image--hotel {
+		bottom: -66px;
+		width: 580px;
+		height: 326px;
+	}
+
+	.projects__button {
+		margin: 30px 0 0;
+	}
+
+	.solution-card + .solution-card::before {
+		top: -20px;
+	}
 }
 
 @media (max-width: 991px) {
@@ -1983,11 +2032,23 @@ hr {
 	.main-video__desc {
 		margin: 8px 0 0;
 	}
+
+	.solution-card {
+		grid-template-columns: 1fr;
+	}
+
+	.solution-card__images {
+		gap: 20px;
+	}
+
+	.solution-card__info-image--cooling {
+		right: -150px;
+	}
 }
 
 @media (max-width: 768px) {
 	body {
-		font-size: 14px;
+		font-size: 13px;
 	}
 
 	.button {
@@ -1996,7 +2057,7 @@ hr {
 	}
 
 	.title {
-		font-size: 30px;
+		font-size: 28px;
 	}
 
 	.hero {
@@ -2141,6 +2202,7 @@ hr {
 		margin: 16px 0 0;
 	}
 
+	.label,
 	.recommends__badge {
 		padding: 8px 15px;
 		font-size: 13px;
@@ -2245,6 +2307,82 @@ hr {
 		width: 850px;
 		height: 850px;
 	}
+
+	.main-video__title {
+		font-size: 14px;
+	}
+
+	.projects {
+		padding: 60px 0;
+	}
+
+	.projects__container {
+		gap: 40px;
+	}
+
+	.solution-card,
+	.solution-card__images {
+		gap: 12px;
+	}
+
+	.solution-card__info {
+		padding: 25px 15px 30px;
+	}
+
+	.solution-card__info-image--container {
+		bottom: -30px;
+		right: -70px;
+		width: 260px;
+		height: 259px;
+	}
+
+	.solution-card__info-image--gas {
+		right: -130px;
+		bottom: -31px;
+		width: 335px;
+		height: 230px;
+	}
+
+	.solution-card__info-image--cooling {
+		bottom: -97px;
+		right: -120px;
+		width: 308px;
+		height: 308px;
+	}
+
+	.solution-card__info-image--hotel {
+		bottom: -44px;
+		right: -106px;
+		width: 350px;
+		height: 197px;
+	}
+
+	.solution-card__tag {
+		padding: 3px 9px 2px;
+		font-size: 13px;
+	}
+
+	.solution-card__title {
+		margin: 10px 0 0;
+		font-size: 18px;
+	}
+
+	.solution-card__desc {
+		margin: 8px 0 0;
+		font-size: 12px;
+	}
+
+	.solution-card__image {
+		border-radius: 10px;
+	}
+
+	.projects__list {
+		gap: 30px;
+	}
+
+	.solution-card + .solution-card::before {
+		top: -15px;
+	}
 }
 
 @media (max-width: 575px) {
@@ -2284,6 +2422,10 @@ hr {
 	.projects::before,
 	.recommends::before {
 		transform: rotate(13deg);
+	}
+
+	.solution-card + .solution-card::before {
+		width: 100%;
 	}
 }
 
