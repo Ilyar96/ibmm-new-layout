@@ -740,7 +740,8 @@ hr {
 .hero::after,
 .channel::before,
 .projects::before,
-.recommends::before {
+.recommends::before,
+.media::before {
 	position: absolute;
 	top: -32.75rem;
 	left: -10.25rem;
@@ -1039,7 +1040,9 @@ hr {
 	padding: 6.25rem 0;
 }
 
-.channel::after {
+.channel::after,
+.media::after,
+.projects::after {
 	content: "";
 	position: absolute;
 	top: -10.625rem;
@@ -1538,6 +1541,7 @@ hr {
 
 /* Media */
 .media {
+	position: relative;
 	padding: 7.5rem 0;
 }
 
@@ -1567,12 +1571,13 @@ hr {
 }
 
 .media-card {
+	--media-card-padding-bottom: 1.125rem;
 	position: relative;
 	overflow: hidden;
 	display: flex;
 	align-items: center;
 	gap: 0.75rem;
-	padding: 1.0625rem 1rem 1.125rem 0;
+	padding: 1.0625rem 1rem var(--media-card-padding-bottom) 0;
 	border-radius: 1.125rem;
 	background: var(--color-card-background);
 }
@@ -1634,7 +1639,8 @@ hr {
 }
 
 .media-card__label {
-	padding: 0.1875rem 0.5625rem 0.3125rem;
+	display: inline-block;
+	padding: 8px 9px;
 	font-size: var(--font-size-sm);
 	font-weight: 500;
 	line-height: 1;
@@ -1666,7 +1672,8 @@ hr {
 	display: block;
 	overflow: hidden;
 	width: 24.125rem;
-	height: 18rem;
+	height: 0;
+	padding-bottom: 74%;
 	position: relative;
 	z-index: 1;
 	border-radius: var(--card-preview-radius);
@@ -1770,6 +1777,11 @@ hr {
 		background-size: 28px 32px;
 	}
 
+	.media-card__video::before {
+		--button-size: 60px;
+		background-size: 32px;
+	}
+
 	.header {
 		/* TODO Доделать  */
 		display: none;
@@ -1831,7 +1843,8 @@ hr {
 	.hero::before,
 	.channel::before,
 	.projects::before,
-	.recommends::before {
+	.recommends::before,
+	.media::before {
 		top: -214px;
 		left: -54px;
 		width: 460px;
@@ -1960,7 +1973,9 @@ hr {
 		left: -194px;
 	}
 
-	.channel::after {
+	.channel::after,
+	.media::after,
+	.projects::after {
 		top: 150px;
 		left: 260px;
 		width: 1062px;
@@ -2005,6 +2020,35 @@ hr {
 	.solution-card + .solution-card::before {
 		top: -20px;
 	}
+
+	.media-card {
+		padding-left: 1rem;
+	}
+
+	.media__description {
+		max-width: 43.5rem;
+	}
+
+	.media-card__photo {
+		display: none;
+	}
+
+	.media-card__title {
+		font-size: 16px;
+	}
+
+	.media-card__label {
+		padding: 6px 0.5625rem;
+		font-size: 13px;
+	}
+
+	.media__header {
+		gap: 60px;
+	}
+
+	.media__footer {
+		margin: 40px 0 0;
+	}
 }
 
 @media (max-width: 991px) {
@@ -2044,9 +2088,18 @@ hr {
 	.solution-card__info-image--cooling {
 		right: -150px;
 	}
+
+	.media-card__video {
+		width: 270px;
+	}
+
+	.media__header {
+		flex-direction: column;
+		gap: 20px;
+	}
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 	body {
 		font-size: 13px;
 	}
@@ -2301,7 +2354,9 @@ hr {
 		top: calc(100% + 30px);
 	}
 
-	.channel::after {
+	.channel::after,
+	.media::after,
+	.projects::after {
 		top: 230px;
 		left: 240px;
 		width: 850px;
@@ -2383,6 +2438,28 @@ hr {
 	.solution-card + .solution-card::before {
 		top: -15px;
 	}
+
+	.media {
+		padding: 60px 0;
+	}
+
+	.media-list {
+		gap: 16px;
+		margin: 30px 0 0rem;
+	}
+
+	.media__header {
+		gap: 12px;
+	}
+
+	.media-card__video,
+	.media-card__video-preview {
+		border-radius: 16px;
+	}
+
+	.media__footer {
+		margin: 16px 0 0;
+	}
 }
 
 @media (max-width: 575px) {
@@ -2420,12 +2497,33 @@ hr {
 	.hero::before,
 	.channel::before,
 	.projects::before,
-	.recommends::before {
+	.recommends::before,
+	.media::before {
 		transform: rotate(13deg);
 	}
 
 	.solution-card + .solution-card::before {
 		width: 100%;
+	}
+
+	.media-card {
+		flex-direction: column;
+		align-items: start;
+		padding: 20px 15px;
+		gap: 14px;
+	}
+
+	.media-card__video-container,
+	.media-card__video {
+		width: 100%;
+	}
+
+	.media-card__description {
+		margin: 6px 0 0;
+	}
+
+	.media-card__title {
+		margin: 10px 0 0;
 	}
 }
 
