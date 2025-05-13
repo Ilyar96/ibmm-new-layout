@@ -61,6 +61,7 @@
 	/* Container */
 	--container-padding: 7.5rem;
 	--container-padding-sm: 4.25rem;
+	--container-padding-xs: 3.8125rem;
 
 	/* Transitions */
 	--transition-base: 0.3s ease;
@@ -80,6 +81,7 @@
 	:root {
 		--container-padding: 2.5rem;
 		--container-padding-sm: 2.5rem;
+		--container-padding-xs: 2.5rem;
 
 		--header-height: 7.375rem;
 		--header-height-scrolled: 4.875rem;
@@ -90,6 +92,7 @@
 	:root {
 		--container-padding: 0.9375rem;
 		--container-padding-sm: 0.9375rem;
+		--container-padding-xs: 0.9375rem;
 
 		--header-height: 5.5rem;
 		--header-height-scrolled: 4.25rem;
