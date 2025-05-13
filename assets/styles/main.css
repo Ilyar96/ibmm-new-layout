@@ -412,6 +412,11 @@ hr {
 	color: var(--color-text-primary);
 }
 
+.label--dark {
+	background-color: var(--black-100);
+	color: var(--color-text-primary);
+}
+
 .play-button {
 	--button-size: 6.625rem;
 	position: relative;
@@ -587,7 +592,6 @@ hr {
 /* Hero */
 .hero {
 	position: relative;
-	/* overflow: hidden; */
 	padding: 13.75rem 0 12.25rem;
 	min-height: 100vh;
 	min-height: 100dvh;
@@ -756,10 +760,9 @@ hr {
 	transform: rotate(-49deg);
 }
 
-/* Expert Recommendations Section */
+/* Recommends	 */
 .recommends {
 	position: relative;
-	/* overflow: hidden; */
 	background: var(--color-background);
 }
 
@@ -832,12 +835,10 @@ hr {
 	margin: 1.25rem 0 0;
 }
 
-/* Navigation */
 .slider-navigation {
 	align-self: end;
 	display: flex;
 	gap: 0.8125rem;
-	padding: 0 0 1rem;
 }
 
 .slider-navigation__button {
@@ -873,7 +874,6 @@ hr {
 	height: var(--recommends-button-icon-size);
 }
 
-/* Slider */
 .recommends__slider {
 	position: relative;
 	margin-top: 10.75rem;
@@ -1087,7 +1087,6 @@ hr {
 	width: calc(100% - var(--slider-gap));
 }
 
-/* Background Effects */
 .recommends::before {
 	position: absolute;
 	top: -26.5rem;
@@ -1366,7 +1365,6 @@ hr {
 }
 
 .main-video__desc {
-	/* text-wrap-style: balance; */
 	margin: 1rem 0 0;
 	font-size: var(--font-size-sm);
 }
@@ -1928,7 +1926,7 @@ hr {
 .top-miners__button--next {
 }
 
-/* Секция майнинг отелей */
+/* Mining hotels */
 .mining-hotels {
 	position: relative;
 	padding: 5.75rem 0;
@@ -2095,6 +2093,129 @@ hr {
 	letter-spacing: -0.0237rem;
 }
 
+/* About us */
+.about-us {
+	position: relative;
+	padding: 106px 0 76px;
+	background: var(--color-background-light);
+}
+
+.about-us::before {
+	overflow: hidden;
+	content: "";
+	position: absolute;
+	top: -15rem;
+	left: -17.5rem;
+	z-index: 0;
+	width: 47rem;
+	height: 131.5rem;
+	background: radial-gradient(
+		50% 50% at 50% 50%,
+		rgba(38, 98, 246, 0.2) 0%,
+		rgba(38, 98, 246, 0) 100%
+	);
+	transform: rotate(32deg);
+	pointer-events: none;
+}
+
+.about-us__container {
+	position: relative;
+	z-index: 1;
+}
+
+.about-us__label {
+}
+
+.about-us__title {
+	margin: 1.125rem 0 0;
+	color: var(--color-text-dark);
+}
+
+.about-us__description {
+	max-width: 635px;
+	margin: 0.75rem 0 0;
+	color: var(--color-text-dark);
+}
+
+.about-us__cards {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1.25rem;
+	margin-top: 62px;
+}
+
+.about-us__card {
+	flex: 1 1;
+}
+
+/* About card */
+.about-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 3.6rem 2rem;
+	min-height: 45rem;
+	border-radius: 1.25rem;
+	overflow: hidden;
+	background-color: var(--color-card-background-dark);
+	color: var(--color-text-primary);
+}
+
+.about-card--light {
+	background-color: var(--white-100);
+	color: var(--color-text-dark);
+}
+
+.about-card__content {
+	position: relative;
+	z-index: 2;
+}
+.about-card__tag {
+	font-family: var(--font-family-secondary);
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+.about-card__title {
+	margin: 15px 0 0;
+	font-family: var(--font-family-secondary);
+	font-size: 1.5rem;
+	font-weight: 600;
+	line-height: 150%;
+	letter-spacing: -0.48px;
+}
+
+.about-card__description {
+	margin: 10px 0 0;
+	font-size: 0.9375rem;
+	max-width: 22.25rem;
+	color: #eeeef2;
+	font-size: 14px;
+	line-height: 130%;
+	letter-spacing: -0.42px;
+}
+
+.about-card--light .about-card__description {
+	color: var(--color-text-dark);
+}
+
+.about-card::before {
+	content: "";
+	position: absolute;
+	top: 58%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 39.5rem;
+	height: 39.5rem;
+	background: radial-gradient(
+		50% 50% at 50% 50%,
+		rgba(255, 255, 255, 0.2) 0%,
+		rgba(255, 255, 255, 0) 100%
+	);
+	z-index: 1;
+	pointer-events: none;
+}
+
 @media (hover: hover) {
 	.header__action-btn:hover {
 		background: var(--color-text-primary);
@@ -2160,6 +2281,10 @@ hr {
 
 	.header__action-btn--menu {
 		display: none;
+	}
+
+	.recommends__navigation {
+		padding: 0 0 1rem;
 	}
 }
 
@@ -2454,6 +2579,10 @@ hr {
 		gap: 2.5rem;
 	}
 
+	.solution-card__info {
+		padding: 5.0625rem 1.5625rem 6rem;
+	}
+
 	.solution-card__info-image--container {
 		width: 31.1875rem;
 		height: 31.0625rem;
@@ -2549,6 +2678,39 @@ hr {
 
 	.hotel-card__content {
 		padding: 1.375rem 1.5625rem;
+	}
+
+	.about-us {
+		padding: 96px 0 76px;
+	}
+
+	.about-us__cards {
+		grid-template-columns: 1fr;
+		margin-top: 42px;
+	}
+
+	.about-card {
+		flex-direction: row;
+		min-height: auto;
+		padding: 30px 25px;
+	}
+
+	.about-card__title {
+		margin: 10px 0 0;
+		font-size: 22px;
+	}
+
+	.about-card__description {
+		margin: 8px 0 0;
+	}
+
+	.about-card::before {
+		top: 50%;
+		left: auto;
+		right: 0;
+		transform: translate(0, -50%);
+		width: 380px;
+		height: 380px;
 	}
 }
 
@@ -3023,6 +3185,46 @@ hr {
 	.hotel-card__features {
 		margin: 0.875rem 0 0;
 	}
+
+	.about-us {
+		padding: 60px 0;
+	}
+
+	.about-us__cards {
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		margin-top: 25px;
+	}
+
+	.about-card {
+		flex-direction: column;
+		padding: 18px 0.9375rem;
+		min-height: 400px;
+	}
+
+	.about-card__title {
+		margin: 10px 0 0;
+		font-size: 22px;
+	}
+
+	.about-card::before {
+		top: 68%;
+		left: 50%;
+		right: auto;
+		transform: translate(-50%, -50%);
+		width: 240px;
+		height: 240px;
+	}
+
+	.about-card__description,
+	.about-card__tag {
+		font-size: 13px;
+	}
+
+	.about-card__title {
+		font-size: 20px;
+		line-height: 1.2;
+	}
 }
 
 @media (max-width: 575px) {
@@ -3103,6 +3305,10 @@ hr {
 
 @media (max-width: 479px) {
 	.video-list {
+		grid-template-columns: 1fr;
+	}
+
+	.about-us__cards {
 		grid-template-columns: 1fr;
 	}
 }
