@@ -19,11 +19,18 @@
 
 					<nav class="header__nav">
 						<button class="header__catalog" type="button">
-							<span class="header__catalog-icon icon-menu">
-								<span></span>
-								<span></span>
-								<span></span>
-							</span>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="20"
+								height="12"
+								viewBox="0 0 20 12"
+								fill="none"
+								class="header__catalog-icon"
+							>
+								<path d="M0 0H20V1.73821H0V0Z" fill="currentColor" />
+								<path d="M0 4.867H20V6.60522H0V4.867Z" fill="currentColor" />
+								<path d="M0 9.73401H20V11.4722H0V9.73401Z" fill="currentColor" />
+							</svg>
 							<span class="header__catalog-text">Каталог</span>
 						</button>
 
@@ -45,6 +52,20 @@
 						<button class="header__action-btn">
 							<span class="header__action-btn-text">Нужна помощь?</span>
 							<span class="header__action-btn-indicator"></span>
+						</button>
+						<button class="header__action-btn header__action-btn--menu" type="button">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="20"
+								height="12"
+								viewBox="0 0 20 12"
+								fill="none"
+								class="header__menu-icon"
+							>
+								<path d="M0 0H20V1.73821H0V0Z" fill="currentColor" />
+								<path d="M0 4.867H20V6.60522H0V4.867Z" fill="currentColor" />
+								<path d="M0 9.73401H20V11.4722H0V9.73401Z" fill="currentColor" />
+							</svg>
 						</button>
 					</div>
 				</div>
@@ -140,15 +161,15 @@
 								</div>
 							</div>
 
-							<div class="recommends__navigation">
-								<button class="recommends__button recommends__button--prev">
+							<div class="recommends__navigation slider-navigation">
+								<button id="recommends-prev" class="slider-navigation__button">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="24"
 										height="24"
 										viewBox="0 0 24 24"
 										fill="none"
-										class="recommends__button-icon"
+										class="slider-navigation__button-icon"
 									>
 										<path
 											fill-rule="evenodd"
@@ -158,14 +179,14 @@
 										/>
 									</svg>
 								</button>
-								<button class="recommends__button recommends__button--next">
+								<button id="recommends-next" class="slider-navigation__button">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="24"
 										height="24"
 										viewBox="0 0 24 24"
 										fill="none"
-										class="recommends__button-icon"
+										class="slider-navigation__button-icon"
 									>
 										<path
 											fill-rule="evenodd"
@@ -178,7 +199,7 @@
 							</div>
 						</div>
 
-						<div class="recommends__slider">
+						<div class="recommends__slider swiper-container">
 							<div class="swiper recommends__swiper">
 								<div class="swiper-wrapper">
 									<div class="swiper-slide recommends__slide">
@@ -367,6 +388,181 @@
 							</div>
 
 							<div class="recommends__slider-scrollbar swiper-scrollbar"></div>
+						</div>
+					</div>
+				</section>
+
+				<section class="top-miners">
+					<div class="top-miners__container container container--sm">
+						<div class="top-miners__content">
+							<div class="top-miners__header">
+								<h2 class="top-miners__title title">
+									ТОП 5 <br />
+									Майнеров
+								</h2>
+								<div class="top-miners__categories">
+									<div class="top-miners__category-label">Выберите категорию:</div>
+									<div class="top-miners__category-tabs">
+										<button class="top-miners__category-tab active" type="button">
+											<span class="top-miners__category-text">ТОП 5 на Bitcoin</span>
+										</button>
+										<button class="top-miners__category-tab" type="button">
+											<span class="top-miners__category-text">ТОП 5 на Ethereum</span>
+										</button>
+										<button class="top-miners__category-tab" type="button">
+											<span class="top-miners__category-text">ТОП 5 на DOGE</span>
+										</button>
+									</div>
+									<div class="top-miners__subcategories">
+										<button class="top-miners__subcategory" type="button">
+											<span class="top-miners__subcategory-text">ТОП 5 от майнеров ANTMINER</span>
+										</button>
+										<button class="top-miners__subcategory" type="button">
+											<span class="top-miners__subcategory-text">ТОП 5 от майнеров Whatsminer</span>
+										</button>
+									</div>
+								</div>
+								<div class="top-miners__description">
+									В условиях рынка на сегоднящний день мы предлагаем самые топовые позиции на рынке
+									майнинга на сегодняшний день и по прогнозам на 2025 год в России. В условиях рынка
+									на сегоднящний день мы предлагаем самые топовые позиции на рынке майнинга на
+									сегодняшний день и по прогнозам на 2025 год в России.
+								</div>
+
+								<div class="top-miners__navigation slider-navigation slider-navigation--light">
+									<button id="top-miners-prev" class="slider-navigation__button">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											class="slider-navigation__button-icon"
+										>
+											<path
+												fill-rule="evenodd"
+												clip-rule="evenodd"
+												d="M8.47062 18.6895C8.05883 19.1073 7.39553 19.1029 6.98909 18.6796L1.30202 12.7565C0.899329 12.3371 0.899329 11.6629 1.30202 11.2435L6.98909 5.32042C7.39553 4.89711 8.05883 4.89265 8.47062 5.31046C8.8824 5.72827 8.88674 6.41012 8.4803 6.83343L4.5536 10.9231L21.9524 10.9231C22.531 10.9231 23 11.4052 23 12C23 12.5948 22.531 13.0769 21.9524 13.0769L4.5536 13.0769L8.4803 17.1666C8.88674 17.5899 8.8824 18.2717 8.47062 18.6895Z"
+												fill="currentColor"
+											/>
+										</svg>
+									</button>
+									<button id="top-miners-next" class="slider-navigation__button">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											class="slider-navigation__button-icon"
+										>
+											<path
+												fill-rule="evenodd"
+												clip-rule="evenodd"
+												d="M15.5294 5.31046C15.9412 4.89266 16.6045 4.89711 17.0109 5.32042L22.698 11.2435C23.1007 11.6629 23.1007 12.3371 22.698 12.7565L17.0109 18.6796C16.6045 19.1029 15.9412 19.1073 15.5294 18.6895C15.1176 18.2717 15.1133 17.5899 15.5197 17.1666L19.4464 13.0769H2.04762C1.46904 13.0769 1 12.5948 1 12C1 11.4052 1.46904 10.9231 2.04762 10.9231H19.4464L15.5197 6.83343C15.1133 6.41013 15.1176 5.72827 15.5294 5.31046Z"
+												fill="currentColor"
+											/>
+										</svg>
+									</button>
+								</div>
+							</div>
+
+							<div class="top-miners__slider-wrapper">
+								<div class="top-miners__slider swiper-container">
+									<div class="swiper top-miners__swiper">
+										<div class="swiper-wrapper">
+											<div class="swiper-slide top-miners__slide">
+												<div class="miner-card miner-card--reversed miner-card--light">
+													<div class="miner-card__content">
+														<h3 class="miner-card__brand">Bitmain Antminer</h3>
+														<a href="#" class="miner-card__model">S21 180 Th/s</a>
+														<p class="miner-card__description">
+															Представляем вашему вниманию высокопроизводительный ASIC майнер –
+															идеальное решение для майнинга различных криптовалют.
+														</p>
+														<div class="miner-card__price">
+															<span>от 324.800 ₽</span>
+														</div>
+													</div>
+													<div class="miner-card__image-wrapper">
+														<img
+															src="assets/img/top-miners/s21.png"
+															alt="Bitmain Antminer"
+															class="miner-card__image miner-card__image--top-s21"
+														/>
+													</div>
+												</div>
+											</div>
+											<div class="swiper-slide top-miners__slide">
+												<div class="miner-card miner-card--reversed miner-card--dark">
+													<div class="miner-card__content">
+														<h3 class="miner-card__brand">Bitmain Antminer</h3>
+														<a href="#" class="miner-card__model">T21 180 Th/s</a>
+														<p class="miner-card__description">
+															Представляем вашему вниманию высокопроизводительный ASIC майнер –
+															идеальное решение для майнинга различных криптовалют.
+														</p>
+														<div class="miner-card__price">
+															<span>от 324.800 ₽</span>
+														</div>
+													</div>
+													<div class="miner-card__image-wrapper">
+														<img
+															src="assets/img/top-miners/t21.png"
+															alt="Bitmain Antminer"
+															class="miner-card__image miner-card__image--top-t21"
+														/>
+													</div>
+												</div>
+											</div>
+											<div class="swiper-slide top-miners__slide">
+												<div class="miner-card miner-card--reversed miner-card--light">
+													<div class="miner-card__content">
+														<h3 class="miner-card__brand">Whatsminer</h3>
+														<a href="#" class="miner-card__model">M60+ 180 Th/s</a>
+														<p class="miner-card__description">
+															Представляем вашему вниманию высокопроизводительный ASIC майнер –
+															идеальное решение для майнинга различных криптовалют.
+														</p>
+														<div class="miner-card__price">
+															<span>от 324.800 ₽</span>
+														</div>
+													</div>
+													<div class="miner-card__image-wrapper">
+														<img
+															src="assets/img/top-miners/m60.png"
+															alt="Whatsminer"
+															class="miner-card__image miner-card__image--top-m60"
+														/>
+													</div>
+												</div>
+											</div>
+											<div class="swiper-slide top-miners__slide">
+												<div class="miner-card miner-card--reversed miner-card--light">
+													<div class="miner-card__content">
+														<h3 class="miner-card__brand">Bitmain Antminer</h3>
+														<a href="#" class="miner-card__model">S21 180 Th/s</a>
+														<p class="miner-card__description">
+															Представляем вашему вниманию высокопроизводительный ASIC майнер –
+															идеальное решение для майнинга различных криптовалют.
+														</p>
+														<div class="miner-card__price">
+															<span>от 324.800 ₽</span>
+														</div>
+													</div>
+													<div class="miner-card__image-wrapper">
+														<img
+															src="assets/img/top-miners/s21.png"
+															alt="Bitmain Antminer"
+															class="miner-card__image miner-card__image--top-s21"
+														/>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</section>
@@ -799,7 +995,7 @@
 					</div>
 				</section>
 
-				<div class="media">
+				<section class="media">
 					<div class="media__container container">
 						<div class="media__header">
 							<div class="button__media__header-left">
@@ -949,7 +1145,7 @@
 							</button>
 						</div>
 					</div>
-				</div>
+				</section>
 			</main>
 		</div>
 

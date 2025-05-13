@@ -1,13 +1,16 @@
 :root {
 	/* Colors */
 	--color-background: #070809;
+	--color-background-light: #ecf1f6;
 	--color-text-primary: #ffffff;
 	--color-text-secondary: #99999b;
 	--color-text-tertiary: #626262;
 	--color-text-dark: #000000;
 	--color-accent: #2467e0;
 	--color-accent-hover: #1e56b6;
+	--color-accent-light: #2467e0;
 	--color-card-background: #191e20;
+	--color-card-background-dark: #0f1221;
 	--color-card-background-light: #ffffff;
 	--color-gray: #333333;
 	--color-white: #ffffff;
@@ -17,9 +20,11 @@
 	--color-accent-light: rgba(36, 103, 224, 0.3);
 	--color-accent-green: #26f64c;
 	--color-button-hover: rgba(255, 255, 255, 0.1);
+	--color-header-background: rgba(7, 8, 9, 0.9);
 	--white-100: #fff;
 	--white-10: rgba(255, 255, 255, 0.1);
 	--black-100: #000;
+	--black-10: rgba(0, 0, 0, 0.1);
 
 	/* Fonts */
 	--font-family: "Involve", sans-serif;
@@ -54,9 +59,14 @@
 
 	/* Container */
 	--container-padding: 7.5rem;
+	--container-padding-sm: 4.25rem;
 
 	/* Transitions */
 	--transition-base: 0.3s ease;
+
+	/* Header */
+	--header-height: 10.1875rem;
+	--header-height-scrolled: 5.1875rem;
 
 	/* Slider */
 	--swiper-scrollbar-width: 0.1875rem;
@@ -68,11 +78,19 @@
 @media (max-width: 1199px) {
 	:root {
 		--container-padding: 2.5rem;
+		--container-padding-sm: 2.5rem;
+
+		--header-height: 7.375rem;
+		--header-height-scrolled: 4.875rem;
 	}
 }
 
 @media (max-width: 768px) {
 	:root {
 		--container-padding: 0.9375rem;
+		--container-padding-sm: 0.9375rem;
+
+		--header-height: 5.5rem;
+		--header-height-scrolled: 4.25rem;
 	}
 }

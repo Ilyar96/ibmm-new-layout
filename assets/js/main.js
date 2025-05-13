@@ -9,8 +9,8 @@ function initSliders() {
 	new Swiper(".recommends__swiper", {
 		slidesPerView: "auto",
 		navigation: {
-			nextEl: ".recommends__button--next",
-			prevEl: ".recommends__button--prev",
+			nextEl: "#recommends-next",
+			prevEl: "#recommends-prev",
 		},
 		scrollbar: {
 			el: ".recommends__slider-scrollbar",
@@ -21,6 +21,14 @@ function initSliders() {
 		slidesPerView: "auto",
 		scrollbar: {
 			el: ".channel__section-head-scrollbar",
+		},
+	});
+
+	new Swiper(".top-miners__swiper", {
+		slidesPerView: "auto",
+		navigation: {
+			nextEl: "#top-miners-next",
+			prevEl: "#top-miners-prev",
 		},
 	});
 }

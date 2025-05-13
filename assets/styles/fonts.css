@@ -65,6 +65,18 @@
 
 @font-face {
 	font-family: "Involve";
+	src: url("../fonts/involve/Involve-Medium.eot");
+	src: url("../fonts/involve/Involve-Medium.eot?#iefix") format("embedded-opentype"),
+		url("../fonts/involve/Involve-Medium.woff2") format("woff2"),
+		url("../fonts/involve/Involve-Medium.woff") format("woff"),
+		url("../fonts/involve/Involve-Medium.ttf") format("truetype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Involve";
 	src: url("../fonts/involve/Involve-SemiBold.eot");
 	src: local("Involve SemiBold"), local("../fonts/involve/Involve-SemiBold"),
 		url("../fonts/involve/Involve-SemiBold.eot?#iefix") format("embedded-opentype"),
