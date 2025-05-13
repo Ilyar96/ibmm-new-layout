@@ -364,7 +364,7 @@ hr {
 	padding: 0 1.25rem;
 	border-radius: var(--border-radius-sm);
 	font-family: var(--font-family-tertiary);
-	font-size: var(--font-size-sm);
+	font-size: 0.9375rem;
 	font-weight: 700;
 	line-height: var(--btn-height);
 	cursor: pointer;
@@ -731,7 +731,8 @@ hr {
 .projects::before,
 .recommends::before,
 .media::before,
-.top-miners::before {
+.top-miners::before,
+.mining-hotels::before {
 	position: absolute;
 	top: -32.75rem;
 	left: -10.25rem;
@@ -980,7 +981,7 @@ hr {
 	background: radial-gradient(
 		50% 50% at 50% 50%,
 		rgba(0, 170, 255, 0.3) 0%,
-		rgba(255, 255, 255, 0) 40%
+		rgba(255, 255, 255, 0) 30%
 	);
 }
 
@@ -1093,7 +1094,8 @@ hr {
 	left: -33.375rem;
 }
 
-.recommends::after {
+.recommends::after,
+.mining-hotels::after {
 	content: "";
 	position: absolute;
 	top: -15.3125rem;
@@ -1926,6 +1928,173 @@ hr {
 .top-miners__button--next {
 }
 
+/* Секция майнинг отелей */
+.mining-hotels {
+	position: relative;
+	padding: 5.75rem 0;
+	background: var(--color-background);
+}
+
+.mining-hotels::before {
+	top: -19.75rem;
+	left: -20.25rem;
+}
+
+.mining-hotels::after {
+	top: -5.3125rem;
+	right: 12.125rem;
+	background: radial-gradient(
+		50% 50% at 50% 50%,
+		rgba(38, 98, 246, 0.1) 0%,
+		rgba(38, 98, 246, 0) 100%
+	);
+}
+
+.mining-hotels__container {
+	position: relative;
+	z-index: 2;
+}
+
+.mining-hotels__sidebar {
+	padding: 1.5rem 0 0;
+}
+
+.mining-hotels__content {
+	display: grid;
+	grid-template-columns: 28.625rem 1fr;
+	gap: 6.8875rem;
+}
+
+.mining-hotels__title {
+	margin: 1.125rem 0 0;
+}
+
+.mining-hotels__description {
+	max-width: 23.575rem;
+	margin: 0.75rem 0 0;
+}
+
+.mining-hotels__buttons {
+	display: flex;
+	gap: 1.5rem;
+	margin: 2.9375rem 0 0;
+}
+
+.mining-hotels__badge {
+	padding-left: 1.75rem;
+	padding-right: 1.75rem;
+}
+
+.mining-hotels__cards {
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	gap: 1.25rem;
+}
+
+.hotel-card {
+	position: relative;
+	border-radius: 1.125rem;
+	overflow: hidden;
+	background-color: var(--color-card-background);
+}
+
+.hotel-card--blue {
+	background-color: var(--color-accent);
+}
+
+.hotel-card__media {
+	position: relative;
+	height: 0;
+	padding-bottom: 0;
+	overflow: hidden;
+}
+
+.hotel-card__gradient {
+	position: absolute;
+	top: -12.4375rem;
+	left: 32.1875rem;
+	width: 47.375rem;
+	height: 47.375rem;
+	background: radial-gradient(
+		50% 50% at 50% 50%,
+		rgba(255, 255, 255, 0.2) 0%,
+		rgba(255, 255, 255, 0) 100%
+	);
+	pointer-events: none;
+}
+
+.hotel-card__image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.hotel-card__content {
+	position: relative;
+	padding: 1.875rem 2.0625rem 2rem;
+}
+
+.hotel-card__badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.3125rem 0.6875rem;
+	border-radius: 0.5625rem;
+	background-color: var(--white-100);
+	color: var(--color-text-dark-secondary);
+	font-size: 0.875rem;
+}
+
+.hotel-card__title {
+	margin: 1.25rem 0 0;
+	font-family: var(--font-family-secondary);
+	font-size: 1.375rem;
+	font-weight: 600;
+	line-height: 1.5;
+	letter-spacing: -0.0271rem;
+}
+
+.hotel-card__description {
+	max-width: 23.5rem;
+	margin: 0.75rem 0 0;
+	font-size: 0.8125rem;
+	letter-spacing: -0.0237rem;
+}
+
+.hotel-card__features {
+	display: flex;
+	gap: 0.8125rem;
+	margin: 1.4375rem 0 0;
+}
+
+.hotel-card__feature {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.hotel-card__feature-icon {
+	flex: 0 0 1.375rem;
+	width: 1.375rem;
+	height: 1.375rem;
+	object-fit: contain;
+}
+
+.hotel-card__feature-icon--power {
+	flex: 0 0 0.6875rem;
+	width: 0.6875rem;
+	height: 1.25rem;
+}
+
+.hotel-card__feature-text {
+	font-size: 0.8125rem;
+	font-weight: 600;
+	letter-spacing: -0.0237rem;
+}
+
 @media (hover: hover) {
 	.header__action-btn:hover {
 		background: var(--color-text-primary);
@@ -2005,7 +2174,7 @@ hr {
 	}
 
 	.title {
-		font-size: 40px;
+		font-size: 2.5rem;
 		line-height: 1.25;
 	}
 
@@ -2122,11 +2291,17 @@ hr {
 	.channel::before,
 	.projects::before,
 	.recommends::before,
-	.media::before {
+	.media::before,
+	.top-miners::before,
+	.mining-hotels::before {
 		top: -13.375rem;
 		left: -3.375rem;
 		width: 28.75rem;
 		height: 80.5rem;
+	}
+
+	.mining-hotels::before {
+		left: -13.375rem;
 	}
 
 	.hero::after {
@@ -2142,7 +2317,8 @@ hr {
 		left: -20.25rem;
 	}
 
-	.recommends::after {
+	.recommends::after,
+	.mining-hotels::after {
 		top: -0.9375rem;
 		right: -23.375rem;
 		width: 66.375rem;
@@ -2150,8 +2326,8 @@ hr {
 	}
 
 	.recommends__container {
-		padding-top: 120px;
-		margin-bottom: 100px;
+		padding-top: 7.5rem;
+		margin-bottom: 6.25rem;
 	}
 
 	.recommends__content {
@@ -2347,11 +2523,32 @@ hr {
 	}
 
 	.top-miners__header {
-		padding: 25px 25px 20px;
+		padding: 1.5625rem 1.5625rem 1.25rem;
 	}
 
 	.main-video__player-wrapper {
-		flex: 0 0 440px;
+		flex: 0 0 27.5rem;
+	}
+
+	.mining-hotels__sidebar {
+		padding: 0;
+	}
+
+	.mining-hotels__content {
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+
+	.mining-hotels__cards {
+		gap: 1rem;
+	}
+
+	.hotel-card__title {
+		font-size: 1.125rem;
+	}
+
+	.hotel-card__content {
+		padding: 1.375rem 1.5625rem;
 	}
 }
 
@@ -2593,7 +2790,8 @@ hr {
 		font-size: 0.8125rem;
 	}
 
-	.recommends::after {
+	.recommends::after,
+	.mining-hotels::after {
 		top: auto;
 		bottom: 6.25rem;
 		right: auto;
@@ -2796,6 +2994,35 @@ hr {
 	.media__footer {
 		margin: 1rem 0 0;
 	}
+
+	.mining-hotels {
+		padding: 3.75rem 0;
+	}
+
+	.mining-hotels__content {
+		gap: 1.875rem;
+	}
+
+	.mining-hotels__buttons {
+		margin: 1.25rem 0 0;
+		gap: 0.875rem;
+	}
+
+	.hotel-card__content {
+		padding: 0.875rem 0.9375rem;
+	}
+
+	.hotel-card__title {
+		margin: 0.75rem 0 0;
+	}
+
+	.hotel-card__description {
+		margin: 0.5rem 0 0;
+	}
+
+	.hotel-card__features {
+		margin: 0.875rem 0 0;
+	}
 }
 
 @media (max-width: 575px) {
@@ -2834,7 +3061,9 @@ hr {
 	.channel::before,
 	.projects::before,
 	.recommends::before,
-	.media::before {
+	.media::before,
+	.top-miners::before,
+	.mining-hotels::before {
 		transform: rotate(13deg);
 	}
 
@@ -2860,6 +3089,15 @@ hr {
 
 	.media-card__title {
 		margin: 0.625rem 0 0;
+	}
+
+	.hotel-card__features {
+		flex-wrap: wrap;
+		gap: 0.5rem 0.8125rem;
+	}
+
+	.mining-hotels__buttons {
+		flex-direction: column;
 	}
 }
 
