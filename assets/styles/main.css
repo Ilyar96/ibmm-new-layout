@@ -2118,6 +2118,7 @@ hr {
 	font-weight: 600;
 	text-transform: uppercase;
 	border-radius: 3.875rem;
+	color: var(--color-text-dark);
 	border: 0.0625rem solid var(--color-text-dark);
 	letter-spacing: -0.03rem;
 	-webkit-transition: background-color var(--transition-base);
