@@ -2951,6 +2951,50 @@ hr {
 		width: 589px;
 		height: 497px;
 	}
+
+	.footer {
+		padding: 120px 0;
+	}
+
+	.footer__wrapper {
+		grid-template-columns: 1fr;
+		gap: 80px;
+	}
+
+	.footer__card {
+		padding: 50px 40px;
+	}
+
+	.footer__title {
+		margin: 0 0 12px;
+		font-size: 18px;
+	}
+
+	.footer__menu-link {
+		font-size: 15px;
+	}
+
+	.footer__nav {
+		grid-template-columns: repeat(3, 1fr);
+		margin: 60px 0 0;
+		gap: 60px 40px;
+	}
+
+	.footer__contacts {
+		gap: 50px;
+		padding: 0 0 0;
+	}
+
+	.footer__contact-title,
+	.footer__requisites-title {
+		margin: 0 0 30px;
+		font-size: 18px;
+	}
+
+	.footer__contact-item,
+	.footer__requisites-item {
+		font-size: 15px;
+	}
 }
 
 @media (max-width: 991px) {
@@ -3002,6 +3046,14 @@ hr {
 	.media__header {
 		flex-direction: column;
 		gap: 1.25rem;
+	}
+
+	.footer__nav {
+		gap: 40px 20px;
+	}
+
+	.footer__card {
+		padding: 40px 30px;
 	}
 }
 
@@ -3534,6 +3586,62 @@ hr {
 	.miner-card--reversed .miner-card__content {
 		padding: 1.25rem 0.9375rem 0;
 	}
+
+	.footer {
+		padding: 60px 0;
+	}
+
+	.footer__logo-img {
+		width: 12rem;
+		height: 1.5625rem;
+	}
+
+	.footer__nav {
+		grid-template-columns: repeat(2, 1fr);
+		margin: 30px 0 0;
+		gap: 22px 15px;
+	}
+
+	.footer__column {
+		gap: 10px;
+	}
+
+	.footer__title {
+		margin: 0;
+		font-size: 16px;
+	}
+
+	.footer__menu-link {
+		font-size: 14px;
+	}
+
+	.footer__card {
+		padding: 22px 15px;
+	}
+
+	.footer__contact-title,
+	.footer__requisites-title {
+		margin: 0 0 20px;
+		font-size: 16px;
+	}
+
+	.footer__contact-item,
+	.footer__requisites-item {
+		font-size: 14px;
+	}
+
+	.footer__contacts {
+		gap: 30px;
+	}
+
+	.footer__contact-list {
+		grid-template-columns: 1fr 1fr;
+		gap: 20px 80px;
+	}
+
+	.footer__wrapper {
+		gap: 50px;
+	}
 }
 
 @media (max-width: 575px) {
@@ -3614,6 +3722,10 @@ hr {
 	.mining-hotels__buttons {
 		flex-direction: column;
 	}
+
+	.footer__contact-list {
+		gap: 20px;
+	}
 }
 
 @media (max-width: 479px) {
@@ -3622,6 +3734,11 @@ hr {
 	}
 
 	.about-us__cards {
+		grid-template-columns: 1fr;
+	}
+
+	.footer__nav,
+	.footer__contact-list {
 		grid-template-columns: 1fr;
 	}
 }
