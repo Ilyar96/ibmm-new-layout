@@ -2154,7 +2154,6 @@ hr {
 
 .top-miners__swiper {
 	height: 100%;
-	padding-right: var(--container-padding-sm);
 }
 
 .top-miners__slide {
@@ -2815,6 +2814,11 @@ hr {
 		padding: 0 0 1rem;
 	}
 
+	.top-miners__swiper {
+		height: 100%;
+		padding-right: var(--container-padding-sm);
+	}
+
 	.footer__column:nth-child(4) .footer__title,
 	.footer__column:nth-child(5) .footer__title,
 	.footer__column:nth-child(6) .footer__title {
@@ -2848,6 +2852,11 @@ hr {
 	.media-card__video::before {
 		--button-size: 3.75rem;
 		background-size: 2rem;
+	}
+
+	.swiper-container,
+	.shipment-list__slider {
+		--slider-gap: 0;
 	}
 
 	.header {
@@ -3444,10 +3453,6 @@ hr {
 @media (max-width: 767px) {
 	body {
 		font-size: 0.8125rem;
-	}
-
-	.swiper-container {
-		--slider-gap: 1rem;
 	}
 
 	.button {
