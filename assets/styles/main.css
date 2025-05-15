@@ -2241,9 +2241,15 @@ hr {
 
 .hotel-card {
 	position: relative;
+	display: flex;
+	flex-direction: row-reverse;
 	border-radius: 1.125rem;
 	overflow: hidden;
 	background-color: var(--color-card-background);
+}
+
+.hotel-card:nth-child(2n) {
+	flex-direction: row;
 }
 
 .hotel-card--blue {
@@ -2251,24 +2257,18 @@ hr {
 }
 
 .hotel-card__media {
-	position: relative;
-	height: 0;
+	flex: 1 1;
+	height: 100%;
 	padding-bottom: 0;
-	overflow: hidden;
 }
 
-.hotel-card__gradient {
+.hotel-card::before {
+	content: "";
 	position: absolute;
 	top: -12.4375rem;
-	left: 32.1875rem;
+	right: -10rem;
 	width: 47.375rem;
 	height: 47.375rem;
-	background: -o-radial-gradient(
-		50% 50%,
-		50% 50%,
-		rgba(255, 255, 255, 0.2) 0%,
-		rgba(255, 255, 255, 0) 100%
-	);
 	background: radial-gradient(
 		50% 50% at 50% 50%,
 		rgba(255, 255, 255, 0.2) 0%,
@@ -2277,18 +2277,33 @@ hr {
 	pointer-events: none;
 }
 
+.hotel-card:nth-child(2n)::before {
+	right: auto;
+	left: -10rem;
+}
+
 .hotel-card__image {
 	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	-o-object-fit: cover;
-	object-fit: cover;
+	top: 38%;
+	right: -16.3rem;
+	z-index: 2;
+	width: 62.5rem;
+	height: 62.5rem;
+	object-fit: contain;
+	transform: translateY(-50%);
+	pointer-events: none;
+}
+
+.hotel-card:nth-child(2n) .hotel-card__image {
+	top: 45%;
+	right: auto;
+	left: -9.4875rem;
 }
 
 .hotel-card__content {
+	flex: 0 0 27.625rem;
 	position: relative;
+	z-index: 3;
 	padding: 1.875rem 2.0625rem 2rem;
 }
 
@@ -3287,6 +3302,21 @@ hr {
 		padding: 1.375rem 1.5625rem;
 	}
 
+	.hotel-card__image {
+		right: -11.375rem;
+		width: 43.75rem;
+		height: 43.75rem;
+	}
+
+	.hotel-card:nth-child(2n) .hotel-card__image {
+		left: -7.6875rem;
+	}
+
+	.hotel-card::before {
+		width: 40.625rem;
+		height: 40.625rem;
+	}
+
 	.about-us {
 		padding: 6rem 0 4.75rem;
 	}
@@ -3479,6 +3509,16 @@ hr {
 		-ms-flex-direction: column;
 		flex-direction: column;
 		gap: 1.25rem;
+	}
+
+	.hotel-card__image {
+		right: -14.5rem;
+		width: 37.5rem;
+		height: 37.5rem;
+	}
+
+	.hotel-card:nth-child(2n) .hotel-card__image {
+		left: -10.6875rem;
 	}
 
 	.footer__nav {
@@ -3902,6 +3942,7 @@ hr {
 	}
 
 	.hotel-card__content {
+		flex: 0 0 100%;
 		padding: 0.875rem 0.9375rem;
 	}
 
@@ -3915,6 +3956,32 @@ hr {
 
 	.hotel-card__features {
 		margin: 0.875rem 0 0;
+	}
+
+	.hotel-card__image {
+		right: -12rem;
+		width: 33.125rem;
+		height: 33.125rem;
+		opacity: 0.5;
+	}
+
+	.hotel-card:nth-child(2n) .hotel-card__image {
+		left: auto;
+		right: -10.125rem;
+	}
+
+	.hotel-card:nth-child(2) .hotel-card__image {
+		top: 27%;
+		right: -8.875rem;
+		width: 34.375rem;
+		height: 34.375rem;
+	}
+
+	.hotel-card::before {
+		display: none;
+	}
+
+	.hotel-card:nth-child(2n)::before {
 	}
 
 	.about-us {
