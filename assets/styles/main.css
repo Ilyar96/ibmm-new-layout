@@ -587,15 +587,15 @@ hr {
 	-ms-flex-align: center;
 	align-items: center;
 	gap: 0.625rem;
-}
-
-.header__catalog-text {
 	font-family: var(--font-family-secondary);
 	color: var(--color-text-primary);
 	font-size: 0.875rem;
 	font-weight: 600;
 	letter-spacing: -0.0175rem;
 	line-height: 0.9;
+	-webkit-transition: all var(--transition-base);
+	-o-transition: all var(--transition-base);
+	transition: all var(--transition-base);
 }
 
 .header__menu-icon,
@@ -798,6 +798,12 @@ hr {
 .hero__divider {
 	width: 46.125rem;
 	height: 0.0625rem;
+	background: -o-linear-gradient(
+		left,
+		rgba(255, 255, 255, 0) 0%,
+		rgba(255, 255, 255, 1) 50%,
+		rgba(255, 255, 255, 0) 100%
+	);
 	background: -webkit-gradient(
 		linear,
 		left top,
@@ -805,12 +811,6 @@ hr {
 		from(rgba(255, 255, 255, 0)),
 		color-stop(50%, rgba(255, 255, 255, 1)),
 		to(rgba(255, 255, 255, 0))
-	);
-	background: -o-linear-gradient(
-		left,
-		rgba(255, 255, 255, 0) 0%,
-		rgba(255, 255, 255, 1) 50%,
-		rgba(255, 255, 255, 0) 100%
 	);
 	background: linear-gradient(
 		90deg,
@@ -2241,7 +2241,12 @@ hr {
 
 .hotel-card {
 	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: reverse;
+	-ms-flex-direction: row-reverse;
 	flex-direction: row-reverse;
 	border-radius: 1.125rem;
 	overflow: hidden;
@@ -2249,6 +2254,9 @@ hr {
 }
 
 .hotel-card:nth-child(2n) {
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
 	flex-direction: row;
 }
 
@@ -2257,6 +2265,8 @@ hr {
 }
 
 .hotel-card__media {
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1;
 	flex: 1 1;
 	height: 100%;
 	padding-bottom: 0;
@@ -2269,6 +2279,12 @@ hr {
 	right: -10rem;
 	width: 47.375rem;
 	height: 47.375rem;
+	background: -o-radial-gradient(
+		50% 50%,
+		50% 50%,
+		rgba(255, 255, 255, 0.2) 0%,
+		rgba(255, 255, 255, 0) 100%
+	);
 	background: radial-gradient(
 		50% 50% at 50% 50%,
 		rgba(255, 255, 255, 0.2) 0%,
@@ -2289,7 +2305,10 @@ hr {
 	z-index: 2;
 	width: 62.5rem;
 	height: 62.5rem;
+	-o-object-fit: contain;
 	object-fit: contain;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 	pointer-events: none;
 }
@@ -2301,6 +2320,8 @@ hr {
 }
 
 .hotel-card__content {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 27.625rem;
 	flex: 0 0 27.625rem;
 	position: relative;
 	z-index: 3;
@@ -2538,8 +2559,11 @@ hr {
 	z-index: 2;
 	width: 100%;
 	height: 100%;
+	-o-object-fit: contain;
 	object-fit: contain;
 	pointer-events: none;
+	-webkit-transform: translate(-50%, 0);
+	-ms-transform: translate(-50%, 0);
 	transform: translate(-50%, 0);
 }
 
@@ -2551,7 +2575,7 @@ hr {
 }
 
 .about-card__image--2 {
-	bottom: 0.25rem;
+	bottom: -0.35rem;
 	left: 59%;
 	width: 44.625rem;
 	height: 27.25rem;
@@ -3942,6 +3966,8 @@ hr {
 	}
 
 	.hotel-card__content {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 100%;
 		flex: 0 0 100%;
 		padding: 0.875rem 0.9375rem;
 	}
@@ -4317,7 +4343,9 @@ hr {
 
 @media (min-width: 768px) and (max-width: 1199px) {
 	.about-us__card {
+		display: -ms-grid;
 		display: grid;
+		-ms-grid-columns: 1fr 0.75rem 1fr;
 		grid-template-columns: 1fr 1fr;
 		gap: 0.75rem;
 	}
@@ -4329,6 +4357,8 @@ hr {
 	.about-card__image {
 		left: auto;
 		right: 0;
+		-webkit-transform: translate(0, 50%);
+		-ms-transform: translate(0, 50%);
 		transform: translate(0, 50%);
 	}
 	.about-card__image--1 {
@@ -4349,6 +4379,8 @@ hr {
 		right: -2.4375rem;
 		width: 20.25rem;
 		height: 12.3125rem;
+		-webkit-transform: scaleX(-1);
+		-ms-transform: scaleX(-1);
 		transform: scaleX(-1);
 	}
 	.about-card__image--4 {
