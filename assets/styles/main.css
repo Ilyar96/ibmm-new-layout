@@ -857,7 +857,8 @@ hr {
 .recommends::before,
 .media::before,
 .top-miners::before,
-.mining-hotels::before {
+.mining-hotels::before,
+.catalog::before {
 	position: absolute;
 	top: -32.75rem;
 	left: -10.25rem;
@@ -889,6 +890,10 @@ hr {
 	-webkit-transform: rotate(-49deg);
 	-ms-transform: rotate(-49deg);
 	transform: rotate(-49deg);
+}
+
+.catalog::before {
+	z-index: -1;
 }
 
 /* Recommends	 */
@@ -1290,7 +1295,8 @@ hr {
 }
 
 .recommends::after,
-.mining-hotels::after {
+.mining-hotels::after,
+.catalog::after {
 	content: "";
 	position: absolute;
 	top: -15.3125rem;
@@ -1310,6 +1316,12 @@ hr {
 		rgba(38, 98, 246, 0) 100%
 	);
 	pointer-events: none;
+}
+
+.catalog::after {
+	top: -8.3125rem;
+	right: -42rem;
+	z-index: -1;
 }
 
 .channel {
@@ -3009,6 +3021,10 @@ hr {
 }
 
 /* Catalog */
+.catalog {
+	top: -21.25rem;
+	left: -30rem;
+}
 .catalog__header {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -3277,6 +3293,7 @@ hr {
 	height: 1.375rem;
 	padding: 0.625rem;
 	border-radius: 50%;
+	color: var(--black-100);
 	-webkit-transition: color var(--transition-base);
 	-o-transition: color var(--transition-base);
 	transition: color var(--transition-base);
@@ -3718,7 +3735,8 @@ hr {
 	.recommends::before,
 	.media::before,
 	.top-miners::before,
-	.mining-hotels::before {
+	.mining-hotels::before,
+	.catalog::before {
 		top: -13.375rem;
 		left: -3.375rem;
 		width: 28.75rem;
@@ -3727,6 +3745,10 @@ hr {
 
 	.mining-hotels::before {
 		left: -13.375rem;
+	}
+
+	.catalog::before {
+		top: -33rem;
 	}
 
 	.hero::after {
@@ -3745,11 +3767,16 @@ hr {
 	}
 
 	.recommends::after,
-	.mining-hotels::after {
+	.mining-hotels::after,
+	.catalog::after {
 		top: -0.9375rem;
 		right: -23.375rem;
 		width: 66.375rem;
 		height: 66.375rem;
+	}
+
+	.catalog::after {
+		right: -40rem;
 	}
 
 	.recommends__container {
@@ -4496,7 +4523,8 @@ hr {
 	}
 
 	.recommends::after,
-	.mining-hotels::after {
+	.mining-hotels::after,
+	.catalog::after {
 		top: auto;
 		bottom: 6.25rem;
 		right: auto;
@@ -5149,7 +5177,8 @@ hr {
 	.recommends::before,
 	.media::before,
 	.top-miners::before,
-	.mining-hotels::before {
+	.mining-hotels::before,
+	.catalog::before {
 		-webkit-transform: rotate(13deg);
 		-ms-transform: rotate(13deg);
 		transform: rotate(13deg);
