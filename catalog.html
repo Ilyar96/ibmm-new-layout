@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>IBMM - Майнинг оборудование</title>
+	<link rel="stylesheet" href="assets/styles/variables.css">
+	<link rel="stylesheet" href="assets/styles/fonts.css">
+	<link rel="stylesheet" href="assets/styles/swiper-bundle.min.css">
+	<link rel="stylesheet" href="assets/styles/main.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container container">
+				<a href="/" class="header__logo">
+					<img loading="lazy" src="assets/img/logo.svg" alt="IBMM Logo" class="header__logo-img">
+				</a>
+
+				<nav class="header__nav">
+					<button class="header__catalog" type="button">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="12" viewBox="0 0 20 12" fill="none" class="header__catalog-icon">
+							<path d="M0 0H20V1.73821H0V0Z" fill="currentColor" />
+							<path d="M0 4.867H20V6.60522H0V4.867Z" fill="currentColor" />
+							<path d="M0 9.73401H20V11.4722H0V9.73401Z" fill="currentColor" />
+						</svg>
+						<span class="header__catalog-text">Каталог</span>
+					</button>
+
+					<ul class="header__menu">
+						<li class="header__menu-item"><a href="#" class="header__menu-link">Услуги</a></li>
+						<li class="header__menu-item"><a href="#" class="header__menu-link">Сервисы</a></li>
+						<li class="header__menu-item">
+							<a href="#" class="header__menu-link">О компании</a>
+						</li>
+						<li class="header__menu-item"><a href="#" class="header__menu-link">Контакты</a></li>
+						<li class="header__menu-item"><a href="#" class="header__menu-link">Новости</a></li>
+					</ul>
+				</nav>
+
+				<div class="header__actions">
+					<button class="header__action-btn">
+						<span class="header__action-btn-text">Поиск</span>
+					</button>
+					<button class="header__action-btn">
+						<span class="header__action-btn-text">Нужна помощь?</span>
+						<span class="header__action-btn-indicator"></span>
+					</button>
+					<button class="header__action-btn header__action-btn--menu" type="button">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="12" viewBox="0 0 20 12" fill="none" class="header__menu-icon">
+							<path d="M0 0H20V1.73821H0V0Z" fill="currentColor" />
+							<path d="M0 4.867H20V6.60522H0V4.867Z" fill="currentColor" />
+							<path d="M0 9.73401H20V11.4722H0V9.73401Z" fill="currentColor" />
+						</svg>
+					</button>
+				</div>
+			</div>
+		</header>
+
+		<main class="page page--offset">
+			<section id="special-offer" class="special-offer">
+				<div class="special-offer__container container">
+					<div class="special-offer__card">
+						<button id="special-offer-close" class="special-offer__close" type="button">
+							<svg width="16" height="20" class="special-offer__close-icon" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M7.9996 10.1221L13.3026 15.4251C13.584 15.7065 13.9657 15.8646 14.3636 15.8646C14.7616 15.8646 15.1432 15.7065 15.4246 15.4251C15.706 15.1437 15.8641 14.7621 15.8641 14.3641C15.8641 13.9662 15.706 13.5845 15.4246 13.3031L10.1196 8.00011L15.4236 2.69711C15.5629 2.55778 15.6733 2.39238 15.7487 2.21036C15.824 2.02834 15.8628 1.83326 15.8627 1.63626C15.8627 1.43926 15.8238 1.2442 15.7484 1.06221C15.673 0.880224 15.5624 0.714877 15.4231 0.57561C15.2838 0.436343 15.1184 0.325884 14.9364 0.250538C14.7543 0.175193 14.5592 0.136437 14.3623 0.136483C14.1653 0.13653 13.9702 0.175377 13.7882 0.250809C13.6062 0.32624 13.4409 0.436778 13.3016 0.57611L7.9996 5.87911L2.6966 0.57611C2.5583 0.432781 2.39284 0.318431 2.20987 0.239733C2.0269 0.161034 1.83009 0.119563 1.63092 0.117739C1.43176 0.115915 1.23422 0.153774 1.04984 0.229109C0.865462 0.304443 0.697932 0.415744 0.557027 0.556516C0.416123 0.697288 0.304664 0.864713 0.229156 1.04902C0.153648 1.23333 0.115602 1.43083 0.117238 1.63C0.118874 1.82917 0.16016 2.02602 0.238686 2.20906C0.317212 2.3921 0.431406 2.55767 0.574604 2.69611L5.8796 8.00011L0.575604 13.3041C0.432406 13.4425 0.318212 13.6081 0.239686 13.7912C0.16116 13.9742 0.119874 14.1711 0.118238 14.3702C0.116602 14.5694 0.154648 14.7669 0.230156 14.9512C0.305664 15.1355 0.417122 15.3029 0.558027 15.4437C0.698932 15.5845 0.866462 15.6958 1.05084 15.7711C1.23522 15.8464 1.43276 15.8843 1.63192 15.8825C1.83109 15.8807 2.0279 15.8392 2.21087 15.7605C2.39384 15.6818 2.5593 15.5674 2.6976 15.4241L7.9996 10.1221Z" fill="currentColor" />
+							</svg>
+						</button>
+
+						<div class="special-offer__content">
+							<div class="special-offer__content-wrapper">
+								<span class="special-offer__label">Специальное предложение</span>
+								<h2 class="special-offer__title">Antminer S21 180 Th/s</h2>
+
+								<div class="special-offer__image-wrapper">
+									<img src="assets/img/special-offer/miners.png" alt="Antminer S21" class="special-offer__image">
+								</div>
+
+								<p class="special-offer__description">
+									Представляем вашему вниманию высокопроизводительный ASIC майнер – идеальное решение для майнинга различных криптовалют.
+								</p>
+							</div>
+
+							<div class="special-offer__social">
+								<a href="#" class="special-offer__social-link">
+									<img src="assets/img/operators/merkulov.jpg" alt="Operator" class="special-offer__social-icon special-offer__social-icon--operator">
+								</a>
+								<a href="tel:+74951496091" class="special-offer__social-link special-offer__social-link--phone">
+									<svg width="26" height="26" class="special-offer__social-icon special-offer__social-icon--phone" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M23.3903 18.7122L18.522 14.2858C18.292 14.0764 17.9895 13.9647 17.6786 13.9743C17.3677 13.9839 17.0727 14.1141 16.8561 14.3373L13.9902 17.2846C13.3004 17.1529 11.9135 16.7206 10.486 15.2966C9.05843 13.8679 8.62609 12.4775 8.49795 11.7924L11.4429 8.92537C11.6661 8.70876 11.7963 8.41378 11.8059 8.10287C11.8156 7.79195 11.7038 7.4895 11.4944 7.25951L7.06919 2.39245C6.85966 2.16173 6.56845 2.02179 6.25739 2.00234C5.94634 1.98288 5.63996 2.08545 5.40331 2.28825L2.80449 4.51699C2.59744 4.7248 2.47385 5.00137 2.45718 5.29424C2.43922 5.59364 2.0967 12.6858 7.59614 18.1876C12.3938 22.984 18.4034 23.3349 20.0585 23.3349C20.3004 23.3349 20.4489 23.3278 20.4885 23.3254C20.7811 23.3081 21.0572 23.1841 21.2645 22.9769L23.4921 20.3769C23.6957 20.141 23.799 19.8348 23.78 19.5238C23.761 19.2128 23.6211 18.9215 23.3903 18.7122Z" fill="currentColor" />
+									</svg>
+								</a>
+								<a href="https://t.me/ibmm_russia?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%9D%D0%BE%D0%BC%D0%B5%D1%80%20%D0%BC%D0%BE%D0%B5%D0%B9%20%D0%B7%D0%B0%D1%8F%D0%B2%D0%BA%D0%B8:%201196118%20(%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0,%20%D0%BD%D0%B5%20%D1%83%D0%B4%D0%B0%D0%BB%D1%8F%D0%B9%D1%82%D0%B5%20%D1%8D%D1%82%D1%83%20%D1%81%D1%82%D1%80%D0%BE%D1%87%D0%BA%D1%83:%20%D0%BE%D0%BD%D0%B0%20%D0%BF%D0%BE%D0%BD%D0%B0%D0%B4%D0%BE%D0%B1%D0%B8%D1%82%D1%81%D1%8F%20%D0%BD%D0%B0%D0%BC,%20%D1%87%D1%82%D0%BE%D0%B1%D1%8B%20%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%20%D0%92%D0%B0%D1%81%20%D0%BD%D0%B0%D0%B9%D1%82%D0%B8)" class="special-offer__social-link" target="_blank" rel="nofollow">
+									<svg width="23" height="22" class="special-offer__social-icon special-offer__social-icon--telegram" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<g clip-path="url(#clip0_630_2130)">
+											<path fill-rule="evenodd" clip-rule="evenodd" d="M17.2433 20.2493C17.5296 20.452 17.8985 20.5026 18.2274 20.3782C18.5563 20.2528 18.7981 19.9719 18.871 19.6315C19.6435 16.001 21.5174 6.81184 22.2206 3.50937C22.2739 3.26046 22.185 3.00177 21.9894 2.83554C21.7939 2.6693 21.5227 2.6213 21.2809 2.71108C17.5536 4.09074 6.07447 8.39773 1.38256 10.1339C1.08476 10.2441 0.890966 10.5303 0.900744 10.8441C0.911412 11.1588 1.12298 11.4317 1.4279 11.5233C3.53205 12.1527 6.29404 13.0283 6.29404 13.0283C6.29404 13.0283 7.5848 16.9264 8.25774 18.9087C8.34219 19.1577 8.53687 19.3532 8.79378 19.4208C9.0498 19.4875 9.3236 19.4172 9.51473 19.2368C10.5957 18.2163 12.2669 16.6384 12.2669 16.6384C12.2669 16.6384 15.4423 18.9665 17.2433 20.2493ZM7.4559 12.5358L8.94846 17.4589L9.28004 14.3413C9.28004 14.3413 15.0467 9.14001 18.3341 6.17534C18.4301 6.08823 18.4434 5.94244 18.3634 5.84021C18.2843 5.73798 18.1385 5.71398 18.0291 5.78331C14.2191 8.21639 7.4559 12.5358 7.4559 12.5358Z" fill="currentColor" />
+										</g>
+										<defs>
+											<clipPath id="clip0_630_2130">
+												<rect width="21.3349" height="21.3349" fill="white" transform="translate(0.900391 0.00146484)" />
+											</clipPath>
+										</defs>
+									</svg>
+								</a>
+								<a href="https://api.whatsapp.com/send?phone=79060469278&" class="special-offer__social-link" target="_blank" rel="nofollow">
+									<svg width="26" height="26" class="special-offer__social-icon" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M13.0317 2.29492C7.32139 2.29492 2.67279 6.93951 2.67072 12.6499C2.66968 14.4752 3.14778 16.2571 4.05421 17.8273L2.64844 23.0372L8.07506 21.755C9.58821 22.5806 11.2916 23.0139 13.0257 23.0149H13.0297C18.739 23.0149 23.3856 18.3693 23.3887 12.66C23.3908 9.89194 22.3144 7.28939 20.3584 5.33132C18.4024 3.37428 15.8029 2.29596 13.0317 2.29492ZM13.0297 4.36915C15.245 4.37019 17.3268 5.2339 18.8918 6.79786C20.4569 8.36391 21.3166 10.4448 21.3145 12.658C21.3124 17.2254 17.5972 20.9407 13.0277 20.9407C11.6452 20.9397 10.2758 20.5925 9.06964 19.934L8.3708 19.5532L7.59904 19.7355L5.55722 20.2176L6.05552 18.3662L6.28037 17.5357L5.85094 16.7902C5.12703 15.5374 4.74391 14.1049 4.74495 12.6499C4.74702 8.08449 8.4633 4.36915 13.0297 4.36915ZM9.36538 7.86942C9.19218 7.86942 8.91214 7.93424 8.67464 8.19351C8.43714 8.45176 7.76717 9.07722 7.76717 10.3508C7.76717 11.6244 8.6949 12.8555 8.82454 13.0287C8.95314 13.2008 10.6153 15.8969 13.2465 16.934C15.4327 17.7959 15.8767 17.6258 16.3517 17.5822C16.8267 17.5397 17.8841 16.9573 18.0998 16.3527C18.3156 15.7481 18.3161 15.2279 18.2518 15.1211C18.1875 15.0133 18.0148 14.9489 17.7555 14.8193C17.4972 14.6897 16.2246 14.0648 15.9871 13.9787C15.7496 13.8926 15.5759 13.849 15.4037 14.1083C15.2316 14.3676 14.7368 14.949 14.5854 15.1211C14.434 15.2943 14.2836 15.3176 14.0243 15.188C13.765 15.0573 12.9314 14.7832 11.942 13.9017C11.1724 13.2162 10.6532 12.3703 10.5017 12.1111C10.3514 11.8528 10.4876 11.711 10.6172 11.5824C10.7334 11.4662 10.8745 11.28 11.0041 11.1286C11.1327 10.9772 11.1773 10.8693 11.2634 10.6972C11.3495 10.525 11.3054 10.3731 11.2411 10.2434C11.1768 10.1138 10.6732 8.83549 10.443 8.32315C10.2491 7.89275 10.0442 7.88275 9.85963 7.87549C9.70925 7.86927 9.53754 7.86942 9.36538 7.86942Z" fill="currentColor" />
+									</svg>
+								</a>
+								<a href="mailto:feedback@ibmm.ru" class="special-offer__social-link" target="_blank" rel="nofollow">
+									<svg width="25" height="26" class="special-offer__social-icon special-offer__social-icon--mail" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M4.99516 21.5569C4.14641 21.5569 3.33241 21.2057 2.73225 20.5806C2.13209 19.9554 1.79492 19.1075 1.79492 18.2234V7.11142C1.79492 6.22729 2.13209 5.37938 2.73225 4.75422C3.33241 4.12905 4.14641 3.77783 4.99516 3.77783H19.9296C20.7784 3.77783 21.5924 4.12905 22.1925 4.75422C22.7927 5.37938 23.1299 6.22729 23.1299 7.11142V18.2234C23.1299 19.1075 22.7927 19.9554 22.1925 20.5806C21.5924 21.2057 20.7784 21.5569 19.9296 21.5569H4.99516ZM7.79537 8.46707C7.68671 8.37042 7.56051 8.29749 7.42427 8.25262C7.28802 8.20774 7.14452 8.19184 7.00226 8.20585C6.86 8.21986 6.7219 8.26349 6.59614 8.33417C6.47039 8.40485 6.35954 8.50112 6.27019 8.61727C6.18084 8.73343 6.11481 8.8671 6.076 9.01035C6.0372 9.1536 6.02642 9.30351 6.0443 9.45119C6.06219 9.59886 6.10837 9.74129 6.18012 9.87001C6.25186 9.99874 6.34769 10.1111 6.46194 10.2005L10.4622 13.5352C11.0298 14.0086 11.7353 14.2665 12.4624 14.2665C13.1895 14.2665 13.8949 14.0086 14.4625 13.5352L18.4628 10.2016C18.5723 10.1104 18.6633 9.99769 18.7309 9.86982C18.7985 9.74194 18.8412 9.60146 18.8567 9.45638C18.8721 9.3113 18.86 9.16448 18.821 9.02428C18.782 8.88409 18.7168 8.75328 18.6293 8.63931C18.5417 8.52534 18.4335 8.43045 18.3107 8.36006C18.1879 8.28967 18.0531 8.24516 17.9138 8.22906C17.7745 8.21297 17.6336 8.2256 17.499 8.26625C17.3644 8.3069 17.2388 8.37476 17.1294 8.46596L13.1291 11.7995C12.9399 11.9573 12.7048 12.0433 12.4624 12.0433C12.22 12.0433 11.9849 11.9573 11.7957 11.7995L7.79537 8.46707Z" fill="currentColor" />
+									</svg>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</main>
+
+		<footer class="footer">
+			<div class="footer__container container container--xs">
+				<div class="footer__wrapper">
+					<div class="footer__card">
+						<div class="footer__info">
+							<a href="/" class="footer__logo">
+								<img loading="lazy" src="assets/img/logo-dark.svg" alt="IBMM Logo" class="footer__logo-img">
+							</a>
+							<p class="footer__description">
+								В условиях рынка на сегоднящний день мы предлагаем самые топовые позиции на рынке
+								майнинга на сегодняшний день и по прогнозам на 2025 год в России.
+							</p>
+						</div>
+
+						<div class="footer__nav">
+							<div class="footer__column">
+								<h3 class="footer__title">Компания</h3>
+								<ul class="footer__menu">
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">О нас</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Интеграции и медиа</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Отзывы клиентов</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Доставка</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Связаться с нами</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Карта сайта</a>
+									</li>
+								</ul>
+							</div>
+
+							<div class="footer__column">
+								<h3 class="footer__title">Услуги</h3>
+								<ul class="footer__menu">
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Каталог оборудования</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Майнинг-отель</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Майнинг-контейнер</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Строительство отелей</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Охлаждение</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Отопление майнерами</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Газопоршневые станции</a>
+									</li>
+								</ul>
+							</div>
+
+							<div class="footer__column">
+								<h3 class="footer__title">Сервисы</h3>
+								<ul class="footer__menu">
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Калькулятор доходности</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Конвертер хешрейта</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Курсы криптовалют</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Топ майнеров 2025</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Прайс-лист</a>
+									</li>
+								</ul>
+							</div>
+
+							<div class="footer__column">
+								<h3 class="footer__title">Информация</h3>
+								<ul class="footer__menu">
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Как начать майнить</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Кошельки</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Биржи</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Топ асиков</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Топ майнинг-пулов</a>
+									</li>
+								</ul>
+							</div>
+
+							<div class="footer__column">
+								<h3 class="footer__title">Майнинг- <br>оборудование</h3>
+								<ul class="footer__menu">
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Bitmain Antminer</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Whatsminer</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Canaan Avalon</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Innosilicon</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Goldshell</a>
+									</li>
+								</ul>
+							</div>
+
+							<div class="footer__column">
+								<h3 class="footer__title">
+									Добыча <br>
+									криптовалюты
+								</h3>
+								<ul class="footer__menu">
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Майнеры на Bitcoin</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Ethereum Classic</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Dogecoin и Litecoin</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Zcash</a>
+									</li>
+									<li class="footer__menu-item">
+										<a href="#" class="footer__menu-link">Kadena</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="footer__contacts">
+						<div class="footer__contact">
+							<h3 class="footer__contact-title">Связаться с нами</h3>
+							<div class="footer__contact-list">
+								<div class="footer__contact-item">
+									<span class="footer__contact-text">Поддержка: </span>
+									<a href="mailto:support@ibmm.ru" class="footer__contact-link" target="_blank" rel="noreferrer">support@ibmm.ru</a>
+								</div>
+								<div class="footer__contact-item">
+									<span class="footer__contact-text">Для юр.лиц: </span>
+									<a href="mailto:support@ibmm.ru" class="footer__contact-link" target="_blank" rel="noreferrer">support@ibmm.ru</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="footer__contact">
+							<h3 class="footer__contact-title">Социальные сети</h3>
+							<div class="footer__contact-list">
+								<div class="footer__contact-item">
+									<span class="footer__contact-text">Telegram канал: </span>
+									<a href="https://t.me/ibmmru" class="footer__contact-link" target="_blank" rel="noreferrer">
+										@ibmmru
+									</a>
+								</div>
+								<div class="footer__contact-item">
+									<span class="footer__contact-text">Калькулятор в телеграм</span>
+									<a href="https://t.me/ibmmru" class="footer__contact-link" target="_blank" rel="noreferrer">
+										@calcibmm.ru
+									</a>
+								</div>
+								<div class="footer__contact-item">
+									<span class="footer__contact-text">Telegram канал: </span>
+									<a href="https://t.me/ibmmru" class="footer__contact-link" target="_blank" rel="noreferrer">
+										@ibmmru
+									</a>
+								</div>
+								<div class="footer__contact-item">
+									<span class="footer__contact-text">Калькулятор в телеграм</span>
+									<a href="https://t.me/ibmmru" class="footer__contact-link" target="_blank" rel="noreferrer">
+										@calcibmm.ru
+									</a>
+								</div>
+								<div class="footer__contact-item">
+									<span class="footer__contact-text">Telegram канал: </span>
+									<a href="https://t.me/ibmmru" class="footer__contact-link" target="_blank" rel="noreferrer">
+										@ibmmru
+									</a>
+								</div>
+								<div class="footer__contact-item">
+									<span class="footer__contact-text">Калькулятор в телеграм</span>
+									<a href="https://t.me/ibmmru" class="footer__contact-link" target="_blank" rel="noreferrer">
+										@calcibmm.ru
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="footer__requisites">
+							<h3 class="footer__requisites-title">Реквизиты</h3>
+							<div class="footer__requisites-item">ООО «ИБММ Технологии»</div>
+							<div class="footer__requisites-item">ИНН: 5032334982</div>
+							<div class="footer__requisites-item">ОГРН: 1215000115230</div>
+							<div class="footer__requisites-item">
+								143009, Московская область, г. Одинцово, ул. Северная, д. 5, к. 3, кв. 353, ком. 1
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<script src="assets/js/swiper-bundle.min.js"></script>
+	<script src="assets/js/main.js"></script>
+</body>
+
+</html>
