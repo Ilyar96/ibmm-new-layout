@@ -104,12 +104,12 @@
 										<label for="hashrate-160" class="product-info__hashrate">160 Th/s</label>
 									</div>
 									<div class="product-info__hashrate-wrapper">
-										<input type="radio" id="hashrate-150" name="hashrate" value="150" hidden>
-										<label for="hashrate-150" class="product-info__hashrate">150 Th/s</label>
+										<input type="radio" id="hashrate-170" name="hashrate" value="170" hidden>
+										<label for="hashrate-170" class="product-info__hashrate">170 Th/s</label>
 									</div>
 									<div class="product-info__hashrate-wrapper">
-										<input type="radio" id="hashrate-150" name="hashrate" value="150" hidden>
-										<label for="hashrate-150" class="product-info__hashrate">150 Th/s</label>
+										<input type="radio" id="hashrate-190" name="hashrate" value="190" hidden>
+										<label for="hashrate-190" class="product-info__hashrate">190 Th/s</label>
 									</div>
 									<div class="product-info__hashrate-wrapper">
 										<input type="radio" id="hashrate-150" name="hashrate" value="150" hidden>
@@ -194,7 +194,7 @@
 												<span class="product-purchase__installment-amount">36 169 ₽</span>
 											</div>
 										</div>
-										<button class="product-purchase__installment-btn">Купить в рассрочку</button>
+										<button class="product-purchase__installment-btn button button--primary">Купить в рассрочку</button>
 									</div>
 									<button class="product-purchase__manager-btn">Связаться с менеджером</button>
 								</div>
@@ -255,10 +255,68 @@
 							</div>
 
 						</div>
+						<div></div>
+
+						<div class="product-form">
+							<div class="product-form__container">
+								<div class="product-form__wrapper">
+									<div class="product-form__info">
+										<div class="product-form__label">Ваш менеджер</div>
+										<div class="product-form__manager person-info">
+											<img src="assets/img/expert.jpg" alt="Маркелов Андрей" class="person-info__photo">
+
+											<div class="person-info__content">
+												<div class="person-info__name">Маркелов Андрей</div>
+												<div class="person-info__desc">Настоящий эксперт</div>
+											</div>
+										</div>
+									</div>
+									<form class="product-form__form form">
+										<div class="form__row">
+											<div class="form__input-group">
+												<label class="form__input-label" for="manager-name">ФИО</label>
+												<input class="form__input" id="manager-name" name="manager-name" type="text" placeholder="Ваше имя">
+											</div>
+											<div class="form__input-group">
+												<label class="form__input-label" for="manager-phone">Номер</label>
+												<input class="form__input" id="manager-phone" name="manager-phone" type="tel" placeholder="+7 ( ___ ) ____-__-__">
+											</div>
+											<div class="form__input-group">
+												<label class="form__input-label" for="manager-contact">Способ связи</label>
+												<div class="form__select-wrapper">
+													<select class="form__select" id="manager-contact" name="manager-contact">
+														<option>Текстом в Telegram</option>
+														<option>Звонок</option>
+														<option>WhatsApp</option>
+													</select>
+													<span class="form__select-icon">
+														<!-- arrow-down.svg -->
+														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<path d="M6 9L12 15L18 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+														</svg>
+													</span>
+												</div>
+											</div>
+										</div>
+										<button class="form__submit button button--primary" type="submit">Отправить</button>
+										<div class="form__row form__row--checkbox">
+											<label class="checkbox">
+												<input type="checkbox" class="checkbox__input" required>
+												<span class="checkbox__custom">
+													<svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M10.3333 1L3.91667 7.41667L1 4.5" stroke="#0070FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+													</svg>
+												</span>
+												<span class="checkbox__label">Согласие на обработку персональных данных</span>
+											</label>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-
 		</main>
 
 		<footer class="footer">
