@@ -1,5 +1,6 @@
 (function () {
 	initSliders();
+	initGuarantee();
 
 	// Sliders
 	function initSliders() {
@@ -13,6 +14,24 @@
 				nextEl: nextBtnSelector,
 				prevEl: prevBtnSelector,
 			},
+		});
+	}
+
+	// Guarantee
+	function initGuarantee() {
+		const btns = document.querySelectorAll(".product-guarantee__type[data-target]");
+		const tabs = document.querySelectorAll(".product-guarantee__body");
+
+		btns.forEach((btn) => {
+			btn.addEventListener("click", function () {
+				const targetId = btn.getAttribute("data-target");
+				// Активируем нужный таб
+				tabs.forEach((tab) => {
+					tab.classList.toggle("active", tab.id === targetId);
+				});
+				// Активируем нужную кнопку
+				btns.forEach((b) => b.classList.toggle("active", b === btn));
+			});
 		});
 	}
 })();
