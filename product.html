@@ -9,6 +9,8 @@
 	<link rel="stylesheet" href="assets/styles/fonts.css">
 	<link rel="stylesheet" href="assets/styles/swiper-bundle.min.css">
 	<link rel="stylesheet" href="assets/styles/main.css">
+	<!-- TODO вынести из new-common.css в main.css -->
+	<link rel="stylesheet" href="assets/styles/new-common.css">
 	<link rel="stylesheet" href="assets/styles/product.css">
 </head>
 
@@ -283,18 +285,21 @@
 											</div>
 											<div class="form__input-group">
 												<label class="form__input-label" for="manager-contact">Способ связи</label>
-												<div class="form__select-wrapper">
-													<select class="form__select" id="manager-contact" name="manager-contact">
-														<option>Текстом в Telegram</option>
-														<option>Звонок</option>
-														<option>WhatsApp</option>
-													</select>
-													<span class="form__select-icon">
-														<!-- arrow-down.svg -->
-														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-															<path d="M6 9L12 15L18 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-														</svg>
-													</span>
+												<div class="form__select select" id="manager-contact-select">
+													<button class="select__current" type="button" aria-haspopup="listbox" aria-expanded="false">
+														<span class="select__value">Текстом в Telegram</span>
+														<span class="select__icon">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M6 9L12 15L18 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+															</svg>
+														</span>
+													</button>
+													<ul class="select__list" tabindex="-1" role="listbox" hidden>
+														<li class="select__option select__option--selected" data-value="telegram" role="option">Текстом в Telegram</li>
+														<li class="select__option" data-value="call" role="option">Звонок</li>
+														<li class="select__option" data-value="whatsapp" role="option">WhatsApp</li>
+													</ul>
+													<input type="hidden" name="manager-contact" value="telegram">
 												</div>
 											</div>
 										</div>
@@ -309,6 +314,7 @@
 												</span>
 												<span class="checkbox__label">Согласие на обработку персональных данных</span>
 											</label>
+
 										</div>
 									</form>
 								</div>
@@ -548,6 +554,8 @@
 
 	<script src="assets/js/swiper-bundle.min.js"></script>
 	<script src="assets/js/main.js"></script>
+	<!-- TODO вынести из new-commonв main.js -->
+	<script src="assets/js/new-common.js"></script>
 	<script src="assets/js/product.js"></script>
 </body>
 
