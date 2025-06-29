@@ -2840,7 +2840,7 @@ hr {
 	position: relative;
 	width: 100%;
 	padding: 2.1875rem 2.1875rem;
-	background-color: #191e20;
+	background-color: var(--color-card-background);
 	border-radius: 1.875rem;
 	overflow: hidden;
 }
@@ -3003,6 +3003,10 @@ hr {
 	align-items: center;
 	font-size: 0.875rem;
 	color: #5d5d5d;
+}
+
+.breadcrumbs__item--current {
+	color: #fff;
 }
 
 .breadcrumbs__link {
