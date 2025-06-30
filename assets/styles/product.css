@@ -1286,6 +1286,10 @@
 }
 
 @media (max-width: 767px) {
+	.product {
+		--product-card-border-radius: 14px;
+	}
+
 	.product-info {
 		position: relative;
 	}
@@ -1297,7 +1301,11 @@
 	.product__middle,
 	.reviews,
 	.expert-opinion {
-		padding: 20px 16px;
+		padding: 20px var(--container-padding);
+	}
+
+	.product__gallery {
+		padding: var(--container-padding);
 	}
 
 	.product-info__col--left {
@@ -1308,7 +1316,7 @@
 	.product-info__badge {
 		position: absolute;
 		top: 0;
-		left: var(--container-padding);
+		left: 0;
 	}
 
 	.product-info__image-wrapper {
@@ -1406,11 +1414,6 @@
 
 	.product-purchase__manager-btn {
 		margin-top: 16px;
-	}
-
-	/* TODO: remove */
-	.price-table {
-		display: none;
 	}
 
 	.delivery-block__map {
