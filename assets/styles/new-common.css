@@ -1,19 +1,24 @@
 /* TODO вынести в main.css */
+.button--accent {
+	background: var(--color-accent);
+	color: var(--color-text-primary);
+}
+
 /* Person info */
 .person-info {
+	--expert-image-size: 85px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
-	gap: 1.25rem;
+	gap: 20px;
 	font-family: var(--font-family-tertiary);
 	color: var(--color-text-primary);
 }
 
 .person-info__photo {
-	--expert-image-size: 5.3125rem;
 	width: var(--expert-image-size);
 	height: var(--expert-image-size);
 	border-radius: 50%;
@@ -497,6 +502,9 @@
 }
 
 @media (hover: hover) {
+	.button--accent:hover {
+		background: var(--color-accent-hover);
+	}
 	.price-table__show-more:hover {
 		background: var(--color-accent);
 		color: var(--color-text-primary);
@@ -504,6 +512,9 @@
 }
 
 @media (hover: none) {
+	.button--accent:hover {
+		background: var(--color-accent-hover);
+	}
 	.price-table__show-more:active {
 		background: var(--color-accent);
 		color: var(--color-text-primary);
