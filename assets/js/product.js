@@ -15,6 +15,10 @@
 				prevEl: prevBtnSelector,
 			},
 		});
+
+		new Swiper("#product-gallery-2", {
+			slidesPerView: "auto",
+		});
 	}
 
 	// Guarantee

@@ -120,6 +120,7 @@
 	font-size: 16px;
 	color: var(--color-text-secondary);
 	cursor: pointer;
+	user-select: none;
 }
 .checkbox__input {
 	position: absolute;
@@ -324,7 +325,6 @@
 }
 
 .price-table__table-wrapper {
-	padding: 0 0 16px 0;
 	overflow-x: auto;
 }
 
@@ -364,8 +364,8 @@
 	background: var(--color-card-background);
 }
 
-.price-table table.dataTable thead > tr > th.sorting:before,
-.price-table table.dataTable thead > tr > th.sorting:after {
+.price-table table.dataTable thead > tr > th:before,
+.price-table table.dataTable thead > tr > th:after {
 	display: none !important;
 }
 
@@ -384,6 +384,11 @@
 	height: var(--arrow-size);
 	transform: translateY(-50%);
 	transition: transform var(--transition-base);
+}
+
+.price-table th.sorting_desc .price-table__th-wrapper,
+.price-table th.sorting_asc .price-table__th-wrapper {
+	color: var(--color-accent);
 }
 
 .price-table th.sorting_desc .price-table__th-wrapper::after {
