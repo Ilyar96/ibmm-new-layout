@@ -12,6 +12,7 @@
 	<!-- TODO вынести из new-common.css в main.css -->
 	<link rel="stylesheet" href="assets/styles/new-common.css">
 	<link rel="stylesheet" href="assets/styles/product.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -201,187 +202,461 @@
 					</div>
 
 					<div class="product__body">
-						<div class="product__gallery product-gallery">
-							<div class="product-gallery__slider-wrapper">
-								<div id="product-gallery-1" class="product-gallery__slider swiper">
-									<div class="swiper-wrapper">
-										<div class="product-gallery__slide swiper-slide">
-											<div class="product-gallery__img-wrapper">
-												<img src="assets/img/temp/product-gallery/01.jpg" class="product-gallery__img" alt="Bitmain Antminer T21">
+						<div class="product__body-left">
+							<div class="product__gallery product-gallery">
+								<div class="product-gallery__slider-wrapper">
+									<div id="product-gallery-1" class="product-gallery__slider swiper">
+										<div class="swiper-wrapper">
+											<div class="product-gallery__slide swiper-slide">
+												<div class="product-gallery__img-wrapper">
+													<img src="assets/img/temp/product-gallery/01.jpg" class="product-gallery__img" alt="Bitmain Antminer T21">
+												</div>
 											</div>
-										</div>
-										<div class="product-gallery__slide swiper-slide">
-											<div class="product-gallery__img-wrapper">
-												<img src="assets/img/temp/product-gallery/02.jpg" class="product-gallery__img" alt="Bitmain Antminer T21">
+											<div class="product-gallery__slide swiper-slide">
+												<div class="product-gallery__img-wrapper">
+													<img src="assets/img/temp/product-gallery/02.jpg" class="product-gallery__img" alt="Bitmain Antminer T21">
+												</div>
 											</div>
-										</div>
-										<div class="product-gallery__slide swiper-slide">
-											<div class="product-gallery__img-wrapper">
-												<img src="assets/img/temp/product-gallery/03.jpg" class="product-gallery__img" alt="Bitmain Antminer T21">
+											<div class="product-gallery__slide swiper-slide">
+												<div class="product-gallery__img-wrapper">
+													<img src="assets/img/temp/product-gallery/03.jpg" class="product-gallery__img" alt="Bitmain Antminer T21">
+												</div>
 											</div>
-										</div>
-										<div class="product-gallery__slide swiper-slide">
-											<div class="product-gallery__img-wrapper">
-												<img src="assets/img/temp/product-gallery/04.jpg" class="product-gallery__img" alt="Bitmain Antminer T21">
+											<div class="product-gallery__slide swiper-slide">
+												<div class="product-gallery__img-wrapper">
+													<img src="assets/img/temp/product-gallery/04.jpg" class="product-gallery__img" alt="Bitmain Antminer T21">
+												</div>
 											</div>
-										</div>
-										<div class="product-gallery__slide swiper-slide">
-											<div class="product-gallery__img-wrapper">
-												<img src="assets/img/temp/product-gallery/05.jpg" class="product-gallery__img" alt="Bitmain Antminer T21">
+											<div class="product-gallery__slide swiper-slide">
+												<div class="product-gallery__img-wrapper">
+													<img src="assets/img/temp/product-gallery/05.jpg" class="product-gallery__img" alt="Bitmain Antminer T21">
+												</div>
 											</div>
-										</div>
-										<div class="product-gallery__slide swiper-slide">
-											<div class="product-gallery__img-wrapper">
-												<img src="assets/img/temp/product-gallery/06.jpg" class="product-gallery__img" alt="Bitmain Antminer T21">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="product-gallery__nav">
-								<button id="product-gallery-1-prev" class="product-gallery__nav-btn product-gallery__nav-btn--prev">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="currentColor">
-										<path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-									</svg>
-								</button>
-								<button id="product-gallery-1-next" class="product-gallery__nav-btn product-gallery__nav-btn--next">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="currentColor">
-										<path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
-									</svg>
-								</button>
-							</div>
-
-						</div>
-						<div></div>
-
-						<div class="product-form">
-							<div class="product-form__container">
-								<div class="product-form__wrapper">
-									<div class="product-form__info">
-										<div class="product-form__label">Ваш менеджер</div>
-										<div class="product-form__manager person-info">
-											<img src="assets/img/expert.jpg" alt="Маркелов Андрей" class="person-info__photo">
-
-											<div class="person-info__content">
-												<div class="person-info__name">Маркелов Андрей</div>
-												<div class="person-info__desc">Настоящий эксперт</div>
-											</div>
-										</div>
-									</div>
-									<form class="product-form__form form">
-										<div class="form__row">
-											<div class="form__input-group">
-												<label class="form__input-label" for="manager-name">ФИО</label>
-												<input class="form__input" id="manager-name" name="manager-name" type="text" placeholder="Ваше имя">
-											</div>
-											<div class="form__input-group">
-												<label class="form__input-label" for="manager-phone">Номер</label>
-												<input class="form__input" id="manager-phone" name="manager-phone" type="tel" placeholder="+7 ( ___ ) ____-__-__">
-											</div>
-											<div class="form__input-group">
-												<label class="form__input-label" for="manager-contact">Способ связи</label>
-												<div class="form__select select" id="manager-contact-select">
-													<button class="select__current" type="button" aria-haspopup="listbox" aria-expanded="false">
-														<span class="select__value">Текстом в Telegram</span>
-														<span class="select__icon">
-															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M6 9L12 15L18 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-															</svg>
-														</span>
-													</button>
-													<ul class="select__list" tabindex="-1" role="listbox" hidden>
-														<li class="select__option select__option--selected" data-value="telegram" role="option">Текстом в Telegram</li>
-														<li class="select__option" data-value="call" role="option">Звонок</li>
-														<li class="select__option" data-value="whatsapp" role="option">WhatsApp</li>
-													</ul>
-													<input type="hidden" name="manager-contact" value="telegram">
+											<div class="product-gallery__slide swiper-slide">
+												<div class="product-gallery__img-wrapper">
+													<img src="assets/img/temp/product-gallery/06.jpg" class="product-gallery__img" alt="Bitmain Antminer T21">
 												</div>
 											</div>
 										</div>
-										<button class="form__submit button button--primary" type="submit">Отправить</button>
-										<div class="form__row form__row--checkbox">
-											<label class="checkbox">
-												<input type="checkbox" class="checkbox__input" required>
-												<span class="checkbox__custom">
-													<svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M10.3333 1L3.91667 7.41667L1 4.5" stroke="#0070FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+									</div>
+								</div>
+
+								<div class="product-gallery__nav">
+									<button id="product-gallery-1-prev" class="product-gallery__nav-btn product-gallery__nav-btn--prev">
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="currentColor">
+											<path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+										</svg>
+									</button>
+									<button id="product-gallery-1-next" class="product-gallery__nav-btn product-gallery__nav-btn--next">
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="currentColor">
+											<path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+										</svg>
+									</button>
+								</div>
+
+							</div>
+
+							<div class="product-form">
+								<div class="product-form__container">
+									<div class="product-form__wrapper">
+										<div class="product-form__info">
+											<div class="product-form__label">Ваш менеджер</div>
+											<div class="product-form__manager person-info">
+												<img src="assets/img/expert.jpg" alt="Маркелов Андрей" class="person-info__photo">
+
+												<div class="person-info__content">
+													<div class="person-info__name">Маркелов Андрей</div>
+													<div class="person-info__desc">Настоящий эксперт</div>
+												</div>
+											</div>
+										</div>
+										<form class="product-form__form form">
+											<div class="form__row">
+												<div class="form__input-group">
+													<label class="form__input-label" for="manager-name">ФИО</label>
+													<input class="form__input" id="manager-name" name="manager-name" type="text" placeholder="Ваше имя">
+												</div>
+												<div class="form__input-group">
+													<label class="form__input-label" for="manager-phone">Номер</label>
+													<input class="form__input" id="manager-phone" name="manager-phone" type="tel" placeholder="+7 ( ___ ) ____-__-__">
+												</div>
+												<div class="form__input-group">
+													<label class="form__input-label" for="manager-contact">Способ связи</label>
+													<div class="form__select select" id="manager-contact-select">
+														<button class="select__current" type="button" aria-haspopup="listbox" aria-expanded="false">
+															<span class="select__value">Текстом в Telegram</span>
+															<span class="select__icon">
+																<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																	<path d="M6 9L12 15L18 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+																</svg>
+															</span>
+														</button>
+														<ul class="select__list" tabindex="-1" role="listbox" hidden>
+															<li class="select__option select__option--selected" data-value="telegram" role="option">Текстом в Telegram</li>
+															<li class="select__option" data-value="call" role="option">Звонок</li>
+															<li class="select__option" data-value="whatsapp" role="option">WhatsApp</li>
+														</ul>
+														<input type="hidden" name="manager-contact" value="telegram">
+													</div>
+												</div>
+											</div>
+											<button class="form__submit button button--primary" type="submit">Отправить</button>
+											<div class="form__row form__row--checkbox">
+												<label class="checkbox">
+													<input type="checkbox" class="checkbox__input" checked>
+													<span class="checkbox__custom"></span>
+													<span class="checkbox__label">Согласие на обработку персональных данных</span>
+												</label>
+
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+
+							<div class="product-guarantee">
+								<div class="product-guarantee__content">
+									<div class="product-guarantee__tabs">
+										<div id="standart-guarantee" class="product-guarantee__body active">
+											<div class="product-guarantee__days">180 дней</div>
+											<div class="product-guarantee__features">
+												<div class="product-guarantee__feature">
+													<svg width="20" height="22" class="product-guarantee__feature-icon" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path fill-rule="evenodd" clip-rule="evenodd" d="M5.52819 0.658909C6.77811 0.336869 8.09273 0.366638 9.32679 0.744928C10.5608 1.12322 11.6663 1.8353 12.521 2.8025C13.3757 3.76969 13.9464 4.95435 14.1701 6.22557C14.3937 7.49679 14.2615 8.80509 13.7882 10.0059L18.3872 13.8989C18.736 14.1937 19.0198 14.5576 19.2207 14.9677C19.4216 15.3778 19.5352 15.8252 19.5543 16.2814C19.5734 16.7377 19.4975 17.1929 19.3316 17.6184C19.1657 18.0439 18.9133 18.4302 18.5903 18.7531C18.2674 19.076 17.881 19.3283 17.4555 19.4941C17.03 19.66 16.5747 19.7357 16.1184 19.7165C15.6622 19.6973 15.2149 19.5836 14.8048 19.3826C14.3948 19.1817 14.0309 18.8978 13.7362 18.5489L9.84519 13.9519C8.64422 14.426 7.33554 14.5588 6.06383 14.3355C4.79212 14.1122 3.60692 13.5416 2.63927 12.6868C1.67162 11.832 0.959221 10.7262 0.580829 9.49171C0.202438 8.25724 0.172798 6.94217 0.495186 5.69191C0.540642 5.51623 0.632586 5.35605 0.761354 5.2282C0.890122 5.10034 1.05096 5.00954 1.22695 4.96534C1.40294 4.92114 1.5876 4.92516 1.76149 4.977C1.93539 5.02883 2.09212 5.12656 2.21519 5.25991L5.26019 8.56691L7.55719 7.72191L8.40419 5.42191L5.09519 2.38191C4.96104 2.25888 4.86264 2.10188 4.81038 1.92752C4.75812 1.75317 4.75396 1.56793 4.79832 1.3914C4.84268 1.21487 4.93393 1.0536 5.0624 0.924666C5.19088 0.795727 5.35181 0.703905 5.52819 0.658909Z" fill="white" />
 													</svg>
-												</span>
-												<span class="checkbox__label">Согласие на обработку персональных данных</span>
-											</label>
-
+													<span class="product-guarantee__feature-text">Ремонт в Москве</span>
+												</div>
+												<div class="product-guarantee__feature">
+													<svg width="30" height="24" class="product-guarantee__feature-icon" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<g clip-path="url(#clip0_361_4531)">
+															<path d="M22.8761 8.99899H15.7511V11.624C15.7511 13.4849 14.237 14.999 12.3761 14.999C10.5151 14.999 9.00107 13.4849 9.00107 11.624V5.92399L5.95888 7.75211C5.05419 8.29117 4.50107 9.27086 4.50107 10.3209V12.538L0.751069 14.7037C0.0338816 15.1162 -0.214556 16.0349 0.202632 16.7521L3.95263 23.249C4.36513 23.9662 5.28388 24.2099 6.00107 23.7974L10.8479 20.999H17.2511C18.9058 20.999 20.2511 19.6537 20.2511 17.999H21.0011C21.8308 17.999 22.5011 17.3287 22.5011 16.499V13.499H22.8761C23.4995 13.499 24.0011 12.9974 24.0011 12.374V10.124C24.0011 9.50055 23.4995 8.99899 22.8761 8.99899ZM29.7995 7.24586L26.0495 0.748986C25.637 0.0317985 24.7183 -0.211951 24.0011 0.200549L19.1542 2.99899H14.3636C13.8011 2.99899 13.2526 3.15836 12.7745 3.45367L11.2042 4.43336C10.7636 4.70524 10.5011 5.18805 10.5011 5.70367V11.624C10.5011 12.6599 11.3401 13.499 12.3761 13.499C13.412 13.499 14.2511 12.6599 14.2511 11.624V7.49899H22.8761C24.3245 7.49899 25.5011 8.67555 25.5011 10.124V11.4599L29.2511 9.2943C29.9683 8.87711 30.212 7.96305 29.7995 7.24586Z" fill="white" />
+														</g>
+														<defs>
+															<clipPath id="clip0_361_4531">
+																<rect width="30" height="24" fill="white" />
+															</clipPath>
+														</defs>
+													</svg>
+													<span class="product-guarantee__feature-text">Поддержка по запуску</span>
+												</div>
+											</div>
+											<div class="product-guarantee__desc">
+												Официальной гарантии от производителя. Мы дорожим нашими клиентами и стараемся решить все вопросы.
+											</div>
 										</div>
-									</form>
+										<div id="extended-guarantee" class="product-guarantee__body">
+											<div class="product-guarantee__days">120 дней</div>
+											<div class="product-guarantee__features">
+												<div class="product-guarantee__feature">
+													<svg width="20" height="22" class="product-guarantee__feature-icon" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path fill-rule="evenodd" clip-rule="evenodd" d="M5.52819 0.658909C6.77811 0.336869 8.09273 0.366638 9.32679 0.744928C10.5608 1.12322 11.6663 1.8353 12.521 2.8025C13.3757 3.76969 13.9464 4.95435 14.1701 6.22557C14.3937 7.49679 14.2615 8.80509 13.7882 10.0059L18.3872 13.8989C18.736 14.1937 19.0198 14.5576 19.2207 14.9677C19.4216 15.3778 19.5352 15.8252 19.5543 16.2814C19.5734 16.7377 19.4975 17.1929 19.3316 17.6184C19.1657 18.0439 18.9133 18.4302 18.5903 18.7531C18.2674 19.076 17.881 19.3283 17.4555 19.4941C17.03 19.66 16.5747 19.7357 16.1184 19.7165C15.6622 19.6973 15.2149 19.5836 14.8048 19.3826C14.3948 19.1817 14.0309 18.8978 13.7362 18.5489L9.84519 13.9519C8.64422 14.426 7.33554 14.5588 6.06383 14.3355C4.79212 14.1122 3.60692 13.5416 2.63927 12.6868C1.67162 11.832 0.959221 10.7262 0.580829 9.49171C0.202438 8.25724 0.172798 6.94217 0.495186 5.69191C0.540642 5.51623 0.632586 5.35605 0.761354 5.2282C0.890122 5.10034 1.05096 5.00954 1.22695 4.96534C1.40294 4.92114 1.5876 4.92516 1.76149 4.977C1.93539 5.02883 2.09212 5.12656 2.21519 5.25991L5.26019 8.56691L7.55719 7.72191L8.40419 5.42191L5.09519 2.38191C4.96104 2.25888 4.86264 2.10188 4.81038 1.92752C4.75812 1.75317 4.75396 1.56793 4.79832 1.3914C4.84268 1.21487 4.93393 1.0536 5.0624 0.924666C5.19088 0.795727 5.35181 0.703905 5.52819 0.658909Z" fill="white" />
+													</svg>
+													<span class="product-guarantee__feature-text">Ремонт в Москве</span>
+												</div>
+												<div class="product-guarantee__feature">
+													<svg width="30" height="24" class="product-guarantee__feature-icon" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<g clip-path="url(#clip0_361_4531)">
+															<path d="M22.8761 8.99899H15.7511V11.624C15.7511 13.4849 14.237 14.999 12.3761 14.999C10.5151 14.999 9.00107 13.4849 9.00107 11.624V5.92399L5.95888 7.75211C5.05419 8.29117 4.50107 9.27086 4.50107 10.3209V12.538L0.751069 14.7037C0.0338816 15.1162 -0.214556 16.0349 0.202632 16.7521L3.95263 23.249C4.36513 23.9662 5.28388 24.2099 6.00107 23.7974L10.8479 20.999H17.2511C18.9058 20.999 20.2511 19.6537 20.2511 17.999H21.0011C21.8308 17.999 22.5011 17.3287 22.5011 16.499V13.499H22.8761C23.4995 13.499 24.0011 12.9974 24.0011 12.374V10.124C24.0011 9.50055 23.4995 8.99899 22.8761 8.99899ZM29.7995 7.24586L26.0495 0.748986C25.637 0.0317985 24.7183 -0.211951 24.0011 0.200549L19.1542 2.99899H14.3636C13.8011 2.99899 13.2526 3.15836 12.7745 3.45367L11.2042 4.43336C10.7636 4.70524 10.5011 5.18805 10.5011 5.70367V11.624C10.5011 12.6599 11.3401 13.499 12.3761 13.499C13.412 13.499 14.2511 12.6599 14.2511 11.624V7.49899H22.8761C24.3245 7.49899 25.5011 8.67555 25.5011 10.124V11.4599L29.2511 9.2943C29.9683 8.87711 30.212 7.96305 29.7995 7.24586Z" fill="white" />
+														</g>
+														<defs>
+															<clipPath id="clip0_361_4531">
+																<rect width="30" height="24" fill="white" />
+															</clipPath>
+														</defs>
+													</svg>
+													<span class="product-guarantee__feature-text">Поддержка по запуску</span>
+												</div>
+											</div>
+											<div class="product-guarantee__desc">Описание расширенной гарантии</div>
+										</div>
+									</div>
+									<div class="product-guarantee__types">
+										<button class="product-guarantee__type active" data-target="standart-guarantee">Стандартная</button>
+										<button class="product-guarantee__type" data-target="extended-guarantee">Расширенная</button>
+									</div>
 								</div>
 							</div>
 						</div>
-
-						<div></div>
-
-						<div class="product-guarantee">
-							<div class="product-guarantee__content">
-								<div class="product-guarantee__tabs">
-									<div id="standart-guarantee" class="product-guarantee__body active">
-										<div class="product-guarantee__days">180 дней</div>
-										<div class="product-guarantee__features">
-											<div class="product-guarantee__feature">
-												<svg width="20" height="22" class="product-guarantee__feature-icon" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path fill-rule="evenodd" clip-rule="evenodd" d="M5.52819 0.658909C6.77811 0.336869 8.09273 0.366638 9.32679 0.744928C10.5608 1.12322 11.6663 1.8353 12.521 2.8025C13.3757 3.76969 13.9464 4.95435 14.1701 6.22557C14.3937 7.49679 14.2615 8.80509 13.7882 10.0059L18.3872 13.8989C18.736 14.1937 19.0198 14.5576 19.2207 14.9677C19.4216 15.3778 19.5352 15.8252 19.5543 16.2814C19.5734 16.7377 19.4975 17.1929 19.3316 17.6184C19.1657 18.0439 18.9133 18.4302 18.5903 18.7531C18.2674 19.076 17.881 19.3283 17.4555 19.4941C17.03 19.66 16.5747 19.7357 16.1184 19.7165C15.6622 19.6973 15.2149 19.5836 14.8048 19.3826C14.3948 19.1817 14.0309 18.8978 13.7362 18.5489L9.84519 13.9519C8.64422 14.426 7.33554 14.5588 6.06383 14.3355C4.79212 14.1122 3.60692 13.5416 2.63927 12.6868C1.67162 11.832 0.959221 10.7262 0.580829 9.49171C0.202438 8.25724 0.172798 6.94217 0.495186 5.69191C0.540642 5.51623 0.632586 5.35605 0.761354 5.2282C0.890122 5.10034 1.05096 5.00954 1.22695 4.96534C1.40294 4.92114 1.5876 4.92516 1.76149 4.977C1.93539 5.02883 2.09212 5.12656 2.21519 5.25991L5.26019 8.56691L7.55719 7.72191L8.40419 5.42191L5.09519 2.38191C4.96104 2.25888 4.86264 2.10188 4.81038 1.92752C4.75812 1.75317 4.75396 1.56793 4.79832 1.3914C4.84268 1.21487 4.93393 1.0536 5.0624 0.924666C5.19088 0.795727 5.35181 0.703905 5.52819 0.658909Z" fill="white" />
-												</svg>
-												<span class="product-guarantee__feature-text">Ремонт в Москве</span>
-											</div>
-											<div class="product-guarantee__feature">
-												<svg width="30" height="24" class="product-guarantee__feature-icon" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<g clip-path="url(#clip0_361_4531)">
-														<path d="M22.8761 8.99899H15.7511V11.624C15.7511 13.4849 14.237 14.999 12.3761 14.999C10.5151 14.999 9.00107 13.4849 9.00107 11.624V5.92399L5.95888 7.75211C5.05419 8.29117 4.50107 9.27086 4.50107 10.3209V12.538L0.751069 14.7037C0.0338816 15.1162 -0.214556 16.0349 0.202632 16.7521L3.95263 23.249C4.36513 23.9662 5.28388 24.2099 6.00107 23.7974L10.8479 20.999H17.2511C18.9058 20.999 20.2511 19.6537 20.2511 17.999H21.0011C21.8308 17.999 22.5011 17.3287 22.5011 16.499V13.499H22.8761C23.4995 13.499 24.0011 12.9974 24.0011 12.374V10.124C24.0011 9.50055 23.4995 8.99899 22.8761 8.99899ZM29.7995 7.24586L26.0495 0.748986C25.637 0.0317985 24.7183 -0.211951 24.0011 0.200549L19.1542 2.99899H14.3636C13.8011 2.99899 13.2526 3.15836 12.7745 3.45367L11.2042 4.43336C10.7636 4.70524 10.5011 5.18805 10.5011 5.70367V11.624C10.5011 12.6599 11.3401 13.499 12.3761 13.499C13.412 13.499 14.2511 12.6599 14.2511 11.624V7.49899H22.8761C24.3245 7.49899 25.5011 8.67555 25.5011 10.124V11.4599L29.2511 9.2943C29.9683 8.87711 30.212 7.96305 29.7995 7.24586Z" fill="white" />
-													</g>
-													<defs>
-														<clipPath id="clip0_361_4531">
-															<rect width="30" height="24" fill="white" />
-														</clipPath>
-													</defs>
-												</svg>
-												<span class="product-guarantee__feature-text">Поддержка по запуску</span>
-											</div>
-										</div>
-										<div class="product-guarantee__desc">
-											Официальной гарантии от производителя. Мы дорожим нашими клиентами и стараемся решить все вопросы.
-										</div>
+						<div class="product__body-right">
+							<div class="price-table">
+								<form class="price-table__filters">
+									<label class="price-table__filter checkbox">
+										<input type="checkbox" class="checkbox__input" name="vat_yes">
+										<span class="checkbox__custom"></span>
+										<span class="checkbox__label">Только с НДС</span>
+									</label>
+									<label class="price-table__filter checkbox">
+										<input type="checkbox" class="checkbox__input" name="vat_no" checked>
+										<span class="checkbox__custom"></span>
+										<span class="checkbox__label">Только без НДС</span>
+									</label>
+									<label class="price-table__filter checkbox">
+										<input type="checkbox" class="checkbox__input" name="gtd_rf">
+										<span class="checkbox__custom"></span>
+										<span class="checkbox__label">ГТД РФ</span>
+									</label>
+									<label class="price-table__filter checkbox">
+										<input type="checkbox" class="checkbox__input" name="gtd_rb">
+										<span class="checkbox__custom"></span>
+										<span class="checkbox__label">ГТД РБ</span>
+									</label>
+									<label class="price-table__filter checkbox">
+										<input type="checkbox" class="checkbox__input" name="avia">
+										<span class="checkbox__custom"></span>
+										<span class="checkbox__label">Авиа доставка</span>
+									</label>
+									<label class="price-table__filter checkbox">
+										<input type="checkbox" class="checkbox__input" name="auto">
+										<span class="checkbox__custom"></span>
+										<span class="checkbox__label">Авто доставка</span>
+									</label>
+								</form>
+								<div class="price-table__table-wrapper">
+									<table id="price-table" class="price-table__table display" style="width:100%">
+										<thead>
+											<tr>
+												<th class="price-table__delivery">
+													<img src="assets/img/cube.svg" class="price-table__delivery-icon" alt="">
+												</th>
+												<th class="price-table__type-price">
+													<span class="price-table__th-wrapper">Тип цены</span>
+												</th>
+												<th class="price-table__subtype-price">
+													<span class="price-table__th-wrapper">Подтип цены</span>
+												</th>
+												<th class="price-table__month-preorder">
+													<span class="price-table__th-wrapper">Месяц предзаказа</span>
+												</th>
+												<th class="price-table__price-s-p">
+													<span class="price-table__th-wrapper">Цена S/P</span>
+												</th>
+												<th class="price-table__action"></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Китай</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td class="price-table__action">
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Предзаказ</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td class="price-table__action">
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Китай</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td class="price-table__action">
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Предзаказ</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td class="price-table__action">
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Китай</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td class="price-table__action">
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Предзаказ</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td class="price-table__action">
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Китай</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td class="price-table__action">
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Предзаказ</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td class="price-table__action">
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Китай</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td class="price-table__action">
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Предзаказ</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td class="price-table__action">
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Китай</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td class="price-table__action">
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Предзаказ</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td class="price-table__action">
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Китай</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td>
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Предзаказ</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td class="price-table__action">
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<td class="price-table__delivery">
+													<img src="assets/img/air.svg" class="price-table__delivery-icon" alt="">
+												</td>
+												<td class="price-table__type-price">ГТД РБ Авиа <span class="price-table__badge">Китай</span></td>
+												<td class="price-table__subtype-price">Без НДС</td>
+												<td class="price-table__month-preorder">Ноябрь 2024</td>
+												<td class="price-table__price-s-p">12 023 USD</td>
+												<td class="price-table__action">
+													<button class="price-table__action-btn" title="Купить">
+														<img src="assets/img/cart.svg" alt="Корзина" class="price-table__action-btn-icon">
+													</button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="price-table__show-more-wrapper">
+										<button class="price-table__show-more" type="button">
+											Показать больше
+											<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M6.81643 1.18359L6.81643 12.8164M6.81643 12.8164L12.6329 7.00002M6.81643 12.8164L1 7.00002" stroke="currentColor" stroke-width="1.66184" stroke-linecap="round" stroke-linejoin="round" />
+											</svg>
+										</button>
 									</div>
-									<div id="extended-guarantee" class="product-guarantee__body">
-										<div class="product-guarantee__days">120 дней</div>
-										<div class="product-guarantee__features">
-											<div class="product-guarantee__feature">
-												<svg width="20" height="22" class="product-guarantee__feature-icon" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path fill-rule="evenodd" clip-rule="evenodd" d="M5.52819 0.658909C6.77811 0.336869 8.09273 0.366638 9.32679 0.744928C10.5608 1.12322 11.6663 1.8353 12.521 2.8025C13.3757 3.76969 13.9464 4.95435 14.1701 6.22557C14.3937 7.49679 14.2615 8.80509 13.7882 10.0059L18.3872 13.8989C18.736 14.1937 19.0198 14.5576 19.2207 14.9677C19.4216 15.3778 19.5352 15.8252 19.5543 16.2814C19.5734 16.7377 19.4975 17.1929 19.3316 17.6184C19.1657 18.0439 18.9133 18.4302 18.5903 18.7531C18.2674 19.076 17.881 19.3283 17.4555 19.4941C17.03 19.66 16.5747 19.7357 16.1184 19.7165C15.6622 19.6973 15.2149 19.5836 14.8048 19.3826C14.3948 19.1817 14.0309 18.8978 13.7362 18.5489L9.84519 13.9519C8.64422 14.426 7.33554 14.5588 6.06383 14.3355C4.79212 14.1122 3.60692 13.5416 2.63927 12.6868C1.67162 11.832 0.959221 10.7262 0.580829 9.49171C0.202438 8.25724 0.172798 6.94217 0.495186 5.69191C0.540642 5.51623 0.632586 5.35605 0.761354 5.2282C0.890122 5.10034 1.05096 5.00954 1.22695 4.96534C1.40294 4.92114 1.5876 4.92516 1.76149 4.977C1.93539 5.02883 2.09212 5.12656 2.21519 5.25991L5.26019 8.56691L7.55719 7.72191L8.40419 5.42191L5.09519 2.38191C4.96104 2.25888 4.86264 2.10188 4.81038 1.92752C4.75812 1.75317 4.75396 1.56793 4.79832 1.3914C4.84268 1.21487 4.93393 1.0536 5.0624 0.924666C5.19088 0.795727 5.35181 0.703905 5.52819 0.658909Z" fill="white" />
-												</svg>
-												<span class="product-guarantee__feature-text">Ремонт в Москве</span>
-											</div>
-											<div class="product-guarantee__feature">
-												<svg width="30" height="24" class="product-guarantee__feature-icon" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<g clip-path="url(#clip0_361_4531)">
-														<path d="M22.8761 8.99899H15.7511V11.624C15.7511 13.4849 14.237 14.999 12.3761 14.999C10.5151 14.999 9.00107 13.4849 9.00107 11.624V5.92399L5.95888 7.75211C5.05419 8.29117 4.50107 9.27086 4.50107 10.3209V12.538L0.751069 14.7037C0.0338816 15.1162 -0.214556 16.0349 0.202632 16.7521L3.95263 23.249C4.36513 23.9662 5.28388 24.2099 6.00107 23.7974L10.8479 20.999H17.2511C18.9058 20.999 20.2511 19.6537 20.2511 17.999H21.0011C21.8308 17.999 22.5011 17.3287 22.5011 16.499V13.499H22.8761C23.4995 13.499 24.0011 12.9974 24.0011 12.374V10.124C24.0011 9.50055 23.4995 8.99899 22.8761 8.99899ZM29.7995 7.24586L26.0495 0.748986C25.637 0.0317985 24.7183 -0.211951 24.0011 0.200549L19.1542 2.99899H14.3636C13.8011 2.99899 13.2526 3.15836 12.7745 3.45367L11.2042 4.43336C10.7636 4.70524 10.5011 5.18805 10.5011 5.70367V11.624C10.5011 12.6599 11.3401 13.499 12.3761 13.499C13.412 13.499 14.2511 12.6599 14.2511 11.624V7.49899H22.8761C24.3245 7.49899 25.5011 8.67555 25.5011 10.124V11.4599L29.2511 9.2943C29.9683 8.87711 30.212 7.96305 29.7995 7.24586Z" fill="white" />
-													</g>
-													<defs>
-														<clipPath id="clip0_361_4531">
-															<rect width="30" height="24" fill="white" />
-														</clipPath>
-													</defs>
-												</svg>
-												<span class="product-guarantee__feature-text">Поддержка по запуску</span>
-											</div>
-										</div>
-										<div class="product-guarantee__desc">Описание расширенной гарантии</div>
-									</div>
-								</div>
-								<div class="product-guarantee__types">
-									<button class="product-guarantee__type active" data-target="standart-guarantee">Стандартная</button>
-									<button class="product-guarantee__type" data-target="extended-guarantee">Расширенная</button>
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -614,6 +889,8 @@
 		</footer>
 	</div>
 
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 	<script src="assets/js/swiper-bundle.min.js"></script>
 	<script src="assets/js/main.js"></script>
 	<!-- TODO вынести из new-commonв main.js -->

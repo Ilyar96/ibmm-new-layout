@@ -145,26 +145,32 @@
 	inset: 0;
 	border-radius: 4px;
 	background: var(--white-100);
-	border: 1px solid var(--color-accent);
+	border: 1px solid #667085;
 }
 
-.checkbox__custom svg {
+.checkbox__custom::after {
+	--check-size: 12px 9px;
+	content: "";
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	z-index: 1;
-	width: 12px;
-	height: 9px;
+	inset: 0;
+	background: url("../img/check.svg") no-repeat center center / var(--check-size);
 	opacity: 0;
 	visibility: hidden;
 	transition: opacity var(--transition-base), visibility var(--transition-base);
-	transform: translate(-50%, -50%);
 }
 
-.checkbox__input:checked + .checkbox__custom svg {
+.checkbox__input:checked + .checkbox__custom::before {
+	border-color: var(--color-accent);
+}
+.checkbox__input:checked + .checkbox__custom::after {
 	opacity: 1;
 	visibility: visible;
 }
+
+.checkbox__input:focus-visible + .checkbox__custom::before {
+	outline: 2px solid var(--color-accent);
+}
+
 .checkbox__label {
 	font-size: 16px;
 	color: var(--color-text-secondary);
