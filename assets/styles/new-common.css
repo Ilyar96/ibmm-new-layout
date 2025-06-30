@@ -42,6 +42,11 @@
 	align-items: center;
 	flex: 1;
 }
+
+.form__input-group .select {
+	position: static;
+}
+
 .select__current {
 	display: flex;
 	align-items: center;
@@ -61,6 +66,11 @@
 	outline: none;
 	transition: border-color 0.2s;
 }
+
+.form__input-group .select__current {
+	padding: 0;
+}
+
 .select__current:focus,
 .select__current[aria-expanded="true"] {
 }
@@ -77,6 +87,12 @@
 
 .select--open .select__icon {
 	transform: translateY(-50%) rotate(180deg);
+}
+
+.select__icon svg {
+	--icon-size: 24px;
+	width: var(--icon-size);
+	height: var(--icon-size);
 }
 
 .select__list {
@@ -196,6 +212,7 @@
 	gap: 10px;
 }
 .form__input-group {
+	position: relative;
 	display: flex;
 	align-items: center;
 	height: var(--field-height);
@@ -274,7 +291,7 @@
 	position: relative;
 	display: flex;
 	justify-content: space-between;
-	gap: 24px;
+	gap: 4px 24px;
 	padding: 15px var(--table-x-padding) 9px;
 	margin: 0 0 calc(var(--table-row-offset) * -1);
 	flex-wrap: wrap;
@@ -501,6 +518,13 @@
 	transition: background var(--transition-base), color var(--transition-base);
 }
 
+.price-table__show-more svg {
+	--icon-size: 14px;
+	flex: 0 0 var(--icon-size);
+	width: var(--icon-size);
+	height: var(--icon-size);
+}
+
 @media (hover: hover) {
 	.button--accent:hover {
 		background: var(--color-accent-hover);
@@ -518,5 +542,78 @@
 	.price-table__show-more:active {
 		background: var(--color-accent);
 		color: var(--color-text-primary);
+	}
+}
+
+@media (max-width: 1199px) {
+	.form {
+		--field-height: 42px;
+		margin: 20px 0 0;
+	}
+
+	.form__input-group {
+		gap: 10px;
+	}
+
+	.checkbox__label {
+		font-size: 14px;
+	}
+
+	.select__current {
+		font-size: 13px;
+	}
+
+	.form__submit,
+	.form__row--checkbox {
+		margin-top: 6px;
+	}
+
+	.person-info {
+		--expert-image-size: 60px;
+		gap: 10px;
+	}
+
+	.price-table {
+		--table-x-padding: 16px;
+		--table-row-offset: 5px;
+	}
+
+	.price-table table.dataTable > thead > tr > th,
+	.price-table table.dataTable > tbody > tr > td,
+	.price-table__filter .checkbox__label {
+		font-size: 14px;
+	}
+
+	.price-table__delivery-icon {
+		--delivery-icon-size: 20px;
+	}
+
+	.price-table__action-btn {
+		padding: 10px 20px;
+	}
+
+	.price-table__action-btn-icon {
+	}
+
+	.price-table__action {
+		width: 50px !important;
+	}
+
+	.price-table__show-more {
+		font-size: 14px;
+	}
+
+	.price-table__show-more svg {
+		--icon-size: 12px;
+	}
+}
+
+@media (max-width: 767px) {
+	.form {
+		gap: 10px;
+	}
+
+	.select__icon svg {
+		--icon-size: 16px;
 	}
 }
