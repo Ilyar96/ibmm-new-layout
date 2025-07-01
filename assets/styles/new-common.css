@@ -11,6 +11,10 @@
 	color: var(--color-text-primary);
 }
 
+.breadcrumbs__item--current {
+	color: #fff;
+}
+
 /* Person info */
 .person-info {
 	--expert-image-size: 5.3125rem;

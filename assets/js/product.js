@@ -1,6 +1,8 @@
 (function () {
 	initSliders();
 	initGuarantee();
+	initPriceTable();
+	initFancybox();
 
 	// Sliders
 	function initSliders() {
@@ -40,23 +42,30 @@
 	}
 
 	// Price table
-	$(document).ready(function () {
-		var table = $("#price-table").DataTable({
+	function initPriceTable() {
+		$("#price-table").DataTable({
 			paging: false,
 			info: false,
 			searching: false,
 			ordering: true,
 			language: {
 				emptyTable: "Нет данных",
-				// Можно добавить другие переводы
 			},
 			columnDefs: [
 				{ targets: [0, 5], orderable: false }, // 0 - иконка доставки, 5 - кнопка действия
 			],
 		});
-		// Кнопка "Показать больше" (примерная реализация)
-		$(".price-table__show-more").on("click", function () {
-			// TODO доделать подгрузку данных
-		});
-	});
+	}
+
+	function initFancybox() {
+		if (!Fancybox) {
+			return;
+		}
+
+		// Main gallery
+		Fancybox.bind('[data-fancybox="product-main"]', {});
+
+		// Product 2 gallery
+		Fancybox.bind('[data-fancybox="product-2"]', {});
+	}
 })();

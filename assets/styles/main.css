@@ -3005,10 +3005,6 @@ hr {
 	color: #5d5d5d;
 }
 
-.breadcrumbs__item--current {
-	color: #fff;
-}
-
 .breadcrumbs__link {
 	color: inherit;
 	-webkit-transition: color var(--transition-base);
