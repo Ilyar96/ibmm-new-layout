@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 3 versions
+*/
+
 /* TODO вынести в main.css */
 .button--accent {
 	background: var(--color-accent);
@@ -38,8 +45,14 @@
 /* Select */
 .select {
 	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-flex: 1;
+	-ms-flex: 1;
 	flex: 1;
 }
 
@@ -50,8 +63,14 @@
 }
 
 .select__current {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 	width: 100%;
 	background: var(--color-background);
@@ -66,6 +85,8 @@
 	color: var(--color-text-primary);
 	cursor: pointer;
 	outline: none;
+	-webkit-transition: border-color 0.2s;
+	-o-transition: border-color 0.2s;
 	transition: border-color 0.2s;
 }
 
@@ -78,14 +99,26 @@
 	position: absolute;
 	right: 1.125rem;
 	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 	pointer-events: none;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-transition: -webkit-transform var(--transition-base);
+	transition: -webkit-transform var(--transition-base);
+	-o-transition: transform var(--transition-base);
 	transition: transform var(--transition-base);
+	transition: transform var(--transition-base), -webkit-transform var(--transition-base);
 }
 
 .select--open .select__icon {
+	-webkit-transform: translateY(-50%) rotate(180deg);
+	-ms-transform: translateY(-50%) rotate(180deg);
 	transform: translateY(-50%) rotate(180deg);
 }
 
@@ -104,6 +137,7 @@
 	background: var(--color-background);
 	border: 0.0625rem solid var(--color-border);
 	border-radius: 0.625rem;
+	-webkit-box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.08);
 	box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.08);
 	margin: 0;
 	padding: 0.375rem 0;
@@ -118,6 +152,8 @@
 	font-family: var(--font-family);
 	color: var(--color-text-primary);
 	cursor: pointer;
+	-webkit-transition: background 0.15s, color 0.15s;
+	-o-transition: background 0.15s, color 0.15s;
 	transition: background 0.15s, color 0.15s;
 }
 
@@ -135,7 +171,11 @@
 
 /* Checkbox */
 .checkbox {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 0.5rem;
 	font-family: var(--font-family-quaternary);
@@ -143,6 +183,9 @@
 	font-size: 1rem;
 	color: var(--color-text-secondary);
 	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 }
 
@@ -158,8 +201,14 @@
 .checkbox__custom {
 	--checkbox-size: 1.0625rem;
 	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	width: var(--checkbox-size);
 	height: var(--checkbox-size);
@@ -182,6 +231,8 @@
 	background: url("../img/check.svg") no-repeat center center / var(--check-size);
 	opacity: 0;
 	visibility: hidden;
+	-webkit-transition: opacity var(--transition-base), visibility var(--transition-base);
+	-o-transition: opacity var(--transition-base), visibility var(--transition-base);
 	transition: opacity var(--transition-base), visibility var(--transition-base);
 }
 
@@ -206,21 +257,35 @@
 /* Form */
 .form {
 	--field-height: 3.0625rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 	gap: 1.125rem;
 	margin: 2rem 0 0;
 }
 
 .form__row {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 	gap: 0.625rem;
 }
 
 .form__input-group {
 	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	height: var(--field-height);
 	background: var(--white-10);
@@ -229,11 +294,18 @@
 }
 
 .form__input-label {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	height: 100%;
 	margin: 0;
 	padding: 0 0 0 0.5rem;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 	border: none;
 	background: transparent;
@@ -244,8 +316,14 @@
 	--label-height: 1.8125rem;
 	height: var(--label-height);
 	padding: 0 0.625rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	font-family: var(--font-family);
 	font-weight: 600;
@@ -258,6 +336,8 @@
 }
 
 .form__input {
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1;
 	flex: 1 1;
 	padding: 0 0.5rem 0 1.25rem;
 	height: 100%;
@@ -268,6 +348,8 @@
 	letter-spacing: -0.03em;
 	color: var(--color-text-primary);
 	outline: none;
+	-webkit-transition: border-color 0.2s;
+	-o-transition: border-color 0.2s;
 	transition: border-color 0.2s;
 }
 
@@ -288,9 +370,15 @@
 	position: absolute;
 	right: 0.625rem;
 	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 	pointer-events: none;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 }
 
@@ -315,11 +403,16 @@
 
 .price-table__filters {
 	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 	gap: 0.25rem 1.5rem;
 	padding: 0.9375rem var(--table-x-padding) 0.5625rem;
 	margin: 0 0 calc(var(--table-row-offset) * -1);
+	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	background: var(--color-card-background);
 }
@@ -393,6 +486,7 @@
 	line-height: 140%;
 	font-weight: 500;
 	vertical-align: middle;
+	-webkit-box-shadow: none !important;
 	box-shadow: none !important;
 }
 
@@ -431,8 +525,14 @@
 	background: url("../img/arrow-down.svg") no-repeat center center / contain;
 	width: var(--arrow-size);
 	height: var(--arrow-size);
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
+	-webkit-transition: -webkit-transform var(--transition-base);
+	transition: -webkit-transform var(--transition-base);
+	-o-transition: transform var(--transition-base);
 	transition: transform var(--transition-base);
+	transition: transform var(--transition-base), -webkit-transform var(--transition-base);
 }
 
 .price-table th.sorting_desc .price-table__th-wrapper,
@@ -446,6 +546,8 @@
 
 .price-table th.sorting_asc .price-table__th-wrapper::after {
 	background-image: url("../img/arrow-down-accent.svg");
+	-webkit-transform: translateY(-50%) rotate(180deg);
+	-ms-transform: translateY(-50%) rotate(180deg);
 	transform: translateY(-50%) rotate(180deg);
 }
 
@@ -470,8 +572,14 @@
 }
 
 .price-table__icon {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 }
 
@@ -499,14 +607,22 @@
 }
 
 .price-table__action-btn {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	background: var(--color-accent);
 	border: none;
 	padding: 0;
 	border-radius: 1.25rem;
 	padding: 0.625rem 1.5625rem;
+	-webkit-transition: background var(--transition-base);
+	-o-transition: background var(--transition-base);
 	transition: background var(--transition-base);
 }
 
@@ -521,14 +637,24 @@
 }
 
 .price-table__show-more-wrapper {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 }
 
 .price-table__show-more {
 	--more-btn-height: 3.25rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	width: 100%;
 	height: var(--more-btn-height);
@@ -543,11 +669,15 @@
 	color: #667085;
 	gap: 0.5rem;
 	cursor: pointer;
+	-webkit-transition: background var(--transition-base), color var(--transition-base);
+	-o-transition: background var(--transition-base), color var(--transition-base);
 	transition: background var(--transition-base), color var(--transition-base);
 }
 
 .price-table__show-more svg {
 	--icon-size: 0.875rem;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--icon-size);
 	flex: 0 0 var(--icon-size);
 	width: var(--icon-size);
 	height: var(--icon-size);
@@ -650,6 +780,8 @@
 	}
 
 	.price-table__filters {
+		-webkit-box-pack: space-evenly;
+		-ms-flex-pack: space-evenly;
 		justify-content: space-evenly;
 	}
 
@@ -660,7 +792,12 @@
 	}
 
 	.price-table thead tr {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
 		width: 100%;
 	}
@@ -671,20 +808,32 @@
 	}
 
 	.price-table thead tr th {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
 		justify-content: center;
 		width: 100% !important;
 		padding: 0.625rem var(--table-x-padding) !important;
+		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 	}
 
 	.price-table table.dataTable > tbody > tr > td {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
 		justify-content: space-between;
 		width: 100% !important;
 		padding-left: var(--table-x-padding);
 		padding-right: var(--table-x-padding);
+		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 		font-size: 0.8125rem;
 	}
@@ -707,7 +856,11 @@
 	}
 
 	.price-table table.dataTable > tbody > tr > td[data-label] {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
 		gap: 0.5rem;
 	}
@@ -740,11 +893,15 @@
 
 @media (max-width: 479px) {
 	.price-table__filters {
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
 		justify-content: space-between;
 		gap: 0;
 	}
 
 	.price-table__filter {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 48%;
 		flex: 0 0 48%;
 	}
 }
