@@ -16,10 +16,14 @@
 				nextEl: nextBtnSelector,
 				prevEl: prevBtnSelector,
 			},
+			preventClicks: false,
+			preventClicksPropagation: false,
 		});
 
 		new Swiper("#product-gallery-2", {
 			slidesPerView: "auto",
+			preventClicks: false,
+			preventClicksPropagation: false,
 		});
 	}
 

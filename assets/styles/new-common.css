@@ -481,8 +481,8 @@
 	background: transparent;
 }
 
-.price-table table.dataTable > thead > tr > th,
-.price-table table.dataTable > tbody > tr > td {
+.price-table table.price-table__table > thead > tr > th,
+.price-table table.price-table__table > tbody > tr > td {
 	background: var(--color-card-background);
 	padding: 0.875rem 0;
 	text-align: left;
@@ -494,25 +494,25 @@
 	box-shadow: none !important;
 }
 
-.price-table table.dataTable > thead > tr > th {
+.price-table table.price-table__table > thead > tr > th {
 	color: #667085;
 	font-weight: 600;
 	background: var(--color-card-background);
 	border: none;
 }
 
-.price-table table.dataTable > tbody > tr > td {
+.price-table table.price-table__table > tbody > tr > td {
 	padding: 0.625rem 0;
 	color: var(--color-text-primary);
 	background: #373b3c;
 }
 
-.price-table table.dataTable > tbody > tr.even > td {
+.price-table table.price-table__table > tbody > tr.even > td {
 	background: var(--color-card-background);
 }
 
-.price-table table.dataTable thead > tr > th:before,
-.price-table table.dataTable thead > tr > th:after {
+.price-table table.price-table__table thead > tr > th:before,
+.price-table table.price-table__table thead > tr > th:after {
 	display: none !important;
 }
 
@@ -555,13 +555,13 @@
 	transform: translateY(-50%) rotate(180deg);
 }
 
-.price-table table.dataTable thead > tr > th:first-child,
-.price-table table.dataTable tbody > tr > td:first-child {
+.price-table table.price-table__table thead > tr > th:first-child,
+.price-table table.price-table__table tbody > tr > td:first-child {
 	padding-left: var(--table-x-padding) !important;
 }
 
-.price-table table.dataTable thead > tr > th:last-child,
-.price-table table.dataTable tbody > tr > td:last-child {
+.price-table table.price-table__table thead > tr > th:last-child,
+.price-table table.price-table__table tbody > tr > td:last-child {
 	padding-right: var(--table-x-padding) !important;
 }
 
@@ -742,8 +742,8 @@
 		--table-row-offset: 0.3125rem;
 	}
 
-	.price-table table.dataTable > thead > tr > th,
-	.price-table table.dataTable > tbody > tr > td,
+	.price-table table.price-table__table > thead > tr > th,
+	.price-table table.price-table__table > tbody > tr > td,
 	.price-table__filter .checkbox__label {
 		font-size: 0.875rem;
 	}
@@ -824,7 +824,7 @@
 		box-sizing: border-box;
 	}
 
-	.price-table table.dataTable > tbody > tr > td {
+	.price-table table.price-table__table > tbody > tr > td {
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
@@ -842,15 +842,15 @@
 		font-size: 0.8125rem;
 	}
 
-	.price-table table.dataTable > tbody > tr > td:not(:last-child) {
+	.price-table table.price-table__table > tbody > tr > td:not(:last-child) {
 		border-bottom: 0.0625rem solid var(--color-card-background);
 	}
 
-	.price-table table.dataTable > tbody > tr.even > td {
+	.price-table table.price-table__table > tbody > tr.even > td {
 		border-color: #373b3c;
 	}
 
-	.price-table table.dataTable > tbody > tr > td[data-label]::before {
+	.price-table table.price-table__table > tbody > tr > td[data-label]::before {
 		content: attr(data-label);
 		display: block;
 		font-weight: 700;
@@ -859,7 +859,7 @@
 		letter-spacing: -0.03em;
 	}
 
-	.price-table table.dataTable > tbody > tr > td[data-label] {
+	.price-table table.price-table__table > tbody > tr > td[data-label] {
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
@@ -869,7 +869,7 @@
 		gap: 0.5rem;
 	}
 
-	.price-table table.dataTable > tbody > tr > td.price-table__delivery::before {
+	.price-table table.price-table__table > tbody > tr > td.price-table__delivery::before {
 		content: "";
 		display: block;
 		width: 1.25rem;
