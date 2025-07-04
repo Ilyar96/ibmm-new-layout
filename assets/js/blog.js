@@ -1,8 +1,33 @@
 (function () {
-	initBannerOnClick("#tg-banner", "#tg-banner-close", "tgBannerHidden");
+	initBlogSlider();
+	initBannerCloseHandler("#tg-banner", "#tg-banner-close", "tgBannerHidden");
 
-	//TODO в main.js функцию initSpecialOffer заменить на initBannerOnClick
-	function initBannerOnClick(bannerId, closeButtonId, cookieName) {
+	function initBlogSlider() {
+		new Swiper("#blog-slider", {
+			slidesPerView: 1,
+			scrollbar: {
+				el: "#blog-slider-scrollbar",
+			},
+			spaceBetween: 16,
+			breakpoints: {
+				1200: {
+					slidesPerView: 4,
+					spaceBetween: 0,
+				},
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 16,
+				},
+				600: {
+					slidesPerView: 2,
+					spaceBetween: 16,
+				},
+			},
+		});
+	}
+
+	//TODO в main.js функцию initSpecialOffer заменить на initBannerCloseHandler
+	function initBannerCloseHandler(bannerId, closeButtonId, cookieName) {
 		const specialOffer = document.querySelector(bannerId);
 		const closeButton = document.querySelector(closeButtonId);
 

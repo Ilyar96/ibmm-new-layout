@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="assets/styles/fonts.css">
 	<link rel="stylesheet" href="assets/styles/swiper-bundle.min.css">
 	<link rel="stylesheet" href="assets/styles/main.css">
+	<link rel="stylesheet" href="assets/styles/new-common.css">
 	<link rel="stylesheet" href="assets/styles/blog.css">
 </head>
 
@@ -88,15 +89,189 @@
 						<svg class="breadcrumbs__separator" width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M1 9L5 5L1 1" stroke="currentColor" stroke-linecap="round" />
 						</svg>
-						<div class="breadcrumbs__item">
-							Оборудование для майнинга
-						</div>
+						<div class="breadcrumbs__item">Новости</div>
 					</div>
 				</div>
 			</div>
 
 			<section class="blog">
 				<div class="blog__container container">
+					<div class="blog__header">
+						<h1 class="blog__title">
+							<svg width="35" height="35" class="blog__title-icon" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M17.4991 33.5417C15.3074 33.5415 13.1664 32.8829 11.3535 31.6512C9.54066 30.4196 8.13963 28.6718 7.33207 26.6343C6.52451 24.5969 6.34767 22.3638 6.82448 20.2246C7.30129 18.0855 8.40975 16.1389 10.0062 14.6373C11.9632 12.7954 16.7699 9.47917 16.0407 2.1875C24.7907 8.02083 29.1657 13.8542 20.4157 22.6042C21.8741 22.6042 24.0616 22.6042 27.7074 19.0021C28.1012 20.1294 28.4366 21.3412 28.4366 22.6042C28.4366 25.505 27.2842 28.287 25.233 30.3381C23.1819 32.3893 20.3999 33.5417 17.4991 33.5417Z" fill="white" />
+							</svg>
+							<span>Последние новости</span>
+						</h1>
+						<div class="blog__search">
+							<input class="blog__search-input" name="blog-search" type="text" placeholder="Какую новость хотите найти?">
+							<button class="blog__search-btn" type="button">
+								<span class="visually-hidden">Найти</span>
+								<svg width="12" height="12" class="blog__search-icon" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M5.49951 1C4.7807 1.00008 4.07237 1.17235 3.4338 1.5024C2.79524 1.83244 2.24504 2.31066 1.82925 2.89701C1.41345 3.48336 1.14418 4.16079 1.04396 4.87258C0.943733 5.58437 1.01548 6.30981 1.2532 6.98818C1.49092 7.66655 1.88768 8.2781 2.41028 8.77164C2.93288 9.26518 3.5661 9.62635 4.25695 9.82491C4.94779 10.0235 5.67615 10.0536 6.38105 9.91291C7.08595 9.77217 7.74688 9.46462 8.30851 9.016L10.146 10.8535C10.2403 10.9446 10.3666 10.995 10.4977 10.9938C10.6288 10.9927 10.7542 10.9401 10.8469 10.8474C10.9396 10.7547 10.9922 10.6293 10.9934 10.4982C10.9945 10.3671 10.9441 10.2408 10.853 10.1465L9.01551 8.309C9.54451 7.64693 9.87581 6.84894 9.97126 6.00689C10.0667 5.16483 9.92246 4.31293 9.55509 3.54925C9.18772 2.78556 8.61217 2.14114 7.89469 1.69015C7.17721 1.23915 6.34696 0.999927 5.49951 1ZM2.49951 5.5C2.49951 5.10603 2.57711 4.71593 2.72787 4.35195C2.87864 3.98797 3.09962 3.65726 3.37819 3.37868C3.65677 3.1001 3.98749 2.87913 4.35146 2.72836C4.71544 2.5776 5.10555 2.5 5.49951 2.5C5.89348 2.5 6.28359 2.5776 6.64756 2.72836C7.01154 2.87913 7.34226 3.1001 7.62083 3.37868C7.89941 3.65726 8.12039 3.98797 8.27115 4.35195C8.42192 4.71593 8.49951 5.10603 8.49951 5.5C8.49951 6.29565 8.18344 7.05871 7.62083 7.62132C7.05822 8.18393 6.29516 8.5 5.49951 8.5C4.70386 8.5 3.9408 8.18393 3.37819 7.62132C2.81558 7.05871 2.49951 6.29565 2.49951 5.5Z" fill="currentColor" />
+								</svg>
+							</button>
+						</div>
+					</div>
+
+					<div class="blog__slider swiper-container">
+						<div id="blog-slider" class="blog__swiper swiper">
+							<div class="swiper-wrapper">
+								<div class="blog__slide swiper-slide">
+									<div class="blog-card">
+										<div class="blog-card__inner">
+											<div class="blog-card__meta">
+												<span class="blog-card__date">07.02.2025</span>
+												<span class="blog-card__tag">
+													<span class="blog-card__tag-inner">Обзор устройств</span>
+												</span>
+											</div>
+											<a href="#" class="blog-card__link">
+												<span class="blog-card__title">Какой майнер самый крутой в 2025 году</span>
+												<svg width="24" height="24" class="blog-card__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+													<path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+												</svg>
+											</a>
+											<div class="blog-card__desc">
+												Представляем вашему вниманию высокопроизводительный ASIC майнер – идеальное решение для майнинга различных криптовалют. Этот мощный майнер станет супер...
+											</div>
+											<div class="blog-card__image-wrapper">
+												<img src="assets/img/temp/blog/01.jpg" alt="Обзор устройств" class="blog-card__image" loading="lazy" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="blog__slide swiper-slide">
+									<div class="blog-card">
+										<div class="blog-card__inner">
+											<div class="blog-card__meta">
+												<span class="blog-card__date">07.02.2025</span>
+												<span class="blog-card__tag">
+													<span class="blog-card__tag-inner">Обзор устройств</span>
+												</span>
+											</div>
+											<a href="#" class="blog-card__link">
+												<span class="blog-card__title">Какой майнер самый крутой в 2025 году</span>
+												<svg width="24" height="24" class="blog-card__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+													<path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+												</svg>
+											</a>
+											<div class="blog-card__desc">
+												Представляем вашему вниманию высокопроизводительный ASIC майнер – идеальное решение для майнинга различных криптовалют. Этот мощный майнер станет супер...
+											</div>
+											<div class="blog-card__image-wrapper">
+												<img src="assets/img/temp/blog/01.jpg" alt="Обзор устройств" class="blog-card__image" loading="lazy" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="blog__slide swiper-slide">
+									<div class="blog-card">
+										<div class="blog-card__inner">
+											<div class="blog-card__meta">
+												<span class="blog-card__date">07.02.2025</span>
+												<span class="blog-card__tag">
+													<span class="blog-card__tag-inner">Обзор устройств</span>
+												</span>
+											</div>
+											<a href="#" class="blog-card__link">
+												<span class="blog-card__title">Какой майнер самый крутой в 2025 году</span>
+												<svg width="24" height="24" class="blog-card__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+													<path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+												</svg>
+											</a>
+											<div class="blog-card__desc">
+												Представляем вашему вниманию высокопроизводительный ASIC майнер – идеальное решение для майнинга различных криптовалют. Этот мощный майнер станет супер...
+											</div>
+											<div class="blog-card__image-wrapper">
+												<img src="assets/img/temp/blog/01.jpg" alt="Обзор устройств" class="blog-card__image" loading="lazy" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="blog__slide swiper-slide">
+									<div class="blog-card">
+										<div class="blog-card__inner">
+											<div class="blog-card__meta">
+												<span class="blog-card__date">07.02.2025</span>
+												<span class="blog-card__tag">
+													<span class="blog-card__tag-inner">Обзор устройств</span>
+												</span>
+											</div>
+											<a href="#" class="blog-card__link">
+												<span class="blog-card__title">Какой майнер самый крутой в 2025 году</span>
+												<svg width="24" height="24" class="blog-card__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+													<path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+												</svg>
+											</a>
+											<div class="blog-card__desc">
+												Представляем вашему вниманию высокопроизводительный ASIC майнер – идеальное решение для майнинга различных криптовалют. Этот мощный майнер станет супер...
+											</div>
+											<div class="blog-card__image-wrapper">
+												<img src="assets/img/temp/blog/01.jpg" alt="Обзор устройств" class="blog-card__image" loading="lazy" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="blog__slide swiper-slide">
+									<div class="blog-card">
+										<div class="blog-card__inner">
+											<div class="blog-card__meta">
+												<span class="blog-card__date">07.02.2025</span>
+												<span class="blog-card__tag">
+													<span class="blog-card__tag-inner">Обзор устройств</span>
+												</span>
+											</div>
+											<a href="#" class="blog-card__link">
+												<span class="blog-card__title">Какой майнер самый крутой в 2025 году</span>
+												<svg width="24" height="24" class="blog-card__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+													<path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+												</svg>
+											</a>
+											<div class="blog-card__desc">
+												Представляем вашему вниманию высокопроизводительный ASIC майнер – идеальное решение для майнинга различных криптовалют. Этот мощный майнер станет супер...
+											</div>
+											<div class="blog-card__image-wrapper">
+												<img src="assets/img/temp/blog/01.jpg" alt="Обзор устройств" class="blog-card__image" loading="lazy" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="blog__slide swiper-slide">
+									<div class="blog-card">
+										<div class="blog-card__inner">
+											<div class="blog-card__meta">
+												<span class="blog-card__date">07.02.2025</span>
+												<span class="blog-card__tag">
+													<span class="blog-card__tag-inner">Обзор устройств</span>
+												</span>
+											</div>
+											<a href="#" class="blog-card__link">
+												<span class="blog-card__title">Какой майнер самый крутой в 2025 году</span>
+												<svg width="24" height="24" class="blog-card__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+													<path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+												</svg>
+											</a>
+											<div class="blog-card__desc">
+												Представляем вашему вниманию высокопроизводительный ASIC майнер – идеальное решение для майнинга различных криптовалют. Этот мощный майнер станет супер...
+											</div>
+											<div class="blog-card__image-wrapper">
+												<img src="assets/img/temp/blog/01.jpg" alt="Обзор устройств" class="blog-card__image" loading="lazy" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div id="blog-slider-scrollbar" class="blog__slider-scrollbar swiper-scrollbar"></div>
+					</div>
 
 				</div>
 			</section>

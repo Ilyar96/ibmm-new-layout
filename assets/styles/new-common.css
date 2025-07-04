@@ -7,14 +7,16 @@
 
 /* TODO вынести в main.css */
 
-@media (hover: hover) {
-}
-
-@media (hover: none) {
+.swiper-scrollbar,
+.swiper-scrollbar-drag {
+	border-radius: 30px;
+	overflow: hidden;
 }
 
 @media (max-width: 1199px) {
-}
-
-@media (max-width: 767px) {
+	.swiper-horizontal > .swiper-scrollbar,
+	.swiper-scrollbar.swiper-scrollbar-horizontal {
+		left: 0;
+		width: 100%;
+	}
 }

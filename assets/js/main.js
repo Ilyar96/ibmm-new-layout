@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 	initSliders();
 	initHeaderScroll();
-	initBannerOnClick("#special-offer", "#special-offer-close", "specialOfferHidden");
+	initBannerCloseHandler("#special-offer", "#special-offer-close", "specialOfferHidden");
 	initSelects();
 
 	function initSliders() {
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	function initBannerOnClick(bannerId, closeButtonId, cookieName) {
+	function initBannerCloseHandler(bannerId, closeButtonId, cookieName) {
 		const specialOffer = document.querySelector(bannerId);
 		const closeButton = document.querySelector(closeButtonId);
 
