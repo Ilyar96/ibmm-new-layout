@@ -56,7 +56,7 @@
 				emptyTable: "Нет данных",
 			},
 			columnDefs: [
-				{ targets: [0, 5], orderable: false }, // 0 - иконка доставки, 5 - кнопка действия
+				{ targets: [0, 1, 5], orderable: false }, // 0 - иконка доставки, 5 - кнопка действия
 			],
 		});
 	}
