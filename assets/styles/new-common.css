@@ -5,8 +5,13 @@
 * Browsers: last 3 versions
 */
 
-/* TODO вынести в main.css */
+/* TODO исправить в main.css */
+.button {
+	gap: 0.75rem;
+	line-height: 1;
+}
 
+/* TODO добавить в main.css */
 .swiper-scrollbar,
 .swiper-scrollbar-drag {
 	border-radius: 30px;
@@ -18,5 +23,9 @@
 	.swiper-scrollbar.swiper-scrollbar-horizontal {
 		left: 0;
 		width: 100%;
+	}
+
+	.button {
+		gap: 0.5rem;
 	}
 }
