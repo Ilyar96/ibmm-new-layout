@@ -1,5 +1,7 @@
 (function () {
 	initBlogSlider();
+
+	// Вызвать в main.js
 	initBannerCloseHandler("#tg-banner", "#tg-banner-close", "tgBannerHidden");
 
 	function initBlogSlider() {
