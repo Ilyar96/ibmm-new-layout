@@ -1,9 +1,6 @@
 (function () {
 	initBlogSlider();
 
-	// Вызвать в main.js
-	initBannerCloseHandler("#tg-banner", "#tg-banner-close", "tgBannerHidden");
-
 	function initBlogSlider() {
 		new Swiper("#blog-slider", {
 			slidesPerView: 1,
@@ -28,7 +25,12 @@
 		});
 	}
 
-	//TODO в main.js функцию initSpecialOffer заменить на initBannerCloseHandler
+	//TODO Вызвать в main.js
+	initBannerCloseHandler("#tg-banner", "#tg-banner-close", "tgBannerHidden");
+
+	//TODO в main.js функцию initSpecialOffer заменить на initBannerCloseHandler и заменить вызов функции
+	// initBannerCloseHandler("#special-offer", "#special-offer-close", "specialOfferHidden");
+
 	function initBannerCloseHandler(bannerId, closeButtonId, cookieName) {
 		const specialOffer = document.querySelector(bannerId);
 		const closeButton = document.querySelector(closeButtonId);
