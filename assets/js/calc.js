@@ -12,6 +12,24 @@
 		};
 	}
 
+	// Функция для извлечения цены из элемента calc-table__price-value
+	function extractPriceFromTableString(tableString) {
+		if (!tableString) return 0;
+
+		if (typeof tableString === "string") {
+			const priceMatch = tableString.match(
+				/<span class="calc-table__price-value">\$([^<]+)<\/span>/
+			);
+			if (priceMatch && priceMatch[1]) {
+				const cleanPrice = priceMatch[1].replace(/[,\s]/g, "");
+				const numericPrice = parseFloat(cleanPrice);
+				return isNaN(numericPrice) ? 0 : numericPrice;
+			}
+		}
+
+		return 0;
+	}
+
 	initCalcTable();
 
 	// Calc table
@@ -24,13 +42,6 @@
 		const coinIndex = 5;
 		const algoIndex = 6;
 		const priceIndex = 7;
-
-		function sortStringRender(data, type, row) {
-			if (type === "sort") {
-				return data.toLowerCase();
-			}
-			return data;
-		}
 
 		const table = $("#calc-table").DataTable({
 			paging: false,
@@ -206,16 +217,36 @@
 					type: "string",
 					render: sortStringRender,
 				},
+				{
+					targets: [priceIndex],
+					type: "num",
+					render: function (data, type, row) {
+						if (type === "sort") {
+							// Используем вспомогательную функцию для извлечения цены
+							console.log(extractPriceFromTableString(data), row[modelIndex]);
+
+							return extractPriceFromTableString(data);
+						}
+						return data;
+					},
+				},
 			],
 		});
-
-		function tableSearchInputHandler(e) {
-			table.search(e.target.value).draw();
-		}
 
 		const debouncedTableSearchInputHandler = debounce(tableSearchInputHandler, 300);
 
 		// Добавляем поиск через поле table-search
 		$("#table-search").on("input", debouncedTableSearchInputHandler);
+
+		function tableSearchInputHandler(e) {
+			table.search(e.target.value).draw();
+		}
+
+		function sortStringRender(data, type, row) {
+			if (type === "sort") {
+				return data.toLowerCase();
+			}
+			return data;
+		}
 	}
 })();
