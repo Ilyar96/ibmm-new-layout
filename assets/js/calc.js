@@ -40,28 +40,44 @@
 				},
 				{
 					targets: [releaseIndex], // Колонка с датами (индекс 3)
-					type: "string",
+					type: "num",
 					render: function (data, type, row) {
 						if (type === "sort") {
-							// Преобразуем дату для сортировки
+							// Преобразуем дату в timestamp для сортировки
 							const monthMap = {
-								Янв: "01",
-								Фев: "02",
-								Мар: "03",
-								Апр: "04",
-								Май: "05",
-								Июн: "06",
-								Июл: "07",
-								Авг: "08",
-								Сен: "09",
-								Окт: "10",
-								Ноя: "11",
-								Дек: "12",
+								Янв: 0, // Январь = 0 (JavaScript месяцы начинаются с 0)
+								Фев: 1,
+								Мар: 2,
+								Апр: 3,
+								Май: 4,
+								Июн: 5,
+								Июл: 6,
+								Авг: 7,
+								Сен: 8,
+								Окт: 9,
+								Ноя: 10,
+								Дек: 11,
 							};
-							const parts = data.split(" ");
-							const month = monthMap[parts[0]] || "00";
-							const year = parts[1] || "0000";
-							return year + month; // Формат YYYYMM для сортировки
+
+							if (!data || typeof data !== "string") {
+								return 0; // Возвращаем 0 для некорректных данных
+							}
+
+							const parts = data.trim().split(" ");
+							if (parts.length !== 2) {
+								return 0; // Возвращаем 0 для некорректного формата
+							}
+
+							const month = monthMap[parts[0]];
+							const year = parseInt(parts[1]);
+
+							if (month === undefined || isNaN(year)) {
+								return 0; // Возвращаем 0 для некорректных данных
+							}
+
+							// Создаем Date объект и получаем timestamp
+							const date = new Date(year, month, 1); // 1-е число месяца
+							return date.getTime(); // Возвращаем timestamp в миллисекундах
 						}
 						return data; // Возвращаем оригинальный текст для отображения
 					},
