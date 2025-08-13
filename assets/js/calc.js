@@ -1,35 +1,4 @@
 (function () {
-	// Функция debounce для оптимизации поиска
-	function debounce(func, wait) {
-		let timeout;
-		return function executedFunction(...args) {
-			const later = () => {
-				clearTimeout(timeout);
-				func(...args);
-			};
-			clearTimeout(timeout);
-			timeout = setTimeout(later, wait);
-		};
-	}
-
-	// Функция для извлечения цены из элемента calc-table__price-value
-	function extractPriceFromTableString(tableString) {
-		if (!tableString) return 0;
-
-		if (typeof tableString === "string") {
-			const priceMatch = tableString.match(
-				/<span class="calc-table__price-value">\$([^<]+)<\/span>/
-			);
-			if (priceMatch && priceMatch[1]) {
-				const cleanPrice = priceMatch[1].replace(/[,\s]/g, "");
-				const numericPrice = parseFloat(cleanPrice);
-				return isNaN(numericPrice) ? 0 : numericPrice;
-			}
-		}
-
-		return 0;
-	}
-
 	initCalcTable();
 
 	// Calc table
@@ -42,6 +11,7 @@
 		const coinIndex = 5;
 		const algoIndex = 6;
 		const priceIndex = 7;
+		const profitIndex = 8;
 
 		const table = $("#calc-table").DataTable({
 			paging: false,
@@ -222,10 +192,19 @@
 					type: "num",
 					render: function (data, type, row) {
 						if (type === "sort") {
-							// Используем вспомогательную функцию для извлечения цены
-							console.log(extractPriceFromTableString(data), row[modelIndex]);
-
-							return extractPriceFromTableString(data);
+							const price = Number(extractDataAttrFromTableString(data, "price"));
+							return isNaN(price) ? 0 : price;
+						}
+						return data;
+					},
+				},
+				{
+					targets: [profitIndex],
+					type: "num",
+					render: function (data, type, row) {
+						if (type === "sort") {
+							const price = Number(extractDataAttrFromTableString(data, "profit"));
+							return isNaN(price) ? 0 : price;
 						}
 						return data;
 					},
@@ -247,6 +226,16 @@
 				return data.toLowerCase();
 			}
 			return data;
+		}
+
+		function extractDataAttrFromTableString(tableString, dataAttr) {
+			if (typeof tableString === "string" && typeof dataAttr === "string") {
+				const match = tableString.match(new RegExp(`data-${dataAttr}="([^"]+)"`, "i"));
+				if (match && match[1]) {
+					return match[1];
+				}
+			}
+			return "";
 		}
 	}
 })();
