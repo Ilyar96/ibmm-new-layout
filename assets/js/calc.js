@@ -21,9 +21,16 @@
 		const releaseIndex = 2;
 		const hashrateIndex = 3;
 		const powerIndex = 4;
-		const topIndex = 5;
+		const coinIndex = 5;
 		const algoIndex = 6;
 		const priceIndex = 7;
+
+		function sortStringRender(data, type, row) {
+			if (type === "sort") {
+				return data.toLowerCase();
+			}
+			return data;
+		}
 
 		const table = $("#calc-table").DataTable({
 			paging: false,
@@ -37,6 +44,11 @@
 				{
 					targets: [wishlistIndex],
 					orderable: false,
+				},
+				{
+					targets: [modelIndex],
+					type: "string",
+					render: sortStringRender,
 				},
 				{
 					targets: [releaseIndex], // Колонка с датами (индекс 3)
@@ -170,6 +182,29 @@
 						}
 						return data;
 					},
+				},
+				{
+					targets: [coinIndex],
+					type: "string",
+					render: function (data, type, row) {
+						if (type === "sort") {
+							// Извлекаем значение data-coin из HTML строки
+							if (data && typeof data === "string") {
+								const match = data.match(/data-coin="([^"]+)"/);
+								if (match && match[1]) {
+									// Возвращаем значение монеты в нижнем регистре для сортировки
+									return match[1].toLowerCase();
+								}
+							}
+							return ""; // Возвращаем пустую строку если не удалось извлечь
+						}
+						return data; // Возвращаем оригинальный HTML для отображения
+					},
+				},
+				{
+					targets: [algoIndex],
+					type: "string",
+					render: sortStringRender,
 				},
 			],
 		});
