@@ -124,6 +124,37 @@
 						return data; // Возвращаем оригинальный текст для отображения
 					},
 				},
+				{
+					targets: [powerIndex],
+					type: "num",
+					render: function (data, type, row) {
+						if (type === "sort") {
+							const match = data.match(/(\d+(?:[.,]\d+)?)\s*(w|kw|mw|gw|tw|pw|ew)/i);
+							if (!match) {
+								console.error(
+									"Не удалось распарсить мощность:",
+									data,
+									"для строки:",
+									row[modelIndex]
+								);
+								return 0;
+							}
+
+							const multipliers = {
+								w: 1,
+								kw: 1000,
+								mw: 1000000,
+								gw: 1000000000,
+								tw: 1000000000000,
+								pw: 1000000000000000,
+								ew: 1000000000000000000,
+							};
+
+							return match[1] * multipliers[match[2].toLowerCase()];
+						}
+						return data;
+					},
+				},
 			],
 		});
 
