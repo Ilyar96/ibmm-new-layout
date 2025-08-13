@@ -1,21 +1,10 @@
 (function () {
-	// Функция debounce для оптимизации поиска
-	function debounce(func, wait) {
-		let timeout;
-		return function executedFunction(...args) {
-			const later = () => {
-				clearTimeout(timeout);
-				func(...args);
-			};
-			clearTimeout(timeout);
-			timeout = setTimeout(later, wait);
-		};
-	}
-
 	initCalcTable();
 
 	// Calc table
 	function initCalcTable() {
+		const manufacturerFilterArray = [];
+
 		const wishlistIndex = 0;
 		const modelIndex = 1;
 		const releaseIndex = 2;
@@ -26,13 +15,17 @@
 		const priceIndex = 7;
 		const profitIndex = 8;
 
+		// Initialize manufacturer filter
+		initFilter("manufacturer-filter", "manufacturer-dropdown", manufacturerFilterArray);
+
 		const table = $("#calc-table").DataTable({
 			paging: false,
 			info: false,
 			searching: true,
 			ordering: true,
 			language: {
-				emptyTable: "Нет данных",
+				// TODO поменять путь на правильный
+				url: "./assets/js/datatables_lang_ru.json",
 			},
 			columnDefs: [
 				{
@@ -230,25 +223,19 @@
 							let minProfit = -1_600; // Adjust this value based on the minimum expected profit
 							let profitRange = maxProfit - minProfit;
 							let normalizedProfit = (profit - minProfit) / profitRange;
-							let adjustedProfit = Math.pow(normalizedProfit, 3); // Reduced power for smoother transitions
+							let adjustedProfit = Math.pow(normalizedProfit, 4); // Non-linear transformation for stronger differentiation
+							let opacity = Math.min(Math.max(adjustedProfit, 0), 1);
+							const greenOpacity = Math.max(0.5, opacity);
+							const redOpacity = Math.max(0.1, opacity);
 
-							// Enhanced opacity calculation for better visibility on dark backgrounds
-							let baseOpacity = 0.1; // Minimum opacity for visibility
-							let opacity =
-								baseOpacity + (1 - baseOpacity) * Math.min(Math.max(adjustedProfit, 0), 1);
-
-							// Define gradient color based on profit value - optimized for dark backgrounds
-							// Alternative colors for even better visibility:
-							// Green: rgba(129, 199, 132, ${opacity}) - lighter green
-							// Red: rgba(239, 154, 154, ${opacity}) - lighter red
-							// Or for maximum contrast:
-							// Green: rgba(102, 187, 106, ${opacity}) - medium green
-							// Red: rgba(229, 115, 115, ${opacity}) - medium red
+							// Define gradient color based on profit value
 							let gradientColor =
-								profit > 0 ? `rgba(102, 187, 106, ${opacity})` : `rgba(239, 154, 154, ${opacity})`;
+								profit > 0
+									? `rgba(114, 177, 59, ${greenOpacity})`
+									: `rgba(255, 0, 0, ${redOpacity})`;
 
-							// Define the gradient background style with better contrast for dark backgrounds
-							let gradient = `linear-gradient(270deg, ${gradientColor}, rgba(0, 0, 0, 0))`;
+							// Define the gradient background style
+							let gradient = `linear-gradient(90deg,rgba(0, 0, 0, 0) 0%, ${gradientColor} 100%)`;
 
 							// Ищем span с классом calc-table__profit-wrapper и добавляем к нему стиль
 							const htmlContent = data.replace(
@@ -263,6 +250,7 @@
 					},
 				},
 			],
+			order: [[profitIndex, "desc"]],
 		});
 
 		const debouncedTableSearchInputHandler = debounce(tableSearchInputHandler, 300);
@@ -290,5 +278,228 @@
 			}
 			return "";
 		}
+	}
+
+	function initFilter(filterId, dropdownId, selectedItemsArray) {
+		const filterButton = $(`#${filterId}`);
+		const filterDropdown = $(`#${dropdownId}`);
+		let selectedIndex = -1;
+		const initialText = filterButton.find(".calc-table__filter-title").text().trim();
+
+		// Use external array for selected items (stores data-option values)
+		const selectedItems = selectedItemsArray; // This is now an array
+
+		// Helper functions
+		function openDropdown() {
+			filterDropdown.addClass("active");
+			selectedIndex = -1; // Don't set keyboard focus initially
+			updateSelectedOption();
+			filterButton.attr("aria-expanded", "true");
+		}
+
+		function closeDropdown() {
+			filterDropdown.removeClass("active");
+			selectedIndex = -1;
+			updateSelectedOption();
+			filterButton.attr("aria-expanded", "false");
+			filterButton.removeAttr("aria-activedescendant");
+		}
+
+		function toggleDropdown() {
+			if (filterDropdown.hasClass("active")) {
+				closeDropdown();
+			} else {
+				openDropdown();
+			}
+		}
+
+		function toggleOptionSelection(optionValue, optionElement) {
+			// optionValue is the data-option attribute value
+			const index = selectedItems.indexOf(optionValue);
+			if (index > -1) {
+				selectedItems.splice(index, 1);
+				optionElement.removeClass("selected");
+			} else {
+				selectedItems.push(optionValue);
+				optionElement.addClass("selected");
+			}
+			updateFilterButtonText();
+		}
+
+		function resetFilterState() {
+			selectedItems.length = 0;
+			selectedIndex = -1;
+			updateFilterButtonText();
+			updateSelectedOption();
+			closeDropdown();
+		}
+
+		function navigateArrowKey(direction) {
+			const options = getDropdownOptions();
+			const optionsLength = options.length;
+
+			if (direction === "down") {
+				if (selectedIndex === -1) {
+					selectedIndex = 0; // Start from first option if none selected
+				} else if (selectedIndex === optionsLength - 1) {
+					selectedIndex = 0; // Wrap to first option
+				} else {
+					selectedIndex = selectedIndex + 1;
+				}
+			} else if (direction === "up") {
+				if (selectedIndex === -1) {
+					selectedIndex = optionsLength - 1; // Start from last option if none selected
+				} else if (selectedIndex === 0) {
+					selectedIndex = optionsLength - 1; // Wrap to last option
+				} else {
+					selectedIndex = selectedIndex - 1;
+				}
+			}
+
+			updateSelectedOption();
+		}
+
+		function isClickOutsideFilter(target) {
+			const isClickOnFilter = filterButton.is(target) || filterButton.has(target).length > 0;
+			const isClickOnDropdown = filterDropdown.is(target) || filterDropdown.has(target).length > 0;
+			return !isClickOnFilter && !isClickOnDropdown;
+		}
+
+		function isDropdownActive() {
+			return filterDropdown.hasClass("active");
+		}
+
+		function getDropdownOptions() {
+			return filterDropdown.find(".calc-table__filter-dropdown-option");
+		}
+
+		filterButton.on("click", () => {
+			toggleDropdown();
+		});
+
+		// Keyboard navigation
+		filterButton.on("keydown", (e) => {
+			if (!isDropdownActive()) {
+				if (e.key === "Enter" || e.key === " ") {
+					e.preventDefault();
+					openDropdown();
+				}
+				return;
+			}
+
+			const options = getDropdownOptions();
+
+			switch (e.key) {
+				case "ArrowDown":
+					e.preventDefault();
+					navigateArrowKey("down");
+					break;
+				case "ArrowUp":
+					e.preventDefault();
+					navigateArrowKey("up");
+					break;
+				case "Enter":
+					e.preventDefault();
+					if (selectedIndex >= 0 && selectedIndex < options.length) {
+						const selectedOption = options.eq(selectedIndex);
+						const optionValue = selectedOption.attr("data-option");
+						toggleOptionSelection(optionValue, selectedOption);
+					}
+					break;
+				case "Escape":
+					e.preventDefault();
+					closeDropdown();
+					break;
+			}
+		});
+
+		// Mouse interaction
+		filterDropdown.on("click", (e) => {
+			if (e.target.closest(".calc-table__filter-dropdown-option")) {
+				const clickedOption = $(e.target.closest(".calc-table__filter-dropdown-option"));
+				const optionValue = clickedOption.attr("data-option");
+				toggleOptionSelection(optionValue, clickedOption);
+			}
+		});
+
+		// Hover effects for keyboard navigation
+		filterDropdown.on("mouseenter", ".calc-table__filter-dropdown-option", function () {
+			// Only update selectedIndex on hover if dropdown is active
+			if (isDropdownActive()) {
+				selectedIndex = $(this).index();
+				updateSelectedOption();
+			}
+		});
+
+		// Reset filters functionality
+		$("#reset-filters").on("click", () => {
+			resetFilterState();
+		});
+
+		// Close dropdown when clicking outside
+		$(document).on("click", (e) => {
+			if (isClickOutsideFilter(e.target)) {
+				closeDropdown();
+			}
+		});
+
+		function updateSelectedOption() {
+			const options = getDropdownOptions();
+
+			// Apply selected class based on array selections (for persistent selections)
+			options.each(function () {
+				const option = $(this);
+				const optionValue = option.attr("data-option");
+				if (selectedItems.includes(optionValue)) {
+					option.addClass("selected");
+				} else {
+					option.removeClass("selected");
+				}
+			});
+
+			// Apply keyboard navigation focus (for arrow key navigation)
+			updateKeyboardFocus(options);
+		}
+
+		function updateKeyboardFocus(options) {
+			if (selectedIndex >= 0 && selectedIndex < options.length) {
+				const selectedOption = options.eq(selectedIndex);
+				// Add focus class for keyboard navigation
+				options.removeClass("keyboard-focus");
+				selectedOption.addClass("keyboard-focus");
+				// Update aria-activedescendant to point to the selected option
+				filterButton.attr(
+					"aria-activedescendant",
+					selectedOption.attr("data-option") || `option-${selectedIndex}`
+				);
+			} else {
+				options.removeClass("keyboard-focus");
+				filterButton.removeAttr("aria-activedescendant");
+			}
+		}
+
+		function updateFilterButtonText() {
+			if (selectedItems.length === 0) {
+				filterButton.find(".calc-table__filter-title").text(initialText);
+			} else {
+				filterButton
+					.find(".calc-table__filter-title")
+					.text(initialText + " (" + selectedItems.length + ")");
+			}
+		}
+
+		// Function to get selected items (for external use)
+		function getSelectedItems() {
+			return selectedItems.slice(); // Return a copy of the array
+		}
+
+		// Function to get selected item values (for external use)
+		function getSelectedItemValues() {
+			return selectedItems.slice(); // Return a copy of the array
+		}
+
+		// Expose functions globally for external access
+		window.getSelectedItems = getSelectedItems;
+		window.getSelectedItemValues = getSelectedItemValues;
 	}
 })();
