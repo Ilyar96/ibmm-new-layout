@@ -1,4 +1,17 @@
 (function () {
+	// Функция debounce для оптимизации поиска
+	function debounce(func, wait) {
+		let timeout;
+		return function executedFunction(...args) {
+			const later = () => {
+				clearTimeout(timeout);
+				func(...args);
+			};
+			clearTimeout(timeout);
+			timeout = setTimeout(later, wait);
+		};
+	}
+
 	initCalcTable();
 
 	// Calc table
@@ -201,11 +214,51 @@
 				{
 					targets: [profitIndex],
 					type: "num",
-					render: function (data, type, row) {
+					render: function (data, type) {
+						const profit = Number(extractDataAttrFromTableString(data, "profit"));
 						if (type === "sort") {
-							const price = Number(extractDataAttrFromTableString(data, "profit"));
-							return isNaN(price) ? 0 : price;
+							return isNaN(profit) ? 0 : profit;
 						}
+
+						if (type === "display") {
+							// Если profit не найден, возвращаем оригинальные данные
+							if (isNaN(profit)) {
+								return data;
+							}
+
+							let maxProfit = 1_600; // Adjust this value based on the maximum expected profit
+							let minProfit = -1_600; // Adjust this value based on the minimum expected profit
+							let profitRange = maxProfit - minProfit;
+							let normalizedProfit = (profit - minProfit) / profitRange;
+							let adjustedProfit = Math.pow(normalizedProfit, 3); // Reduced power for smoother transitions
+
+							// Enhanced opacity calculation for better visibility on dark backgrounds
+							let baseOpacity = 0.1; // Minimum opacity for visibility
+							let opacity =
+								baseOpacity + (1 - baseOpacity) * Math.min(Math.max(adjustedProfit, 0), 1);
+
+							// Define gradient color based on profit value - optimized for dark backgrounds
+							// Alternative colors for even better visibility:
+							// Green: rgba(129, 199, 132, ${opacity}) - lighter green
+							// Red: rgba(239, 154, 154, ${opacity}) - lighter red
+							// Or for maximum contrast:
+							// Green: rgba(102, 187, 106, ${opacity}) - medium green
+							// Red: rgba(229, 115, 115, ${opacity}) - medium red
+							let gradientColor =
+								profit > 0 ? `rgba(102, 187, 106, ${opacity})` : `rgba(239, 154, 154, ${opacity})`;
+
+							// Define the gradient background style with better contrast for dark backgrounds
+							let gradient = `linear-gradient(270deg, ${gradientColor}, rgba(0, 0, 0, 0))`;
+
+							// Ищем span с классом calc-table__profit-wrapper и добавляем к нему стиль
+							const htmlContent = data.replace(
+								'<span class="calc-table__profit-wrapper"',
+								`<span class="calc-table__profit-wrapper" style="background: ${gradient}"`
+							);
+
+							return htmlContent;
+						}
+
 						return data;
 					},
 				},
@@ -221,7 +274,7 @@
 			table.search(e.target.value).draw();
 		}
 
-		function sortStringRender(data, type, row) {
+		function sortStringRender(data, type) {
 			if (type === "sort") {
 				return data.toLowerCase();
 			}
