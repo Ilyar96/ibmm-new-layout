@@ -529,12 +529,30 @@
 									</div>
 								</div>
 								<div class="calc-table__filter-item">
-									<button class="calc-table__filter">
+									<button id="algorithm-filter" class="calc-table__filter" data-filter-target="algorithm-dropdown" tabindex="0" role="combobox" aria-expanded="false" aria-haspopup="listbox">
 										<svg width="28" height="27" class="calc-table__filter-icon" viewBox="0 0 28 27" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M6 9.2C6 8.88174 6.12643 8.57652 6.35147 8.35147C6.57652 8.12643 6.88174 8 7.2 8H20.8C21.1183 8 21.4235 8.12643 21.6485 8.35147C21.8736 8.57652 22 8.88174 22 9.2C22 9.51826 21.8736 9.82348 21.6485 10.0485C21.4235 10.2736 21.1183 10.4 20.8 10.4H7.2C6.88174 10.4 6.57652 10.2736 6.35147 10.0485C6.12643 9.82348 6 9.51826 6 9.2ZM9.2 14C9.2 13.6817 9.32643 13.3765 9.55147 13.1515C9.77652 12.9264 10.0817 12.8 10.4 12.8H17.6C17.9183 12.8 18.2235 12.9264 18.4485 13.1515C18.6736 13.3765 18.8 13.6817 18.8 14C18.8 14.3183 18.6736 14.6235 18.4485 14.8485C18.2235 15.0736 17.9183 15.2 17.6 15.2H10.4C10.0817 15.2 9.77652 15.0736 9.55147 14.8485C9.32643 14.6235 9.2 14.3183 9.2 14ZM12.8 17.6C12.4817 17.6 12.1765 17.7264 11.9515 17.9515C11.7264 18.1765 11.6 18.4817 11.6 18.8C11.6 19.1183 11.7264 19.4235 11.9515 19.6485C12.1765 19.8736 12.4817 20 12.8 20H15.2C15.5183 20 15.8235 19.8736 16.0485 19.6485C16.2736 19.4235 16.4 19.1183 16.4 18.8C16.4 18.4817 16.2736 18.1765 16.0485 17.9515C15.8235 17.7264 15.5183 17.6 15.2 17.6H12.8Z" fill="currentColor" />
 										</svg>
 										<span class="calc-table__filter-title">Алгоритм</span>
 									</button>
+
+									<div id="algorithm-dropdown" class="calc-table__filter-dropdown calc-table__filter-dropdown--right" role="listbox" aria-label="Выберите производителя">
+										<div class="calc-table__filter-dropdown-header">
+											<div class="calc-table__filter-dropdown-title">Алгоритм</div>
+										</div>
+										<div class="calc-table__filter-dropdown-inner">
+											<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="sha256">SHA-256</button>
+											<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="scrypt">Scrypt</button>
+											<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="ethash">ethash</button>
+											<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="kheavyhash">kheavyhash</button>
+											<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="equihash">equihash</button>
+											<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="x11">x11</button>
+											<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="handshake">handshake</button>
+										</div>
+										<div class="calc-table__filter-dropdown-footer">
+											<button class="calc-table__filter-dropdown-footer-button button button--accent">Закрыть</button>
+										</div>
+									</div>
 								</div>
 								<button id="reset-filters" class="calc-table__reset">
 									<svg width="24" height="24" class="calc-table__reset-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

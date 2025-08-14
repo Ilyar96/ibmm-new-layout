@@ -4,6 +4,7 @@
 	// Calc table
 	function initCalcTable() {
 		const manufacturerFilterArray = [];
+		const algorithmFilterArray = [];
 
 		const wishlistIndex = 0;
 		const modelIndex = 1;
@@ -15,8 +16,8 @@
 		const priceIndex = 7;
 		const profitIndex = 8;
 
-		// Initialize manufacturer filter
 		initFilter("manufacturer-filter", "manufacturer-dropdown", manufacturerFilterArray);
+		initFilter("algorithm-filter", "algorithm-dropdown", algorithmFilterArray);
 
 		const table = $("#calc-table").DataTable({
 			paging: false,
@@ -280,7 +281,7 @@
 		}
 	}
 
-	function initFilter(filterId, dropdownId, selectedItemsArray) {
+	function initFilter(filterId, dropdownId, selectedItemsArray, isMultiple = true) {
 		const filterButton = $(`#${filterId}`);
 		const filterDropdown = $(`#${dropdownId}`);
 		let selectedIndex = -1;
@@ -288,6 +289,7 @@
 
 		// Use external array for selected items (stores data-option values)
 		const selectedItems = selectedItemsArray; // This is now an array
+		let isKeyboardNavigation = false; // Track if navigation is from keyboard
 
 		// Helper functions
 		function openDropdown() {
@@ -300,6 +302,9 @@
 		function closeDropdown() {
 			filterDropdown.removeClass("active");
 			selectedIndex = -1;
+			isKeyboardNavigation = false;
+			// Clear keyboard-focus from all options
+			getDropdownOptions().removeClass("keyboard-focus");
 			updateSelectedOption();
 			filterButton.attr("aria-expanded", "false");
 			filterButton.removeAttr("aria-activedescendant");
@@ -316,12 +321,26 @@
 		function toggleOptionSelection(optionValue, optionElement) {
 			// optionValue is the data-option attribute value
 			const index = selectedItems.indexOf(optionValue);
+
 			if (index > -1) {
+				// Remove selection
 				selectedItems.splice(index, 1);
 				optionElement.removeClass("selected");
 			} else {
-				selectedItems.push(optionValue);
-				optionElement.addClass("selected");
+				// Add selection
+				if (isMultiple) {
+					// Multiple selection allowed
+					selectedItems.push(optionValue);
+					optionElement.addClass("selected");
+				} else {
+					// Single selection only - clear previous and add new
+					selectedItems.length = 0;
+					// Remove selected class from all options
+					getDropdownOptions().removeClass("selected");
+					// Add to array and apply selected class
+					selectedItems.push(optionValue);
+					optionElement.addClass("selected");
+				}
 			}
 			updateFilterButtonText();
 		}
@@ -329,6 +348,9 @@
 		function resetFilterState() {
 			selectedItems.length = 0;
 			selectedIndex = -1;
+			isKeyboardNavigation = false;
+			// Clear keyboard-focus from all options
+			getDropdownOptions().removeClass("keyboard-focus");
 			updateFilterButtonText();
 			updateSelectedOption();
 			closeDropdown();
@@ -337,6 +359,9 @@
 		function navigateArrowKey(direction) {
 			const options = getDropdownOptions();
 			const optionsLength = options.length;
+
+			// Mark that this is keyboard navigation
+			isKeyboardNavigation = true;
 
 			if (direction === "down") {
 				if (selectedIndex === -1) {
@@ -418,6 +443,9 @@
 			if (e.target.closest(".calc-table__filter-dropdown-option")) {
 				const clickedOption = $(e.target.closest(".calc-table__filter-dropdown-option"));
 				const optionValue = clickedOption.attr("data-option");
+				// Clear keyboard-focus when using mouse
+				getDropdownOptions().removeClass("keyboard-focus");
+				isKeyboardNavigation = false;
 				toggleOptionSelection(optionValue, clickedOption);
 			}
 		});
@@ -427,6 +455,7 @@
 			// Only update selectedIndex on hover if dropdown is active
 			if (isDropdownActive()) {
 				selectedIndex = $(this).index();
+				// Don't set keyboard-focus on hover, just update selection
 				updateSelectedOption();
 			}
 		});
@@ -457,8 +486,10 @@
 				}
 			});
 
-			// Apply keyboard navigation focus (for arrow key navigation)
-			updateKeyboardFocus(options);
+			// Apply keyboard navigation focus only if navigation is from keyboard
+			if (isKeyboardNavigation) {
+				updateKeyboardFocus(options);
+			}
 		}
 
 		function updateKeyboardFocus(options) {
@@ -476,15 +507,23 @@
 				options.removeClass("keyboard-focus");
 				filterButton.removeAttr("aria-activedescendant");
 			}
+
+			// Reset the keyboard navigation flag after applying focus
+			isKeyboardNavigation = false;
 		}
 
 		function updateFilterButtonText() {
 			if (selectedItems.length === 0) {
 				filterButton.find(".calc-table__filter-title").text(initialText);
-			} else {
+			} else if (isMultiple) {
+				// Multiple selection - show count
 				filterButton
 					.find(".calc-table__filter-title")
 					.text(initialText + " (" + selectedItems.length + ")");
+			} else {
+				// Single selection - show selected value
+				const selectedValue = selectedItems[0];
+				filterButton.find(".calc-table__filter-title").text(selectedValue);
 			}
 		}
 
@@ -497,9 +536,5 @@
 		function getSelectedItemValues() {
 			return selectedItems.slice(); // Return a copy of the array
 		}
-
-		// Expose functions globally for external access
-		window.getSelectedItems = getSelectedItems;
-		window.getSelectedItemValues = getSelectedItemValues;
 	}
 })();

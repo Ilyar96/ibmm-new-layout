@@ -143,6 +143,11 @@
 		visibility var(--transition-base);
 }
 
+.calc-table__filter-dropdown--right {
+	left: auto;
+	right: 0;
+}
+
 .calc-table__filter-dropdown.active {
 	opacity: 1;
 	visibility: visible;
@@ -585,8 +590,9 @@ th.sorting::after {
 		bottom: 0;
 		left: 0;
 		right: 0;
+		max-height: 70vh;
 		border-radius: 16px 16px 0 0;
-		overflow: hidden;
+		overflow-y: auto;
 		box-shadow: 0 -0.5rem 1rem rgba(0, 0, 0, 0.1);
 		border-bottom: none;
 		border-left: none;
