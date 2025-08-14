@@ -1,157 +1,8 @@
 (function () {
-	// Инициализация таблицы
 	initCalcTable();
-	// Инициализация фильтрации по монетам
-	initCoinFilter();
-
-	// Функция для получения GET параметров из URL
-	function getUrlParameter(name) {
-		const urlParams = new URLSearchParams(window.location.search);
-		return urlParams.get(name);
-	}
-
-	// Функция для обновления URL без перезагрузки страницы
-	function updateUrlParameter(name, value) {
-		const url = new URL(window.location);
-		if (value === "all") {
-			url.searchParams.delete(name);
-		} else {
-			url.searchParams.set(name, value);
-		}
-		window.history.pushState({}, "", url);
-	}
-
-	// Функция для фильтрации таблицы по монете
-	function filterTableByCoin(coin) {
-		// Проверяем, что таблица существует и инициализирована
-		if (!$("#calc-table").length) {
-			console.warn("Элемент таблицы не найден");
-			return;
-		}
-
-		if (!$.fn.DataTable.isDataTable("#calc-table")) {
-			console.warn("DataTable еще не инициализирована");
-			return;
-		}
-
-		const table = $("#calc-table").DataTable();
-
-		// Дополнительная проверка
-		if (!table || !table.settings) {
-			console.warn("DataTable не готова к использованию");
-			return;
-		}
-
-		try {
-			// Предотвращаем повторную фильтрацию если фильтр не изменился
-			if (
-				table.settings().init().searchCols &&
-				table.settings().init().searchCols[5] &&
-				table.settings().init().searchCols[5].search === coin
-			) {
-				return;
-			}
-
-			if (coin === "all") {
-				// Показываем все строки
-				table.column(5).search("").draw();
-			} else {
-				// Фильтруем по конкретной монете
-				table.column(5).search(coin).draw();
-			}
-		} catch (error) {
-			console.error("Ошибка при фильтрации таблицы:", error);
-		}
-	}
-
-	// Функция для обновления активного состояния ссылок монет
-	function updateActiveCoinState(activeCoin) {
-		// Убираем активный класс у всех ссылок
-		$(".calc-header__coin").removeClass("active");
-
-		// Добавляем активный класс к выбранной монете
-		if (activeCoin === "all") {
-			$('.calc-header__coin[href*="coin=all"]').addClass("active");
-		} else {
-			$(`.calc-header__coin[href*="coin=${activeCoin}"]`).addClass("active");
-		}
-	}
-
-	// Основная функция инициализации фильтра по монетам
-	function initCoinFilter() {
-		// Получаем параметр coin из URL при загрузке страницы
-		const initialCoin = getUrlParameter("coin") || "all";
-		let filterApplied = false; // Флаг для предотвращения множественных вызовов
-
-		// Устанавливаем начальное состояние
-		updateActiveCoinState(initialCoin);
-
-		// Функция для применения начального фильтра
-		function applyInitialFilter() {
-			if ($.fn.DataTable.isDataTable("#calc-table") && !filterApplied) {
-				filterApplied = true;
-				filterTableByCoin(initialCoin);
-			} else if (!filterApplied) {
-				// Если таблица еще не готова, ждем еще немного
-				setTimeout(applyInitialFilter, 50);
-			}
-		}
-
-		// Ждем полной инициализации таблицы перед применением фильтра
-		setTimeout(applyInitialFilter, 100);
-
-		// Дополнительный обработчик события инициализации DataTable
-		$("#calc-table").on("init.dt", function () {
-			// Применяем фильтр после полной инициализации таблицы
-			if (!filterApplied) {
-				setTimeout(() => {
-					filterApplied = true;
-					filterTableByCoin(initialCoin);
-				}, 50);
-			}
-		});
-
-		// Обработчик кликов по ссылкам монет
-		$(".calc-header__coin").on("click", function (e) {
-			e.preventDefault();
-
-			const href = $(this).attr("href");
-			const coinMatch = href.match(/coin=([^&]+)/);
-
-			if (coinMatch) {
-				const coin = coinMatch[1];
-
-				// Обновляем URL
-				updateUrlParameter("coin", coin);
-
-				// Обновляем активное состояние
-				updateActiveCoinState(coin);
-
-				// Фильтруем таблицу
-				filterTableByCoin(coin);
-			}
-		});
-
-		// Обработчик изменения URL через кнопки браузера
-		$(window).on("popstate", function () {
-			const currentCoin = getUrlParameter("coin") || "all";
-			updateActiveCoinState(currentCoin);
-			filterTableByCoin(currentCoin);
-		});
-	}
-
-	// Функция для сброса фильтра по монетам
-	function resetCoinFilter() {
-		updateUrlParameter("coin", "all");
-		updateActiveCoinState("all");
-		filterTableByCoin("all");
-	}
 
 	// Calc table
 	function initCalcTable() {
-		const manufacturerFilterArray = [];
-		const algorithmFilterArray = [];
-
 		const wishlistIndex = 0;
 		const modelIndex = 1;
 		const releaseIndex = 2;
@@ -162,8 +13,111 @@
 		const priceIndex = 7;
 		const profitIndex = 8;
 
-		initFilter("manufacturer-filter", "manufacturer-dropdown", manufacturerFilterArray);
-		initFilter("algorithm-filter", "algorithm-dropdown", algorithmFilterArray);
+		// Создаем замыкание для хранения переменных фильтров
+		const filterState = (function () {
+			let selectedManufacturers = [];
+			let selectedAlgorithms = [];
+			let currentCoinFilter = "all";
+
+			// Функция фильтрации для DataTable
+			$.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+				const minerName = data[modelIndex];
+				const algorithm = data[algoIndex];
+				const coin = data[coinIndex];
+
+				// Фильтрация по монете
+				let coinMatch = true;
+				if (currentCoinFilter !== "all") {
+					// Извлекаем значение data-coin из HTML строки
+					const coinMatchResult = coin.match(/data-coin="([^"]+)"/);
+					if (coinMatchResult && coinMatchResult[1]) {
+						coinMatch = coinMatchResult[1].toLowerCase() === currentCoinFilter.toLowerCase();
+					} else {
+						coinMatch = false;
+					}
+				}
+
+				// Фильтрация по производителю
+				let manufacturerMatch = true;
+				if (selectedManufacturers.length > 0) {
+					manufacturerMatch = selectedManufacturers.some((filter) => {
+						return minerName.toLowerCase().includes(filter.toLowerCase());
+					});
+				}
+
+				// Фильтрация по алгоритму
+				let algorithmMatch = true;
+				if (selectedAlgorithms.length > 0) {
+					algorithmMatch = selectedAlgorithms.some((filter) => {
+						return algorithm.toLowerCase().includes(filter.toLowerCase());
+					});
+				}
+
+				// Строка должна соответствовать всем фильтрам
+				return coinMatch && manufacturerMatch && algorithmMatch;
+			});
+
+			// Возвращаем объект с методами для работы с фильтрами
+			return {
+				setCoinFilter: function (coin) {
+					currentCoinFilter = coin;
+				},
+				getCoinFilter: function () {
+					return currentCoinFilter;
+				},
+				getManufacturers: function () {
+					return [...selectedManufacturers];
+				},
+				setManufacturers: function (manufacturers) {
+					selectedManufacturers = [...manufacturers];
+				},
+				getAlgorithms: function () {
+					return [...selectedAlgorithms];
+				},
+				setAlgorithms: function (algorithms) {
+					selectedAlgorithms = [...algorithms];
+				},
+				reset: function () {
+					selectedManufacturers = [];
+					selectedAlgorithms = [];
+					resetCoinFilter();
+					currentCoinFilter = "all";
+					$("#table-search").val("").trigger("input");
+				},
+				// Методы для работы с отдельными фильтрами
+				addManufacturer: function (manufacturer) {
+					if (!selectedManufacturers.includes(manufacturer)) {
+						selectedManufacturers.push(manufacturer);
+					}
+				},
+				removeManufacturer: function (manufacturer) {
+					const index = selectedManufacturers.indexOf(manufacturer);
+					if (index > -1) {
+						selectedManufacturers.splice(index, 1);
+					}
+				},
+				addAlgorithm: function (algorithm) {
+					if (!selectedAlgorithms.includes(algorithm)) {
+						selectedAlgorithms.push(algorithm);
+					}
+				},
+				removeAlgorithm: function (algorithm) {
+					const index = selectedAlgorithms.indexOf(algorithm);
+					if (index > -1) {
+						selectedAlgorithms.splice(index, 1);
+					}
+				},
+				resetCoinFilter: function () {
+					currentCoinFilter = "all";
+				},
+			};
+		})();
+
+		initFilter("manufacturer-filter", "manufacturer-dropdown", filterState, "manufacturers");
+		initFilter("algorithm-filter", "algorithm-dropdown", filterState, "algorithms");
+
+		// Инициализация фильтрации по монетам после создания filterState
+		initCoinFilter();
 
 		const table = $("#calc-table").DataTable({
 			paging: false,
@@ -189,9 +143,8 @@
 					type: "num",
 					render: function (data, type, row) {
 						if (type === "sort") {
-							// Преобразуем дату в timestamp для сортировки
 							const monthMap = {
-								Янв: 0, // Январь = 0 (JavaScript месяцы начинаются с 0)
+								Янв: 0,
 								Фев: 1,
 								Мар: 2,
 								Апр: 3,
@@ -405,6 +358,131 @@
 		// Добавляем поиск через поле table-search
 		$("#table-search").on("input", debouncedTableSearchInputHandler);
 
+		// Функция для фильтрации таблицы по монете
+		function filterTableByCoin(coin) {
+			// Проверяем, что таблица существует и инициализирована
+			if (!$("#calc-table").length) {
+				console.warn("Элемент таблицы не найден");
+				return;
+			}
+
+			if (!$.fn.DataTable.isDataTable("#calc-table")) {
+				console.warn("DataTable еще не инициализирована");
+				return;
+			}
+
+			const table = $("#calc-table").DataTable();
+
+			// Дополнительная проверка
+			if (!table || !table.settings) {
+				console.warn("DataTable не готова к использованию");
+				return;
+			}
+
+			try {
+				// Обновляем локальный фильтр по монете
+				filterState.setCoinFilter(coin);
+
+				// Перерисовываем таблицу для применения фильтров
+				table.draw();
+			} catch (error) {
+				console.error("Ошибка при фильтрации таблицы:", error);
+			}
+		}
+
+		// Функция для обновления активного состояния ссылок монет
+		function updateActiveCoinState(activeCoin) {
+			// Убираем активный класс у всех ссылок
+			$(".calc-header__coin").removeClass("active");
+
+			// Добавляем активный класс к выбранной монете
+			if (activeCoin === "all") {
+				$('.calc-header__coin[href*="coin=all"]').addClass("active");
+			} else {
+				$(`.calc-header__coin[href*="coin=${activeCoin}"]`).addClass("active");
+			}
+		}
+
+		// Функция для получения GET параметров из URL
+		function getUrlParameter(name) {
+			const urlParams = new URLSearchParams(window.location.search);
+			return urlParams.get(name);
+		}
+
+		// Функция для обновления URL без перезагрузки страницы
+		function updateUrlParameter(name, value) {
+			const url = new URL(window.location);
+			if (value === "all") {
+				url.searchParams.delete(name);
+			} else {
+				url.searchParams.set(name, value);
+			}
+			window.history.pushState({}, "", url);
+		}
+
+		// Основная функция инициализации фильтра по монетам
+		function initCoinFilter() {
+			// Получаем параметр coin из URL при загрузке страницы
+			const initialCoin = getUrlParameter("coin") || "all";
+			let filterApplied = false; // Флаг для предотвращения множественных вызовов
+
+			// Устанавливаем начальное состояние
+			updateActiveCoinState(initialCoin);
+
+			// Функция для применения начального фильтра
+			function applyInitialFilter() {
+				if ($.fn.DataTable.isDataTable("#calc-table") && !filterApplied) {
+					filterApplied = true;
+					filterTableByCoin(initialCoin);
+				} else if (!filterApplied) {
+					// Если таблица еще не готова, ждем еще немного
+					setTimeout(applyInitialFilter, 50);
+				}
+			}
+
+			// Ждем полной инициализации таблицы перед применением фильтра
+			setTimeout(applyInitialFilter, 100);
+
+			// Дополнительный обработчик события инициализации DataTable
+			$("#calc-table").on("init.dt", function () {
+				// Применяем фильтр после полной инициализации таблицы
+				if (!filterApplied) {
+					setTimeout(() => {
+						filterApplied = true;
+						filterTableByCoin(initialCoin);
+					}, 50);
+				}
+			});
+
+			// Обработчик кликов по ссылкам монет
+			$(".calc-header__coin").on("click", function (e) {
+				e.preventDefault();
+
+				const href = $(this).attr("href");
+				const coinMatch = href.match(/coin=([^&]+)/);
+
+				if (coinMatch) {
+					const coin = coinMatch[1];
+
+					// Обновляем URL
+					updateUrlParameter("coin", coin);
+
+					// Обновляем активное состояние
+					updateActiveCoinState(coin);
+
+					// Фильтруем таблицу
+					filterTableByCoin(coin);
+				}
+			});
+
+			// Обработчик изменения URL через кнопки браузера
+			$(window).on("popstate", function () {
+				const currentCoin = getUrlParameter("coin") || "all";
+				updateActiveCoinState(currentCoin);
+				filterTableByCoin(currentCoin);
+			});
+		}
+
 		function tableSearchInputHandler(e) {
 			table.search(e.target.value).draw();
 		}
@@ -425,16 +503,21 @@
 			}
 			return "";
 		}
+
+		function resetCoinFilter() {
+			updateUrlParameter("coin", "all");
+			updateActiveCoinState("all");
+			filterState.resetCoinFilter();
+			filterTableByCoin("all");
+		}
 	}
 
-	function initFilter(filterId, dropdownId, selectedItemsArray, isMultiple = true) {
+	function initFilter(filterId, dropdownId, filterState, filterType = null) {
 		const filterButton = $(`#${filterId}`);
 		const filterDropdown = $(`#${dropdownId}`);
 		let selectedIndex = -1;
 		const initialText = filterButton.find(".calc-table__filter-title").text().trim();
 
-		// Use external array for selected items (stores data-option values)
-		const selectedItems = selectedItemsArray; // This is now an array
 		let isKeyboardNavigation = false; // Track if navigation is from keyboard
 
 		// Helper functions
@@ -466,40 +549,35 @@
 
 		function toggleOptionSelection(optionValue, optionElement) {
 			// optionValue is the data-option attribute value
-			const index = selectedItems.indexOf(optionValue);
+			let currentItems = [];
+
+			if (filterType === "manufacturers") {
+				currentItems = filterState.getManufacturers();
+			} else if (filterType === "algorithms") {
+				currentItems = filterState.getAlgorithms();
+			}
+
+			const index = currentItems.indexOf(optionValue);
 
 			if (index > -1) {
 				// Remove selection
-				selectedItems.splice(index, 1);
+				if (filterType === "manufacturers") {
+					filterState.removeManufacturer(optionValue);
+				} else if (filterType === "algorithms") {
+					filterState.removeAlgorithm(optionValue);
+				}
 				optionElement.removeClass("selected");
 			} else {
 				// Add selection
-				if (isMultiple) {
-					// Multiple selection allowed
-					selectedItems.push(optionValue);
-					optionElement.addClass("selected");
-				} else {
-					// Single selection only - clear previous and add new
-					selectedItems.length = 0;
-					// Remove selected class from all options
-					getDropdownOptions().removeClass("selected");
-					// Add to array and apply selected class
-					selectedItems.push(optionValue);
-					optionElement.addClass("selected");
+				if (filterType === "manufacturers") {
+					filterState.addManufacturer(optionValue);
+				} else if (filterType === "algorithms") {
+					filterState.addAlgorithm(optionValue);
 				}
+				optionElement.addClass("selected");
 			}
-			updateFilterButtonText();
-		}
 
-		function resetFilterState() {
-			selectedItems.length = 0;
-			selectedIndex = -1;
-			isKeyboardNavigation = false;
-			// Clear keyboard-focus from all options
-			getDropdownOptions().removeClass("keyboard-focus");
 			updateFilterButtonText();
-			updateSelectedOption();
-			closeDropdown();
 		}
 
 		function navigateArrowKey(direction) {
@@ -596,19 +674,27 @@
 			}
 		});
 
-		// Hover effects for keyboard navigation
-		filterDropdown.on("mouseenter", ".calc-table__filter-dropdown-option", function () {
-			// Only update selectedIndex on hover if dropdown is active
-			if (isDropdownActive()) {
-				selectedIndex = $(this).index();
-				// Don't set keyboard-focus on hover, just update selection
-				updateSelectedOption();
-			}
+		// Обработчик для кнопки "Закрыть" в выпадающих списках
+		filterDropdown.on("click", ".calc-table__filter-dropdown-footer-button", function () {
+			closeDropdown();
 		});
 
-		// Reset filters functionality
-		$("#reset-filters").on("click", () => {
-			resetFilterState();
+		// Обработчик сброса фильтров
+		$("#reset-filters").on("click", function () {
+			// Очищаем фильтры через filterState
+			filterState.reset();
+
+			// Убираем класс selected у всех опций
+			$(".calc-table__filter-dropdown-option").removeClass("selected");
+
+			// Сбрасываем текст фильтров
+			$("#manufacturer-filter .calc-table__filter-title").text("Производитель");
+			$("#algorithm-filter .calc-table__filter-title").text("Алгоритм");
+
+			// Перерисовываем таблицу
+			if ($.fn.DataTable.isDataTable("#calc-table")) {
+				$("#calc-table").DataTable().draw();
+			}
 		});
 
 		// Close dropdown when clicking outside
@@ -620,12 +706,21 @@
 
 		function updateSelectedOption() {
 			const options = getDropdownOptions();
+			let currentItems = [];
 
-			// Apply selected class based on array selections (for persistent selections)
+			// Получаем текущие выбранные элементы из filterState
+			if (filterType === "manufacturers") {
+				currentItems = filterState.getManufacturers();
+			} else if (filterType === "algorithms") {
+				currentItems = filterState.getAlgorithms();
+			}
+
+			// Apply selected class based on filterState selections
 			options.each(function () {
 				const option = $(this);
 				const optionValue = option.attr("data-option");
-				if (selectedItems.includes(optionValue)) {
+
+				if (currentItems.includes(optionValue)) {
 					option.addClass("selected");
 				} else {
 					option.removeClass("selected");
@@ -659,28 +754,31 @@
 		}
 
 		function updateFilterButtonText() {
-			if (selectedItems.length === 0) {
+			let currentItems = [];
+
+			// Получаем текущие выбранные элементы из filterState
+			if (filterType === "manufacturers") {
+				currentItems = filterState.getManufacturers();
+			} else if (filterType === "algorithms") {
+				currentItems = filterState.getAlgorithms();
+			}
+
+			if (currentItems.length === 0) {
 				filterButton.find(".calc-table__filter-title").text(initialText);
-			} else if (isMultiple) {
+			} else {
 				// Multiple selection - show count
 				filterButton
 					.find(".calc-table__filter-title")
-					.text(initialText + " (" + selectedItems.length + ")");
-			} else {
-				// Single selection - show selected value
-				const selectedValue = selectedItems[0];
-				filterButton.find(".calc-table__filter-title").text(selectedValue);
+					.text(initialText + " (" + currentItems.length + ")");
 			}
-		}
 
-		// Function to get selected items (for external use)
-		function getSelectedItems() {
-			return selectedItems.slice(); // Return a copy of the array
-		}
-
-		// Function to get selected item values (for external use)
-		function getSelectedItemValues() {
-			return selectedItems.slice(); // Return a copy of the array
+			// Применяем фильтры к таблице после изменения
+			if (filterId === "manufacturer-filter" || filterId === "algorithm-filter") {
+				// Перерисовываем таблицу для применения фильтров
+				if ($.fn.DataTable.isDataTable("#calc-table")) {
+					$("#calc-table").DataTable().draw();
+				}
+			}
 		}
 	}
 })();
