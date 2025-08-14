@@ -1,5 +1,152 @@
 (function () {
+	// Инициализация таблицы
 	initCalcTable();
+
+	// Инициализация фильтрации по монетам (после таблицы)
+	initCoinFilter();
+
+	// Функция для получения GET параметров из URL
+	function getUrlParameter(name) {
+		const urlParams = new URLSearchParams(window.location.search);
+		return urlParams.get(name);
+	}
+
+	// Функция для обновления URL без перезагрузки страницы
+	function updateUrlParameter(name, value) {
+		const url = new URL(window.location);
+		if (value === "all") {
+			url.searchParams.delete(name);
+		} else {
+			url.searchParams.set(name, value);
+		}
+		window.history.pushState({}, "", url);
+	}
+
+	// Функция для фильтрации таблицы по монете
+	function filterTableByCoin(coin) {
+		// Проверяем, что таблица существует и инициализирована
+		if (!$("#calc-table").length) {
+			console.warn("Элемент таблицы не найден");
+			return;
+		}
+
+		if (!$.fn.DataTable.isDataTable("#calc-table")) {
+			console.warn("DataTable еще не инициализирована");
+			return;
+		}
+
+		const table = $("#calc-table").DataTable();
+
+		// Дополнительная проверка
+		if (!table || !table.settings) {
+			console.warn("DataTable не готова к использованию");
+			return;
+		}
+
+		try {
+			// Предотвращаем повторную фильтрацию если фильтр не изменился
+			if (
+				table.settings().init().searchCols &&
+				table.settings().init().searchCols[5] &&
+				table.settings().init().searchCols[5].search === coin
+			) {
+				return;
+			}
+
+			if (coin === "all") {
+				// Показываем все строки
+				table.column(5).search("").draw();
+			} else {
+				// Фильтруем по конкретной монете
+				table.column(5).search(coin).draw();
+			}
+		} catch (error) {
+			console.error("Ошибка при фильтрации таблицы:", error);
+		}
+	}
+
+	// Функция для обновления активного состояния ссылок монет
+	function updateActiveCoinState(activeCoin) {
+		// Убираем активный класс у всех ссылок
+		$(".calc-header__coin").removeClass("active");
+
+		// Добавляем активный класс к выбранной монете
+		if (activeCoin === "all") {
+			$('.calc-header__coin[href*="coin=all"]').addClass("active");
+		} else {
+			$(`.calc-header__coin[href*="coin=${activeCoin}"]`).addClass("active");
+		}
+	}
+
+	// Основная функция инициализации фильтра по монетам
+	function initCoinFilter() {
+		// Получаем параметр coin из URL при загрузке страницы
+		const initialCoin = getUrlParameter("coin") || "all";
+		let filterApplied = false; // Флаг для предотвращения множественных вызовов
+
+		// Устанавливаем начальное состояние
+		updateActiveCoinState(initialCoin);
+
+		// Функция для применения начального фильтра
+		function applyInitialFilter() {
+			if ($.fn.DataTable.isDataTable("#calc-table") && !filterApplied) {
+				filterApplied = true;
+				filterTableByCoin(initialCoin);
+			} else if (!filterApplied) {
+				// Если таблица еще не готова, ждем еще немного
+				setTimeout(applyInitialFilter, 50);
+			}
+		}
+
+		// Ждем полной инициализации таблицы перед применением фильтра
+		setTimeout(applyInitialFilter, 100);
+
+		// Дополнительный обработчик события инициализации DataTable
+		$("#calc-table").on("init.dt", function () {
+			// Применяем фильтр после полной инициализации таблицы
+			if (!filterApplied) {
+				setTimeout(() => {
+					filterApplied = true;
+					filterTableByCoin(initialCoin);
+				}, 50);
+			}
+		});
+
+		// Обработчик кликов по ссылкам монет
+		$(".calc-header__coin").on("click", function (e) {
+			e.preventDefault();
+
+			const href = $(this).attr("href");
+			const coinMatch = href.match(/coin=([^&]+)/);
+
+			if (coinMatch) {
+				const coin = coinMatch[1];
+
+				// Обновляем URL
+				updateUrlParameter("coin", coin);
+
+				// Обновляем активное состояние
+				updateActiveCoinState(coin);
+
+				// Фильтруем таблицу
+				filterTableByCoin(coin);
+			}
+		});
+
+		// Обработчик изменения URL через кнопки браузера
+		$(window).on("popstate", function () {
+			const currentCoin = getUrlParameter("coin") || "all";
+			updateActiveCoinState(currentCoin);
+			filterTableByCoin(currentCoin);
+		});
+	}
+
+	// Функция для сброса фильтра по монетам
+	function resetCoinFilter() {
+		updateUrlParameter("coin", "all");
+		updateActiveCoinState("all");
+		filterTableByCoin("all");
+	}
 
 	// Calc table
 	function initCalcTable() {
