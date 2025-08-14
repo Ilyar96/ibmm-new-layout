@@ -10,15 +10,6 @@
 
 /* -------------------------------- */
 
-body.menu-open {
-	overflow: hidden;
-}
-
-/* TODO  */
-.menu-open .header {
-	padding-right: var(--scrollbar-width);
-}
-
 .menu-open .header__catalog-icon,
 .header__catalog-close-icon {
 	display: none;
