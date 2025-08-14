@@ -1,6 +1,55 @@
 .calc-header {
 	padding: 5.625rem 0 0;
 }
+
+.calc-header::before {
+	position: absolute;
+	top: -42.75rem;
+	left: -38.25rem;
+	z-index: -1;
+	content: "";
+	width: 47rem;
+	height: 131.5rem;
+	background: -o-radial-gradient(
+		50% 50%,
+		50% 50%,
+		rgba(38, 98, 246, 0.3) 0%,
+		rgba(38, 98, 246, 0) 100%
+	);
+	background: radial-gradient(
+		50% 50% at 50% 50%,
+		rgba(38, 98, 246, 0.3) 0%,
+		rgba(38, 98, 246, 0) 100%
+	);
+	-webkit-transform: rotate(32deg);
+	-ms-transform: rotate(32deg);
+	transform: rotate(32deg);
+	pointer-events: none;
+}
+
+.calc-header::after {
+	content: "";
+	position: absolute;
+	top: -38.3125rem;
+	right: -41.875rem;
+	z-index: -1;
+	width: 83rem;
+	height: 83rem;
+	background: -o-radial-gradient(
+		50% 50%,
+		50% 50%,
+		rgba(38, 98, 246, 0.3) 0%,
+		rgba(38, 98, 246, 0) 100%
+	);
+	background: radial-gradient(
+		50% 50% at 50% 50%,
+		rgba(38, 98, 246, 0.3) 0%,
+		rgba(38, 98, 246, 0) 100%
+	);
+	pointer-events: none;
+	opacity: 0.3;
+}
+
 .calc-header__container {
 	display: grid;
 	grid-template-columns: 41.875rem 1fr;
@@ -117,6 +166,7 @@
 }
 
 .calc-table__filters {
+	--filter-height: 2.9375rem;
 	display: flex;
 	align-items: center;
 }
@@ -192,7 +242,6 @@
 }
 
 .calc-table__filter {
-	--filter-height: 2.9375rem;
 	display: inline-flex;
 	align-items: center;
 	gap: 0.8125rem;
@@ -240,7 +289,7 @@
 
 .calc-table__table {
 	--table-row-offset: 1.4375rem;
-	width: 100%;
+	width: 100% !important;
 	font-family: var(--font-family-quaternary);
 	font-weight: 400;
 	font-size: 1.125rem;
@@ -412,6 +461,18 @@ th.sorting::after {
 }
 
 @media (max-width: 1199px) {
+	.calc-header::before {
+		top: -72.8125rem;
+		left: -20.25rem;
+	}
+
+	.calc-header::after {
+		top: -0.9375rem;
+		right: -23.375rem;
+		width: 66.375rem;
+		height: 66.375rem;
+	}
+
 	.calc-header__title {
 		font-size: 1.875rem;
 	}
@@ -505,8 +566,28 @@ th.sorting::after {
 		display: block;
 	}
 
-	.calc-table table.dataTable > thead {
+	.calc-table table.dataTable > thead,
+	.calc-table table.dataTable > thead .sorting_disabled {
 		display: none;
+	}
+	.calc-table table.dataTable > thead.active {
+		display: block;
+	}
+
+	.calc-table table.dataTable > thead tr {
+		display: block;
+		overflow: hidden;
+		margin: 0 0 20px;
+		border-radius: 16px;
+		background: #121618;
+	}
+
+	.calc-table table.dataTable > thead > tr > th {
+		display: block;
+		box-sizing: border-box;
+		width: 100% !important;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
 	}
 
 	.calc-table table.dataTable > tbody,
@@ -536,17 +617,17 @@ th.sorting::after {
 
 	.calc-table table.dataTable > tbody > tr > td,
 	.calc-table table.dataTable > tbody > tr:nth-child(odd) > td {
-		padding-top: 16px;
-		padding-bottom: 16px;
+		padding-top: 12px;
+		padding-bottom: 12px;
 	}
 
 	.calc-table table.dataTable > tbody > tr > td:first-child,
 	.calc-table table.dataTable > tbody > tr:nth-child(odd) > td:first-child {
-		padding-top: 20px;
+		padding-top: 16px;
 	}
 	.calc-table table.dataTable > tbody > tr > td:last-child,
 	.calc-table table.dataTable > tbody > tr:nth-child(odd) > td:last-child {
-		padding-bottom: 20px;
+		padding-bottom: 16px;
 	}
 	.calc-table table.dataTable > tbody > tr > td::before {
 		content: attr(data-label);
@@ -580,6 +661,18 @@ th.sorting::after {
 }
 
 @media (max-width: 767px) {
+	.calc-header::before {
+		opacity: 0.5;
+	}
+
+	.calc-header::after {
+		top: 11.0625rem;
+		right: -21.375rem;
+		width: 40rem;
+		height: 40rem;
+		opacity: 0.2;
+	}
+
 	.calc-table__filter:not(:first-child) {
 		margin-left: 0;
 	}
@@ -617,5 +710,40 @@ th.sorting::after {
 	.calc-table__filter-dropdown-footer-button {
 		--btn-height: 36px;
 		width: 100%;
+	}
+
+	.calc-table__filters {
+		--filter-height: 36px;
+	}
+}
+
+@media (max-width: 479px) {
+	.calc-table__filters {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 8px;
+		width: 100%;
+	}
+
+	.calc-table__filter {
+		width: 100%;
+		justify-content: center;
+	}
+
+	.calc-table__reset {
+		grid-column: 1 / -1;
+		height: var(--filter-height);
+		margin: 0;
+		border: 0.0625rem solid #59748b;
+		border-radius: 0.625rem;
+		background: #121618;
+	}
+
+	.calc-table__reset:active {
+		background-color: #59748b;
+	}
+
+	.calc-table__reset-icon {
+		--icon-size: 1rem;
 	}
 }

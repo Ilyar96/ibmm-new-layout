@@ -1,6 +1,11 @@
 (function () {
 	initCalcTable();
 
+	$("#sort-filter").on("click", function () {
+		const tableHead = $("#calc-table thead");
+		tableHead.toggleClass("active");
+	});
+
 	// Calc table
 	function initCalcTable() {
 		const wishlistIndex = 0;
@@ -21,7 +26,7 @@
 
 			// Функция фильтрации для DataTable
 			$.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
-				const minerName = data[modelIndex];
+				const minerName = $(data[modelIndex]).text().trim();
 				const algorithm = data[algoIndex];
 				const coin = data[coinIndex];
 
@@ -136,7 +141,13 @@
 				{
 					targets: [modelIndex],
 					type: "string",
-					render: sortStringRender,
+					render: function (data, type, row) {
+						if (type === "sort") {
+							const minerName = $(data).text().trim();
+							return minerName;
+						}
+						return data;
+					},
 				},
 				{
 					targets: [releaseIndex], // Колонка с датами (индекс 3)
@@ -287,11 +298,6 @@
 						}
 						return data; // Возвращаем оригинальный HTML для отображения
 					},
-				},
-				{
-					targets: [algoIndex],
-					type: "string",
-					render: sortStringRender,
 				},
 				{
 					targets: [priceIndex],
@@ -485,13 +491,6 @@
 
 		function tableSearchInputHandler(e) {
 			table.search(e.target.value).draw();
-		}
-
-		function sortStringRender(data, type) {
-			if (type === "sort") {
-				return data.toLowerCase();
-			}
-			return data;
 		}
 
 		function extractDataAttrFromTableString(tableString, dataAttr) {
