@@ -51,7 +51,9 @@
 }
 
 .calc-header__container {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 41.875rem 5.625rem 1fr;
 	grid-template-columns: 41.875rem 1fr;
 	gap: 5.625rem;
 }
@@ -75,16 +77,26 @@
 	letter-spacing: initial;
 }
 .calc-header__coins {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-ms-flex-line-pack: start;
 	align-content: flex-start;
+	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	gap: 0.9375rem;
 	padding: 0.9375rem 0 0;
 }
 .calc-header__coin {
 	--coin-btn-height: 1.875rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	gap: 0.5rem;
 	height: var(--coin-btn-height);
@@ -96,8 +108,13 @@
 	font-size: 0.8125rem;
 	line-height: 100%;
 	color: #c0c5d0;
+	-webkit-transition: all var(--transition-base);
+	-o-transition: all var(--transition-base);
 	transition: all var(--transition-base);
 	letter-spacing: 0.05em;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 }
 
@@ -111,9 +128,12 @@
 }
 .calc-header__coins-img {
 	--action-btn-icon-size: 1.1875rem;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--action-btn-icon-size);
 	flex: 0 0 var(--action-btn-icon-size);
 	width: var(--action-btn-icon-size);
 	height: var(--action-btn-icon-size);
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 
@@ -125,8 +145,14 @@
 }
 
 .calc-table__header {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 	gap: 1.25rem;
 	margin: 0 0 0.4375rem;
@@ -134,6 +160,8 @@
 .calc-table__search {
 	position: relative;
 	max-width: 26.9375rem;
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
 }
 .calc-table__search-input {
@@ -150,6 +178,22 @@
 	color: var(--color-text-primary);
 }
 
+.calc-table__search-input::-webkit-input-placeholder {
+	color: #808080;
+}
+
+.calc-table__search-input::-moz-placeholder {
+	color: #808080;
+}
+
+.calc-table__search-input:-ms-input-placeholder {
+	color: #808080;
+}
+
+.calc-table__search-input::-ms-input-placeholder {
+	color: #808080;
+}
+
 .calc-table__search-input::placeholder {
 	color: #808080;
 }
@@ -159,15 +203,22 @@
 	position: absolute;
 	top: 50%;
 	left: 1.1875rem;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 	width: var(--icon-size);
 	height: var(--icon-size);
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 
 .calc-table__filters {
 	--filter-height: 2.9375rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 }
 
@@ -186,9 +237,14 @@
 	background: #121618;
 	border: 0.0625rem solid #59748b;
 	border-radius: 0.625rem;
+	-webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 	opacity: 0;
 	visibility: hidden;
+	-webkit-transition: background-color var(--transition-base), opacity var(--transition-base),
+		visibility var(--transition-base);
+	-o-transition: background-color var(--transition-base), opacity var(--transition-base),
+		visibility var(--transition-base);
 	transition: background-color var(--transition-base), opacity var(--transition-base),
 		visibility var(--transition-base);
 }
@@ -240,7 +296,11 @@
 }
 
 .calc-table__filter {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 0.8125rem;
 	height: var(--filter-height);
@@ -254,6 +314,8 @@
 	line-height: 150%;
 	letter-spacing: -0.02em;
 	color: var(--color-text-primary);
+	-webkit-transition: background-color var(--transition-base), color var(--transition-base);
+	-o-transition: background-color var(--transition-base), color var(--transition-base);
 	transition: background-color var(--transition-base), color var(--transition-base);
 }
 
@@ -263,9 +325,12 @@
 
 .calc-table__filter-icon {
 	--icon-size: 1.75rem;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--icon-size);
 	flex: 0 0 var(--icon-size);
 	width: var(--icon-size);
 	height: var(--icon-size);
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 
@@ -274,12 +339,17 @@
 .calc-table__reset {
 	padding: 0.6875rem 0.625rem;
 	margin: 0 -0.625rem 0 0.625rem;
+	-o-object-fit: contain;
 	object-fit: contain;
 	color: #4b5563;
+	-webkit-transition: color var(--transition-base);
+	-o-transition: color var(--transition-base);
 	transition: color var(--transition-base);
 }
 .calc-table__reset-icon {
 	--icon-size: 1.5rem;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--icon-size);
 	flex: 0 0 var(--icon-size);
 	width: var(--icon-size);
 	height: var(--icon-size);
@@ -350,12 +420,14 @@
 	top: -0.125rem;
 	width: var(--icon-size);
 	height: var(--icon-size);
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 .calc-table__top-icon {
 	--icon-size: 2rem;
 	width: var(--icon-size);
 	height: var(--icon-size);
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 .calc-table__price-wrapper {
@@ -368,6 +440,14 @@
 .calc-table__profit-wrapper {
 	display: block;
 	padding: 0.5625rem 0.75rem;
+	background: -webkit-gradient(
+		linear,
+		left top,
+		right top,
+		from(rgba(59, 177, 100, 0)),
+		to(#72b13b)
+	);
+	background: -o-linear-gradient(left, rgba(59, 177, 100, 0) 0%, #72b13b 100%);
 	background: linear-gradient(90deg, rgba(59, 177, 100, 0) 0%, #72b13b 100%);
 	border-radius: 0.625rem;
 	text-align: center;
@@ -392,6 +472,8 @@ th.sorting .calc-table__th-wrapper::after {
 	--y-offset: 0.1875rem;
 	position: absolute;
 	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 	left: 100%;
 	z-index: 1;
@@ -416,6 +498,8 @@ th.sorting .calc-table__th-wrapper::before {
 }
 
 th.sorting .calc-table__th-wrapper::after {
+	-webkit-transform: rotate(180deg) translateY(50%);
+	-ms-transform: rotate(180deg) translateY(50%);
 	transform: rotate(180deg) translateY(50%);
 	margin-top: var(--y-offset);
 }
@@ -516,6 +600,7 @@ th.sorting .calc-table__th-wrapper::after {
 	}
 
 	.calc-header__container {
+		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
 		gap: 1.875rem;
 	}
@@ -617,8 +702,13 @@ th.sorting .calc-table__th-wrapper::after {
 	}
 
 	.calc-table table.dataTable > thead > tr > th {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
 		justify-content: center;
+		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 		width: 100% !important;
 		padding-top: 1rem;
@@ -646,13 +736,25 @@ th.sorting .calc-table__th-wrapper::after {
 	}
 
 	.calc-table table.dataTable > tbody > tr > td {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
 		justify-content: space-between;
 		width: 100%;
+		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 		padding-right: 0;
 		padding-left: 0;
+	}
+	.calc-table table.dataTable > tbody > tr > td.dataTables_empty {
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		justify-content: center;
 	}
 
 	.calc-table table.dataTable > tbody > tr > td,
@@ -683,7 +785,12 @@ th.sorting .calc-table__th-wrapper::after {
 	}
 
 	.calc-table__header {
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
+		-webkit-box-align: start;
+		-ms-flex-align: start;
 		align-items: flex-start;
 		gap: 1rem;
 		margin: 0 0 1.875rem;
@@ -695,6 +802,7 @@ th.sorting .calc-table__th-wrapper::after {
 	}
 
 	.calc-table__filters {
+		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
 		gap: 0.5rem 0.75rem;
 	}
@@ -726,6 +834,7 @@ th.sorting .calc-table__th-wrapper::after {
 		padding: 0.625rem 0 3.8375rem;
 		border-radius: 1rem 1rem 0 0;
 		overflow: hidden;
+		-webkit-box-shadow: 0 -0.5rem 1rem rgba(0, 0, 0, 0.1);
 		box-shadow: 0 -0.5rem 1rem rgba(0, 0, 0, 0.1);
 		border-bottom: none;
 		border-left: none;
@@ -778,7 +887,9 @@ th.sorting .calc-table__th-wrapper::after {
 
 @media (max-width: 479px) {
 	.calc-table__filters {
+		display: -ms-grid;
 		display: grid;
+		-ms-grid-columns: 1fr 0.5rem 1fr;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 0.5rem;
 		width: 100%;
@@ -786,6 +897,8 @@ th.sorting .calc-table__th-wrapper::after {
 
 	.calc-table__filter {
 		width: 100%;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
 		justify-content: center;
 	}
 
