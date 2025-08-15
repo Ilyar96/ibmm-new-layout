@@ -679,6 +679,11 @@
 
 	.mobile-menu__close {
 		margin-left: auto;
+		color: inherit;
+	}
+
+	.mobile-menu__close:active {
+		color: var(--color-accent);
 	}
 
 	.mobile-menu__back {
