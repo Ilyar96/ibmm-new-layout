@@ -17,7 +17,7 @@
 
 <!-- TODO Убрать класс -->
 
-<body>
+<body class="menu-open">
 	<div class="wrapper">
 		<header class="header">
 			<div class="header__container container">
@@ -28,7 +28,7 @@
 
 					<nav class="header__nav">
 						<button id="menu-toggle" class="header__catalog" type="button">
-							<svg width=20px" height="20px" class="header__catalog-close-icon" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<svg width="20" height="20" class="header__catalog-close-icon" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="currentColor" />
 							</svg>
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="12" viewBox="0 0 20 12" fill="none" class="header__catalog-icon">
@@ -58,7 +58,7 @@
 							<span class="header__action-btn-text">Нужна помощь?</span>
 							<span class="header__action-btn-indicator"></span>
 						</button>
-						<button class="header__action-btn header__action-btn--menu" type="button">
+						<button id="mobile-menu-btn" class="header__action-btn header__action-btn--menu" type="button">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="12" viewBox="0 0 20 12" fill="none" class="header__menu-icon">
 								<path d="M0 0H20V1.73821H0V0Z" fill="currentColor" />
 								<path d="M0 4.867H20V6.60522H0V4.867Z" fill="currentColor" />
@@ -71,13 +71,13 @@
 						<div class="menu__container">
 							<div class="menu__inner">
 								<div class="menu__header">
-									<div class="menu__search">
-										<div class="menu__search-label">
-											<svg width="23" height="23" class="menu__search-icon" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<div class="menu-search">
+										<div class="menu-search-label">
+											<svg width="23" height="23" class="menu-search-icon" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
 												<path d="M17.2797 15.9246L21.3843 20.0282L20.0282 21.3843L15.9246 17.2797C14.3978 18.5037 12.4986 19.1695 10.5417 19.1667C5.78067 19.1667 1.91667 15.3027 1.91667 10.5417C1.91667 5.78067 5.78067 1.91667 10.5417 1.91667C15.3027 1.91667 19.1667 5.78067 19.1667 10.5417C19.1695 12.4986 18.5037 14.3978 17.2797 15.9246ZM15.3573 15.2135C16.5733 13.9626 17.2524 12.2862 17.25 10.5417C17.25 6.8358 14.2475 3.83334 10.5417 3.83334C6.8358 3.83334 3.83334 6.8358 3.83334 10.5417C3.83334 14.2475 6.8358 17.25 10.5417 17.25C12.2862 17.2524 13.9626 16.5733 15.2135 15.3573L15.3573 15.2135Z" fill="currentColor" />
 											</svg>
 										</div>
-										<input id="input_search" class="menu__search-input" type="text" name="search" placeholder="Найдите свои товары здесь">
+										<input id="input_search" class="menu-search-input" type="text" name="search" placeholder="Найдите свои товары здесь">
 									</div>
 
 									<ul class="menu__header-nav-list">
@@ -416,6 +416,275 @@
 				</div>
 			</div>
 		</header>
+
+		<div class="mobile-menu">
+			<div class="mobile-menu__wrapper">
+				<div id="main-menu" class="mobile-menu__content">
+					<div class="mobile-menu__header">
+						<div class="mobile-menu__logo">
+							<a href="#" class="mobile-menu__logo-link">
+								<img src="assets/img/logo-dark.svg" alt="logo" class="mobile-menu__logo-img" />
+							</a>
+						</div>
+
+						<button id="mobile-menu-close" class="mobile-menu__close" type="button">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+								<path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</button>
+					</div>
+					<div class="mobile-menu__body">
+						<div class="mobile-menu__search">
+							<div class="menu-search">
+								<div class="menu-search-label">
+									<svg width="23" height="23" class="menu-search-icon" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M17.2797 15.9246L21.3843 20.0282L20.0282 21.3843L15.9246 17.2797C14.3978 18.5037 12.4986 19.1695 10.5417 19.1667C5.78067 19.1667 1.91667 15.3027 1.91667 10.5417C1.91667 5.78067 5.78067 1.91667 10.5417 1.91667C15.3027 1.91667 19.1667 5.78067 19.1667 10.5417C19.1695 12.4986 18.5037 14.3978 17.2797 15.9246ZM15.3573 15.2135C16.5733 13.9626 17.2524 12.2862 17.25 10.5417C17.25 6.8358 14.2475 3.83334 10.5417 3.83334C6.8358 3.83334 3.83334 6.8358 3.83334 10.5417C3.83334 14.2475 6.8358 17.25 10.5417 17.25C12.2862 17.2524 13.9626 16.5733 15.2135 15.3573L15.3573 15.2135Z" fill="currentColor" />
+									</svg>
+								</div>
+								<input id="mobile-input_search" class="menu-search-input" type="text" name="search" placeholder="Найдите свои товары здесь">
+							</div>
+						</div>
+						<ul class="mobile-menu__nav-list">
+							<li class="mobile-menu__nav-item">
+								<button class="mobile-menu__nav-link mobile-menu__nav-link--nested" type="button" data-target-menu="catalog-menu">
+									<span class="mobile-menu__nav-link-text">Каталог</span>
+								</button>
+							</li>
+							<li class="mobile-menu__nav-item">
+								<button class="mobile-menu__nav-link mobile-menu__nav-link--dropdown" type="button">
+									<span class="mobile-menu__nav-link-text">Услуги</span>
+								</button>
+
+								<ul class="mobile-menu__nav-dropdown">
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Майнинг оборудование</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Майнинг
+												отель</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">ГПЭС
+												под ключ</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Техническое обслуживание</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Майнинг-контейнер</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="mobile-menu__nav-item">
+								<button class="mobile-menu__nav-link mobile-menu__nav-link--dropdown" type="button">
+									<span class="mobile-menu__nav-link-text">Сервисы</span>
+								</button>
+
+								<ul class="mobile-menu__nav-dropdown">
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Прайс-лист</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Майнинг-калькулятор</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Конвертер хешрейта</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Курс криптовалют</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="mobile-menu__nav-item">
+								<a href="#" class="mobile-menu__nav-link">
+									<span class="mobile-menu__nav-link-text">О компании</span>
+								</a>
+							</li>
+							<li class="mobile-menu__nav-item">
+								<a href="#" class="mobile-menu__nav-link">
+									<span class="mobile-menu__nav-link-text">Контакты</span>
+								</a>
+							</li>
+							<li class="mobile-menu__nav-item">
+								<a href="#" class="mobile-menu__nav-link">
+									<span class="mobile-menu__nav-link-text">Новости</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="mobile-menu__footer">
+						<button class="mobile-menu__help-btn" type="button">
+							<span class="mobile-menu__hepl-btn-text">Нужна помощь?</span>
+							<span class="mobile-menu__hepl-btn-indicator"></span>
+						</button>
+					</div>
+				</div>
+				<div id="catalog-menu" class="mobile-menu__nested">
+					<div class="mobile-menu__header">
+						<button class="mobile-menu__back" type="button" data-close-target-menu="catalog-menu">Назад</button>
+
+						<button class="mobile-menu__close" type="button" data-close-target-menu="catalog-menu">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+								<path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</button>
+					</div>
+					<div class="mobile-menu__body">
+						<ul class="mobile-menu__nav-list">
+							<li class="mobile-menu__nav-item">
+								<button class="mobile-menu__nav-link mobile-menu__nav-link--dropdown" type="button">
+									<span class="mobile-menu__nav-link-text">Майнинг отель</span>
+								</button>
+
+								<ul class="mobile-menu__nav-dropdown">
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Наши площадки (карта с объектами)</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Тарифы и условия размещения</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Онлайн мониторинг и управление</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">3D-туры по дата-центрам</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Техническая поддержка 24/7</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Гарантии и SLA</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Форма заявки на размещение</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="mobile-menu__nav-item">
+								<button class="mobile-menu__nav-link mobile-menu__nav-link--dropdown" type="button">
+									<span class="mobile-menu__nav-link-text">Майнинг контейнеры</span>
+								</button>
+
+								<ul class="mobile-menu__nav-dropdown">
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Воздушные контейнеры</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Иммерсионные контейнеры</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Контейнеры с гидро охлаждением</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Кастомизированные решения</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Готовые комплексы</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Модульные системы</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="mobile-menu__nav-item">
+								<button class="mobile-menu__nav-link mobile-menu__nav-link--dropdown" type="button">
+									<span class="mobile-menu__nav-link-text">Техническое обслуживание</span>
+								</button>
+
+								<ul class="mobile-menu__nav-dropdown">
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Диагностика и ремонт</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Профилактическое обслуживание</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Модернизация оборудования</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Замена комплектующих</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Гарантийное обслуживание</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Удаленная поддержка</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Выездной сервис</span>
+										</a>
+									</li>
+									<li class="mobile-menu__nav-dropdown-item">
+										<a href="#" class="mobile-menu__nav-dropdown-link">
+											<span class="mobile-menu__nav-dropdown-link-text">Прайс-лист услуг</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<main class="page page--offset">
 			<article class="article">
