@@ -579,6 +579,10 @@ th.sorting .calc-table__th-wrapper::after {
 }
 
 @media (max-width: 1199px) {
+	.calc-header {
+		padding: 0;
+	}
+
 	.calc-header::before {
 		top: -72.8125rem;
 		left: -20.25rem;
@@ -809,6 +813,9 @@ th.sorting .calc-table__th-wrapper::after {
 }
 
 @media (max-width: 767px) {
+	.calc-header {
+		padding: 20px 0 0;
+	}
 	.calc-header::before {
 		opacity: 0.5;
 	}

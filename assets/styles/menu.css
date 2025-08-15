@@ -692,8 +692,8 @@
 	}
 
 	.mobile-menu__logo-img {
-		width: 10rem;
-		height: 1.25rem;
+		width: 12rem;
+		height: 1.5625rem;
 		-o-object-fit: contain;
 		object-fit: contain;
 	}
