@@ -473,6 +473,10 @@
 		display: flex;
 	}
 
+	.header__wrapper {
+		padding: 40px 0;
+	}
+
 	.menu {
 		display: none;
 	}
@@ -778,6 +782,11 @@
 	}
 }
 
+@media (max-width: 767px) {
+	.header__wrapper {
+		padding: 25px 0;
+	}
+}
 @media (max-width: 479px) {
 	.mobile-menu {
 		max-width: 100%;
