@@ -1,0 +1,217 @@
+.promo-banner {
+	position: relative;
+	z-index: 1;
+	margin: 4.1875rem 0 0;
+}
+.promo-banner__container {
+}
+.promo-banner__content {
+	position: relative;
+	z-index: 1;
+	padding: 3.125rem 3.75rem 3.75rem;
+	background: var(--color-card-background);
+	font-family: var(--font-family-quinary);
+	font-weight: 600;
+	font-size: 0.75rem;
+	line-height: 150%;
+	letter-spacing: -0.02em;
+	color: var(--color-text-primary);
+	border-radius: 1.25rem;
+	overflow: hidden;
+}
+.promo-banner__text-content {
+	position: relative;
+	z-index: 3;
+}
+.promo-banner__title {
+	margin: 0;
+	font-family: var(--font-family-secondary);
+	font-weight: 600;
+	font-size: 2rem;
+	line-height: 140%;
+	letter-spacing: -0.03em;
+}
+.promo-banner__subtitle {
+	margin: 0.5625rem 0 0;
+	font-weight: 400;
+	font-size: 1.0625rem;
+	line-height: 140%;
+	letter-spacing: -0.03em;
+	color: rgba(255, 255, 255, 0.5);
+}
+.promo-banner__testimonial {
+	margin: 2.75rem 0 0;
+	color: #a4a4a4;
+}
+.promo-banner__testimonial-text {
+	max-width: 33.75rem;
+}
+.promo-banner__features {
+	display: grid;
+	gap: 1rem;
+	margin: 2.75rem 0 0;
+}
+.promo-banner__feature {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	list-style: none;
+}
+.promo-banner__feature-icon-wrapper {
+}
+.promo-banner__feature-text {
+}
+.promo-banner__feature-icon {
+	--icon-size: 1.5rem;
+	flex: 0 0 var(--icon-size);
+	width: var(--icon-size);
+}
+
+.promo-banner__btn {
+	--btn-height: 4.25rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: var(--btn-height);
+	padding: 0.5rem 1.5rem;
+	margin: 2.75rem 0 0;
+	border-radius: 0.5rem;
+	font-family: var(--font-family-tertiary);
+	font-weight: 700;
+	font-size: 0.875rem;
+	line-height: 1;
+	letter-spacing: normal;
+	background: var(--white-100);
+	color: var(--color-text-dark);
+	transition: background var(--transition-base), color var(--transition-base);
+}
+.promo-banner__image-wrapper::before {
+	--gradient-size: 85.4375rem;
+	content: "";
+	position: absolute;
+	top: calc(var(--gradient-size) / -1.4);
+	left: calc(var(--gradient-size) / -1.7);
+	z-index: 1;
+	width: var(--gradient-size);
+	height: var(--gradient-size);
+	background: radial-gradient(
+		50% 50% at 50% 50%,
+		rgba(38, 98, 246, 0.5),
+		rgba(38, 98, 246, 0) 100%
+	);
+	pointer-events: none;
+}
+.promo-banner__image-wrapper {
+}
+.promo-banner__image {
+	position: absolute;
+	top: -18.25rem;
+	right: -7.9375rem;
+	width: 89.25rem;
+	height: 96.5625rem;
+	object-fit: contain;
+	pointer-events: none;
+}
+
+@media (hover: hover) {
+	.promo-banner__btn:hover {
+		background: var(--color-accent);
+		color: var(--color-text-primary);
+	}
+}
+
+.promo-banner__btn:active {
+	background: var(--color-accent-hover);
+	color: var(--color-text-primary);
+}
+
+@media (max-width: 1199px) {
+	.promo-banner__content {
+		padding: 1.375rem 1.5625rem 1.5625rem;
+	}
+
+	.promo-banner__title {
+		font-size: 1.625rem;
+	}
+
+	.promo-banner__subtitle {
+		font-size: 0.9375rem;
+	}
+
+	.promo-banner__testimonial,
+	.promo-banner__features,
+	.promo-banner__btn {
+		margin: 2rem 0 0;
+	}
+
+	.promo-banner__feature-icon {
+		--icon-size: 1.25rem;
+	}
+
+	.promo-banner__btn {
+		--btn-height: 3.375rem;
+	}
+
+	.promo-banner__image {
+		top: -10.125rem;
+		right: auto;
+		left: 21.875rem;
+		width: 51.75rem;
+		height: 56rem;
+	}
+
+	.promo-banner__image-wrapper::before {
+		--gradient-size: 54.1875rem;
+	}
+}
+
+@media (max-width: 991px) {
+	.promo-banner__image {
+		left: 20.625rem;
+	}
+}
+@media (max-width: 767px) {
+	.promo-banner {
+		margin: 3.125rem 0 0;
+	}
+
+	.promo-banner__title {
+		font-size: 1.375rem;
+	}
+
+	.promo-banner__content {
+		padding: 1rem var(--container-padding) 1.125rem;
+	}
+
+	.promo-banner__btn {
+		--btn-height: 2.75rem;
+		padding: 0.5rem 1rem;
+		font-size: 0.8125rem;
+	}
+
+	.promo-banner__image {
+		top: 4.875rem;
+		left: 15.625rem;
+		width: 29.25rem;
+		height: 31.625rem;
+	}
+
+	.promo-banner__feature-icon {
+		--icon-size: 1.125rem;
+	}
+
+	.promo-banner__testimonial,
+	.promo-banner__features,
+	.promo-banner__btn {
+		margin: 1.5rem 0 0;
+	}
+}
+
+@media (max-width: 575px) {
+	.promo-banner__image {
+		top: auto;
+		bottom: -10rem;
+		left: 6.875rem;
+		opacity: 0.9;
+	}
+}
