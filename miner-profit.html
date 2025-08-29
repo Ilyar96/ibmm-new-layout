@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="assets/styles/menu.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="assets/styles/calc.css">
-	<link rel="stylesheet" href="assets/styles/calc-single.css">
+	<link rel="stylesheet" href="assets/styles/miner-profit.css">
 </head>
 
 <body>
@@ -706,30 +706,32 @@
 							<div class="calc-product__img-wrapper">
 								<img src="assets/img/temp/calc-product/hyd-black.png" class="calc-product__img" alt="calc-product">
 							</div>
-							<div class="calc-product__specs">
-								<div class="calc-product__spec">
-									<span class="calc-product__spec-label">Мощность</span>
-									<span class="calc-product__spec-value">3000 W</span>
+							<div class="calc-product__content">
+								<div class="calc-product__specs">
+									<div class="calc-product__spec">
+										<span class="calc-product__spec-label">Мощность</span>
+										<span class="calc-product__spec-value">3000 W</span>
+									</div>
+									<div class="calc-product__spec">
+										<span class="calc-product__spec-label">Энергоэфф.</span>
+										<span class="calc-product__spec-value">19 J/Th</span>
+									</div>
+									<div class="calc-product__spec">
+										<span class="calc-product__spec-label">Монеты</span>
+										<span class="calc-product__spec-value calc-product__spec-value--coin">
+											BTC
+											<svg width="17" height="18" class="calc-product__coin-icon" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M16.7456 11.0064C15.6102 15.56 10.9976 18.3312 6.44301 17.1957C1.89024 16.0604 -0.881315 11.4482 0.254618 6.89488C1.38949 2.34079 6.00203 -0.430716 10.5553 0.704554C15.1097 1.83982 17.881 6.45262 16.7456 11.0064Z" fill="#fff"></path>
+												<path d="M12.2563 7.72964C12.4256 6.59603 11.564 5.98663 10.3857 5.5801L10.7679 4.04448L9.83475 3.81153L9.46266 5.30668C9.21733 5.24545 8.96537 5.18767 8.715 5.13043L9.08976 3.62543L8.15712 3.39248L7.77465 4.92757C7.57159 4.88124 7.37225 4.83545 7.17876 4.78726L7.17982 4.78247L5.89289 4.4606L5.64465 5.45896C5.64465 5.45896 6.33702 5.6179 6.3224 5.62775C6.70035 5.72226 6.76866 5.97279 6.75723 6.1714L6.32187 7.9208C6.34792 7.92745 6.38167 7.93704 6.41888 7.95195C6.38779 7.94423 6.35456 7.93571 6.32028 7.92745L5.71003 10.3781C5.66379 10.4931 5.54658 10.6656 5.28239 10.6001C5.29169 10.6137 4.6041 10.4306 4.6041 10.4306L4.14084 11.5005L5.35521 11.8038C5.58113 11.8605 5.80253 11.9198 6.02047 11.9758L5.63428 13.5289L6.56639 13.7619L6.94886 12.2252C7.20348 12.2944 7.45066 12.3583 7.69252 12.4185L7.31139 13.948L8.24456 14.1809L8.63075 12.6307C10.222 12.9323 11.4186 12.8107 11.9222 11.369C12.3281 10.2082 11.902 9.53868 11.0648 9.10206C11.6745 8.96123 12.1338 8.55948 12.2563 7.72964ZM10.1242 10.7245C9.83582 11.8852 7.88469 11.2577 7.25212 11.1004L7.76455 9.04269C8.39712 9.20083 10.4256 9.51392 10.1242 10.7245ZM10.4128 7.71287C10.1497 8.76874 8.52576 8.23229 7.99897 8.10077L8.46357 6.23449C8.99035 6.36601 10.6869 6.61147 10.4128 7.71287Z" fill="#000"></path>
+											</svg>
+										</span>
+									</div>
 								</div>
-								<div class="calc-product__spec">
-									<span class="calc-product__spec-label">Энергоэфф.</span>
-									<span class="calc-product__spec-value">19 J/Th</span>
-								</div>
-								<div class="calc-product__spec">
-									<span class="calc-product__spec-label">Монеты</span>
-									<span class="calc-product__spec-value calc-product__spec-value--coin">
-										BTC
-										<svg width="17" height="18" class="calc-product__coin-icon" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M16.7456 11.0064C15.6102 15.56 10.9976 18.3312 6.44301 17.1957C1.89024 16.0604 -0.881315 11.4482 0.254618 6.89488C1.38949 2.34079 6.00203 -0.430716 10.5553 0.704554C15.1097 1.83982 17.881 6.45262 16.7456 11.0064Z" fill="#fff"></path>
-											<path d="M12.2563 7.72964C12.4256 6.59603 11.564 5.98663 10.3857 5.5801L10.7679 4.04448L9.83475 3.81153L9.46266 5.30668C9.21733 5.24545 8.96537 5.18767 8.715 5.13043L9.08976 3.62543L8.15712 3.39248L7.77465 4.92757C7.57159 4.88124 7.37225 4.83545 7.17876 4.78726L7.17982 4.78247L5.89289 4.4606L5.64465 5.45896C5.64465 5.45896 6.33702 5.6179 6.3224 5.62775C6.70035 5.72226 6.76866 5.97279 6.75723 6.1714L6.32187 7.9208C6.34792 7.92745 6.38167 7.93704 6.41888 7.95195C6.38779 7.94423 6.35456 7.93571 6.32028 7.92745L5.71003 10.3781C5.66379 10.4931 5.54658 10.6656 5.28239 10.6001C5.29169 10.6137 4.6041 10.4306 4.6041 10.4306L4.14084 11.5005L5.35521 11.8038C5.58113 11.8605 5.80253 11.9198 6.02047 11.9758L5.63428 13.5289L6.56639 13.7619L6.94886 12.2252C7.20348 12.2944 7.45066 12.3583 7.69252 12.4185L7.31139 13.948L8.24456 14.1809L8.63075 12.6307C10.222 12.9323 11.4186 12.8107 11.9222 11.369C12.3281 10.2082 11.902 9.53868 11.0648 9.10206C11.6745 8.96123 12.1338 8.55948 12.2563 7.72964ZM10.1242 10.7245C9.83582 11.8852 7.88469 11.2577 7.25212 11.1004L7.76455 9.04269C8.39712 9.20083 10.4256 9.51392 10.1242 10.7245ZM10.4128 7.71287C10.1497 8.76874 8.52576 8.23229 7.99897 8.10077L8.46357 6.23449C8.99035 6.36601 10.6869 6.61147 10.4128 7.71287Z" fill="#000"></path>
-										</svg>
-									</span>
-								</div>
-							</div>
 
-							<div class="calc-product__info">
-								<h2 class="calc-product__title">Описание товара</h2>
-								<div class="calc-product__description">Bitmain Antminer S23 Hyd (580Th) это ASIC-майнер, разработанный для алгоритма SHA-256, специально нацеленный на BTC (Bitcoin) . Обеспечивает максимальный хешрейт 580Th/s потребляя 5510Вт мощности, что даёт энергоэффективность 9.5j/Th......</div>
+								<div class="calc-product__info">
+									<h2 class="calc-product__title">Описание товара</h2>
+									<div class="calc-product__description">Bitmain Antminer S23 Hyd (580Th) это ASIC-майнер, разработанный для алгоритма SHA-256, специально нацеленный на BTC (Bitcoin) . Обеспечивает максимальный хешрейт 580Th/s потребляя 5510Вт мощности, что даёт энергоэффективность 9.5j/Th......</div>
+								</div>
 							</div>
 
 						</div>
@@ -883,7 +885,7 @@
 
 							<div class="calc-single__tables-right">
 								<div class="calc-single__tables-wrapper">
-									<table class="calc-single__table calc-single__table--profit calc-single__table--adaptive">
+									<table class="calc-single__table calc-single__table--profit" data-adaptive="767">
 										<thead>
 											<tr>
 												<th>Наименование</th>
@@ -894,19 +896,19 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td data-label="Наименование">Доход</td>
+												<td>Доход</td>
 												<td data-label="Ежедневно">$31.69</td>
 												<td data-label="Ежемесячно">$950.63</td>
 												<td data-label="Ежегодно">$11,566.02</td>
 											</tr>
 											<tr>
-												<td data-label="Наименование"> Электричество </td>
+												<td> Электричество </td>
 												<td class="calc-single__table-negative" data-label="Ежедневно"> -$15.87 </td>
 												<td class="calc-single__table-negative" data-label="Ежемесячно"> -$476.06 </td>
 												<td class="calc-single__table-negative" data-label="Ежегодно"> -$5,792.11 </td>
 											</tr>
-											<tr class="calc-single__table-profit">
-												<td data-label="Наименование">Прибыль</td>
+											<tr class="calc-single__table-profit" style="background: linear-gradient(270deg, rgba(114, 177, 59, 0.6) 0%, rgba(59, 177, 100, 0) 100%);">
+												<td>Прибыль</td>
 												<td data-label="Ежедневно">$15.82</td>
 												<td data-label="Ежемесячно">$474.57</td>
 												<td data-label="Ежегодно">$5,773.91</td>
@@ -921,7 +923,7 @@
 											</tr>
 										</tfoot>
 									</table>
-									<table class="calc-single__table calc-single__table--algo calc-single__table--adaptive">
+									<table class="calc-single__table calc-single__table--algo" data-adaptive="767">
 										<thead>
 											<tr>
 												<th>Алгоритм</th>
@@ -1002,8 +1004,7 @@
 											<td>
 												<span class="calc-single__table-generate calc-single__table-generate--6">6 Generation</span>
 											</td>
-											<td>6st Generation
-												2020</td>
+											<td> 2020</td>
 										</tr>
 										<tr>
 											<td>

@@ -123,8 +123,8 @@
 	align-items: center;
 	justify-content: center;
 	border-radius: 8px;
-	padding: 0 24px;
-	height: var(--badge--height);
+	padding: 7px 24px;
+	min-height: var(--badge--height);
 	background: var(--color-accent);
 	font-family: var(--font-family-tertiary);
 	font-weight: 700;
@@ -144,6 +144,7 @@
 }
 .calc-single__badge--new {
 	letter-spacing: -0.03em;
+	line-height: 1;
 }
 .calc-single__badge--unavailable {
 	background: #f65726;
@@ -160,11 +161,13 @@
 .calc-product {
 }
 .calc-product__img-wrapper {
+	--calc-img-size: 405px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 405px;
-	height: 405px;
+	flex: 0 0 var(--calc-img-size);
+	width: var(--calc-img-size);
+	height: var(--calc-img-size);
 }
 .calc-product__img {
 	width: 100%;
@@ -288,6 +291,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 8px;
+	flex: 1 0 auto;
 	padding: 10px 79px;
 	border-radius: 20px;
 	font-family: var(--font-family-tertiary);
@@ -514,11 +518,13 @@
 }
 
 .calc-single__table {
+	--table-border-radius: 30px;
 	--table-row-offset: 4px;
 	border-collapse: separate;
 	border-spacing: 0 var(--table-row-offset);
 	width: 100%;
 	overflow: hidden;
+	margin: calc(var(--table-row-offset) * -1) 0;
 }
 
 .calc-single__tables-wrapper {
@@ -554,16 +560,16 @@
 }
 
 .calc-single__table thead th:first-child {
-	border-radius: 30px 0 0 0;
+	border-radius: var(--table-border-radius) 0 0 0;
 }
 .calc-single__table thead th:last-child {
-	border-radius: 0 30px 0 0;
+	border-radius: 0 var(--table-border-radius) 0 0;
 }
 .calc-single__table tfoot td:first-child {
-	border-radius: 0 0 0 30px;
+	border-radius: 0 0 0 var(--table-border-radius);
 }
 .calc-single__table tfoot td:last-child {
-	border-radius: 0 0 30px 0;
+	border-radius: 0 0 var(--table-border-radius) 0;
 }
 
 .calc-single__table tbody tr {
@@ -615,6 +621,7 @@ td.calc-single__table-negative {
 }
 
 .calc-single__table-coin {
+	--action-btn-icon-size: 24px;
 	display: flex;
 	align-items: center;
 	gap: 6px;
@@ -653,12 +660,26 @@ td.calc-single__table-negative {
 		height: 66.375rem;
 	}
 
-	.product-cards {
+	.calc-single__header {
+		padding: 40px 0 0;
+	}
+
+	.product-cards,
+	.calc-single__tables-wrapper {
 		gap: 1rem;
 	}
 
-	.product-item {
+	.product-item,
+	.profit-distribution,
+	.profit-distribution__section--electricity {
 		border-radius: 1.25rem;
+	}
+
+	.calc-single__table {
+		--table-border-radius: 1.25rem;
+	}
+
+	.product-item {
 		font-size: 0.8125rem;
 	}
 
@@ -679,12 +700,112 @@ td.calc-single__table-negative {
 		padding: 0 0.875rem;
 		font-size: 0.75rem;
 	}
+
+	.calc-single__title {
+		font-size: 1.875rem;
+	}
+
+	.calc-single__badges {
+		margin: 16px 0 0;
+	}
+
+	.calc-single__badge {
+		--badge--height: 28px;
+		font-size: 13px;
+	}
+
+	.calc-single__manufacturer {
+		padding: 8px 0 0;
+	}
+
+	.calc-single__manufacturer-icon {
+		height: 28px;
+	}
+
+	.calc-single__top {
+		grid-template-columns: 1fr;
+	}
+
+	.calc-product__title,
+	.calc-single__subtitle {
+		font-size: 26px;
+	}
+
+	.calc-single__subtitle {
+		margin: 0 0 30px;
+	}
+
+	.calc-product__spec-label,
+	.calc-product__spec-value {
+		font-size: 15px;
+	}
+
+	.calc-product__info {
+		padding: 0;
+		margin: 30px 0 0;
+	}
+
+	.calc-product__description {
+		margin: 24px 0 0;
+	}
+
+	.calc-single__help {
+		padding: 0 20px;
+		font-size: 15px;
+	}
+
+	.calc-single__help-button {
+		padding: 8px 30px;
+	}
+
+	.calc-single__tables-grid {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+
+	.calc-single__tables--secondary .calc-single__tables-grid {
+		gap: 40px;
+	}
+
+	.calc-single__tables {
+		margin: 40px 0 0;
+	}
+
+	.calc-single__table {
+		table-layout: fixed;
+	}
+
+	.calc-single__table th,
+	.calc-single__table td {
+		padding: 10px 20px;
+		font-size: 15px;
+	}
+
+	.calc-single__table tfoot td {
+		height: 43px;
+	}
+
+	.profit-distribution__percentage {
+		font-size: 15px;
+	}
 }
 
 @media (max-width: 991px) {
 	.product-cards {
 		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
+	}
+
+	.calc-product__img-wrapper {
+		--calc-img-size: 300px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+	.calc-product {
+		display: flex;
+		align-items: center;
+		gap: 20px;
 	}
 }
 
@@ -701,8 +822,17 @@ td.calc-single__table-negative {
 		opacity: 0.2;
 	}
 
-	.product-item {
+	.product-item,
+	.profit-distribution,
+	.profit-distribution__section--electricity {
 		border-radius: 0.875rem;
+	}
+
+	.calc-single__table {
+		--table-border-radius: 0.875rem;
+	}
+
+	.product-item {
 		padding: 1.25rem var(--container-padding);
 	}
 
@@ -713,6 +843,185 @@ td.calc-single__table-negative {
 	.product-info__spec-value,
 	.product-info__spec-name {
 		font-size: 0.875rem;
+	}
+
+	.calc-single__header {
+		flex-direction: column-reverse;
+		padding: 20px 0 0;
+	}
+
+	.calc-single__manufacturer-icon {
+		height: 20px;
+	}
+
+	.calc-product__img-wrapper {
+		margin: 0 auto;
+	}
+
+	.calc-product__spec-label,
+	.calc-product__spec-value {
+		font-size: 14px;
+	}
+
+	.calc-product__title,
+	.calc-single__subtitle {
+		font-size: 22px;
+	}
+
+	.calc-single__tables--secondary .calc-single__tables-grid {
+		gap: 30px;
+	}
+
+	.calc-single__tables {
+		margin: 30px 0 0;
+	}
+
+	.calc-single__subtitle {
+		margin: 0 0 20px;
+	}
+
+	.calc-product__info {
+		margin: 20px 0 0;
+	}
+
+	.calc-product__description {
+		margin: 14px 0 0;
+	}
+
+	.calc-single__help {
+		flex-direction: column;
+		gap: 12px;
+		padding: 0;
+		font-size: 14px;
+		text-align: center;
+	}
+
+	.calc-single__help-button {
+		padding: 8px 20px;
+		font-size: 13px;
+	}
+
+	.calc-single__help-image {
+		--img-size: 28px;
+	}
+
+	.calc-single__help-image-wrapper::before {
+		--indicator-size: 7px;
+	}
+
+	.calc-single__profit-distribution {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+
+	.profit-distribution {
+		height: 300px;
+	}
+
+	.profit-distribution__section--electricity {
+		flex: 0 0 50%;
+	}
+
+	.calc-single__badge {
+		padding: 7px 12px;
+		font-size: 13px;
+		line-height: 1.2;
+	}
+
+	.calc-single__table th,
+	.calc-single__table td {
+		padding: 8px 5px;
+		font-size: 14px;
+	}
+
+	.calc-single__table th:first-child,
+	.calc-single__table td:first-child {
+		padding-left: var(--container-padding);
+	}
+
+	.calc-single__table th:last-child,
+	.calc-single__table td:last-child {
+		padding-right: var(--container-padding);
+	}
+
+	.calc-single__table tfoot td {
+		height: 38px;
+	}
+
+	.calc-single__table[data-adaptive="767"] {
+		border-spacing: 0;
+		margin: 0;
+	}
+
+	.calc-single__table[data-adaptive="767"],
+	.calc-single__table[data-adaptive="767"] tr {
+		display: block;
+	}
+
+	.calc-single__table[data-adaptive="767"] thead,
+	.calc-single__table[data-adaptive="767"] tfoot {
+		display: block;
+	}
+
+	.calc-single__table[data-adaptive="767"] thead tr,
+	.calc-single__table[data-adaptive="767"] tfoot tr {
+		display: block;
+		height: 38px;
+	}
+	.calc-single__table[data-adaptive="767"] thead tr {
+		margin: 0 0 var(--table-row-offset);
+		border-radius: var(--table-border-radius) var(--table-border-radius) 0 0;
+	}
+	.calc-single__table[data-adaptive="767"] tfoot tr {
+		margin: var(--table-row-offset) 0 0;
+		border-radius: 0 0 var(--table-border-radius) var(--table-border-radius);
+	}
+
+	.calc-single__table[data-adaptive="767"] thead th,
+	.calc-single__table[data-adaptive="767"] tfoot td {
+		font-size: 0;
+		color: transparent;
+	}
+
+	.calc-single__table[data-adaptive="767"] tbody {
+		display: grid;
+		background: rgba(25, 30, 32, 0.5);
+	}
+
+	.calc-single__table[data-adaptive="767"] tbody tr {
+		background: transparent;
+		border-bottom: var(--table-row-offset) solid var(--color-background);
+	}
+
+	.calc-single__table[data-adaptive="767"] tbody tr:last-child {
+		border-bottom: none;
+	}
+
+	.calc-single__table[data-adaptive="767"] tbody td {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		border-bottom: 1px solid var(--color-background);
+		font-weight: 600;
+	}
+
+	.calc-single__table[data-adaptive="767"] tbody td[data-label] {
+		justify-content: space-between;
+		font-weight: 400;
+	}
+
+	.calc-single__table[data-adaptive="767"] tbody td:last-child {
+		border-bottom: none;
+	}
+
+	.calc-single__table[data-adaptive="767"] tbody td {
+		padding: 5px var(--container-padding);
+	}
+
+	.calc-single__table[data-adaptive="767"] tbody td::before {
+		content: attr(data-label);
+		color: #667085;
+		font-weight: 600;
 	}
 }
 
