@@ -576,9 +576,14 @@
 	background: rgba(25, 30, 32, 0.5);
 }
 
-.calc-single__table tbody tr.calc-single__table-profit,
 .calc-single__table tbody tr.active {
-	background: linear-gradient(270deg, rgba(114, 177, 59, 0.6) 0%, rgba(59, 177, 100, 0) 100%);
+	background: rgba(25, 30, 32, 0.5)
+		linear-gradient(270deg, rgba(114, 177, 59, 0.6) 0%, rgba(59, 177, 100, 0) 100%);
+}
+
+.calc-single__table tbody tr.active td {
+	position: relative;
+	z-index: 2;
 }
 
 .calc-single__table--specs th:nth-child(1),
@@ -948,6 +953,7 @@ td.calc-single__table-negative {
 		height: 38px;
 	}
 
+	/* Adaptive table */
 	.calc-single__table[data-adaptive="767"] {
 		border-spacing: 0;
 		margin: 0;
