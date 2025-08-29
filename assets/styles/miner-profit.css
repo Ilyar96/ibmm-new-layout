@@ -10,7 +10,7 @@
 	right: 0;
 	bottom: 0;
 	width: 100%;
-	height: 1px;
+	height: 0.0625rem;
 	background: linear-gradient(
 		to right,
 		rgba(255, 255, 255, 0) 0%,
@@ -28,12 +28,12 @@
 
 @media (max-width: 1199px) {
 	.header__wrapper {
-		padding: 40px 0;
+		padding: 2.5rem 0;
 	}
 }
 @media (max-width: 767px) {
 	.header__wrapper {
-		padding: 25px 0;
+		padding: 1.5625rem 0;
 	}
 }
 
@@ -90,15 +90,15 @@
 }
 .calc-single__top {
 	display: grid;
-	grid-template-columns: 405px 1fr;
-	gap: 20px 22px;
+	grid-template-columns: 25.3125rem 1fr;
+	gap: 1.25rem 1.375rem;
 }
 .calc-single__header {
 	grid-column: 1 / -1;
 	display: flex;
 	justify-content: space-between;
-	gap: 20px;
-	padding: 93px 0 0;
+	gap: 1.25rem;
+	padding: 5.8125rem 0 0;
 }
 .calc-single__header-info {
 }
@@ -106,7 +106,7 @@
 	margin: 0;
 	font-family: var(--font-family-quaternary);
 	font-weight: 700;
-	font-size: 48px;
+	font-size: 3rem;
 	line-height: 140%;
 	color: var(--color-text-primary);
 	letter-spacing: initial;
@@ -114,31 +114,31 @@
 .calc-single__badges {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 10px;
-	margin: 20px 0 0;
+	gap: 0.625rem;
+	margin: 1.25rem 0 0;
 }
 .calc-single__badge {
-	--badge--height: 32px;
+	--badge--height: 2rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border-radius: 8px;
-	padding: 7px 24px;
+	border-radius: 0.5rem;
+	padding: 0.4375rem 1.5rem;
 	min-height: var(--badge--height);
 	background: var(--color-accent);
 	font-family: var(--font-family-tertiary);
 	font-weight: 700;
-	font-size: 14px;
+	font-size: 0.875rem;
 	line-height: 130%;
 	letter-spacing: 0;
 	color: var(--color-text-primary);
 }
 .calc-single__badge--profit {
-	padding: 0 17px 0 9px;
+	padding: 0 1.0625rem 0 0.5625rem;
 	background: linear-gradient(270deg, #72b13b 0%, rgba(59, 177, 100, 0) 100%);
 	font-family: var(--font-family-quaternary);
 	font-weight: 400;
-	font-size: 18px;
+	font-size: 1.125rem;
 	line-height: 150%;
 	letter-spacing: -0.02em;
 }
@@ -150,18 +150,18 @@
 	background: #f65726;
 }
 .calc-single__manufacturer {
-	padding: 18px 0 0;
+	padding: 1.125rem 0 0;
 }
 .calc-single__manufacturer-icon {
 	width: auto;
-	height: 33px;
+	height: 2.0625rem;
 }
 .calc-single__product {
 }
 .calc-product {
 }
 .calc-product__img-wrapper {
-	--calc-img-size: 405px;
+	--calc-img-size: 25.3125rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -242,24 +242,24 @@
 	height: var(--coin-size);
 }
 .calc-product__info {
-	padding: 0 0 0 5px;
-	margin: 50px 0 0;
+	padding: 0 0 0 0.3125rem;
+	margin: 3.125rem 0 0;
 }
 .calc-product__title,
 .calc-single__subtitle {
 	margin: 0;
 	font-family: var(--font-family-secondary);
 	font-weight: 600;
-	font-size: 32px;
-	line-height: 100%;
+	font-size: 2rem;
+	line-height: 140%;
 	letter-spacing: -0.02em;
 	color: var(--color-text-primary);
 }
 .calc-product__description {
-	margin: 34px 0 0;
+	margin: 2.125rem 0 0;
 	font-family: var(--font-family);
 	font-weight: 400;
-	font-size: 14px;
+	font-size: 0.875rem;
 	line-height: 130%;
 	letter-spacing: -0.03em;
 	color: var(--color-text-primary);
@@ -267,7 +267,7 @@
 .calc-single__top-info {
 	display: flex;
 	flex-direction: column;
-	gap: 35px;
+	gap: 2.1875rem;
 }
 .calc-single__product-cards {
 }
@@ -275,11 +275,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 20px;
-	padding: 0 27px 0 53px;
+	gap: 1.25rem;
+	padding: 0 1.6875rem 0 3.3125rem;
 	font-family: var(--font-family-quaternary);
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 1rem;
 	line-height: 156%;
 	color: var(--color-text-primary);
 	letter-spacing: normal;
@@ -290,13 +290,13 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 8px;
+	gap: 0.5rem;
 	flex: 1 0 auto;
-	padding: 10px 79px;
-	border-radius: 20px;
+	padding: 0.625rem 4.9375rem;
+	border-radius: 1.25rem;
 	font-family: var(--font-family-tertiary);
 	font-weight: 700;
-	font-size: 14px;
+	font-size: 0.875rem;
 	line-height: 130%;
 	letter-spacing: -0.03em;
 	color: var(--color-text-primary);
@@ -308,21 +308,21 @@
 }
 
 .calc-single__help-image-wrapper::before {
-	--indicator-size: 8px;
+	--indicator-size: 0.5rem;
 	content: "";
 	position: absolute;
-	top: 2px;
-	left: -1px;
+	top: 0.125rem;
+	left: -0.0625rem;
 	z-index: 1;
 	width: var(--indicator-size);
 	height: var(--indicator-size);
 	background: #84f000;
-	border: 1px solid #070809;
+	border: 0.0625rem solid #070809;
 	border-radius: 50%;
 }
 
 .calc-single__help-image {
-	--img-size: 36px;
+	--img-size: 2.25rem;
 	flex: 0 0 var(--img-size);
 	width: var(--img-size);
 	height: var(--img-size);
@@ -332,23 +332,23 @@
 }
 .calc-single__profit-distribution {
 	display: grid;
-	grid-template-columns: 261px 1fr;
-	gap: 20px;
+	grid-template-columns: 16.3125rem 1fr;
+	gap: 1.25rem;
 }
 .profit-distribution {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	height: 360px;
+	height: 22.5rem;
 	background: linear-gradient(180deg, #72b13b 0%, rgba(59, 177, 100, 0) 100%);
-	border-radius: 30px;
+	border-radius: 1.875rem;
 }
 .profit-distribution__section {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 15px;
+	padding: 0.9375rem;
 	color: var(--color-text-primary);
 }
 .profit-distribution__section--profit {
@@ -357,23 +357,23 @@
 .profit-distribution__section--electricity {
 	flex: 0 0 48%;
 	background: rgba(246, 86, 38, 0.7);
-	border-radius: 30px;
+	border-radius: 1.875rem;
 }
 .profit-distribution__icon {
-	--icon-size: 24px;
+	--icon-size: 1.5rem;
 	flex: 0 0 var(--icon-size);
 	width: var(--icon-size);
 	height: var(--icon-size);
 }
 
 .profit-distribution__icon--electricity {
-	--icon-size: 16px;
-	margin-top: -8px;
+	--icon-size: 1rem;
+	margin-top: -0.5rem;
 }
 .profit-distribution__percentage {
 	font-family: var(--font-family-secondary);
 	font-weight: 900;
-	font-size: 16px;
+	font-size: 1rem;
 	line-height: 150%;
 	letter-spacing: -0.02em;
 	text-align: center;
@@ -381,7 +381,7 @@
 .profit-distribution__label {
 	font-family: var(--font-family-quaternary);
 	font-weight: 400;
-	font-size: 12px;
+	font-size: 0.75rem;
 	line-height: 150%;
 	letter-spacing: -0.02em;
 	text-align: center;
@@ -500,26 +500,26 @@
 }
 
 .calc-single__tables {
-	margin: 45px 0 0;
+	margin: 2.8125rem 0 0;
 }
 
 .calc-single__tables--secondary {
-	margin: 52px 0 0;
+	margin: 3.25rem 0 0;
 }
 
 .calc-single__tables-grid {
 	display: grid;
-	grid-template-columns: 688px 1fr;
-	gap: 20px;
+	grid-template-columns: 43rem 1fr;
+	gap: 1.25rem;
 }
 
 .calc-single__subtitle {
-	margin: 0 0 46px;
+	margin: 0 0 2.875rem;
 }
 
 .calc-single__table {
-	--table-border-radius: 30px;
-	--table-row-offset: 4px;
+	--table-border-radius: 1.875rem;
+	--table-row-offset: 0.25rem;
 	border-collapse: separate;
 	border-spacing: 0 var(--table-row-offset);
 	width: 100%;
@@ -531,16 +531,16 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	gap: 20px;
+	gap: 1.25rem;
 	height: 100%;
 }
 
 .calc-single__table th,
 .calc-single__table td {
-	padding: 12px 30px;
+	padding: 0.75rem 1.875rem;
 	font-family: var(--font-family-quaternary);
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 1rem;
 	line-height: 156%;
 	color: #d2d2d2;
 }
@@ -551,7 +551,7 @@
 }
 
 .calc-single__table tfoot td {
-	height: 49px;
+	height: 3.0625rem;
 }
 
 .calc-single__table thead tr,
@@ -604,7 +604,7 @@ td.calc-single__table-negative {
 	--indicator-color: #72b13b;
 	display: flex;
 	align-items: center;
-	gap: 6px;
+	gap: 0.375rem;
 }
 
 .calc-single__table-generate--1 {
@@ -616,7 +616,7 @@ td.calc-single__table-negative {
 }
 
 .calc-single__table-generate::before {
-	--indicator-size: 13px;
+	--indicator-size: 0.8125rem;
 	content: "";
 	flex: 0 0 var(--indicator-size);
 	width: var(--indicator-size);
@@ -626,14 +626,14 @@ td.calc-single__table-negative {
 }
 
 .calc-single__table-coin {
-	--action-btn-icon-size: 24px;
+	--action-btn-icon-size: 1.5rem;
 	display: flex;
 	align-items: center;
-	gap: 6px;
+	gap: 0.375rem;
 }
 
 .calc-single__table-coin-icon {
-	--icon-size: 25px;
+	--icon-size: 1.5625rem;
 	flex: 0 0 var(--icon-size);
 	width: var(--icon-size);
 	height: var(--icon-size);
@@ -666,7 +666,7 @@ td.calc-single__table-negative {
 	}
 
 	.calc-single__header {
-		padding: 40px 0 0;
+		padding: 2.5rem 0 0;
 	}
 
 	.product-cards,
@@ -711,20 +711,20 @@ td.calc-single__table-negative {
 	}
 
 	.calc-single__badges {
-		margin: 16px 0 0;
+		margin: 1rem 0 0;
 	}
 
 	.calc-single__badge {
-		--badge--height: 28px;
-		font-size: 13px;
+		--badge--height: 1.75rem;
+		font-size: 0.8125rem;
 	}
 
 	.calc-single__manufacturer {
-		padding: 8px 0 0;
+		padding: 0.5rem 0 0;
 	}
 
 	.calc-single__manufacturer-icon {
-		height: 28px;
+		height: 1.75rem;
 	}
 
 	.calc-single__top {
@@ -733,47 +733,47 @@ td.calc-single__table-negative {
 
 	.calc-product__title,
 	.calc-single__subtitle {
-		font-size: 26px;
+		font-size: 1.625rem;
 	}
 
 	.calc-single__subtitle {
-		margin: 0 0 30px;
+		margin: 0 0 1.875rem;
 	}
 
 	.calc-product__spec-label,
 	.calc-product__spec-value {
-		font-size: 15px;
+		font-size: 0.9375rem;
 	}
 
 	.calc-product__info {
 		padding: 0;
-		margin: 30px 0 0;
+		margin: 1.875rem 0 0;
 	}
 
 	.calc-product__description {
-		margin: 24px 0 0;
+		margin: 1.5rem 0 0;
 	}
 
 	.calc-single__help {
-		padding: 0 20px;
-		font-size: 15px;
+		padding: 0 1.25rem;
+		font-size: 0.9375rem;
 	}
 
 	.calc-single__help-button {
-		padding: 8px 30px;
+		padding: 0.5rem 1.875rem;
 	}
 
 	.calc-single__tables-grid {
 		grid-template-columns: 1fr;
-		gap: 16px;
+		gap: 1rem;
 	}
 
 	.calc-single__tables--secondary .calc-single__tables-grid {
-		gap: 40px;
+		gap: 2.5rem;
 	}
 
 	.calc-single__tables {
-		margin: 40px 0 0;
+		margin: 2.5rem 0 0;
 	}
 
 	.calc-single__table {
@@ -782,16 +782,16 @@ td.calc-single__table-negative {
 
 	.calc-single__table th,
 	.calc-single__table td {
-		padding: 10px 20px;
-		font-size: 15px;
+		padding: 0.625rem 1.25rem;
+		font-size: 0.9375rem;
 	}
 
 	.calc-single__table tfoot td {
-		height: 43px;
+		height: 2.6875rem;
 	}
 
 	.profit-distribution__percentage {
-		font-size: 15px;
+		font-size: 0.9375rem;
 	}
 }
 
@@ -802,7 +802,7 @@ td.calc-single__table-negative {
 	}
 
 	.calc-product__img-wrapper {
-		--calc-img-size: 300px;
+		--calc-img-size: 18.75rem;
 	}
 }
 
@@ -810,7 +810,7 @@ td.calc-single__table-negative {
 	.calc-product {
 		display: flex;
 		align-items: center;
-		gap: 20px;
+		gap: 1.25rem;
 	}
 }
 
@@ -852,11 +852,11 @@ td.calc-single__table-negative {
 
 	.calc-single__header {
 		flex-direction: column-reverse;
-		padding: 20px 0 0;
+		padding: 1.25rem 0 0;
 	}
 
 	.calc-single__manufacturer-icon {
-		height: 20px;
+		height: 1.25rem;
 	}
 
 	.calc-product__img-wrapper {
@@ -865,62 +865,62 @@ td.calc-single__table-negative {
 
 	.calc-product__spec-label,
 	.calc-product__spec-value {
-		font-size: 14px;
+		font-size: 0.875rem;
 	}
 
 	.calc-product__title,
 	.calc-single__subtitle {
-		font-size: 22px;
+		font-size: 1.375rem;
 	}
 
 	.calc-single__tables--secondary .calc-single__tables-grid {
-		gap: 30px;
+		gap: 2rem;
 	}
 
 	.calc-single__tables {
-		margin: 30px 0 0;
+		margin: 2rem 0 0;
 	}
 
 	.calc-single__subtitle {
-		margin: 0 0 20px;
+		margin: 0 0 1.5rem;
 	}
 
 	.calc-product__info {
-		margin: 20px 0 0;
+		margin: 1.25rem 0 0;
 	}
 
 	.calc-product__description {
-		margin: 14px 0 0;
+		margin: 0.875rem 0 0;
 	}
 
 	.calc-single__help {
 		flex-direction: column;
-		gap: 12px;
+		gap: 0.75rem;
 		padding: 0;
-		font-size: 14px;
+		font-size: 0.875rem;
 		text-align: center;
 	}
 
 	.calc-single__help-button {
-		padding: 8px 20px;
-		font-size: 13px;
+		padding: 0.5rem 1.25rem;
+		font-size: 0.8125rem;
 	}
 
 	.calc-single__help-image {
-		--img-size: 28px;
+		--img-size: 1.75rem;
 	}
 
 	.calc-single__help-image-wrapper::before {
-		--indicator-size: 7px;
+		--indicator-size: 0.4375rem;
 	}
 
 	.calc-single__profit-distribution {
 		grid-template-columns: 1fr;
-		gap: 16px;
+		gap: 1rem;
 	}
 
 	.profit-distribution {
-		height: 300px;
+		height: 18.75rem;
 	}
 
 	.profit-distribution__section--electricity {
@@ -928,15 +928,15 @@ td.calc-single__table-negative {
 	}
 
 	.calc-single__badge {
-		padding: 7px 12px;
-		font-size: 13px;
+		padding: 0.4375rem 0.75rem;
+		font-size: 0.8125rem;
 		line-height: 1.2;
 	}
 
 	.calc-single__table th,
 	.calc-single__table td {
-		padding: 8px 5px;
-		font-size: 14px;
+		padding: 0.5rem 0.3125rem;
+		font-size: 0.875rem;
 	}
 
 	.calc-single__table th:first-child,
@@ -950,7 +950,11 @@ td.calc-single__table-negative {
 	}
 
 	.calc-single__table tfoot td {
-		height: 38px;
+		height: 2.375rem;
+	}
+
+	.calc-single__table-coin-icon {
+		--icon-size: 1.25rem;
 	}
 
 	/* Adaptive table */
@@ -972,7 +976,7 @@ td.calc-single__table-negative {
 	.calc-single__table[data-adaptive="767"] thead tr,
 	.calc-single__table[data-adaptive="767"] tfoot tr {
 		display: block;
-		height: 38px;
+		height: 2.375rem;
 	}
 	.calc-single__table[data-adaptive="767"] thead tr {
 		margin: 0 0 var(--table-row-offset);
@@ -1007,7 +1011,7 @@ td.calc-single__table-negative {
 		display: flex;
 		align-items: center;
 		width: 100%;
-		border-bottom: 1px solid var(--color-background);
+		border-bottom: 0.0625rem solid var(--color-background);
 		font-weight: 600;
 	}
 
@@ -1021,7 +1025,7 @@ td.calc-single__table-negative {
 	}
 
 	.calc-single__table[data-adaptive="767"] tbody td {
-		padding: 5px var(--container-padding);
+		padding: 0.3125rem var(--container-padding);
 	}
 
 	.calc-single__table[data-adaptive="767"] tbody td::before {

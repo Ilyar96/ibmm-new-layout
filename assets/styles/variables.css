@@ -2,11 +2,13 @@
 	/* Colors */
 	--color-background: #070809;
 	--color-background-light: #ecf1f6;
+
 	--color-text-primary: #ffffff;
 	--color-text-secondary: #99999b;
 	--color-text-tertiary: #626262;
 	--color-text-dark: #000000;
 	--color-text-dark-secondary: #0f1221;
+
 	--color-accent: #2467e0;
 	--color-accent-hover: #1e56b6;
 	--color-card-background: #191e20;
