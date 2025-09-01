@@ -68,6 +68,8 @@
 		// https://www.amcharts.com/docs/v5/getting-started/#Root_element
 		var root = am5.Root.new(chartId);
 
+		root.locale = am5locales_ru_RU;
+
 		// Set themes
 		// https://www.amcharts.com/docs/v5/concepts/themes/
 		root.setThemes([am5themes_Animated.new(root)]);
@@ -112,6 +114,20 @@
 					minorGridEnabled: true,
 					minGridDistance: 90,
 				}),
+				// Настройка форматирования меток оси X
+				dateFormats: {
+					day: "dd MMM",
+					week: "dd MMM",
+					month: "MMM yy",
+					year: "yyyy",
+				},
+				// Настройка интервалов для показа меток
+				intervals: [
+					{ timeUnit: "day", count: 1 },
+					{ timeUnit: "week", count: 1 },
+					{ timeUnit: "month", count: 1 },
+					{ timeUnit: "year", count: 1 },
+				],
 			})
 		);
 
@@ -166,7 +182,7 @@
 				setStateOnChildren: true, // Важно для работы состояний
 				tooltip: am5.Tooltip.new(root, {
 					labelText:
-						"Дата: {valueX.formatDate('dd MMM yy')}\nПрофит: {valueY}" + CONFIG.currencySymbol,
+						"Дата: {valueX.formatDate('dd MMM yyyy')}\nПрофит: {valueY}" + CONFIG.currencySymbol,
 					labelColor: am5.color(CONFIG.colors.white),
 					getFillFromSprite: false,
 					background: am5.RoundedRectangle.new(root, {
