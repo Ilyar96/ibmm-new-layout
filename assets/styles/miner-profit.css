@@ -690,6 +690,7 @@
 
 .calc-single__table tbody tr {
 	background: rgba(25, 30, 32, 0.5);
+	background-attachment: fixed !important;
 }
 
 .calc-single__table tbody tr.active {
