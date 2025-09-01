@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 3 versions
+*/
+
 .promo-banner {
 	position: relative;
 	z-index: 1;
@@ -47,12 +54,17 @@
 	max-width: 33.75rem;
 }
 .promo-banner__features {
+	display: -ms-grid;
 	display: grid;
 	gap: 1rem;
 	margin: 2.75rem 0 0;
 }
 .promo-banner__feature {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 1rem;
 	list-style: none;
@@ -63,14 +75,22 @@
 }
 .promo-banner__feature-icon {
 	--icon-size: 1.5rem;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--icon-size);
 	flex: 0 0 var(--icon-size);
 	width: var(--icon-size);
 }
 
 .promo-banner__btn {
 	--btn-height: 4.25rem;
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	height: var(--btn-height);
 	padding: 0.5rem 1.5rem;
@@ -83,6 +103,8 @@
 	letter-spacing: normal;
 	background: var(--white-100);
 	color: var(--color-text-dark);
+	-webkit-transition: background var(--transition-base), color var(--transition-base);
+	-o-transition: background var(--transition-base), color var(--transition-base);
 	transition: background var(--transition-base), color var(--transition-base);
 }
 .promo-banner__image-wrapper::before {
@@ -94,6 +116,12 @@
 	z-index: 1;
 	width: var(--gradient-size);
 	height: var(--gradient-size);
+	background: -o-radial-gradient(
+		50% 50%,
+		50% 50%,
+		rgba(38, 98, 246, 0.5),
+		rgba(38, 98, 246, 0) 100%
+	);
 	background: radial-gradient(
 		50% 50% at 50% 50%,
 		rgba(38, 98, 246, 0.5),
@@ -109,6 +137,7 @@
 	right: -7.9375rem;
 	width: 89.25rem;
 	height: 96.5625rem;
+	-o-object-fit: contain;
 	object-fit: contain;
 	pointer-events: none;
 }

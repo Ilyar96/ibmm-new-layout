@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 3 versions
+*/
+
 .faq {
 	position: relative;
 	z-index: 1;
@@ -13,6 +20,7 @@
 	color: var(--color-text-primary);
 }
 .faq__body {
+	display: -ms-grid;
 	display: grid;
 	gap: 1.25rem;
 }
@@ -24,6 +32,8 @@
 }
 .faq__item-header {
 	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 	gap: 1.25rem;
 	padding-right: 2.5rem;
@@ -39,11 +49,19 @@
 	height: var(--icons-size);
 	z-index: 1;
 	background: url("../img/faq-close.svg") center/contain no-repeat;
+	-webkit-transform: rotate(-135deg);
+	-ms-transform: rotate(-135deg);
 	transform: rotate(-135deg);
+	-webkit-transition: -webkit-transform ease 0.5s;
+	transition: -webkit-transform ease 0.5s;
+	-o-transition: transform ease 0.5s;
 	transition: transform ease 0.5s;
+	transition: transform ease 0.5s, -webkit-transform ease 0.5s;
 }
 
 .faq__item.active .faq__item-header::after {
+	-webkit-transform: rotate(0);
+	-ms-transform: rotate(0);
 	transform: rotate(0);
 }
 
@@ -51,9 +69,12 @@
 	--icon-size: 2.5625rem;
 	position: relative;
 	top: -0.4375rem;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--icon-size);
 	flex: 0 0 var(--icon-size);
 	width: var(--icon-size);
 	height: var(--icon-size);
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 .faq__item-title {

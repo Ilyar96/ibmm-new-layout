@@ -11,6 +11,20 @@
 	bottom: 0;
 	width: 100%;
 	height: 0.0625rem;
+	background: -webkit-gradient(
+		linear,
+		left top,
+		right top,
+		from(rgba(255, 255, 255, 0)),
+		color-stop(50%, rgba(255, 255, 255, 1)),
+		to(rgba(255, 255, 255, 0))
+	);
+	background: -o-linear-gradient(
+		left,
+		rgba(255, 255, 255, 0) 0%,
+		rgba(255, 255, 255, 1) 50%,
+		rgba(255, 255, 255, 0) 100%
+	);
 	background: linear-gradient(
 		to right,
 		rgba(255, 255, 255, 0) 0%,
@@ -18,11 +32,15 @@
 		rgba(255, 255, 255, 0) 100%
 	);
 	opacity: 0.5;
+	-webkit-transition: opacity 0.3s ease 0.3s;
+	-o-transition: opacity 0.3s ease 0.3s;
 	transition: opacity 0.3s ease 0.3s;
 }
 
 .scrolled .header__wrapper::after {
 	opacity: 0;
+	-webkit-transition: opacity 0s;
+	-o-transition: opacity 0s;
 	transition: opacity 0s;
 }
 
@@ -89,13 +107,19 @@
 .calc-single__container {
 }
 .calc-single__top {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 25.3125rem 1.375rem 1fr;
 	grid-template-columns: 25.3125rem 1fr;
 	gap: 1.25rem 1.375rem;
 }
 .calc-single__header {
 	grid-column: 1 / -1;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 	gap: 1.25rem;
 	padding: 5.8125rem 0 0;
@@ -112,15 +136,24 @@
 	letter-spacing: initial;
 }
 .calc-single__badges {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	gap: 0.625rem;
 	margin: 1.25rem 0 0;
 }
 .calc-single__badge {
 	--badge--height: 2rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	border-radius: 0.5rem;
 	padding: 0.4375rem 1.5rem;
@@ -135,6 +168,14 @@
 }
 .calc-single__badge--profit {
 	padding: 0 1.0625rem 0 0.5625rem;
+	background: -webkit-gradient(
+		linear,
+		right top,
+		left top,
+		from(#72b13b),
+		to(rgba(59, 177, 100, 0))
+	);
+	background: -o-linear-gradient(right, #72b13b 0%, rgba(59, 177, 100, 0) 100%);
 	background: linear-gradient(270deg, #72b13b 0%, rgba(59, 177, 100, 0) 100%);
 	font-family: var(--font-family-quaternary);
 	font-weight: 400;
@@ -162,9 +203,17 @@
 }
 .calc-product__img-wrapper {
 	--calc-img-size: 25.3125rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--calc-img-size);
 	flex: 0 0 var(--calc-img-size);
 	width: var(--calc-img-size);
 	height: var(--calc-img-size);
@@ -174,6 +223,7 @@
 	height: 100%;
 	max-width: 100%;
 	max-height: 100%;
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 .calc-product__specs {
@@ -265,15 +315,26 @@
 	color: var(--color-text-primary);
 }
 .calc-single__top-info {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 	gap: 2.1875rem;
 }
 .calc-single__product-cards {
 }
 .calc-single__help {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 	gap: 1.25rem;
 	padding: 0 1.6875rem 0 3.3125rem;
@@ -287,10 +348,18 @@
 .calc-single__help-text {
 }
 .calc-single__help-button {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	gap: 0.5rem;
+	-webkit-box-flex: 1;
+	-ms-flex: 1 0 auto;
 	flex: 1 0 auto;
 	padding: 0.625rem 4.9375rem;
 	border-radius: 1.25rem;
@@ -301,6 +370,8 @@
 	letter-spacing: -0.03em;
 	color: var(--color-text-primary);
 	background-color: var(--color-card-background);
+	-webkit-transition: background var(--transition-base);
+	-o-transition: background var(--transition-base);
 	transition: background var(--transition-base);
 }
 .calc-single__help-image-wrapper {
@@ -323,6 +394,8 @@
 
 .calc-single__help-image {
 	--img-size: 2.25rem;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--img-size);
 	flex: 0 0 var(--img-size);
 	width: var(--img-size);
 	height: var(--img-size);
@@ -331,36 +404,68 @@
 .calc-single__help-button-text {
 }
 .calc-single__profit-distribution {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 16.3125rem 1.25rem 1fr;
 	grid-template-columns: 16.3125rem 1fr;
 	gap: 1.25rem;
 }
 .profit-distribution {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 	height: 22.5rem;
+	background: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		from(#72b13b),
+		to(rgba(59, 177, 100, 0))
+	);
+	background: -o-linear-gradient(top, #72b13b 0%, rgba(59, 177, 100, 0) 100%);
 	background: linear-gradient(180deg, #72b13b 0%, rgba(59, 177, 100, 0) 100%);
 	border-radius: 1.875rem;
 }
 .profit-distribution__section {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	padding: 0.9375rem;
 	color: var(--color-text-primary);
 }
 .profit-distribution__section--profit {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 50%;
 	flex: 0 0 50%;
 }
 .profit-distribution__section--electricity {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 48%;
 	flex: 0 0 48%;
 	background: rgba(246, 86, 38, 0.7);
 	border-radius: 1.875rem;
 }
 .profit-distribution__icon {
 	--icon-size: 1.5rem;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--icon-size);
 	flex: 0 0 var(--icon-size);
 	width: var(--icon-size);
 	height: var(--icon-size);
@@ -391,7 +496,9 @@
 
 /* Product Cards */
 .product-cards {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 1fr 1.25rem 1fr;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 1.25rem;
 }
@@ -508,7 +615,9 @@
 }
 
 .calc-single__tables-grid {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 43rem 1.25rem 1fr;
 	grid-template-columns: 43rem 1fr;
 	gap: 1.25rem;
 }
@@ -528,8 +637,15 @@
 }
 
 .calc-single__tables-wrapper {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 	gap: 1.25rem;
 	height: 100%;
@@ -577,6 +693,14 @@
 }
 
 .calc-single__table tbody tr.active {
+	background: rgba(25, 30, 32, 0.5) -webkit-gradient(linear, right top, left top, from(rgba(114, 177, 59, 0.6)), to(rgba(59, 177, 100, 0)));
+	background: rgba(25, 30, 32, 0.5) -o-linear-gradient(right, rgba(114, 177, 59, 0.6) 0%, rgba(
+					59,
+					177,
+					100,
+					0
+				)
+				100%);
 	background: rgba(25, 30, 32, 0.5)
 		linear-gradient(270deg, rgba(114, 177, 59, 0.6) 0%, rgba(59, 177, 100, 0) 100%);
 }
@@ -602,7 +726,11 @@ td.calc-single__table-negative {
 
 .calc-single__table-generate {
 	--indicator-color: #72b13b;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 0.375rem;
 }
@@ -618,6 +746,8 @@ td.calc-single__table-negative {
 .calc-single__table-generate::before {
 	--indicator-size: 0.8125rem;
 	content: "";
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--indicator-size);
 	flex: 0 0 var(--indicator-size);
 	width: var(--indicator-size);
 	height: var(--indicator-size);
@@ -627,16 +757,23 @@ td.calc-single__table-negative {
 
 .calc-single__table-coin {
 	--action-btn-icon-size: 1.5rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 0.375rem;
 }
 
 .calc-single__table-coin-icon {
 	--icon-size: 1.5625rem;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--icon-size);
 	flex: 0 0 var(--icon-size);
 	width: var(--icon-size);
 	height: var(--icon-size);
+	-o-object-fit: cover;
 	object-fit: cover;
 	border-radius: 50%;
 }
@@ -659,6 +796,14 @@ td.calc-single__table-negative {
 		content: "";
 		width: 100%;
 		height: 40%;
+		background: -webkit-gradient(
+			linear,
+			left top,
+			left bottom,
+			from(rgb(25, 30, 32, 1)),
+			to(rgba(38, 98, 246, 0))
+		);
+		background: -o-linear-gradient(top, rgb(25, 30, 32, 1) 0%, rgba(38, 98, 246, 0) 100%);
 		background: linear-gradient(180deg, rgb(25, 30, 32, 1) 0%, rgba(38, 98, 246, 0) 100%);
 		pointer-events: none;
 	}
@@ -669,18 +814,34 @@ td.calc-single__table-negative {
 	top: 1.4375rem;
 	right: 1.375rem;
 	z-index: 4;
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 0.875rem;
 	margin: 0 0 0 auto;
 }
+
+.profit-chart__tab-wrapper {
+	position: relative;
+}
+
 .profit-chart__tab {
 	--btn-height: 1.875rem;
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	height: var(--btn-height);
 	padding: 0.25rem 1.25rem;
+	margin: 0;
 	border: 0.0625rem solid var(--color-accent);
 	border-radius: 0.625rem;
 	font-family: var(--font-family-secondary);
@@ -689,17 +850,28 @@ td.calc-single__table-negative {
 	line-height: 1;
 	color: var(--color-text-primary);
 	cursor: pointer;
+	-webkit-transition: background var(--transition-base);
+	-o-transition: background var(--transition-base);
 	transition: background var(--transition-base);
 }
 
 .profit-chart__tab-wrapper input {
 	position: absolute;
+	width: 100%;
+	height: 100%;
 	opacity: 0;
-	visibility: hidden;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 }
 
 input:checked + .profit-chart__tab {
 	background-color: var(--color-accent);
+}
+
+input:focus-visible + .profit-chart__tab {
+	outline: 0.125rem solid var(--color-accent);
+	outline-offset: 0.125rem;
 }
 
 .profit-chart__body {
@@ -813,6 +985,7 @@ input:checked + .profit-chart__tab {
 	}
 
 	.calc-single__top {
+		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
 	}
 
@@ -849,6 +1022,7 @@ input:checked + .profit-chart__tab {
 	}
 
 	.calc-single__tables-grid {
+		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
 		gap: 1rem;
 	}
@@ -893,7 +1067,11 @@ input:checked + .profit-chart__tab {
 
 @media (min-width: 768px) and (max-width: 1199px) {
 	.calc-product {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
 		gap: 1.25rem;
 	}
@@ -937,6 +1115,9 @@ input:checked + .profit-chart__tab {
 	}
 
 	.calc-single__header {
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: reverse;
+		-ms-flex-direction: column-reverse;
 		flex-direction: column-reverse;
 		padding: 1.25rem 0 0;
 	}
@@ -980,6 +1161,9 @@ input:checked + .profit-chart__tab {
 	}
 
 	.calc-single__help {
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
 		gap: 0.75rem;
 		padding: 0;
@@ -1001,6 +1185,7 @@ input:checked + .profit-chart__tab {
 	}
 
 	.calc-single__profit-distribution {
+		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
 		gap: 1rem;
 	}
@@ -1010,6 +1195,8 @@ input:checked + .profit-chart__tab {
 	}
 
 	.profit-distribution__section--electricity {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 50%;
 		flex: 0 0 50%;
 	}
 
@@ -1080,6 +1267,7 @@ input:checked + .profit-chart__tab {
 	}
 
 	.calc-single__table[data-adaptive="767"] tbody {
+		display: -ms-grid;
 		display: grid;
 		background: rgba(25, 30, 32, 0.5);
 	}
@@ -1094,7 +1282,11 @@ input:checked + .profit-chart__tab {
 	}
 
 	.calc-single__table[data-adaptive="767"] tbody td {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
 		width: 100%;
 		border-bottom: 0.0625rem solid var(--color-background);
@@ -1102,6 +1294,8 @@ input:checked + .profit-chart__tab {
 	}
 
 	.calc-single__table[data-adaptive="767"] tbody td[data-label] {
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
 		justify-content: space-between;
 		font-weight: 400;
 	}
