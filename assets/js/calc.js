@@ -1,4 +1,6 @@
 (function () {
+	"use strict";
+
 	initCalcTable();
 
 	$("#sort-filter").on("click", function () {

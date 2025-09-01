@@ -1,4 +1,6 @@
 (function () {
+	"use strict";
+
 	// Константы
 	const CONFIG = {
 		ACTIVE_CLASS: "active",
