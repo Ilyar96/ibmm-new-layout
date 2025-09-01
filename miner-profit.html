@@ -77,7 +77,7 @@
 												<path d="M17.2797 15.9246L21.3843 20.0282L20.0282 21.3843L15.9246 17.2797C14.3978 18.5037 12.4986 19.1695 10.5417 19.1667C5.78067 19.1667 1.91667 15.3027 1.91667 10.5417C1.91667 5.78067 5.78067 1.91667 10.5417 1.91667C15.3027 1.91667 19.1667 5.78067 19.1667 10.5417C19.1695 12.4986 18.5037 14.3978 17.2797 15.9246ZM15.3573 15.2135C16.5733 13.9626 17.2524 12.2862 17.25 10.5417C17.25 6.8358 14.2475 3.83334 10.5417 3.83334C6.8358 3.83334 3.83334 6.8358 3.83334 10.5417C3.83334 14.2475 6.8358 17.25 10.5417 17.25C12.2862 17.2524 13.9626 16.5733 15.2135 15.3573L15.3573 15.2135Z" fill="currentColor" />
 											</svg>
 										</div>
-										<input id="input_search" class="menu-search-input" type="text" name="search" placeholder="Найдите свои товары здесь">
+										<input id="input_search" class="menu-search-input" name="search" placeholder="radio свои товары здесь">
 									</div>
 
 									<ul class="menu__header-nav-list">
@@ -442,7 +442,7 @@
 										<path d="M17.2797 15.9246L21.3843 20.0282L20.0282 21.3843L15.9246 17.2797C14.3978 18.5037 12.4986 19.1695 10.5417 19.1667C5.78067 19.1667 1.91667 15.3027 1.91667 10.5417C1.91667 5.78067 5.78067 1.91667 10.5417 1.91667C15.3027 1.91667 19.1667 5.78067 19.1667 10.5417C19.1695 12.4986 18.5037 14.3978 17.2797 15.9246ZM15.3573 15.2135C16.5733 13.9626 17.2524 12.2862 17.25 10.5417C17.25 6.8358 14.2475 3.83334 10.5417 3.83334C6.8358 3.83334 3.83334 6.8358 3.83334 10.5417C3.83334 14.2475 6.8358 17.25 10.5417 17.25C12.2862 17.2524 13.9626 16.5733 15.2135 15.3573L15.3573 15.2135Z" fill="currentColor" />
 									</svg>
 								</div>
-								<input id="mobile-input_search" class="menu-search-input" type="text" name="search" placeholder="Найдите свои товары здесь">
+								<input id="mobile-input_search" class="menu-search-input" name="search" placeholder="radio свои товары здесь">
 							</div>
 						</div>
 						<ul class="mobile-menu__nav-list">
@@ -832,10 +832,29 @@
 								</div>
 
 								<div class="profit-chart">
-									<div class="profit-chart__tabs"></div>
 									<div class="profit-chart__body">
-										<div id="profit-chart" class="profit-chart__item"></div>
-
+										<div class="profit-chart__wrapper">
+											<div id="profit-chart" class="profit-chart__item"></div>
+											<div class="profit-chart__tabs">
+												<div class="profit-chart__tab-wrapper">
+													<input id="period-3-month" type="radio" name="chart-period" value="90" checked>
+													<label class="profit-chart__tab" for="period-3-month"> 3 мес.
+													</label>
+												</div>
+												<div class="profit-chart__tab-wrapper">
+													<input id="period-6-month" type="radio" name="chart-period" value="180">
+													<label class="profit-chart__tab" for="period-6-month">
+														6 мес.
+													</label>
+												</div>
+												<div class="profit-chart__tab-wrapper">
+													<input id="period-year" type="radio" name="chart-period" value="365">
+													<label class="profit-chart__tab" for="period-year">
+														1 год
+													</label>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -1491,6 +1510,42 @@
 	<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
 	<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
 	<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+	<script>
+		// TODO Удалить и добавить реальные данные
+		// Generate random data
+		var value = 20;
+
+		function generateData(date) {
+			value = am5.math.round(Math.random() * 10 - 4.8 + value, 1);
+			if (value < 0) {
+				value = Math.random() * 10;
+			}
+
+			if (value > 100) {
+				value = 100 - Math.random() * 10;
+			}
+			return {
+				date: date.getTime(),
+				value: value,
+			};
+		}
+
+		function generateDatas(count) {
+			var data = [];
+			var today = new Date();
+			today.setHours(0, 0, 0, 0);
+
+			for (var i = count - 1; i >= 0; i--) {
+				var date = new Date(today);
+				am5.time.add(date, "day", -i);
+				data.push(generateData(date));
+			}
+			return data;
+		}
+
+		const chartData = generateDatas(365)
+	</script>
 
 	<script src="assets/js/chart.js"></script>
 

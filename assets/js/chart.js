@@ -1,6 +1,7 @@
 (function () {
 	"use strict";
 
+	var currentChart = null; // Переменная для хранения текущего экземпляра графика
 	const CONFIG = {
 		currencySymbol: "$",
 		colors: {
@@ -11,47 +12,58 @@
 		},
 	};
 
-	// TODO Удалить и добавить реальные данные
-	// Generate random data
-	var value = 20;
-
-	function generateData(date) {
-		value = am5.math.round(Math.random() * 10 - 4.8 + value, 1);
-		if (value < 0) {
-			value = Math.random() * 10;
-		}
-
-		if (value > 100) {
-			value = 100 - Math.random() * 10;
-		}
-		return {
-			date: date.getTime(),
-			value: value,
-		};
-	}
-
-	function generateDatas(count) {
-		var data = [];
-		var today = new Date();
-		today.setHours(0, 0, 0, 0);
-
-		for (var i = count - 1; i >= 0; i--) {
-			var date = new Date(today);
-			am5.time.add(date, "day", -i);
-			data.push(generateData(date));
-		}
-		return data;
-	}
-
-	var data = generateDatas(365);
-
 	am5.ready(initCharts); // end am5.ready()
 
 	function initCharts() {
-		initChart("profit-chart", data);
+		var data = chartData;
+
+		if (!chartData) {
+			console.error("Проверьте наличие всех нужных переменных");
+			return;
+		}
+
+		// Получаем выбранный период при инициализации
+		var selectedPeriod = getSelectedPeriod();
+		initChart("profit-chart", data, selectedPeriod);
+
+		// Добавляем обработчики событий для radio buttons
+		addPeriodChangeListeners(data);
 	}
 
-	function initChart(chartId, data) {
+	function getSelectedPeriod() {
+		var checkedInput = document.querySelector('input[name="chart-period"]:checked');
+		return checkedInput ? parseInt(checkedInput.value) : 90; // По умолчанию 90 дней
+	}
+
+	function addPeriodChangeListeners(data) {
+		var periodInputs = document.querySelectorAll('input[name="chart-period"]');
+		periodInputs.forEach(function (input) {
+			input.addEventListener("change", function () {
+				var selectedPeriod = parseInt(this.value);
+				updateChart(data, selectedPeriod);
+			});
+		});
+	}
+
+	function updateChart(data, days) {
+		// Фильтруем данные для показа только последних N дней
+		var filteredData = data.slice(-days);
+
+		// Если график уже существует, обновляем его
+		if (currentChart) {
+			currentChart.dispose();
+		}
+
+		// Создаем новый график с отфильтрованными данными
+		initChart("profit-chart", filteredData, days);
+	}
+
+	function initChart(chartId, data, days) {
+		if (!document.getElementById(chartId)) {
+			console.error("Убедитесь, что элемент с таким id существует");
+			return;
+		}
+
 		// Create root element
 		// https://www.amcharts.com/docs/v5/getting-started/#Root_element
 		var root = am5.Root.new(chartId);
@@ -72,6 +84,9 @@
 				paddingLeft: 0,
 			})
 		);
+
+		// Сохраняем ссылку на текущий график
+		currentChart = root;
 
 		// Add cursor
 		// https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
@@ -106,8 +121,8 @@
 				// Автоматически подстраиваем ось Y под данные с запасом
 				strictMinMax: false,
 				// Добавляем небольшой запас сверху и снизу
-				extraMax: 0.2,
-				// extraMin: 0.2,
+				extraMax: 0.3,
+				// extraMin: 0.3,
 			})
 		);
 
@@ -115,6 +130,7 @@
 		xAxis.get("renderer").labels.template.setAll({
 			fill: am5.color(CONFIG.colors.white),
 			fontFamily: "Montserrat",
+			fontSize: 12,
 			fontWeight: "700",
 			fillOpacity: 0.3,
 		});
@@ -122,6 +138,7 @@
 		yAxis.get("renderer").labels.template.setAll({
 			fill: am5.color(CONFIG.colors.white),
 			fontFamily: "Montserrat",
+			fontSize: 12,
 			fontWeight: "700",
 			fillOpacity: 0.3,
 		});
@@ -140,7 +157,7 @@
 		// Add series
 		// https://www.amcharts.com/docs/v5/charts/xy-chart/series/
 		var series = chart.series.push(
-			am5xy.LineSeries.new(root, {
+			am5xy.SmoothedXLineSeries.new(root, {
 				name: "Series",
 				xAxis: xAxis,
 				yAxis: yAxis,
@@ -171,9 +188,9 @@
 		series.bullets.push(function () {
 			// Создаем круг для точки
 			var circle = am5.Circle.new(root, {
-				radius: 4,
+				radius: 3,
 				stroke: am5.color(CONFIG.colors.white), // Белая обводка
-				strokeWidth: 2,
+				strokeWidth: 1,
 				interactive: true, // Требуется для срабатывания состояний при hover
 				fill: am5.color(CONFIG.colors.blue), // Синий  фон
 				opacity: 0, // По умолчанию невидима
@@ -235,14 +252,29 @@
 			strokeWidth: 4,
 		});
 
+		// Создаем градиент для fill
+		var fillGradient = am5.LinearGradient.new(root, {
+			stops: [
+				{
+					color: am5.color(CONFIG.colors.blue),
+					opacity: 0.5,
+				},
+				{
+					color: am5.color(CONFIG.colors.blue), // Еще более светлый синий
+					opacity: 0,
+				},
+			],
+			rotation: 90,
+		});
+
 		series.fills.template.setAll({
-			fill: am5.color(CONFIG.colors.blue),
-			fillOpacity: 0.2,
+			fillGradient: fillGradient,
+			fillOpacity: 1,
 			visible: true,
 		});
 
 		// Set data
-		series.data.setAll(data);
+		series.data.setAll(data.slice(-days));
 
 		// Make stuff animate on load
 		// https://www.amcharts.com/docs/v5/concepts/animations/
