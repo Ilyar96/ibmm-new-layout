@@ -7,58 +7,64 @@ document.addEventListener("DOMContentLoaded", () => {
 	initSelects();
 
 	function initSliders() {
-		new Swiper(".recommends__swiper", {
-			slidesPerView: "auto",
-			navigation: {
-				nextEl: "#recommends-next",
-				prevEl: "#recommends-prev",
-			},
-			scrollbar: {
-				el: ".recommends__slider-scrollbar",
-			},
-			spaceBetween: 16,
-			breakpoints: {
-				1200: {
-					spaceBetween: 0,
+		if (document.querySelector(".recommends__swiper")) {
+			new Swiper(".recommends__swiper", {
+				slidesPerView: "auto",
+				navigation: {
+					nextEl: "#recommends-next",
+					prevEl: "#recommends-prev",
 				},
-				992: {
-					spaceBetween: 29,
+				scrollbar: {
+					el: ".recommends__slider-scrollbar",
 				},
-			},
-		});
+				spaceBetween: 16,
+				breakpoints: {
+					1200: {
+						spaceBetween: 0,
+					},
+					992: {
+						spaceBetween: 29,
+					},
+				},
+			});
+		}
 
-		new Swiper("#shipment-slider", {
-			slidesPerView: "auto",
-			scrollbar: {
-				el: ".channel__section-head-scrollbar",
-			},
-			spaceBetween: 16,
-			breakpoints: {
-				1200: {
-					spaceBetween: 0,
+		if (document.querySelector("#shipment-slider")) {
+			new Swiper("#shipment-slider", {
+				slidesPerView: "auto",
+				scrollbar: {
+					el: ".channel__section-head-scrollbar",
 				},
-				992: {
-					spaceBetween: 29,
+				spaceBetween: 16,
+				breakpoints: {
+					1200: {
+						spaceBetween: 0,
+					},
+					992: {
+						spaceBetween: 29,
+					},
 				},
-			},
-		});
+			});
+		}
 
-		new Swiper(".top-miners__swiper", {
-			slidesPerView: "auto",
-			navigation: {
-				nextEl: "#top-miners-next",
-				prevEl: "#top-miners-prev",
-			},
-			spaceBetween: 16,
-			breakpoints: {
-				1200: {
-					spaceBetween: 0,
+		if (document.querySelector(".top-miners__swiper")) {
+			new Swiper(".top-miners__swiper", {
+				slidesPerView: "auto",
+				navigation: {
+					nextEl: "#top-miners-next",
+					prevEl: "#top-miners-prev",
 				},
-				992: {
-					spaceBetween: 29,
+				spaceBetween: 16,
+				breakpoints: {
+					1200: {
+						spaceBetween: 0,
+					},
+					992: {
+						spaceBetween: 29,
+					},
 				},
-			},
-		});
+			});
+		}
 	}
 
 	function initHeaderScroll() {

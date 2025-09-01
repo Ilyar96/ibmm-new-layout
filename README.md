@@ -50,3 +50,40 @@
 	}
 }
 ```
+
+## Изменения в функции initSliders
+
+### Описание изменений:
+
+Функция `initSliders()` в файле `assets/js/main.js` была улучшена для предотвращения ошибок при инициализации слайдеров.
+
+### Что было изменено:
+
+- Добавлены проверки существования DOM элементов перед инициализацией каждого слайдера
+- Каждый слайдер теперь инициализируется только если соответствующий элемент существует на странице
+
+````
+
+### Код после изменений:
+
+```javascript
+function initSliders() {
+	if (document.querySelector(".recommends__swiper")) {
+		new Swiper(".recommends__swiper", {
+			// конфигурация слайдера
+		});
+	}
+
+	if (document.querySelector("#shipment-slider")) {
+		new Swiper("#shipment-slider", {
+			// конфигурация слайдера
+		});
+	}
+
+	if (document.querySelector(".top-miners__swiper")) {
+		new Swiper(".top-miners__swiper", {
+			// конфигурация слайдера
+		});
+	}
+}
+````
