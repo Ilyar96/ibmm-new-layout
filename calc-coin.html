@@ -994,16 +994,14 @@
 								</div>
 							</div>
 						</div>
-						<table id="calc-table" class="calc-table__table">
+						<table id="coin-miners-table" class="calc-table__table">
 							<thead>
 								<tr>
-									<th class="calc-table__wishlist">
-									</th>
 									<th class="calc-table__model">
 										<span class="calc-table__th-wrapper">Модель</span>
 									</th>
-									<th class="calc-table__release">
-										<span class="calc-table__th-wrapper">Релиз</span>
+									<th class="calc-table__top">
+										<span class="calc-table__th-wrapper">Монета</span>
 									</th>
 									<th class="calc-table__hashrate">
 										<span class="calc-table__th-wrapper">Хэшрейт</span>
@@ -1011,55 +1009,80 @@
 									<th class="calc-table__power">
 										<span class="calc-table__th-wrapper">Мощность</span>
 									</th>
-									<th class="calc-table__top">
-										<span class="calc-table__th-wrapper">Топ</span>
+									<th class="calc-table__income">
+										<span class="calc-table__th-wrapper">Награда</span>
 									</th>
-									<th class="calc-table__algo">
-										<span class="calc-table__th-wrapper">Алгоритм</span>
-									</th>
-									<th class="calc-table__price">
-										<span class="calc-table__th-wrapper">Лучшая цена </span>
+									<th class="calc-table__consumption">
+										<span class="calc-table__th-wrapper">Расходы</span>
 									</th>
 									<th class="calc-table__profit">
-										<span class="calc-table__th-wrapper">Прибыль</span>
+										<span class="calc-table__th-wrapper">Чистый доход</span>
 									</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td class="calc-table__wishlist" data-label="Избранное">
-										<svg width="24" height="24" class="calc-table__wishlist-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M5.825 21L7.45 13.975L2 9.25L9.2 8.625L12 2L14.8 8.625L22 9.25L16.55 13.975L18.175 21L12 17.275L5.825 21Z" fill="#FFF700" />
-										</svg>
-									</td>
 									<td class="calc-table__model" data-label="Модель">
-										<a href="#" class="calc-table__model-link">
-											Bitmain Antminer S23 Hyd 3u</a>
+										<a href="#" class="calc-table__model-link">Jasminer X44-P 23 Gh/s</a>
 									</td>
-									<td class="calc-table__release" data-label="Релиз">
-										Дек 2026
+									<td class="calc-table__coin" data-label="Монета">
+										<span class="calc-table__coin-wrapper" data-coin="etc">
+											<img src="assets/img/coins/etc.png" alt="etc" class="calc-table__coin-icon">
+											<span>ETC</span>
+										</span>
 									</td>
-									<td class="calc-table__hashrate" data-label="Хэшрейт">
-										1161 Th/s
-									</td>
-									<td class="calc-table__power" data-label="Мощность">
-										11020 w
-									</td>
-									<td class="calc-table__top" data-label="Топ">
-										<img src="assets/img/coins/btc.png" alt="btc" class="calc-table__top-icon" data-coin="btc">
-									</td>
-									<td class="calc-table__algo" data-label="Алгоритм">
-										SHA-256
-									</td>
-									<td class="calc-table__price" data-label="Цена">
-										<span class="calc-table__price-wrapper">
-											<span class="calc-table__price-value" data-price="8450">$8,450 </span>
-											<span class="calc-table__price-details">($7,284 / Ph)
+									<td class="calc-table__hashrate" data-label="Хэшрейт">1.16 Ph/s</td>
+									<td class="calc-table__power" data-label="Мощность">11020 w</td>
+									<td class="calc-table__income" data-label="Награда">
+										<span class="calc-table__income-wrapper">
+											<span class="calc-table__income-value" data-income="0.008639">0.008639 ₽</span>
+											<span class="calc-table__income-period">
+												/ День
 											</span>
 										</span>
 									</td>
-									<td class="calc-table__profit" data-label="Прибыль">
-										<span class="calc-table__profit-wrapper" data-profit="35">$35 / день</span>
+									<td class="calc-table__consumption" data-label="Расходы">
+										<span class="calc-table__consumption-wrapper">
+											<span class="calc-table__consumption-value" data-consumption="306">306 ₽</span>
+											<span class="calc-table__consumption-period">
+												/ День
+											</span>
+										</span>
+									</td>
+									<td class="calc-table__profit" data-label="Чистый доход">
+										<span class="calc-table__profit-wrapper" data-profit="1680.87">1 680.87 ₽ / день</span>
+									</td>
+								</tr>
+								<tr>
+									<td class="calc-table__model" data-label="Модель">
+										<a href="#" class="calc-table__model-link">Bitmain Antminer S23 Hyd 3u</a>
+									</td>
+									<td class="calc-table__coin" data-label="Монета">
+										<span class="calc-table__coin-wrapper" data-coin="btc">
+											<img src="assets/img/coins/btc.png" alt="btc" class="calc-table__coin-icon">
+											<span>BTC</span>
+										</span>
+									</td>
+									<td class="calc-table__hashrate" data-label="Хэшрейт">1.5 Ph/s</td>
+									<td class="calc-table__power" data-label="Мощность">1102 w</td>
+									<td class="calc-table__income" data-label="Награда">
+										<span class="calc-table__income-wrapper">
+											<span class="calc-table__income-value" data-income="0.009">0.009 ₽</span>
+											<span class="calc-table__income-period">
+												/ День
+											</span>
+										</span>
+									</td>
+									<td class="calc-table__consumption" data-label="Расходы">
+										<span class="calc-table__consumption-wrapper">
+											<span class="calc-table__consumption-value" data-consumption="350">350 ₽</span>
+											<span class="calc-table__consumption-period">
+												/ День
+											</span>
+										</span>
+									</td>
+									<td class="calc-table__profit" data-label="Чистый доход">
+										<span class="calc-table__profit-wrapper" data-profit="1700">1 700 ₽ / день</span>
 									</td>
 								</tr>
 							</tbody>
@@ -1309,6 +1332,7 @@
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/menu.js"></script>
 	<script src="assets/js/calc.js"></script>
+	<script src="assets/js/calc-coin.js"></script>
 </body>
 
 </html>
