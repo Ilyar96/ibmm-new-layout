@@ -463,7 +463,7 @@
 			});
 
 			// Обработчик кликов по ссылкам монет
-			$(".calc-header__coin").on("click", function (e) {
+			$(".calc-header__coin[data-coin-filter]").on("click", function (e) {
 				e.preventDefault();
 
 				const href = $(this).attr("href");

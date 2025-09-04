@@ -1,0 +1,544 @@
+.calc-info {
+	margin: 58px 0 0;
+}
+.calc-info__wrapper {
+	display: grid;
+	gap: 1rem;
+}
+
+.calc-info__coin {
+	display: grid;
+	gap: 1rem;
+}
+
+.coin-table {
+	--table-border-radius: 1.875rem;
+	--table-row-offset: 0.25rem;
+	border-collapse: separate;
+	table-layout: fixed;
+	border-spacing: 0 var(--table-row-offset);
+	width: 100%;
+	overflow: hidden;
+	margin: calc(var(--table-row-offset) * -1) 0;
+}
+
+.coin-table th,
+.coin-table td {
+	padding: 0.75rem 0.3125rem;
+	font-family: var(--font-family-quaternary);
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 156%;
+	color: #d2d2d2;
+}
+
+.coin-table th:first-child,
+.coin-table td:first-child {
+	padding-left: 1.875rem;
+}
+
+.coin-table th:last-child,
+.coin-table td:last-child {
+	padding-right: 1.875rem;
+}
+
+.coin-table th {
+	font-weight: 700;
+	color: #667085;
+}
+
+.coin-table tfoot td {
+	height: 3.0625rem;
+}
+
+.coin-table thead tr,
+.coin-table tfoot tr {
+	background: var(--color-card-background);
+}
+
+.coin-table thead th:first-child {
+	border-radius: var(--table-border-radius) 0 0 0;
+}
+.coin-table thead th:last-child {
+	border-radius: 0 var(--table-border-radius) 0 0;
+}
+.coin-table tfoot td:first-child {
+	border-radius: 0 0 0 var(--table-border-radius);
+}
+.coin-table tfoot td:last-child {
+	border-radius: 0 0 var(--table-border-radius) 0;
+}
+
+.coin-table tbody tr {
+	background: rgba(25, 30, 32, 0.5);
+	background-attachment: fixed !important;
+}
+
+.coin-table--main tbody tr:nth-child(2n + 1) {
+	background: transparent;
+}
+
+.coin-table tbody tr.active {
+	background: rgba(25, 30, 32, 0.5) -webkit-gradient(linear, right top, left top, from(rgba(114, 177, 59, 1)), to(rgba(59, 177, 100, 0)));
+	background: rgba(25, 30, 32, 0.5) -o-linear-gradient(right, rgba(114, 177, 59, 1) 0%, rgba(
+					59,
+					177,
+					100,
+					0
+				)
+				100%);
+	background: rgba(25, 30, 32, 0.5)
+		linear-gradient(270deg, rgba(114, 177, 59, 1) 0%, rgba(59, 177, 100, 0) 100%);
+}
+
+.coin-table tbody tr.active td {
+	position: relative;
+	z-index: 2;
+}
+
+.coin-table__period {
+	width: 14%;
+}
+.coin-table__coin-income {
+	width: 34%;
+}
+.coin-table__income {
+	width: 20%;
+}
+.coin-table__consumption {
+	width: 13%;
+}
+.coin-table__gain {
+	width: 19%;
+}
+
+.coin-table__coin-income-wrapper {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.coin-table__coin-income-unit {
+	display: inline-flex;
+	align-items: center;
+	gap: 3px;
+	font-weight: 700;
+}
+
+.coin-table__coin-icon {
+	display: inline-block;
+	--icon-size: 18px;
+	flex: 0 0 var(--icon-size);
+	width: var(--icon-size);
+	height: var(--icon-size);
+}
+
+.coin-table__period-wrapper {
+	position: relative;
+	display: inline-block;
+	font-family: var(--font-family);
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 1;
+	letter-spacing: -0.03em;
+}
+.coin-table__period-input {
+	max-width: 90px;
+	padding: 7px 45px 7px 10px;
+	border: 1px solid var(--color-border);
+	border-radius: 10px;
+	background: var(--white-10);
+	font-family: inherit;
+	font-weight: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	letter-spacing: inherit;
+	color: var(--color-text-primary);
+}
+
+.coin-table__period-input:focus {
+	outline: 0;
+}
+
+.coin-table__period-input:focus-within {
+	outline: 2px solid var(--color-accent);
+	outline-offset: -2px;
+}
+
+.coin-table__period-label {
+	position: absolute;
+	top: 11px;
+	right: 11px;
+	z-index: 1;
+	margin: 0;
+	color: #515151;
+}
+
+.coin-table__custom-period {
+	font-weight: 700;
+}
+
+/* calc-form */
+.calc-form {
+	display: grid;
+	gap: 10px;
+	padding: 60px 37px;
+	background: var(--color-card-background);
+	border-radius: 30px;
+}
+.calc-form__item {
+	--form-field-height: 49px;
+	--form-field-placeholder-height: 29px;
+}
+.calc-form__radio {
+	--form-radio-padding: 3px;
+	display: flex;
+	align-items: center;
+	padding: var(--form-radio-padding);
+	background: var(--white-10);
+	border: 1px solid var(--color-border);
+	border-radius: 10px;
+}
+.calc-form__radio-item {
+	flex: 1 1;
+}
+.calc-form__radio-input {
+	position: absolute;
+	opacity: 0;
+	appearance: none;
+}
+.calc-form__radio-label {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: calc(var(--form-field-height) - var(--form-radio-padding) * 2);
+	margin: 0;
+	font-weight: 600;
+	font-size: 12px;
+	line-height: 1;
+	letter-spacing: -0.03em;
+	text-align: center;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.calc-form__radio-input:checked + .calc-form__radio-label {
+	background: var(--color-accent);
+}
+
+.calc-form__radio-input:focus-visible + .calc-form__radio-label {
+	outline: 2px solid var(--color-accent);
+	outline-offset: 2px;
+}
+.calc-form__input-wrapper {
+	position: relative;
+}
+.calc-form__input-placeholder {
+	position: absolute;
+	left: 10px;
+	top: 50%;
+	z-index: 1;
+	display: inline-flex;
+	align-items: center;
+	height: var(--form-field-placeholder-height);
+	padding: 0 10px;
+	margin: 0;
+	background: #070809;
+	border-radius: 10px;
+	text-align: center;
+	font-weight: 600;
+	font-size: 12px;
+	line-height: 130%;
+	letter-spacing: -0.03em;
+	transform: translateY(-50%);
+	user-select: none;
+}
+.calc-form__input {
+	--padding-x: 10px;
+	--placeholder-width: 0px;
+	--placeholder-offset: 0px;
+	--unit-width: 0px;
+	--unit-offset: 0px;
+
+	width: 100%;
+	height: var(--form-field-height);
+	max-width: 100%;
+	padding-left: calc(var(--placeholder-width) + var(--placeholder-offset) + var(--padding-x));
+	padding-right: calc(var(--unit-width) + var(--unit-offset) + var(--padding-x));
+	background: var(--white-10);
+	border: 1px solid var(--color-border);
+	border-radius: 10px;
+	font-family: var(--font-family);
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 130%;
+	letter-spacing: -0.03em;
+	color: var(--color-text-primary);
+	outline: 0;
+}
+
+.calc-form__input:focus-visible {
+	outline: 2px solid var(--color-accent);
+}
+
+.calc-form__input[name="hashrate"] {
+	--placeholder-width: 74px;
+	--placeholder-offset: 20px;
+	--unit-width: 27px;
+	--unit-offset: 6px;
+}
+
+.calc-form__input[name="power"] {
+	--placeholder-width: 135px;
+	--placeholder-offset: 20px;
+	--unit-width: 27px;
+	--unit-offset: 6px;
+}
+
+.calc-form__input[name="consumption"] {
+	--placeholder-width: 141px;
+	--placeholder-offset: 20px;
+	--unit-width: 47px;
+	--unit-offset: 6px;
+}
+
+.calc-form__input[name="comission"] {
+	--placeholder-width: 110px;
+	--placeholder-offset: 20px;
+	--unit-width: 11px;
+	--unit-offset: 6px;
+}
+
+.calc-form__input-unit {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	z-index: 1;
+	margin: 0;
+	transform: translateY(-50%);
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 130%;
+	letter-spacing: -0.03em;
+	text-align: right;
+	color: #515151;
+}
+.calc-form__button {
+}
+
+@media (min-width: 1200px) {
+	.calc-info__wrapper {
+		grid-template-columns: 1fr 34.1875rem;
+		gap: 1.9375rem;
+	}
+}
+@media (max-width: 1199px) {
+	.coin-table {
+		--table-border-radius: 1.25rem;
+	}
+
+	.coin-table th,
+	.coin-table td {
+		padding: 0.625rem 1.25rem;
+		font-size: 0.9375rem;
+	}
+
+	.coin-table th:first-child,
+	.coin-table td:first-child {
+		padding-left: 1.25rem;
+	}
+
+	.coin-table th:last-child,
+	.coin-table td:last-child {
+		padding-right: 1.25rem;
+	}
+
+	.coin-table tfoot td {
+		height: 2.6875rem;
+	}
+
+	.profit-distribution__percentage {
+		font-size: 0.9375rem;
+	}
+
+	.calc-form {
+		padding: 30px 20px;
+		border-radius: 1.25rem;
+	}
+
+	.calc-form__item {
+		--form-field-height: 42px;
+		--form-field-placeholder-height: 27px;
+	}
+
+	.calc-form__input[name="hashrate"],
+	.calc-form__input[name="power"],
+	.calc-form__input[name="consumption"],
+	.calc-form__input[name="comission"] {
+		--placeholder-offset: 14px;
+	}
+}
+
+@media (max-width: 991px) {
+	.coin-table {
+		table-layout: fixed;
+	}
+
+	.coin-table th,
+	.coin-table td {
+		padding: 0.625rem 1.25rem;
+		font-size: 0.9375rem;
+	}
+
+	.coin-table tfoot td {
+		height: 2.6875rem;
+	}
+
+	.profit-distribution__percentage {
+		font-size: 0.9375rem;
+	}
+
+	/* Adaptive table */
+	.coin-table[data-adaptive="991"] {
+		border-spacing: 0;
+		margin: 0;
+	}
+
+	.coin-table[data-adaptive="991"],
+	.coin-table[data-adaptive="991"] tr {
+		display: block;
+	}
+
+	.coin-table[data-adaptive="991"] thead,
+	.coin-table[data-adaptive="991"] tfoot {
+		display: block;
+	}
+
+	.coin-table[data-adaptive="991"] thead tr,
+	.coin-table[data-adaptive="991"] tfoot tr {
+		display: block;
+		height: 2.375rem;
+	}
+	.coin-table[data-adaptive="991"] thead tr {
+		margin: 0 0 var(--table-row-offset);
+		border-radius: var(--table-border-radius) var(--table-border-radius) 0 0;
+	}
+	.coin-table[data-adaptive="991"] tfoot tr {
+		margin: var(--table-row-offset) 0 0;
+		border-radius: 0 0 var(--table-border-radius) var(--table-border-radius);
+	}
+
+	.coin-table[data-adaptive="991"] thead th,
+	.coin-table[data-adaptive="991"] tfoot td {
+		font-size: 0;
+		color: transparent;
+	}
+
+	.coin-table[data-adaptive="991"] tbody {
+		display: -ms-grid;
+		display: grid;
+		background: rgba(25, 30, 32, 0.5);
+	}
+
+	.coin-table[data-adaptive="991"] tbody tr {
+		background: transparent;
+		border-bottom: var(--table-row-offset) solid var(--color-background);
+	}
+
+	.coin-table[data-adaptive="991"] tbody tr:last-child {
+		border-bottom: none;
+	}
+
+	.coin-table[data-adaptive="991"] tbody td {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		width: 100%;
+		border-bottom: 0.0625rem solid var(--color-background);
+		font-weight: 600;
+	}
+
+	.coin-table[data-adaptive="991"] tbody td[data-label] {
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+		font-weight: 400;
+	}
+
+	.coin-table[data-adaptive="991"] tbody td:last-child {
+		border-bottom: none;
+	}
+
+	.coin-table[data-adaptive="991"] tbody td {
+		padding: 0.3125rem 1rem;
+	}
+
+	.coin-table[data-adaptive="991"] tbody td::before {
+		content: attr(data-label);
+		color: #667085;
+		font-weight: 600;
+	}
+
+	.coin-table__period-wrapper {
+		font-size: 13px;
+	}
+
+	.coin-table__period-input {
+		max-width: 80px;
+		padding: 4px 45px 4px 10px;
+	}
+
+	.coin-table__period-label {
+		top: 8px;
+	}
+}
+@media (max-width: 767px) {
+	.coin-table {
+		--table-border-radius: 0.875rem;
+	}
+	.coin-table th,
+	.coin-table td {
+		padding: 0.5rem 0.3125rem;
+		font-size: 0.875rem;
+	}
+
+	.coin-table th:first-child,
+	.coin-table td:first-child {
+		padding-left: var(--container-padding);
+	}
+
+	.coin-table th:last-child,
+	.coin-table td:last-child {
+		padding-right: var(--container-padding);
+	}
+
+	.coin-table tfoot td {
+		height: 2.375rem;
+	}
+
+	.coin-table-coin-icon {
+		--icon-size: 1.25rem;
+	}
+
+	.calc-form {
+		padding: 20px var(--container-padding);
+		border-radius: 0.875rem;
+	}
+
+	.calc-form__item {
+		--form-field-height: 40px;
+		--form-field-placeholder-height: 25px;
+	}
+
+	.calc-form__input[name="hashrate"],
+	.calc-form__input[name="power"],
+	.calc-form__input[name="consumption"],
+	.calc-form__input[name="comission"] {
+		--placeholder-offset: 12px;
+	}
+}

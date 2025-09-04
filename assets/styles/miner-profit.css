@@ -694,8 +694,8 @@
 }
 
 .calc-single__table tbody tr.active {
-	background: rgba(25, 30, 32, 0.5) -webkit-gradient(linear, right top, left top, from(rgba(114, 177, 59, 0.6)), to(rgba(59, 177, 100, 0)));
-	background: rgba(25, 30, 32, 0.5) -o-linear-gradient(right, rgba(114, 177, 59, 0.6) 0%, rgba(
+	background: rgba(25, 30, 32, 0.5) -webkit-gradient(linear, right top, left top, from(rgba(114, 177, 59, 1)), to(rgba(59, 177, 100, 0)));
+	background: rgba(25, 30, 32, 0.5) -o-linear-gradient(right, rgba(114, 177, 59, 1) 0%, rgba(
 					59,
 					177,
 					100,
@@ -703,7 +703,7 @@
 				)
 				100%);
 	background: rgba(25, 30, 32, 0.5)
-		linear-gradient(270deg, rgba(114, 177, 59, 0.6) 0%, rgba(59, 177, 100, 0) 100%);
+		linear-gradient(270deg, rgba(114, 177, 59, 1) 0%, rgba(59, 177, 100, 0) 100%);
 }
 
 .calc-single__table tbody tr.active td {

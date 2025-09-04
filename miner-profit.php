@@ -1,3 +1,37 @@
+<?php
+function getProfitGradient($profit_per_day)
+{
+	$max_profit = 1600; // Максимальная ожидаемая прибыль
+	$min_profit = -1600; // Минимальная ожидаемая прибыль
+	$profit_range = $max_profit - $min_profit;
+
+	// Нормализация прибыли в диапазон 0-1
+	$normalized_profit = ($profit_per_day - $min_profit) / $profit_range;
+
+	// Нелинейное преобразование для более сильной дифференциации
+	$adjusted_profit = pow($normalized_profit, 4);
+
+	// Ограничение значения прозрачности в диапазоне 0-1
+	$opacity = min(max($adjusted_profit, 0), 1);
+
+	// Настройка прозрачности для зеленого и красного цветов
+	$green_opacity = max(0.5, $opacity);
+	$redOpacity = max(0.1, $opacity);
+
+	// Определение цвета градиента на основе значения прибыли
+	$gradient_color = $profit_per_day > 0
+		? "rgba(114, 177, 59, {$green_opacity})"
+		: "rgba(255, 0, 0, {$redOpacity})";
+
+	// Формирование CSS градиента
+	$gradient = "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, {$gradient_color} 100%)";
+
+	return $gradient;
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -7,12 +41,14 @@
 	<title>IBMM - Майнинг оборудование</title>
 	<link rel="stylesheet" href="assets/styles/variables.css">
 	<link rel="stylesheet" href="assets/styles/fonts.css">
-	<link rel="stylesheet" href="assets/styles/swiper-bundle.min.css">
 	<link rel="stylesheet" href="assets/styles/main.css">
 	<link rel="stylesheet" href="assets/styles/new-common.css">
 	<link rel="stylesheet" href="assets/styles/menu.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="assets/styles/calc.css">
+	<link rel="stylesheet" href="assets/styles/miner-profit.css">
+	<link rel="stylesheet" href="assets/styles/faq.css">
+	<link rel="stylesheet" href="assets/styles/promo-banner.css">
 </head>
 
 <body>
@@ -75,7 +111,7 @@
 												<path d="M17.2797 15.9246L21.3843 20.0282L20.0282 21.3843L15.9246 17.2797C14.3978 18.5037 12.4986 19.1695 10.5417 19.1667C5.78067 19.1667 1.91667 15.3027 1.91667 10.5417C1.91667 5.78067 5.78067 1.91667 10.5417 1.91667C15.3027 1.91667 19.1667 5.78067 19.1667 10.5417C19.1695 12.4986 18.5037 14.3978 17.2797 15.9246ZM15.3573 15.2135C16.5733 13.9626 17.2524 12.2862 17.25 10.5417C17.25 6.8358 14.2475 3.83334 10.5417 3.83334C6.8358 3.83334 3.83334 6.8358 3.83334 10.5417C3.83334 14.2475 6.8358 17.25 10.5417 17.25C12.2862 17.2524 13.9626 16.5733 15.2135 15.3573L15.3573 15.2135Z" fill="currentColor" />
 											</svg>
 										</div>
-										<input id="input_search" class="menu-search-input" type="text" name="search" placeholder="Найдите свои товары здесь">
+										<input id="input_search" class="menu-search-input" name="search" placeholder="Найдите свои товары здесь">
 									</div>
 
 									<ul class="menu__header-nav-list">
@@ -440,7 +476,7 @@
 										<path d="M17.2797 15.9246L21.3843 20.0282L20.0282 21.3843L15.9246 17.2797C14.3978 18.5037 12.4986 19.1695 10.5417 19.1667C5.78067 19.1667 1.91667 15.3027 1.91667 10.5417C1.91667 5.78067 5.78067 1.91667 10.5417 1.91667C15.3027 1.91667 19.1667 5.78067 19.1667 10.5417C19.1695 12.4986 18.5037 14.3978 17.2797 15.9246ZM15.3573 15.2135C16.5733 13.9626 17.2524 12.2862 17.25 10.5417C17.25 6.8358 14.2475 3.83334 10.5417 3.83334C6.8358 3.83334 3.83334 6.8358 3.83334 10.5417C3.83334 14.2475 6.8358 17.25 10.5417 17.25C12.2862 17.2524 13.9626 16.5733 15.2135 15.3573L15.3573 15.2135Z" fill="currentColor" />
 									</svg>
 								</div>
-								<input id="mobile-input_search" class="menu-search-input" type="text" name="search" placeholder="Найдите свои товары здесь">
+								<input id="mobile-input_search" class="menu-search-input" name="search" placeholder="Найдите свои товары здесь">
 							</div>
 						</div>
 						<ul class="mobile-menu__nav-list">
@@ -685,469 +721,585 @@
 		</div>
 
 		<main class="page page--offset">
-			<section class="calc-header">
-				<div class="calc-header__container container">
-					<div class="calc-header__body">
-						<h1 class="calc-header__title">Прибыльность майнеров</h1>
-						<div class="calc-header__description">Оценка доходности всех известных ASIC-майнеров в реальном времени, обновляется каждую минуту. Расчет прибыли по более чем 200 монетам и 25 алгоритмам.</div>
+			<section class="calc-single">
+				<div class="calc-single__container container">
+					<div class="calc-single__top">
+						<div class="calc-single__header">
+							<div class="calc-single__header-info">
+								<h1 class="calc-single__title">Bitmain Antminer S23 Hyd (580Th)</h1>
+								<div class="calc-single__badges">
+									<div class="calc-single__badge calc-single__badge--profit" style="background: <?= getProfitGradient(35.36); ?>;">$35.36 / день</div>
+									<div class="calc-single__badge calc-single__badge--new">NEW</div>
+									<div class="calc-single__badge calc-single__badge--unavailable">Пока недоступно (Первый выпуск: январь 2026)</div>
+								</div>
+							</div>
+							<div class="calc-single__manufacturer">
+								<img src="assets/img/manufacturers/calc/bitmain.svg" class="calc-single__manufacturer-icon" alt="Bitmain">
+							</div>
+
+						</div>
+						<div class="calc-single__product calc-product">
+							<div class="calc-product__img-wrapper">
+								<img src="assets/img/temp/calc-product/hyd-black.png" class="calc-product__img" alt="calc-product">
+							</div>
+							<div class="calc-product__content">
+								<div class="calc-product__specs">
+									<div class="calc-product__spec">
+										<span class="calc-product__spec-label">Мощность</span>
+										<span class="calc-product__spec-value">3000 W</span>
+									</div>
+									<div class="calc-product__spec">
+										<span class="calc-product__spec-label">Энергоэфф.</span>
+										<span class="calc-product__spec-value">19 J/Th</span>
+									</div>
+									<div class="calc-product__spec">
+										<span class="calc-product__spec-label">Монеты</span>
+										<span class="calc-product__spec-value calc-product__spec-value--coin">
+											BTC
+											<svg width="17" height="18" class="calc-product__coin-icon" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M16.7456 11.0064C15.6102 15.56 10.9976 18.3312 6.44301 17.1957C1.89024 16.0604 -0.881315 11.4482 0.254618 6.89488C1.38949 2.34079 6.00203 -0.430716 10.5553 0.704554C15.1097 1.83982 17.881 6.45262 16.7456 11.0064Z" fill="#fff"></path>
+												<path d="M12.2563 7.72964C12.4256 6.59603 11.564 5.98663 10.3857 5.5801L10.7679 4.04448L9.83475 3.81153L9.46266 5.30668C9.21733 5.24545 8.96537 5.18767 8.715 5.13043L9.08976 3.62543L8.15712 3.39248L7.77465 4.92757C7.57159 4.88124 7.37225 4.83545 7.17876 4.78726L7.17982 4.78247L5.89289 4.4606L5.64465 5.45896C5.64465 5.45896 6.33702 5.6179 6.3224 5.62775C6.70035 5.72226 6.76866 5.97279 6.75723 6.1714L6.32187 7.9208C6.34792 7.92745 6.38167 7.93704 6.41888 7.95195C6.38779 7.94423 6.35456 7.93571 6.32028 7.92745L5.71003 10.3781C5.66379 10.4931 5.54658 10.6656 5.28239 10.6001C5.29169 10.6137 4.6041 10.4306 4.6041 10.4306L4.14084 11.5005L5.35521 11.8038C5.58113 11.8605 5.80253 11.9198 6.02047 11.9758L5.63428 13.5289L6.56639 13.7619L6.94886 12.2252C7.20348 12.2944 7.45066 12.3583 7.69252 12.4185L7.31139 13.948L8.24456 14.1809L8.63075 12.6307C10.222 12.9323 11.4186 12.8107 11.9222 11.369C12.3281 10.2082 11.902 9.53868 11.0648 9.10206C11.6745 8.96123 12.1338 8.55948 12.2563 7.72964ZM10.1242 10.7245C9.83582 11.8852 7.88469 11.2577 7.25212 11.1004L7.76455 9.04269C8.39712 9.20083 10.4256 9.51392 10.1242 10.7245ZM10.4128 7.71287C10.1497 8.76874 8.52576 8.23229 7.99897 8.10077L8.46357 6.23449C8.99035 6.36601 10.6869 6.61147 10.4128 7.71287Z" fill="#000"></path>
+											</svg>
+										</span>
+									</div>
+								</div>
+
+								<div class="calc-product__info">
+									<h2 class="calc-product__title">Описание товара</h2>
+									<div class="calc-product__description">Bitmain Antminer S23 Hyd (580Th) это ASIC-майнер, разработанный для алгоритма SHA-256, специально нацеленный на BTC (Bitcoin) . Обеспечивает максимальный хешрейт 580Th/s потребляя 5510Вт мощности, что даёт энергоэффективность 9.5j/Th......</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="calc-single__top-info">
+							<div class="calc-single__product-cards product-cards">
+								<div class="product-item">
+									<div class="product-item__col">
+										<div class="product-item__badge">Китай</div>
+										<div class="product-item__name">Antminer T21 <b>180 Th/s</b> </div>
+										<div class="product-item__info-item">
+											<div class="product-item__info-item-title">Месяц поставки: </div>
+											<div class="product-item__info-item-value">Сентябрь, 25</div>
+										</div>
+										<div class="product-item__info-item">
+											<div class="product-item__info-item-title">Чистый доход: </div>
+											<div class="product-item__info-item-value">15 136 ₽ / мес</div>
+										</div>
+									</div>
+									<div class="product-item__col product-item__col--actions">
+										<div class="product-item__price-new">366 169 ₽</div>
+										<div class="product-item__price-old">380 000 ₽</div>
+
+										<button class="product-item__card-btn button button--accent" type="button">
+											<span>В корзину</span>
+											<svg width="13" height="13" class="product-item__card-cart-icon" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd" clip-rule="evenodd" d="M9.20842 11.8696C9.20842 11.5698 9.09429 11.2822 8.89113 11.0702C8.68797 10.8582 8.41243 10.7391 8.12512 10.7391C7.83781 10.7391 7.56226 10.8582 7.3591 11.0702C7.15594 11.2822 7.04181 11.5698 7.04181 11.8696C7.04181 12.1694 7.15594 12.4569 7.3591 12.6689C7.56226 12.8809 7.83781 13 8.12512 13C8.41243 13 8.68797 12.8809 8.89113 12.6689C9.09429 12.4569 9.20842 12.1694 9.20842 11.8696ZM3.25024 11.8696C3.25024 11.5698 3.1361 11.2822 2.93294 11.0702C2.72978 10.8582 2.45424 10.7391 2.16693 10.7391C1.87962 10.7391 1.60407 10.8582 1.40092 11.0702C1.19775 11.2822 1.08362 11.5698 1.08362 11.8696C1.08362 12.1694 1.19775 12.4569 1.40091 12.6689C1.60407 12.8809 1.87962 13 2.16693 13C2.45424 13 2.72978 12.8809 2.93294 12.6689C3.1361 12.4569 3.25024 12.1694 3.25024 11.8696ZM13 0.565217C13 0.253217 12.7573 -2.12141e-08 12.4583 -4.73529e-08L10.2917 -2.36764e-07C10.0336 -2.59331e-07 9.81136 0.189913 9.7606 0.454112L9.30561 2.82609L0.541968 2.82609C0.462208 2.82604 0.383422 2.84437 0.311237 2.87978C0.239053 2.91518 0.175254 2.96679 0.124396 3.0309C0.0735376 3.09502 0.0368764 3.17007 0.0170323 3.25068C-0.00281172 3.33129 -0.00534946 3.41549 0.00959938 3.49724L0.877484 8.24378C0.95163 8.6331 1.15432 8.98294 1.45023 9.23235C1.74614 9.48177 2.11653 9.61495 2.49687 9.6087L7.75246 9.6087C8.13269 9.6148 8.50294 9.48155 8.79872 9.23214C9.09451 8.98274 9.2971 8.63299 9.37123 8.24378L10.2763 3.52696C10.28 3.51138 10.2831 3.49565 10.2855 3.4798L10.7356 1.13043L12.4583 1.13043C12.602 1.13043 12.7398 1.07089 12.8414 0.964886C12.9429 0.858888 13 0.715122 13 0.565217ZM9.08895 3.95652L8.30897 8.0235C8.28416 8.15357 8.2163 8.27039 8.11728 8.35352C8.01826 8.43666 7.89438 8.48081 7.76732 8.47826L2.4814 8.47826C2.3547 8.48075 2.23117 8.4368 2.13232 8.35406C2.03347 8.27132 1.96554 8.15504 1.94036 8.02544L1.1969 3.95652L9.08895 3.95652Z" fill="currentColor"></path>
+											</svg>
+
+										</button>
+									</div>
+								</div>
+								<div class="product-item">
+									<div class="product-item__col">
+										<div class="product-item__badge product-item__badge--preorder">Предзаказ</div>
+										<div class="product-item__name">Antminer T21 <b>180 Th/s</b> </div>
+										<div class="product-item__info-item">
+											<div class="product-item__info-item-title">Месяц поставки: </div>
+											<div class="product-item__info-item-value">Сентябрь, 25</div>
+										</div>
+										<div class="product-item__info-item">
+											<div class="product-item__info-item-title">Чистый доход: </div>
+											<div class="product-item__info-item-value">15 136 ₽ / мес</div>
+										</div>
+									</div>
+									<div class="product-item__col product-item__col--actions">
+										<div class="product-item__price-new">366 169 ₽</div>
+										<div class="product-item__price-old">380 000 ₽</div>
+
+										<button class="product-item__card-btn button button--accent" type="button">
+											<span>В корзину</span>
+											<svg width="13" height="13" class="product-item__card-cart-icon" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd" clip-rule="evenodd" d="M9.20842 11.8696C9.20842 11.5698 9.09429 11.2822 8.89113 11.0702C8.68797 10.8582 8.41243 10.7391 8.12512 10.7391C7.83781 10.7391 7.56226 10.8582 7.3591 11.0702C7.15594 11.2822 7.04181 11.5698 7.04181 11.8696C7.04181 12.1694 7.15594 12.4569 7.3591 12.6689C7.56226 12.8809 7.83781 13 8.12512 13C8.41243 13 8.68797 12.8809 8.89113 12.6689C9.09429 12.4569 9.20842 12.1694 9.20842 11.8696ZM3.25024 11.8696C3.25024 11.5698 3.1361 11.2822 2.93294 11.0702C2.72978 10.8582 2.45424 10.7391 2.16693 10.7391C1.87962 10.7391 1.60407 10.8582 1.40092 11.0702C1.19775 11.2822 1.08362 11.5698 1.08362 11.8696C1.08362 12.1694 1.19775 12.4569 1.40091 12.6689C1.60407 12.8809 1.87962 13 2.16693 13C2.45424 13 2.72978 12.8809 2.93294 12.6689C3.1361 12.4569 3.25024 12.1694 3.25024 11.8696ZM13 0.565217C13 0.253217 12.7573 -2.12141e-08 12.4583 -4.73529e-08L10.2917 -2.36764e-07C10.0336 -2.59331e-07 9.81136 0.189913 9.7606 0.454112L9.30561 2.82609L0.541968 2.82609C0.462208 2.82604 0.383422 2.84437 0.311237 2.87978C0.239053 2.91518 0.175254 2.96679 0.124396 3.0309C0.0735376 3.09502 0.0368764 3.17007 0.0170323 3.25068C-0.00281172 3.33129 -0.00534946 3.41549 0.00959938 3.49724L0.877484 8.24378C0.95163 8.6331 1.15432 8.98294 1.45023 9.23235C1.74614 9.48177 2.11653 9.61495 2.49687 9.6087L7.75246 9.6087C8.13269 9.6148 8.50294 9.48155 8.79872 9.23214C9.09451 8.98274 9.2971 8.63299 9.37123 8.24378L10.2763 3.52696C10.28 3.51138 10.2831 3.49565 10.2855 3.4798L10.7356 1.13043L12.4583 1.13043C12.602 1.13043 12.7398 1.07089 12.8414 0.964886C12.9429 0.858888 13 0.715122 13 0.565217ZM9.08895 3.95652L8.30897 8.0235C8.28416 8.15357 8.2163 8.27039 8.11728 8.35352C8.01826 8.43666 7.89438 8.48081 7.76732 8.47826L2.4814 8.47826C2.3547 8.48075 2.23117 8.4368 2.13232 8.35406C2.03347 8.27132 1.96554 8.15504 1.94036 8.02544L1.1969 3.95652L9.08895 3.95652Z" fill="currentColor"></path>
+											</svg>
+
+										</button>
+									</div>
+								</div>
+							</div>
+
+							<div class="calc-single__help">
+								<div class="calc-single__help-text">Нужна помощь с вашей покупкой? Мы всегда готовы Вам помочь!</div>
+								<button class="calc-single__help-button" type="button">
+									<span class="calc-single__help-image-wrapper">
+										<img src="assets/img/operators/merkulov.jpg" class="calc-single__help-image" alt="Эксперт">
+									</span>
+									<span>
+										Поможем с выбором майнера
+									</span>
+								</button>
+							</div>
+
+							<div class="calc-single__profit-distribution">
+								<div class="profit-distribution">
+									<div class="profit-distribution__section profit-distribution__section--profit">
+										<svg width="24" height="24" class="profit-distribution__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path fill-rule="evenodd" clip-rule="evenodd" d="M2 8C2 7.20435 2.31607 6.44129 2.87868 5.87868C3.44129 5.31607 4.20435 5 5 5H19C19.7956 5 20.5587 5.31607 21.1213 5.87868C21.6839 6.44129 22 7.20435 22 8V16C22 16.7956 21.6839 17.5587 21.1213 18.1213C20.5587 18.6839 19.7956 19 19 19H5C4.20435 19 3.44129 18.6839 2.87868 18.1213C2.31607 17.5587 2 16.7956 2 16V8ZM11 12C11 11.7348 11.1054 11.4804 11.2929 11.2929C11.4804 11.1054 11.7348 11 12 11C12.2652 11 12.5196 11.1054 12.7071 11.2929C12.8946 11.4804 13 11.7348 13 12C13 12.2652 12.8946 12.5196 12.7071 12.7071C12.5196 12.8946 12.2652 13 12 13C11.7348 13 11.4804 12.8946 11.2929 12.7071C11.1054 12.5196 11 12.2652 11 12ZM12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9Z" fill="white" />
+										</svg>
+										<div class="profit-distribution__percentage">49.94%</div>
+										<div class="profit-distribution__label">Прибыль</div>
+									</div>
+
+									<div class="profit-distribution__section profit-distribution__section--electricity">
+										<svg width="16" height="16" class="profit-distribution__icon profit-distribution__icon--electricity" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<g clip-path="url(#clip0_2001_153)">
+												<path d="M15.2463 5.33125C15.0828 4.95771 14.8478 4.61978 14.5545 4.3365C14.2585 4.04956 13.9102 3.82203 13.5285 3.66625C13.1297 3.50301 12.7029 3.41943 12.272 3.42025C11.8363 3.42025 11.4133 3.503 11.0155 3.66625C10.6338 3.82203 10.2855 4.04956 9.9895 4.3365C9.69573 4.61936 9.46066 4.95739 9.29775 5.33125C9.12952 5.71525 9.04293 6.13002 9.0435 6.54925V12.3705C9.0435 13.603 8.00975 14.6058 6.73825 14.6058C5.467 14.6058 4.4325 13.6027 4.4325 12.3705V9.68825H5.161C5.31425 9.68825 5.438 9.5685 5.438 9.42V8.427C6.235 7.94975 6.766 7.095 6.766 6.12025V4.99325H7.16725C7.31975 4.99325 7.44375 4.8735 7.44375 4.725V3.679C7.44375 3.555 7.35725 3.4505 7.23975 3.42H5.618V0.76825C5.61875 0.62025 5.49475 0.5 5.34175 0.5H4.973C4.81975 0.5 4.69625 0.62025 4.69625 0.76825V3.42H3.24825V0.76825C3.24825 0.62025 3.12425 0.5 2.9715 0.5H2.6025C2.45 0.5 2.326 0.62025 2.326 0.76825V3.42H0.7045C0.646531 3.43449 0.595007 3.46781 0.558 3.51472C0.520994 3.56163 0.500595 3.6195 0.5 3.67925V4.725C0.5 4.8735 0.624 4.99325 0.77625 4.99325H1.17775V6.12025C1.17775 7.09525 1.70825 7.9495 2.50575 8.427V9.42C2.50575 9.5685 2.62925 9.68825 2.782 9.68825H3.51075V12.3705C3.51075 12.793 3.5965 13.2027 3.7645 13.5887C3.92798 13.9623 4.16298 14.3002 4.45625 14.5835C4.75222 14.8706 5.10051 15.0983 5.48225 15.2542C5.88025 15.4175 6.3035 15.5 6.73875 15.5C7.174 15.5 7.59775 15.4175 7.99525 15.2542C8.3769 15.0983 8.7251 14.8706 9.021 14.5835C9.31486 14.3007 9.55002 13.9626 9.713 13.5887C9.88118 13.2047 9.96768 12.7898 9.967 12.3705V6.54925C9.967 5.317 11.0008 4.314 12.2725 4.314C13.5438 4.314 14.5782 5.31725 14.5782 6.54925V15.5H15.5V6.54925C15.5 6.12725 15.4143 5.717 15.2463 5.33125Z" fill="white" />
+											</g>
+											<defs>
+												<clipPath id="clip0_2001_153">
+													<rect width="16" height="16" fill="white" />
+												</clipPath>
+											</defs>
+										</svg>
+										<div class="profit-distribution__percentage">50.06%</div>
+										<div class="profit-distribution__label">Электричество</div>
+									</div>
+								</div>
+
+								<div class="profit-chart">
+									<div class="profit-chart__body">
+										<div class="profit-chart__wrapper">
+											<div id="profit-chart" class="profit-chart__item"></div>
+											<div class="profit-chart__tabs">
+												<div class="profit-chart__tab-wrapper">
+													<input id="period-3-month" type="radio" name="chart-period" value="90" checked>
+													<label class="profit-chart__tab" for="period-3-month"> 3 мес.
+													</label>
+												</div>
+												<div class="profit-chart__tab-wrapper">
+													<input id="period-6-month" type="radio" name="chart-period" value="180">
+													<label class="profit-chart__tab" for="period-6-month">
+														6 мес.
+													</label>
+												</div>
+												<div class="profit-chart__tab-wrapper">
+													<input id="period-year" type="radio" name="chart-period" value="365">
+													<label class="profit-chart__tab" for="period-year">
+														1 год
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="calc-header__coins">
-						<a href="/calc.html?coin=all" class="calc-header__coin active" data-coin-filter>
-							<span class="calc-header__coins-text">Все монеты</span>
-						</a>
-						<a href="/calc.html?coin=aleo" class="calc-header__coin" data-coin-filter>
-							<img src="assets/img/coins/aleo.png" alt="ALEO" class="calc-header__coins-img">
-							<span class="calc-header__coins-text">ALEO</span>
-						</a>
-						<a href="/calc.html?coin=alph" class="calc-header__coin" data-coin-filter>
-							<img src="assets/img/coins/alph.png" alt="ALPH" class="calc-header__coins-img">
-							<span class="calc-header__coins-text">ALPH</span>
-						</a>
-						<a href="/calc.html?coin=bcn" class="calc-header__coin" data-coin-filter>
-							<img src="assets/img/coins/bcn.png" alt="BCN" class="calc-header__coins-img">
-							<span class="calc-header__coins-text">BCN</span>
-						</a>
-						<a href="/calc.html?coin=btc" class="calc-header__coin" data-coin-filter>
-							<img src="assets/img/coins/btc.png" alt="BTC" class="calc-header__coins-img">
-							<span class="calc-header__coins-text">BTC</span>
-						</a>
-						<a href="/calc.html?coin=btm" class="calc-header__coin" data-coin-filter>
-							<img src="assets/img/coins/btm.png" alt="BTM" class="calc-header__coins-img">
-							<span class="calc-header__coins-text">BTM</span>
-						</a>
-						<a href="/calc.html?coin=ckb" class="calc-header__coin" data-coin-filter>
-							<img src="assets/img/coins/ckb.png" alt="CKB" class="calc-header__coins-img">
-							<span class="calc-header__coins-text">CKB</span>
-						</a>
-						<a href="/calc.html?coin=dash" class="calc-header__coin" data-coin-filter>
-							<img src="assets/img/coins/dash.png" alt="DASH" class="calc-header__coins-img">
-							<span class="calc-header__coins-text">DASH</span>
-						</a>
-						<a href="/calc.html?coin=dcr" class="calc-header__coin" data-coin-filter>
-							<img src="assets/img/coins/dcr.png" alt="DCR" class="calc-header__coins-img">
-							<span class="calc-header__coins-text">DCR</span>
-						</a>
-						<a href="/calc.html?coin=doge" class="calc-header__coin" data-coin-filter>
-							<img src="assets/img/coins/doge.png" alt="DOGE+LTC" class="calc-header__coins-img">
-							<span class="calc-header__coins-text">DOGE+LTC</span>
-						</a>
-						<a href="/calc.html?coin=kas" class="calc-header__coin" data-coin-filter>
-							<img src="assets/img/coins/kas.png" alt="KAS" class="calc-header__coins-img">
-							<span class="calc-header__coins-text">KAS</span>
-						</a>
-						<a href="/calc.html?coin=etc" class="calc-header__coin" data-coin-filter>
-							<img src="assets/img/coins/etc.png" alt="ETC" class="calc-header__coins-img">
-							<span class="calc-header__coins-text">ETC</span>
-						</a>
-						<a href="/calc.html?coin=zec" class="calc-header__coin" data-coin-filter>
-							<img src="assets/img/coins/zec.png" alt="ZEC+ZEN" class="calc-header__coins-img">
-							<span class="calc-header__coins-text">ZEC+ZEN</span>
-						</a>
+
+					<div class="calc-single__tables">
+						<h2 class="calc-single__subtitle">Характеристики</h2>
+
+						<div class="calc-single__tables-grid">
+							<div class="calc-single__tables-left">
+								<table class="calc-single__table calc-single__table--specs">
+									<thead>
+										<tr>
+											<th>Наименование</th>
+											<th>Значение</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Производитель</td>
+											<td>Bitmain</td>
+										</tr>
+										<tr>
+											<td>Модель</td>
+											<td>Antminer S23 Hyd (580Th)</td>
+										</tr>
+										<tr>
+											<td>Релиз</td>
+											<td>Jan 2026</td>
+										</tr>
+										<tr>
+											<td>Размер</td>
+											<td>410 x 170 x 209mm</td>
+										</tr>
+										<tr>
+											<td>Уровень шума </td>
+											<td>50dB</td>
+										</tr>
+										<tr>
+											<td>Мощность</td>
+											<td>5510W</td>
+										</tr>
+										<tr>
+											<td>Температура</td>
+											<td>5 - 45 °C</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td></td>
+											<td></td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+
+							<div class="calc-single__tables-right">
+								<div class="calc-single__tables-wrapper">
+									<table class="calc-single__table calc-single__table--profit" data-adaptive="767">
+										<thead>
+											<tr>
+												<th>Наименование</th>
+												<th>Ежедневно</th>
+												<th>Ежемесячно</th>
+												<th>Ежегодно</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Доход</td>
+												<td data-label="Ежедневно">$31.69</td>
+												<td data-label="Ежемесячно">$950.63</td>
+												<td data-label="Ежегодно">$11,566.02</td>
+											</tr>
+											<tr>
+												<td> Электричество </td>
+												<td class="calc-single__table-negative" data-label="Ежедневно"> -$15.87 </td>
+												<td class="calc-single__table-negative" data-label="Ежемесячно"> -$476.06 </td>
+												<td class="calc-single__table-negative" data-label="Ежегодно"> -$5,792.11 </td>
+											</tr>
+											<tr class="calc-single__table-profit" style="background: rgba(25, 30, 32, 0.5) <?= getProfitGradient(15.82); ?>;">
+												<td>Прибыль</td>
+												<td data-label="Ежедневно">$15.82</td>
+												<td data-label="Ежемесячно">$474.57</td>
+												<td data-label="Ежегодно">$5,773.91</td>
+											</tr>
+										</tbody>
+										<tfoot>
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</tfoot>
+									</table>
+									<table class="calc-single__table calc-single__table--algo" data-adaptive="767">
+										<thead>
+											<tr>
+												<th>Алгоритм</th>
+												<th>Хешрейт</th>
+												<th>Потребление</th>
+												<th>Эффективность</th>
+												<th>Прибыльность</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td data-label="Алгоритм">SHA-256</td>
+												<td data-label="Хешрейт">580Th/s±5%</td>
+												<td data-label="Потребление">5510Вт±5%</td>
+												<td data-label="Эффективность">9.5j/Th</td>
+												<td data-label="Прибыльность">$15.82</td>
+											</tr>
+										</tbody>
+										<tfoot>
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="calc-single__tables calc-single__tables--secondary">
+						<div class="calc-single__tables-grid">
+							<div class="calc-single__tables-left">
+								<h2 class="calc-single__subtitle">Поколение</h2>
+
+								<table class="calc-single__table calc-single__table--generation">
+									<thead>
+										<tr>
+											<th>Поколение</th>
+											<th>Год выхода</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<span class="calc-single__table-generate calc-single__table-generate--1">1 Generation</span>
+											</td>
+											<td>2014</td>
+										</tr>
+										<tr>
+											<td>
+												<span class="calc-single__table-generate calc-single__table-generate--2">2 Generation</span>
+											</td>
+											<td>2015</td>
+										</tr>
+										<tr>
+											<td>
+												<span class="calc-single__table-generate calc-single__table-generate--3">3 Generation</span>
+											</td>
+											<td>2017</td>
+										</tr>
+										<tr>
+											<td>
+												<span class="calc-single__table-generate calc-single__table-generate--4">4 Generation</span>
+											</td>
+											<td>2017</td>
+										</tr>
+										<tr>
+											<td>
+												<span class="calc-single__table-generate calc-single__table-generate--5">5 Generation</span>
+											</td>
+											<td>2018</td>
+										</tr>
+										<tr>
+											<td>
+												<span class="calc-single__table-generate calc-single__table-generate--6">6 Generation</span>
+											</td>
+											<td> 2020</td>
+										</tr>
+										<tr>
+											<td>
+												<span class="calc-single__table-generate calc-single__table-generate--7">7 Generation</span>
+											</td>
+											<td>2023</td>
+										</tr>
+										<tr>
+											<td>
+												<span class="calc-single__table-generate calc-single__table-generate--8">8 Generation</span>
+											</td>
+											<td>2024</td>
+										</tr>
+										<tr class="active">
+											<td>
+												<span class="calc-single__table-generate calc-single__table-generate--9">9 Generation</span>
+											</td>
+											<td>2026</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td></td>
+											<td></td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+
+							<div class="calc-single__tables-right">
+								<h2 class="calc-single__subtitle">Добываемые монеты</h2>
+
+								<div class="calc-single__tables-wrapper">
+									<table class="calc-single__table calc-single__table--coins">
+										<thead>
+											<tr>
+												<th>Монета</th>
+												<th>Доходность</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													<span class="calc-single__table-coin">
+														<img src="assets/img/coins/calc/btc.png" class="calc-single__table-coin-icon" alt="BTC Bitcoin">
+														<span>BTC Bitcoin</span>
+													</span>
+												</td>
+												<td>0.000269 BTC /день</td>
+											</tr>
+											<tr>
+												<td>
+													<span class="calc-single__table-coin">
+														<img src="assets/img/coins/calc/bch.png" class="calc-single__table-coin-icon" alt="BCH BitcoinCash">
+														<span>BCH BitcoinCash</span>
+													</span>
+												</td>
+												<td>0.000269 BTC /день</td>
+											</tr>
+											<tr>
+												<td>
+													<span class="calc-single__table-coin">
+														<img src="assets/img/coins/calc/bsv.png" class="calc-single__table-coin-icon" alt="BSV BitcoinSV">
+														<span>BSV BitcoinSV</span>
+													</span>
+												</td>
+												<td>0.000269 BTC /день</td>
+											</tr>
+											<tr>
+												<td>
+													<span class="calc-single__table-coin">
+														<img src="assets/img/coins/calc/nmc.png" class="calc-single__table-coin-icon" alt="NMC Namecoin">
+														<span>NMC Namecoin</span>
+													</span>
+												</td>
+												<td>0.000269 BTC /день</td>
+											</tr>
+											<tr>
+												<td>
+													<span class="calc-single__table-coin">
+														<img src="assets/img/coins/calc/xec.png" class="calc-single__table-coin-icon" alt="XEC eCash">
+														<span>XEC eCash</span>
+													</span>
+												</td>
+												<td>0.000269 BTC /день</td>
+											</tr>
+											<tr>
+												<td>
+													<span class="calc-single__table-coin">
+														<img src="assets/img/coins/calc/ppc.png" class="calc-single__table-coin-icon" alt="PPC Peercoin">
+														<span>PPC Peercoin</span>
+													</span>
+												</td>
+												<td>0.000269 BTC /день</td>
+											</tr>
+											<tr>
+												<td>
+													<span class="calc-single__table-coin">
+														<img src="assets/img/coins/calc/fb.png" class="calc-single__table-coin-icon" alt="FB Fractal Bitcoin">
+														<span>FB Fractal Bitcoin</span>
+													</span>
+												</td>
+												<td>0.000269 BTC /день</td>
+											</tr>
+										</tbody>
+										<tfoot>
+											<tr>
+												<td></td>
+												<td></td>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+			<section class="faq">
+				<div class="faq__container container">
+					<h2 class="faq__title">Часто задаваемые вопросы (FAQ)</h2>
+					<div class="faq__body" data-spollers data-one-spoller>
+						<div class="faq__item active" data-spoller>
+							<div class="faq__item-header">
+								<svg width="41" height="41" class="faq__item-icon" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M12.8587 4.5384C14.994 3.98824 17.2398 4.0391 19.348 4.68535C21.4562 5.33159 23.3447 6.54807 24.8048 8.20036C26.2649 9.85265 27.2399 11.8764 27.6219 14.0481C28.0039 16.2198 27.7782 18.4548 26.9695 20.5062L34.8262 27.1567C35.422 27.6603 35.9069 28.282 36.2501 28.9826C36.5932 29.6832 36.7873 30.4474 36.8199 31.2268C36.8525 32.0063 36.723 32.784 36.4396 33.5109C36.1561 34.2377 35.7249 34.8978 35.1732 35.4493C34.6215 36.0009 33.9614 36.432 33.2345 36.7153C32.5076 36.9986 31.7298 37.1279 30.9504 37.0951C30.1709 37.0623 29.4068 36.8681 28.7063 36.5248C28.0058 36.1814 27.3841 35.6964 26.8807 35.1005L20.2336 27.2473C18.1819 28.0572 15.9463 28.284 13.7738 27.9026C11.6012 27.5212 9.57653 26.5464 7.92347 25.0861C6.2704 23.6257 5.05338 21.7367 4.40696 19.6278C3.76055 17.5189 3.70991 15.2723 4.26066 13.1364C4.33831 12.8363 4.49538 12.5627 4.71536 12.3443C4.93534 12.1258 5.2101 11.9707 5.51075 11.8952C5.81141 11.8197 6.12686 11.8266 6.42393 11.9151C6.72101 12.0037 6.98874 12.1706 7.19899 12.3984L12.4009 18.0479L16.3249 16.6044L17.7719 12.6752L12.119 7.48185C11.8898 7.27168 11.7217 7.00348 11.6324 6.70562C11.5432 6.40775 11.5361 6.0913 11.6118 5.78973C11.6876 5.48816 11.8435 5.21267 12.063 4.9924C12.2825 4.77213 12.5574 4.61526 12.8587 4.5384Z" fill="white" />
+								</svg>
+								<div class="faq__item-title">Гарантирована ли постоянная прибыльность майнинга?</div>
+							</div>
+							<div class="faq__item-body" data-spoller-body>
+								<p> Конечно! Если с оборудованием что-то случится, наша техническая служба немедленно свяжется с вами, <br> предложит варианты решения и при необходимости организует ремонт на месте.</p>
+							</div>
+						</div>
+						<div class="faq__item" data-spoller>
+							<div class="faq__item-header">
+								<svg width="41" height="41" class="faq__item-icon" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M12.8587 4.5384C14.994 3.98824 17.2398 4.0391 19.348 4.68535C21.4562 5.33159 23.3447 6.54807 24.8048 8.20036C26.2649 9.85265 27.2399 11.8764 27.6219 14.0481C28.0039 16.2198 27.7782 18.4548 26.9695 20.5062L34.8262 27.1567C35.422 27.6603 35.9069 28.282 36.2501 28.9826C36.5932 29.6832 36.7873 30.4474 36.8199 31.2268C36.8525 32.0063 36.723 32.784 36.4396 33.5109C36.1561 34.2377 35.7249 34.8978 35.1732 35.4493C34.6215 36.0009 33.9614 36.432 33.2345 36.7153C32.5076 36.9986 31.7298 37.1279 30.9504 37.0951C30.1709 37.0623 29.4068 36.8681 28.7063 36.5248C28.0058 36.1814 27.3841 35.6964 26.8807 35.1005L20.2336 27.2473C18.1819 28.0572 15.9463 28.284 13.7738 27.9026C11.6012 27.5212 9.57653 26.5464 7.92347 25.0861C6.2704 23.6257 5.05338 21.7367 4.40696 19.6278C3.76055 17.5189 3.70991 15.2723 4.26066 13.1364C4.33831 12.8363 4.49538 12.5627 4.71536 12.3443C4.93534 12.1258 5.2101 11.9707 5.51075 11.8952C5.81141 11.8197 6.12686 11.8266 6.42393 11.9151C6.72101 12.0037 6.98874 12.1706 7.19899 12.3984L12.4009 18.0479L16.3249 16.6044L17.7719 12.6752L12.119 7.48185C11.8898 7.27168 11.7217 7.00348 11.6324 6.70562C11.5432 6.40775 11.5361 6.0913 11.6118 5.78973C11.6876 5.48816 11.8435 5.21267 12.063 4.9924C12.2825 4.77213 12.5574 4.61526 12.8587 4.5384Z" fill="white" />
+								</svg>
+								<div class="faq__item-title">Какой хешрейт у этого майнера?
+								</div>
+							</div>
+							<div class="faq__item-body" data-spoller-body hidden>
+								<p> Конечно! Если с оборудованием что-то случится, наша техническая служба немедленно свяжется с вами, <br> предложит варианты решения и при необходимости организует ремонт на месте.</p>
+								<p> Конечно! Если с оборудованием что-то случится, наша техническая служба немедленно свяжется с вами, <br> предложит варианты решения и при необходимости организует ремонт на месте.</p>
+							</div>
+						</div>
+						<div class="faq__item" data-spoller>
+							<div class="faq__item-header">
+								<svg width="41" height="41" class="faq__item-icon" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M12.8587 4.5384C14.994 3.98824 17.2398 4.0391 19.348 4.68535C21.4562 5.33159 23.3447 6.54807 24.8048 8.20036C26.2649 9.85265 27.2399 11.8764 27.6219 14.0481C28.0039 16.2198 27.7782 18.4548 26.9695 20.5062L34.8262 27.1567C35.422 27.6603 35.9069 28.282 36.2501 28.9826C36.5932 29.6832 36.7873 30.4474 36.8199 31.2268C36.8525 32.0063 36.723 32.784 36.4396 33.5109C36.1561 34.2377 35.7249 34.8978 35.1732 35.4493C34.6215 36.0009 33.9614 36.432 33.2345 36.7153C32.5076 36.9986 31.7298 37.1279 30.9504 37.0951C30.1709 37.0623 29.4068 36.8681 28.7063 36.5248C28.0058 36.1814 27.3841 35.6964 26.8807 35.1005L20.2336 27.2473C18.1819 28.0572 15.9463 28.284 13.7738 27.9026C11.6012 27.5212 9.57653 26.5464 7.92347 25.0861C6.2704 23.6257 5.05338 21.7367 4.40696 19.6278C3.76055 17.5189 3.70991 15.2723 4.26066 13.1364C4.33831 12.8363 4.49538 12.5627 4.71536 12.3443C4.93534 12.1258 5.2101 11.9707 5.51075 11.8952C5.81141 11.8197 6.12686 11.8266 6.42393 11.9151C6.72101 12.0037 6.98874 12.1706 7.19899 12.3984L12.4009 18.0479L16.3249 16.6044L17.7719 12.6752L12.119 7.48185C11.8898 7.27168 11.7217 7.00348 11.6324 6.70562C11.5432 6.40775 11.5361 6.0913 11.6118 5.78973C11.6876 5.48816 11.8435 5.21267 12.063 4.9924C12.2825 4.77213 12.5574 4.61526 12.8587 4.5384Z" fill="white" />
+								</svg>
+								<div class="faq__item-title">Потребление электроэнергии указано в час?</div>
+							</div>
+							<div class="faq__item-body" data-spoller-body hidden>
+								<p> Конечно! Если с оборудованием что-то случится, наша техническая служба немедленно свяжется с вами, <br> предложит варианты решения и при необходимости организует ремонт на месте.</p>
+							</div>
+						</div>
+						<div class="faq__item" data-spoller>
+							<div class="faq__item-header">
+								<svg width="41" height="41" class="faq__item-icon" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M12.8587 4.5384C14.994 3.98824 17.2398 4.0391 19.348 4.68535C21.4562 5.33159 23.3447 6.54807 24.8048 8.20036C26.2649 9.85265 27.2399 11.8764 27.6219 14.0481C28.0039 16.2198 27.7782 18.4548 26.9695 20.5062L34.8262 27.1567C35.422 27.6603 35.9069 28.282 36.2501 28.9826C36.5932 29.6832 36.7873 30.4474 36.8199 31.2268C36.8525 32.0063 36.723 32.784 36.4396 33.5109C36.1561 34.2377 35.7249 34.8978 35.1732 35.4493C34.6215 36.0009 33.9614 36.432 33.2345 36.7153C32.5076 36.9986 31.7298 37.1279 30.9504 37.0951C30.1709 37.0623 29.4068 36.8681 28.7063 36.5248C28.0058 36.1814 27.3841 35.6964 26.8807 35.1005L20.2336 27.2473C18.1819 28.0572 15.9463 28.284 13.7738 27.9026C11.6012 27.5212 9.57653 26.5464 7.92347 25.0861C6.2704 23.6257 5.05338 21.7367 4.40696 19.6278C3.76055 17.5189 3.70991 15.2723 4.26066 13.1364C4.33831 12.8363 4.49538 12.5627 4.71536 12.3443C4.93534 12.1258 5.2101 11.9707 5.51075 11.8952C5.81141 11.8197 6.12686 11.8266 6.42393 11.9151C6.72101 12.0037 6.98874 12.1706 7.19899 12.3984L12.4009 18.0479L16.3249 16.6044L17.7719 12.6752L12.119 7.48185C11.8898 7.27168 11.7217 7.00348 11.6324 6.70562C11.5432 6.40775 11.5361 6.0913 11.6118 5.78973C11.6876 5.48816 11.8435 5.21267 12.063 4.9924C12.2825 4.77213 12.5574 4.61526 12.8587 4.5384Z" fill="white" />
+								</svg>
+								<div class="faq__item-title">Как стоимость электроэнергии влияет на прибыльность?</div>
+							</div>
+							<div class="faq__item-body" data-spoller-body hidden>
+								<p> Конечно! Если с оборудованием что-то случится, наша техническая служба немедленно свяжется с вами, <br> предложит варианты решения и при необходимости организует ремонт на месте.</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
 
-			<div class="calc-table">
-				<div class="calc-table__container container">
-					<div class="calc-table__table-wrapper">
-						<div class="calc-table__header">
-							<div class="calc-table__search">
-								<svg width="23" height="23" class="calc-table__search-icon" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M15.8374 14.7933L19 17.9552L17.9552 19L14.7933 15.8374C13.6168 16.7805 12.1535 17.2935 10.6457 17.2913C6.97726 17.2913 4 14.3141 4 10.6457C4 6.97726 6.97726 4 10.6457 4C14.3141 4 17.2913 6.97726 17.2913 10.6457C17.2935 12.1535 16.7805 13.6168 15.8374 14.7933ZM14.3562 14.2454C15.2931 13.2816 15.8164 11.9898 15.8145 10.6457C15.8145 7.79024 13.5011 5.47681 10.6457 5.47681C7.79024 5.47681 5.47681 7.79024 5.47681 10.6457C5.47681 13.5011 7.79024 15.8145 10.6457 15.8145C11.9898 15.8164 13.2816 15.2931 14.2454 14.3562L14.3562 14.2454Z" fill="white" />
-								</svg>
-								<input id="table-search" type="text" name="table-search" class="calc-table__search-input" placeholder="Поиск">
+			<section class="promo-banner">
+				<div class="promo-banner__container container">
+					<div class="promo-banner__content">
+						<div class="promo-banner__text-content">
+							<h2 class="promo-banner__title">Готовы запустить майнинг?</h2>
+
+							<div class="promo-banner__subtitle">
+								Получите персональный расчёт доходности и специальные условия:
 							</div>
-							<div class="calc-table__filters">
-								<div class="calc-table__filter-item">
-									<button id="sort-filter" class="calc-table__filter calc-table__filter--sort">
-										<svg width="28" height="27" class="calc-table__filter-icon calc-table__filter-icon" viewBox="0 0 28 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path fill-rule="evenodd" clip-rule="evenodd" d="M12.1667 15.7181L13.4629 17.0143L9.14815 21.3333L4.83337 17.0143L6.1296 15.7181L8.23149 17.82V7.58332H10.0648V17.82L12.1667 15.7181ZM18.3148 6.66666L14 10.986L15.2962 12.2822L17.3982 10.1802V20.4167H19.2315V10.1804L21.3333 12.2822L22.6295 10.986L18.3148 6.66666Z" fill="currentColor" />
-										</svg>
-										<span class="calc-table__filter-title">Сортировка</span>
-									</button>
-								</div>
-								<div class="calc-table__filter-item">
-									<button id="manufacturer-filter" class="calc-table__filter" data-filter-target="manufacturer-dropdown" tabindex="0" role="combobox" aria-expanded="false" aria-haspopup="listbox">
-										<svg width="28" height="27" class="calc-table__filter-icon" viewBox="0 0 28 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M6 9.2C6 8.88174 6.12643 8.57652 6.35147 8.35147C6.57652 8.12643 6.88174 8 7.2 8H20.8C21.1183 8 21.4235 8.12643 21.6485 8.35147C21.8736 8.57652 22 8.88174 22 9.2C22 9.51826 21.8736 9.82348 21.6485 10.0485C21.4235 10.2736 21.1183 10.4 20.8 10.4H7.2C6.88174 10.4 6.57652 10.2736 6.35147 10.0485C6.12643 9.82348 6 9.51826 6 9.2ZM9.2 14C9.2 13.6817 9.32643 13.3765 9.55147 13.1515C9.77652 12.9264 10.0817 12.8 10.4 12.8H17.6C17.9183 12.8 18.2235 12.9264 18.4485 13.1515C18.6736 13.3765 18.8 13.6817 18.8 14C18.8 14.3183 18.6736 14.6235 18.4485 14.8485C18.2235 15.0736 17.9183 15.2 17.6 15.2H10.4C10.0817 15.2 9.77652 15.0736 9.55147 14.8485C9.32643 14.6235 9.2 14.3183 9.2 14ZM12.8 17.6C12.4817 17.6 12.1765 17.7264 11.9515 17.9515C11.7264 18.1765 11.6 18.4817 11.6 18.8C11.6 19.1183 11.7264 19.4235 11.9515 19.6485C12.1765 19.8736 12.4817 20 12.8 20H15.2C15.5183 20 15.8235 19.8736 16.0485 19.6485C16.2736 19.4235 16.4 19.1183 16.4 18.8C16.4 18.4817 16.2736 18.1765 16.0485 17.9515C15.8235 17.7264 15.5183 17.6 15.2 17.6H12.8Z" fill="currentColor" />
-										</svg>
-										<span class="calc-table__filter-title">Производитель</span>
-									</button>
 
-									<div id="manufacturer-dropdown" class="calc-table__filter-dropdown" role="listbox" aria-label="Выберите производителя">
-										<div class="calc-table__filter-dropdown-wrapper">
-											<div class="calc-table__filter-dropdown-header">
-												<div class="calc-table__filter-dropdown-title">Производитель</div>
-											</div>
-											<div class="calc-table__filter-dropdown-inner">
-												<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="iceriver">ICERIVER</button>
-												<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="bitmain">Bitmain</button>
-												<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="canaan">Canaan</button>
-												<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="jasminer">Jasminer</button>
-											</div>
-										</div>
-										<div class="calc-table__filter-dropdown-footer">
-											<button class="calc-table__filter-dropdown-footer-button button button--accent">Закрыть</button>
-										</div>
-									</div>
-								</div>
-								<div class="calc-table__filter-item">
-									<button id="algorithm-filter" class="calc-table__filter" data-filter-target="algorithm-dropdown" tabindex="0" role="combobox" aria-expanded="false" aria-haspopup="listbox">
-										<svg width="28" height="27" class="calc-table__filter-icon" viewBox="0 0 28 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M6 9.2C6 8.88174 6.12643 8.57652 6.35147 8.35147C6.57652 8.12643 6.88174 8 7.2 8H20.8C21.1183 8 21.4235 8.12643 21.6485 8.35147C21.8736 8.57652 22 8.88174 22 9.2C22 9.51826 21.8736 9.82348 21.6485 10.0485C21.4235 10.2736 21.1183 10.4 20.8 10.4H7.2C6.88174 10.4 6.57652 10.2736 6.35147 10.0485C6.12643 9.82348 6 9.51826 6 9.2ZM9.2 14C9.2 13.6817 9.32643 13.3765 9.55147 13.1515C9.77652 12.9264 10.0817 12.8 10.4 12.8H17.6C17.9183 12.8 18.2235 12.9264 18.4485 13.1515C18.6736 13.3765 18.8 13.6817 18.8 14C18.8 14.3183 18.6736 14.6235 18.4485 14.8485C18.2235 15.0736 17.9183 15.2 17.6 15.2H10.4C10.0817 15.2 9.77652 15.0736 9.55147 14.8485C9.32643 14.6235 9.2 14.3183 9.2 14ZM12.8 17.6C12.4817 17.6 12.1765 17.7264 11.9515 17.9515C11.7264 18.1765 11.6 18.4817 11.6 18.8C11.6 19.1183 11.7264 19.4235 11.9515 19.6485C12.1765 19.8736 12.4817 20 12.8 20H15.2C15.5183 20 15.8235 19.8736 16.0485 19.6485C16.2736 19.4235 16.4 19.1183 16.4 18.8C16.4 18.4817 16.2736 18.1765 16.0485 17.9515C15.8235 17.7264 15.5183 17.6 15.2 17.6H12.8Z" fill="currentColor" />
-										</svg>
-										<span class="calc-table__filter-title">Алгоритм</span>
-									</button>
+							<blockquote class="promo-banner__testimonial">
+								<p class="promo-banner__testimonial-text">"IBMM превзошли ожидания. Обещали 10 дней — выполнили точно в срок. Полная прозрачность процесса, постоянная связь. Майнинг пошёл с первого дня. IBMM превзошли ожидания. Обещали 10 дней — выполнили точно в срок. Полная прозрачность процесса, постоянная связь. Майнинг пошёл с первого дня."</p>
+							</blockquote>
 
-									<div id="algorithm-dropdown" class="calc-table__filter-dropdown calc-table__filter-dropdown--right" role="listbox" aria-label="Выберите производителя">
-										<div class="calc-table__filter-dropdown-wrapper">
-											<div class="calc-table__filter-dropdown-header">
-												<div class="calc-table__filter-dropdown-title">Алгоритм</div>
-											</div>
-											<div class="calc-table__filter-dropdown-inner">
-												<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="sha-256">SHA-256</button>
-												<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="scrypt">Scrypt</button>
-												<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="ethash">ethash</button>
-												<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="kheavyhash">kheavyhash</button>
-												<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="equihash">equihash</button>
-												<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="x11">x11</button>
-												<button class="calc-table__filter-dropdown-option" type="button" role="option" tabindex="-1" data-option="handshake">handshake</button>
-											</div>
-										</div>
-										<div class="calc-table__filter-dropdown-footer">
-											<button class="calc-table__filter-dropdown-footer-button button button--accent">Закрыть</button>
-										</div>
+							<ul class="promo-banner__features">
+								<li class="promo-banner__feature">
+									<div class="promo-banner__feature-icon-wrapper">
+										<svg width="24" height="27" class="promo-banner__feature-icon" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<g clip-path="url(#clip0_2001_427)">
+												<path d="M10.2857 6.75005C10.2857 5.40739 9.74388 4.11972 8.77941 3.17032C7.81494 2.22092 6.50683 1.68755 5.14286 1.68755C3.77889 1.68755 2.47079 2.22092 1.50631 3.17032C0.54184 4.11972 4.7856e-06 5.40739 4.7856e-06 6.75005C4.7856e-06 8.09271 0.54184 9.38037 1.50631 10.3298C2.47079 11.2792 3.77889 11.8125 5.14286 11.8125C6.50683 11.8125 7.81494 11.2792 8.77941 10.3298C9.74388 9.38037 10.2857 8.09271 10.2857 6.75005ZM24 20.25C24 19.5852 23.867 18.9269 23.6085 18.3127C23.3501 17.6985 22.9713 17.1404 22.4937 16.6703C22.0161 16.2002 21.4492 15.8273 20.8252 15.5729C20.2013 15.3185 19.5325 15.1875 18.8571 15.1875C18.1818 15.1875 17.513 15.3185 16.8891 15.5729C16.2651 15.8273 15.6982 16.2002 15.2206 16.6703C14.743 17.1404 14.3642 17.6985 14.1058 18.3127C13.8473 18.9269 13.7143 19.5852 13.7143 20.25C13.7143 20.9149 13.8473 21.5732 14.1058 22.1874C14.3642 22.8016 14.743 23.3597 15.2206 23.8298C15.6982 24.2999 16.2651 24.6728 16.8891 24.9272C17.513 25.1816 18.1818 25.3125 18.8571 25.3125C19.5325 25.3125 20.2013 25.1816 20.8252 24.9272C21.4492 24.6728 22.0161 24.2999 22.4937 23.8298C22.9713 23.3597 23.3501 22.8016 23.6085 22.1874C23.867 21.5732 24 20.9149 24 20.25ZM23.4964 4.56685C24.1661 3.90767 24.1661 2.83716 23.4964 2.17798C22.8268 1.5188 21.7393 1.5188 21.0696 2.17798L0.498219 22.428C-0.171424 23.0872 -0.171424 24.1577 0.498219 24.8168C1.16786 25.476 2.25536 25.476 2.925 24.8168L23.4964 4.56685Z" fill="white" />
+											</g>
+											<defs>
+												<clipPath id="clip0_2001_427">
+													<rect width="24" height="27" fill="white" />
+												</clipPath>
+											</defs>
+										</svg>
 									</div>
-								</div>
-								<button id="reset-filters" class="calc-table__reset">
-									<svg width="24" height="24" class="calc-table__reset-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M4 7H20M10 11V17M14 11V17M5 7L6 19C6 19.5304 6.21071 20.0391 6.58579 20.4142C6.96086 20.7893 7.46957 21 8 21H16C16.5304 21 17.0391 20.7893 17.4142 20.4142C17.7893 20.0391 18 19.5304 18 19L19 7M9 7V4C9 3.73478 9.10536 3.48043 9.29289 3.29289C9.48043 3.10536 9.73478 3 10 3H14C14.2652 3 14.5196 3.10536 14.7071 3.29289C14.8946 3.48043 15 3.73478 15 4V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-									</svg>
-									<span class="visually-hidden">Очистить фильтры</span>
-								</button>
+									<span class="promo-banner__feature-text">
+										Скидку на тариф при подключении от 10 ASIC
+									</span>
+								</li>
+
+								<li class="promo-banner__feature">
+									<div class="promo-banner__feature-icon-wrapper">
+										<svg width="24" height="24" class="promo-banner__feature-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M20 13.75C20 13.5511 19.921 13.3603 19.7803 13.2197C19.6397 13.079 19.4489 13 19.25 13H16.25C16.0511 13 15.8603 13.079 15.7197 13.2197C15.579 13.3603 15.5 13.5511 15.5 13.75V20.5H14V4.25C14 3.522 13.998 3.05 13.952 2.704C13.908 2.379 13.837 2.277 13.78 2.22C13.723 2.163 13.621 2.092 13.296 2.048C12.949 2.002 12.478 2 11.75 2C11.022 2 10.55 2.002 10.204 2.048C9.879 2.092 9.777 2.163 9.72 2.22C9.663 2.277 9.592 2.379 9.548 2.704C9.502 3.051 9.5 3.522 9.5 4.25V20.5H8V8.75C8 8.55109 7.92098 8.36032 7.78033 8.21967C7.63968 8.07902 7.44891 8 7.25 8H4.25C4.05109 8 3.86032 8.07902 3.71967 8.21967C3.57902 8.36032 3.5 8.55109 3.5 8.75V20.5H1.75C1.55109 20.5 1.36032 20.579 1.21967 20.7197C1.07902 20.8603 1 21.0511 1 21.25C1 21.4489 1.07902 21.6397 1.21967 21.7803C1.36032 21.921 1.55109 22 1.75 22H21.75C21.9489 22 22.1397 21.921 22.2803 21.7803C22.421 21.6397 22.5 21.4489 22.5 21.25C22.5 21.0511 22.421 20.8603 22.2803 20.7197C22.1397 20.579 21.9489 20.5 21.75 20.5H20V13.75Z" fill="white" />
+										</svg>
+									</div>
+									<span class="promo-banner__feature-text">
+										Детальный финансовый план на 12 месяцев
+									</span>
+								</li>
+							</ul>
+
+							<button class="promo-banner__btn">
+								<span>Получить предложение</span>
+							</button>
+						</div>
+
+						<div class="promo-banner__image-content">
+							<div class="promo-banner__image-wrapper">
+								<img src="assets/img/special-offer/mining-hardware.png" alt="ASIC майнер" class="promo-banner__image" loading="lazy">
 							</div>
 						</div>
-						<table id="calc-table" class="calc-table__table">
-							<thead>
-								<tr>
-									<th class="calc-table__wishlist">
-									</th>
-									<th class="calc-table__model">
-										<span class="calc-table__th-wrapper">Модель</span>
-									</th>
-									<th class="calc-table__release">
-										<span class="calc-table__th-wrapper">Релиз</span>
-									</th>
-									<th class="calc-table__hashrate">
-										<span class="calc-table__th-wrapper">Хэшрейт</span>
-									</th>
-									<th class="calc-table__power">
-										<span class="calc-table__th-wrapper">Мощность</span>
-									</th>
-									<th class="calc-table__top">
-										<span class="calc-table__th-wrapper">Топ</span>
-									</th>
-									<th class="calc-table__algo">
-										<span class="calc-table__th-wrapper">Алгоритм</span>
-									</th>
-									<th class="calc-table__price">
-										<span class="calc-table__th-wrapper">Лучшая цена </span>
-									</th>
-									<th class="calc-table__profit">
-										<span class="calc-table__th-wrapper">Прибыль</span>
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="calc-table__wishlist" data-label="Избранное">
-										<svg width="24" height="24" class="calc-table__wishlist-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M5.825 21L7.45 13.975L2 9.25L9.2 8.625L12 2L14.8 8.625L22 9.25L16.55 13.975L18.175 21L12 17.275L5.825 21Z" fill="#FFF700" />
-										</svg>
-									</td>
-									<td class="calc-table__model" data-label="Модель">
-										<a href="#" class="calc-table__model-link">
-											Bitmain Antminer S23 Hyd 3u</a>
-									</td>
-									<td class="calc-table__release" data-label="Релиз">
-										Дек 2026
-									</td>
-									<td class="calc-table__hashrate" data-label="Хэшрейт">
-										1161 Th/s
-									</td>
-									<td class="calc-table__power" data-label="Мощность">
-										11020 w
-									</td>
-									<td class="calc-table__top" data-label="Топ">
-										<img src="assets/img/coins/btc.png" alt="btc" class="calc-table__top-icon" data-coin="btc">
-									</td>
-									<td class="calc-table__algo" data-label="Алгоритм">
-										SHA-256
-									</td>
-									<td class="calc-table__price" data-label="Цена">
-										<span class="calc-table__price-wrapper">
-											<span class="calc-table__price-value" data-price="8450">$8,450 </span>
-											<span class="calc-table__price-details">($7,284 / Ph)
-											</span>
-										</span>
-									</td>
-									<td class="calc-table__profit" data-label="Прибыль">
-										<span class="calc-table__profit-wrapper" data-profit="35">$35 / день</span>
-									</td>
-								</tr>
-								<tr>
-									<td class="calc-table__wishlist" data-label="Избранное">
-										<svg width="24" height="24" class="calc-table__wishlist-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M14.3398 8.81934L14.457 9.09668L14.7568 9.12305L20.7803 9.64551L16.2227 13.5977L15.9951 13.7939L16.0625 14.0879L17.4209 19.9609L12.2578 16.8467L12 16.6914L11.7422 16.8467L6.57812 19.9609L7.9375 14.0879L8.00488 13.7939L7.77734 13.5977L3.21875 9.64551L9.24316 9.12305L9.54297 9.09668L9.66016 8.81934L12 3.28418L14.3398 8.81934Z" stroke="currentColor" />
-										</svg>
-									</td>
-									<td class="calc-table__model" data-label="Модель">
-										<a href="#" class="calc-table__model-link">
-											Bitmain Antminer S21 Hyd 3u</a>
-									</td>
-									<td class="calc-table__release" data-label="Релиз">
-										Янв 2025
-									</td>
-									<td class="calc-table__hashrate" data-label="Хэшрейт">
-										1.16 Ph/s
-									</td>
-									<td class="calc-table__power" data-label="Мощность">
-										11020 w
-									</td>
-									<td class="calc-table__top" data-label="Топ">
-										<img src="assets/img/coins/btc.png" alt="btc" class="calc-table__top-icon" data-coin="btc">
-									</td>
-									<td class="calc-table__algo" data-label="Алгоритм">
-										SHA-256
-									</td>
-									<td class="calc-table__price" data-label="Цена">
-										<span class="calc-table__price-wrapper">
-											<span class="calc-table__price-value" data-price="840">$840 </span>
-											<span class="calc-table__price-details">($7,284 / Ph)
-											</span>
-										</span>
-									</td>
-									<td class="calc-table__profit" data-label="Прибыль">
-										<span class="calc-table__profit-wrapper" data-profit="35">$35 / день</span>
-									</td>
-								</tr>
-								<tr>
-									<td class="calc-table__wishlist" data-label="Избранное">
-										<svg width="24" height="24" class="calc-table__wishlist-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M14.3398 8.81934L14.457 9.09668L14.7568 9.12305L20.7803 9.64551L16.2227 13.5977L15.9951 13.7939L16.0625 14.0879L17.4209 19.9609L12.2578 16.8467L12 16.6914L11.7422 16.8467L6.57812 19.9609L7.9375 14.0879L8.00488 13.7939L7.77734 13.5977L3.21875 9.64551L9.24316 9.12305L9.54297 9.09668L9.66016 8.81934L12 3.28418L14.3398 8.81934Z" stroke="currentColor" />
-										</svg>
-									</td>
-									<td class="calc-table__model" data-label="Модель">
-										<a href="#" class="calc-table__model-link">
-											Bitmain Antminer S23 Hyd 3u</a>
-									</td>
-									<td class="calc-table__release" data-label="Релиз">
-										Янв 2026
-									</td>
-									<td class="calc-table__hashrate" data-label="Хэшрейт">
-										1.16 Ph/s
-									</td>
-									<td class="calc-table__power" data-label="Мощность">
-										11020 w
-									</td>
-									<td class="calc-table__top" data-label="Топ">
-										<img src="assets/img/coins/btc.png" alt="btc" class="calc-table__top-icon" data-coin="btc">
-									</td>
-									<td class="calc-table__algo" data-label="Алгоритм">
-										SHA-256
-									</td>
-									<td class="calc-table__price" data-label="Цена">
-										<span class="calc-table__price-wrapper">
-											<span class="calc-table__price-value" data-price="8450.12">$8450.12 </span>
-											<span class="calc-table__price-details">($7,284 / Ph)
-											</span>
-										</span>
-									</td>
-									<td class="calc-table__profit" data-label="Прибыль">
-										<span class="calc-table__profit-wrapper" data-profit="351">$351 / день</span>
-									</td>
-								</tr>
-								<tr>
-									<td class="calc-table__wishlist" data-label="Избранное">
-										<svg width="24" height="24" class="calc-table__wishlist-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M14.3398 8.81934L14.457 9.09668L14.7568 9.12305L20.7803 9.64551L16.2227 13.5977L15.9951 13.7939L16.0625 14.0879L17.4209 19.9609L12.2578 16.8467L12 16.6914L11.7422 16.8467L6.57812 19.9609L7.9375 14.0879L8.00488 13.7939L7.77734 13.5977L3.21875 9.64551L9.24316 9.12305L9.54297 9.09668L9.66016 8.81934L12 3.28418L14.3398 8.81934Z" stroke="currentColor" />
-										</svg>
-									</td>
-									<td class="calc-table__model" data-label="Модель">
-										<a href="#" class="calc-table__model-link">
-											Jasminer Jasminer X44-P</a>
-									</td>
-									<td class="calc-table__release" data-label="Релиз">
-										Янв 2026
-									</td>
-									<td class="calc-table__hashrate" data-label="Хэшрейт">
-										23 Gh/s
-									</td>
-									<td class="calc-table__power" data-label="Мощность">
-										11 kw
-									</td>
-									<td class="calc-table__top" data-label="Топ">
-										<img src="assets/img/coins/btc.png" alt="btc" class="calc-table__top-icon" data-coin="btc">
-									</td>
-									<td class="calc-table__algo" data-label="Алгоритм">
-										SHA-256
-									</td>
-									<td class="calc-table__price" data-label="Цена">
-										<span class="calc-table__price-wrapper">
-											<span class="calc-table__price-value" data-price="845">$845 </span>
-											<span class="calc-table__price-details">($7,284 / Ph)
-											</span>
-										</span>
-									</td>
-									<td class="calc-table__profit" data-label="Прибыль">
-										<span class="calc-table__profit-wrapper" data-profit="10">$10 / день</span>
-									</td>
-								</tr>
-								<tr>
-									<td class="calc-table__wishlist" data-label="Избранное">
-										<svg width="24" height="24" class="calc-table__wishlist-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M14.3398 8.81934L14.457 9.09668L14.7568 9.12305L20.7803 9.64551L16.2227 13.5977L15.9951 13.7939L16.0625 14.0879L17.4209 19.9609L12.2578 16.8467L12 16.6914L11.7422 16.8467L6.57812 19.9609L7.9375 14.0879L8.00488 13.7939L7.77734 13.5977L3.21875 9.64551L9.24316 9.12305L9.54297 9.09668L9.66016 8.81934L12 3.28418L14.3398 8.81934Z" stroke="currentColor" />
-										</svg>
-									</td>
-									<td class="calc-table__model" data-label="Модель">
-										<a href="#" class="calc-table__model-link">ICERIVER KAS KS0</a>
-									</td>
-									<td class="calc-table__release" data-label="Релиз">
-										Янв 2026
-									</td>
-									<td class="calc-table__hashrate" data-label="Хэшрейт">
-										100 Gh/s
-									</td>
-									<td class="calc-table__power" data-label="Мощность">
-										70 w
-									</td>
-									<td class="calc-table__top" data-label="Топ">
-										<img src="assets/img/coins/kas.png" alt="kas" class="calc-table__top-icon" data-coin="kas">
-									</td>
-									<td class="calc-table__algo" data-label="Алгоритм">
-										kheavyhash
-									</td>
-									<td class="calc-table__price" data-label="Цена">
-										<span class="calc-table__price-wrapper">
-											<span class="calc-table__price-value" data-price="8451">$8,451 </span>
-											<span class="calc-table__price-details">($1,284 / Ph)
-											</span>
-										</span>
-									</td>
-									<td class="calc-table__profit" data-label="Прибыль">
-										<span class="calc-table__profit-wrapper" data-profit="-10">-$10 / день</span>
-									</td>
-								</tr>
-								<tr>
-									<td class="calc-table__wishlist" data-label="Избранное">
-										<svg width="24" height="24" class="calc-table__wishlist-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M14.3398 8.81934L14.457 9.09668L14.7568 9.12305L20.7803 9.64551L16.2227 13.5977L15.9951 13.7939L16.0625 14.0879L17.4209 19.9609L12.2578 16.8467L12 16.6914L11.7422 16.8467L6.57812 19.9609L7.9375 14.0879L8.00488 13.7939L7.77734 13.5977L3.21875 9.64551L9.24316 9.12305L9.54297 9.09668L9.66016 8.81934L12 3.28418L14.3398 8.81934Z" stroke="currentColor" />
-										</svg>
-									</td>
-									<td class="calc-table__model" data-label="Модель">
-										<a href="#" class="calc-table__model-link">ICERIVER KAS KS0</a>
-									</td>
-									<td class="calc-table__release" data-label="Релиз">
-										Янв 2026
-									</td>
-									<td class="calc-table__hashrate" data-label="Хэшрейт">
-										100 Gh/s
-									</td>
-									<td class="calc-table__power" data-label="Мощность">
-										70 w
-									</td>
-									<td class="calc-table__top" data-label="Топ">
-										<img src="assets/img/coins/kas.png" alt="kas" class="calc-table__top-icon" data-coin="kas">
-									</td>
-									<td class="calc-table__algo" data-label="Алгоритм">
-										kheavyhash
-									</td>
-									<td class="calc-table__price" data-label="Цена">
-										<span class="calc-table__price-wrapper">
-											<span class="calc-table__price-value" data-price="8451">$8,451 </span>
-											<span class="calc-table__price-details">($1,284 / Ph)
-											</span>
-										</span>
-									</td>
-									<td class="calc-table__profit" data-label="Прибыль">
-										<span class="calc-table__profit-wrapper" data-profit="-500">-$500 / день</span>
-									</td>
-								</tr>
-								<tr>
-									<td class="calc-table__wishlist" data-label="Избранное">
-										<svg width="24" height="24" class="calc-table__wishlist-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M14.3398 8.81934L14.457 9.09668L14.7568 9.12305L20.7803 9.64551L16.2227 13.5977L15.9951 13.7939L16.0625 14.0879L17.4209 19.9609L12.2578 16.8467L12 16.6914L11.7422 16.8467L6.57812 19.9609L7.9375 14.0879L8.00488 13.7939L7.77734 13.5977L3.21875 9.64551L9.24316 9.12305L9.54297 9.09668L9.66016 8.81934L12 3.28418L14.3398 8.81934Z" stroke="currentColor" />
-										</svg>
-									</td>
-									<td class="calc-table__model" data-label="Модель">
-										<a href="#" class="calc-table__model-link">ICERIVER KAS KS0</a>
-									</td>
-									<td class="calc-table__release" data-label="Релиз">
-										Янв 2026
-									</td>
-									<td class="calc-table__hashrate" data-label="Хэшрейт">
-										100 Gh/s
-									</td>
-									<td class="calc-table__power" data-label="Мощность">
-										70 w
-									</td>
-									<td class="calc-table__top" data-label="Топ">
-										<img src="assets/img/coins/kas.png" alt="kas" class="calc-table__top-icon" data-coin="kas">
-									</td>
-									<td class="calc-table__algo" data-label="Алгоритм">
-										kheavyhash
-									</td>
-									<td class="calc-table__price" data-label="Цена">
-										<span class="calc-table__price-wrapper">
-											<span class="calc-table__price-value" data-price="8451">$8,451 </span>
-											<span class="calc-table__price-details">($1,284 / Ph)
-											</span>
-										</span>
-									</td>
-									<td class="calc-table__profit" data-label="Прибыль">
-										<span class="calc-table__profit-wrapper" data-profit="1600">$1600 / день</span>
-									</td>
-								</tr>
-								<tr>
-									<td class="calc-table__wishlist" data-label="Избранное">
-										<svg width="24" height="24" class="calc-table__wishlist-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M14.3398 8.81934L14.457 9.09668L14.7568 9.12305L20.7803 9.64551L16.2227 13.5977L15.9951 13.7939L16.0625 14.0879L17.4209 19.9609L12.2578 16.8467L12 16.6914L11.7422 16.8467L6.57812 19.9609L7.9375 14.0879L8.00488 13.7939L7.77734 13.5977L3.21875 9.64551L9.24316 9.12305L9.54297 9.09668L9.66016 8.81934L12 3.28418L14.3398 8.81934Z" stroke="currentColor" />
-										</svg>
-									</td>
-									<td class="calc-table__model" data-label="Модель">
-										<a href="#" class="calc-table__model-link">ICERIVER KAS KS0</a>
-									</td>
-									<td class="calc-table__release" data-label="Релиз">
-										Янв 2026
-									</td>
-									<td class="calc-table__hashrate" data-label="Хэшрейт">
-										100 Gh/s
-									</td>
-									<td class="calc-table__power" data-label="Мощность">
-										70 w
-									</td>
-									<td class="calc-table__top" data-label="Топ">
-										<img src="assets/img/coins/kas.png" alt="kas" class="calc-table__top-icon" data-coin="kas">
-									</td>
-									<td class="calc-table__algo" data-label="Алгоритм">
-										kheavyhash
-									</td>
-									<td class="calc-table__price" data-label="Цена">
-										<span class="calc-table__price-wrapper">
-											<span class="calc-table__price-value" data-price="8451">$8,451 </span>
-											<span class="calc-table__price-details">($1,284 / Ph)
-											</span>
-										</span>
-									</td>
-									<td class="calc-table__profit" data-label="Прибыль">
-										<span class="calc-table__profit-wrapper" data-profit="-1600">-$1600 / день</span>
-									</td>
-								</tr>
-							</tbody>
-						</table>
 					</div>
 				</div>
-			</div>
+			</section>
 		</main>
 
 		<footer class="footer">
@@ -1380,16 +1532,55 @@
 	</div>
 
 
-
-
-	<script src="assets/js/jquery-3.7.1.min.js"></script>
-	<script src="assets/js/jquery.dataTables.min.js"></script>
-	<script src="assets/js/lodash/debounce,js"></script>
-	<script src="assets/js/swiper-bundle.min.js"></script>
-	<script src="assets/js/swiper-bundle.min.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/menu.js"></script>
-	<script src="assets/js/calc.js"></script>
+	<script src="assets/js/faq.js"></script>
+
+	<!-- Amcharts -->
+	<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/locales/ru_RU.js"></script>
+
+	<script>
+		// TODO Удалить и добавить реальные данные
+		// Generate random data
+		var value = 20;
+
+		function generateData(date) {
+			value = am5.math.round(Math.random() * 10 - 4.8 + value, 1);
+			if (value < 0) {
+				value = Math.random() * 10;
+			}
+
+			if (value > 100) {
+				value = 100 - Math.random() * 10;
+			}
+			return {
+				date: date.getTime(),
+				value: value,
+			};
+		}
+
+		function generateDatas(count) {
+			var data = [];
+			var today = new Date();
+			today.setHours(0, 0, 0, 0);
+
+			for (var i = count - 1; i >= 0; i--) {
+				var date = new Date(today);
+				am5.time.add(date, "day", -i);
+				data.push(generateData(date));
+			}
+			return data;
+		}
+
+		const chartData = generateDatas(365)
+	</script>
+
+	<script src="assets/js/chart.js"></script>
+
+
 </body>
 
 </html>
