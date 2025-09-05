@@ -372,6 +372,8 @@
 }
 
 .coin-info {
+	position: relative;
+	z-index: 1;
 	margin: 100px 0 0;
 }
 /* Seo-text */
