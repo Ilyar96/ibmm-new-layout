@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="assets/styles/calc.css">
 	<link rel="stylesheet" href="assets/styles/calc-coin.css">
+	<link rel="stylesheet" href="assets/styles/promo-banner.css">
 </head>
 
 <body>
@@ -931,14 +932,14 @@
 						</div>
 						<div class="calc-info__form calc-form">
 							<div class="calc-form__item">
-								<div class="calc-form__radio">
-									<div class="calc-form__radio-item">
-										<input id="currency-rub" class="calc-form__radio-input" type="radio" name="currency" checked>
-										<label class="calc-form__radio-label" for="currency-rub">RUB</label>
+								<div class="calc-form__radio form-radio">
+									<div class="form-radio__item">
+										<input id="currency-rub" class="form-radio__input" type="radio" name="currency" value="rub" checked>
+										<label class="form-radio__label" for="currency-rub">RUB</label>
 									</div>
-									<div class="calc-form__radio-item">
-										<input id="currency-usd" class="calc-form__radio-input" type="radio" name="currency">
-										<label class="calc-form__radio-label" for="currency-usd">USD</label>
+									<div class="form-radio__item">
+										<input id="currency-usd" class="form-radio__input" type="radio" name="currency" value="usd">
+										<label class="form-radio__label" for="currency-usd">USD</label>
 									</div>
 								</div>
 							</div>
@@ -978,9 +979,10 @@
 				</div>
 			</div>
 
-			<div class="calc-table">
+			<div class="calc-table calc-table--coin">
 				<div class="calc-table__container container">
 					<div class="calc-table__table-wrapper">
+						<h2 class="calc-table__title">Подходящее оборудование</h2>
 						<div class="calc-table__header">
 							<div class="calc-table__search">
 								<svg width="23" height="23" class="calc-table__search-icon" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -989,18 +991,29 @@
 								<input id="table-search" type="text" name="table-search" class="calc-table__search-input" placeholder="Поиск">
 							</div>
 							<div class="calc-table__filters">
-								<div class="calc-table__period">
-
+								<div class="calc-table__period form-radio">
+									<div class="form-radio__item">
+										<input id="period-day" class="form-radio__input" type="radio" name="period" value="day" checked>
+										<label class="form-radio__label" for="period-day">День</label>
+									</div>
+									<div class="form-radio__item">
+										<input id="period-month" class="form-radio__input" type="radio" name="period" value="month">
+										<label class="form-radio__label" for="period-month">Месяц</label>
+									</div>
+									<div class="form-radio__item">
+										<input id="period-year" class="form-radio__input" type="radio" name="period" value="year">
+										<label class="form-radio__label" for="period-year">Год</label>
+									</div>
 								</div>
 							</div>
 						</div>
 						<table id="coin-miners-table" class="calc-table__table">
 							<thead>
 								<tr>
-									<th class="calc-table__model">
+									<th class="calc-table__miner">
 										<span class="calc-table__th-wrapper">Модель</span>
 									</th>
-									<th class="calc-table__top">
+									<th class="calc-table__coin">
 										<span class="calc-table__th-wrapper">Монета</span>
 									</th>
 									<th class="calc-table__hashrate">
@@ -1022,8 +1035,8 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td class="calc-table__model" data-label="Модель">
-										<a href="#" class="calc-table__model-link">Jasminer X44-P 23 Gh/s</a>
+									<td class="calc-table__miner" data-label="Модель">
+										<a href="#" class="calc-table__miner-link">Jasminer X44-P 23 Gh/s</a>
 									</td>
 									<td class="calc-table__coin" data-label="Монета">
 										<span class="calc-table__coin-wrapper" data-coin="etc">
@@ -1050,12 +1063,12 @@
 										</span>
 									</td>
 									<td class="calc-table__profit" data-label="Чистый доход">
-										<span class="calc-table__profit-wrapper" data-profit="1680.87">1 680.87 ₽ / день</span>
+										<span class="calc-table__profit-wrapper" data-profit="1680.87">1 680.87 ₽ / День</span>
 									</td>
 								</tr>
 								<tr>
-									<td class="calc-table__model" data-label="Модель">
-										<a href="#" class="calc-table__model-link">Bitmain Antminer S23 Hyd 3u</a>
+									<td class="calc-table__miner" data-label="Модель">
+										<a href="#" class="calc-table__miner-link">Bitmain Antminer S23 Hyd 3u</a>
 									</td>
 									<td class="calc-table__coin" data-label="Монета">
 										<span class="calc-table__coin-wrapper" data-coin="btc">
@@ -1082,7 +1095,39 @@
 										</span>
 									</td>
 									<td class="calc-table__profit" data-label="Чистый доход">
-										<span class="calc-table__profit-wrapper" data-profit="1700">1 700 ₽ / день</span>
+										<span class="calc-table__profit-wrapper" data-profit="1700">1 700 ₽ / День</span>
+									</td>
+								</tr>
+								<tr>
+									<td class="calc-table__miner" data-label="Модель">
+										<a href="#" class="calc-table__miner-link">Bitmain Antminer S23 Hyd 3u</a>
+									</td>
+									<td class="calc-table__coin" data-label="Монета">
+										<span class="calc-table__coin-wrapper" data-coin="btc">
+											<img src="assets/img/coins/btc.png" alt="btc" class="calc-table__coin-icon">
+											<span>BTC</span>
+										</span>
+									</td>
+									<td class="calc-table__hashrate" data-label="Хэшрейт">1.5 Ph/s</td>
+									<td class="calc-table__power" data-label="Мощность">1102 w</td>
+									<td class="calc-table__income" data-label="Награда">
+										<span class="calc-table__income-wrapper">
+											<span class="calc-table__income-value" data-income="0.009">0.009 ₽</span>
+											<span class="calc-table__income-period">
+												/ День
+											</span>
+										</span>
+									</td>
+									<td class="calc-table__consumption" data-label="Расходы">
+										<span class="calc-table__consumption-wrapper">
+											<span class="calc-table__consumption-value" data-consumption="350">350 ₽</span>
+											<span class="calc-table__consumption-period">
+												/ День
+											</span>
+										</span>
+									</td>
+									<td class="calc-table__profit" data-label="Чистый доход">
+										<span class="calc-table__profit-wrapper" data-profit="1700">1 700 ₽ / День</span>
 									</td>
 								</tr>
 							</tbody>
@@ -1090,6 +1135,90 @@
 					</div>
 				</div>
 			</div>
+
+			<section class="promo-banner">
+				<div class="promo-banner__container container">
+					<div class="promo-banner__content">
+						<div class="promo-banner__text-content">
+							<h2 class="promo-banner__title">Готовы запустить майнинг?</h2>
+
+							<div class="promo-banner__subtitle">
+								Получите персональный расчёт доходности и специальные условия:
+							</div>
+
+							<blockquote class="promo-banner__testimonial">
+								<p class="promo-banner__testimonial-text">"IBMM превзошли ожидания. Обещали 10 дней — выполнили точно в срок. Полная прозрачность процесса, постоянная связь. Майнинг пошёл с первого дня. IBMM превзошли ожидания. Обещали 10 дней — выполнили точно в срок. Полная прозрачность процесса, постоянная связь. Майнинг пошёл с первого дня."</p>
+							</blockquote>
+
+							<ul class="promo-banner__features">
+								<li class="promo-banner__feature">
+									<div class="promo-banner__feature-icon-wrapper">
+										<svg width="24" height="27" class="promo-banner__feature-icon" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<g clip-path="url(#clip0_2001_427)">
+												<path d="M10.2857 6.75005C10.2857 5.40739 9.74388 4.11972 8.77941 3.17032C7.81494 2.22092 6.50683 1.68755 5.14286 1.68755C3.77889 1.68755 2.47079 2.22092 1.50631 3.17032C0.54184 4.11972 4.7856e-06 5.40739 4.7856e-06 6.75005C4.7856e-06 8.09271 0.54184 9.38037 1.50631 10.3298C2.47079 11.2792 3.77889 11.8125 5.14286 11.8125C6.50683 11.8125 7.81494 11.2792 8.77941 10.3298C9.74388 9.38037 10.2857 8.09271 10.2857 6.75005ZM24 20.25C24 19.5852 23.867 18.9269 23.6085 18.3127C23.3501 17.6985 22.9713 17.1404 22.4937 16.6703C22.0161 16.2002 21.4492 15.8273 20.8252 15.5729C20.2013 15.3185 19.5325 15.1875 18.8571 15.1875C18.1818 15.1875 17.513 15.3185 16.8891 15.5729C16.2651 15.8273 15.6982 16.2002 15.2206 16.6703C14.743 17.1404 14.3642 17.6985 14.1058 18.3127C13.8473 18.9269 13.7143 19.5852 13.7143 20.25C13.7143 20.9149 13.8473 21.5732 14.1058 22.1874C14.3642 22.8016 14.743 23.3597 15.2206 23.8298C15.6982 24.2999 16.2651 24.6728 16.8891 24.9272C17.513 25.1816 18.1818 25.3125 18.8571 25.3125C19.5325 25.3125 20.2013 25.1816 20.8252 24.9272C21.4492 24.6728 22.0161 24.2999 22.4937 23.8298C22.9713 23.3597 23.3501 22.8016 23.6085 22.1874C23.867 21.5732 24 20.9149 24 20.25ZM23.4964 4.56685C24.1661 3.90767 24.1661 2.83716 23.4964 2.17798C22.8268 1.5188 21.7393 1.5188 21.0696 2.17798L0.498219 22.428C-0.171424 23.0872 -0.171424 24.1577 0.498219 24.8168C1.16786 25.476 2.25536 25.476 2.925 24.8168L23.4964 4.56685Z" fill="white" />
+											</g>
+											<defs>
+												<clipPath id="clip0_2001_427">
+													<rect width="24" height="27" fill="white" />
+												</clipPath>
+											</defs>
+										</svg>
+									</div>
+									<span class="promo-banner__feature-text">
+										Скидку на тариф при подключении от 10 ASIC
+									</span>
+								</li>
+
+								<li class="promo-banner__feature">
+									<div class="promo-banner__feature-icon-wrapper">
+										<svg width="24" height="24" class="promo-banner__feature-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M20 13.75C20 13.5511 19.921 13.3603 19.7803 13.2197C19.6397 13.079 19.4489 13 19.25 13H16.25C16.0511 13 15.8603 13.079 15.7197 13.2197C15.579 13.3603 15.5 13.5511 15.5 13.75V20.5H14V4.25C14 3.522 13.998 3.05 13.952 2.704C13.908 2.379 13.837 2.277 13.78 2.22C13.723 2.163 13.621 2.092 13.296 2.048C12.949 2.002 12.478 2 11.75 2C11.022 2 10.55 2.002 10.204 2.048C9.879 2.092 9.777 2.163 9.72 2.22C9.663 2.277 9.592 2.379 9.548 2.704C9.502 3.051 9.5 3.522 9.5 4.25V20.5H8V8.75C8 8.55109 7.92098 8.36032 7.78033 8.21967C7.63968 8.07902 7.44891 8 7.25 8H4.25C4.05109 8 3.86032 8.07902 3.71967 8.21967C3.57902 8.36032 3.5 8.55109 3.5 8.75V20.5H1.75C1.55109 20.5 1.36032 20.579 1.21967 20.7197C1.07902 20.8603 1 21.0511 1 21.25C1 21.4489 1.07902 21.6397 1.21967 21.7803C1.36032 21.921 1.55109 22 1.75 22H21.75C21.9489 22 22.1397 21.921 22.2803 21.7803C22.421 21.6397 22.5 21.4489 22.5 21.25C22.5 21.0511 22.421 20.8603 22.2803 20.7197C22.1397 20.579 21.9489 20.5 21.75 20.5H20V13.75Z" fill="white" />
+										</svg>
+									</div>
+									<span class="promo-banner__feature-text">
+										Детальный финансовый план на 12 месяцев
+									</span>
+								</li>
+							</ul>
+
+							<button class="promo-banner__btn">
+								<span>Получить предложение</span>
+							</button>
+						</div>
+
+						<div class="promo-banner__image-content">
+							<div class="promo-banner__image-wrapper">
+								<img src="assets/img/special-offer/mining-hardware.png" alt="ASIC майнер" class="promo-banner__image" loading="lazy">
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="coin-info">
+				<div class="container">
+					<div class="coin-info__body seo-text">
+						<h2>Улучшение стратегии майнинга Ethereum Classic</h2>
+						<p>Для того чтобы максимизировать доход от майнинга Ethereum Classic, майнерам необходимо постоянно адаптировать и улучшать свои стратегии. Это включает в себя выбор подходящего майнингового оборудования, оптимизацию расходов на электроэнергию и постоянный анализ изменений в сложности сети и стоимости Ethereum Classic. Применение передовых технологий и алгоритмов может значительно увеличить эффективность майнинга, снизить затраты и увеличить общую доходность.</p>
+						<p>Использование калькулятора майнинга Ethereum Classic не только помогает в расчете потенциальной прибыли, но и служит важным инструментом для планирования инвестиций в оборудование и оценки будущих доходов. С учетом текущих и предполагаемых изменений в сети Ethereum Classic, майнеры могут использовать эти данные для принятия обоснованных решений о своих инвестициях и стратегии майнинга.</p>
+
+						<div class="seo-text__row">
+							<div class="seo-text__col">
+								<h3>Важность мониторинга рынка Ethereum Classic</h3>
+
+								<p>Для того чтобы максимизировать доход от майнинга Ethereum Classic, майнерам необходимо постоянно адаптировать и улучшать свои стратегии. Это включает в себя выбор подходящего майнингового оборудования, оптимизацию расходов на электроэнергию и постоянный анализ изменений в сложности сети и стоимости Ethereum Classic. Применение передовых технологий и алгоритмов может значительно увеличить эффективность майнинга, снизить затраты и увеличить общую доходность.</p>
+								<p>Использование калькулятора майнинга Ethereum Classic не только помогает в расчете потенциальной прибыли, но и служит важным инструментом для планирования инвестиций в оборудование и оценки будущих доходов. С учетом текущих и предполагаемых изменений в сети Ethereum Classic, майнеры могут использовать эти данные для принятия обоснованных решений о своих инвестициях и стратегии майнинга.</p>
+							</div>
+							<div class="seo-text__col">
+								<h3>Как работает калькулятор майнинга ETC</h3>
+
+								<p>Для того чтобы максимизировать доход от майнинга Ethereum Classic, майнерам необходимо постоянно адаптировать и улучшать свои стратегии. Это включает в себя выбор подходящего майнингового оборудования, оптимизацию расходов на электроэнергию и постоянный анализ изменений в сложности сети и стоимости Ethereum Classic. Применение передовых технологий и алгоритмов может значительно увеличить эффективность майнинга, снизить затраты и увеличить общую доходность.</p>
+								<p>Использование калькулятора майнинга Ethereum Classic не только помогает в расчете потенциальной прибыли, но и служит важным инструментом для планирования инвестиций в оборудование и оценки будущих доходов. С учетом текущих и предполагаемых изменений в сети Ethereum Classic, майнеры могут использовать эти данные для принятия обоснованных решений о своих инвестициях и стратегии майнинга.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 		</main>
 
 		<footer class="footer">
