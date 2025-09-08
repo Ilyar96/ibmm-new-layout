@@ -1,19 +1,23 @@
 (function () {
 	initCoinPeriodTable();
-	initCalcTable();
+	initCalcDevicesTable();
 	initCustomPeriod();
 	initForm();
+	initDevicesPeriodForm();
 	updateCustomMonthData();
 
 	// Calc table
-	function initCalcTable() {
+	function initCalcDevicesTable() {
 		const modelIndex = 0;
 		const coinIndex = 1;
 		const hashrateIndex = 2;
 		const powerIndex = 3;
 		const incomeIndex = 4;
 		const consumptionIndex = 5;
-		const profitIndex = 6;
+		const cashProfitIndex = 6;
+		const minerNameIndex = 7;
+		const fullHashrateIndex = 8;
+		const coinIncomeIndex = 9;
 
 		const table = $("#coin-miners-table").DataTable({
 			paging: false,
@@ -30,165 +34,133 @@
 					type: "string",
 					render: function (data, type, row) {
 						if (type === "sort") {
-							const minerName = $(data).text().trim();
+							const minerName = row[minerNameIndex].trim();
 							return minerName;
 						}
 						return data;
 					},
 				},
 				{
+					data: coinIndex,
 					targets: [coinIndex],
 					type: "string",
 					render: function (data, type, row) {
-						if (type === "sort") {
-							// Извлекаем значение data-coin из HTML строки
-							if (data && typeof data === "string") {
-								const match = data.match(/data-coin="([^"]+)"/);
-								if (match && match[1]) {
-									// Возвращаем значение монеты в нижнем регистре для сортировки
-									return match[1].toLowerCase();
-								}
-							}
-							return ""; // Возвращаем пустую строку если не удалось извлечь
+						if (type === "display") {
+							return `
+								<span class="calc-table__coin-wrapper" data-coin="${data}">
+											<img src="assets/img/coins/${data}.png" alt="${data}" class="calc-table__coin-icon">
+											<span>${data.toUpperCase()}</span>
+										</span>
+							`;
 						}
-						return data; // Возвращаем оригинальный HTML для отображения
+
+						return data;
 					},
 				},
 				{
+					data: hashrateIndex,
 					targets: [hashrateIndex], // Колонка с хэшрейтом (индекс 3)
-					type: "num", // Изменяем тип на числовой для лучшей сортировки
+					type: "num",
 					render: function (data, type, row) {
-						if (type === "sort") {
-							// Проверяем, что данные не пустые
-							if (!data || typeof data !== "string") {
-								console.warn("Неожиданные данные для сортировки:", data, "для строки:", row[1]);
-								return 0;
-							}
-
-							const match = data.match(/(\d+(?:[.,]\d+)?)\s*(Eh|Ph|Th|Gh|Mh|Kh|H)\s*\/\s*s/i);
-
-							if (match) {
-								// Заменяем запятую на точку для корректного парсинга
-								const valueStr = match[1].replace(",", ".");
-								const value = parseFloat(valueStr);
-								// Нормализуем единицу измерения, убирая лишние пробелы и добавляя /s
-								const unit = (match[2] + "/s").toLowerCase();
-
-								// Проверяем, что значение корректно распарсилось
-								if (isNaN(value)) {
-									console.error("Ошибка парсинга числа:", match[1], "для строки:", row[modelIndex]);
-									return 0;
-								}
-
-								// Конвертируем в базовые единицы для корректной сортировки
-								const multipliers = {
-									"h/s": 1,
-									"kh/s": 1000,
-									"mh/s": 1000000,
-									"gh/s": 1000000000,
-									"th/s": 1000000000000,
-									"ph/s": 1000000000000000,
-									"eh/s": 1000000000000000000,
-								};
-
-								if (!multipliers[unit]) {
-									console.error(
-										"Неизвестная единица измерения:",
-										unit,
-										"для строки:",
-										row[modelIndex]
-									);
-									return 0;
-								}
-
-								const result = value * multipliers[unit];
-
-								return result;
-							}
-
-							console.warn("Не удалось распарсить хэшрейт:", data, "для строки:", row[modelIndex]);
-							return 0; // Если не удалось распарсить, возвращаем 0
+						if (type === "display") {
+							return row[fullHashrateIndex];
 						}
-						return data; // Возвращаем оригинальный текст для отображения
+						return data;
 					},
 				},
 				{
+					data: powerIndex,
 					targets: [powerIndex],
 					type: "num",
 					render: function (data, type, row) {
-						if (type === "sort") {
-							const match = data.match(/(\d+(?:[.,]\d+)?)\s*(w|kw|mw|gw|tw|pw|ew)/i);
-							if (!match) {
-								console.error(
-									"Не удалось распарсить мощность:",
-									data,
-									"для строки:",
-									row[modelIndex]
-								);
-								return 0;
-							}
-
-							const multipliers = {
-								w: 1,
-								kw: 1000,
-								mw: 1000000,
-								gw: 1000000000,
-								tw: 1000000000000,
-								pw: 1000000000000000,
-								ew: 1000000000000000000,
-							};
-
-							return match[1] * multipliers[match[2].toLowerCase()];
+						if (type === "display") {
+							return data + " w";
 						}
-						return data;
+
+						return Number(data);
 					},
 				},
 				{
 					targets: [incomeIndex],
 					type: "num",
-					render: function (data, type) {
-						const income = Number(extractDataAttrFromTableString(data, "income"));
+					render: function (data, type, row) {
+						const period = $("input[name='period']:checked").val();
+						const periodLabel = getPeriodLabelBySeconds(period);
+						const income = getCalculatedCoinIncome(
+							period,
+							row[coinIncomeIndex],
+							row[hashrateIndex]
+						);
 
-						if (type === "sort") {
-							return isNaN(income) ? 0 : income;
+						if (type === "display") {
+							return `
+								<span class="calc-table__income-wrapper">
+									<span class="calc-table__income-value">${formatNumber(income, 6)} ${row[coinIndex]}</span>
+									<span class="calc-table__income-period">
+										/ ${periodLabel}
+									</span>
+								</span>
+
+							`;
 						}
 
-						return data;
+						return income;
 					},
 				},
 				{
 					targets: [consumptionIndex],
 					type: "num",
-					render: function (data, type) {
-						const consumption = Number(extractDataAttrFromTableString(data, "consumption"));
+					render: function (data, type, row) {
+						const currencySymbol = getCurrencySymbol();
+						const period = $("input[name='period']:checked").val();
+						const periodLabel = getPeriodLabelBySeconds(period);
+						const electricityCosts = getCalculatedElectricityCosts(period, row[powerIndex]);
 
-						if (type === "sort") {
-							return isNaN(consumption) ? 0 : consumption;
+						if (type === "display") {
+							return `
+							<span class="calc-table__income-wrapper">
+								<span class="calc-table__income-value">${formatNumber(electricityCosts)} ${currencySymbol}</span>
+								<span class="calc-table__income-period">
+									/ ${periodLabel}
+								</span>
+							</span>
+							`;
 						}
 
-						return data;
+						return electricityCosts;
 					},
 				},
 				{
-					targets: [profitIndex],
+					targets: [cashProfitIndex],
 					type: "num",
-					render: function (data, type) {
-						const profit = Number(extractDataAttrFromTableString(data, "profit"));
+					render: function (data, type, row) {
+						const currencySymbol = getCurrencySymbol();
+						const period = $("input[name='period']:checked").val();
+						const periodLabel = getPeriodLabelBySeconds(period);
+						const cashProfit = getCalculatedProfit(
+							period,
+							row[coinIndex],
+							row[coinIncomeIndex],
+							row[hashrateIndex],
+							row[powerIndex]
+						);
 
 						if (type === "sort") {
-							return isNaN(profit) ? 0 : profit;
+							return isNaN(cashProfit) ? 0 : cashProfit;
 						}
 
 						if (type === "display") {
 							// Если profit не найден, возвращаем оригинальные данные
-							if (isNaN(profit)) {
+							if (isNaN(cashProfit)) {
 								return data;
 							}
 
-							let maxProfit = 1_600; // Adjust this value based on the maximum expected profit
-							let minProfit = -1_600; // Adjust this value based on the minimum expected profit
+							let periodMultiplier = period / 86400;
+							let maxProfit = 1_600 * periodMultiplier; // Adjust this value based on the maximum expected profit
+							let minProfit = -1_600 * periodMultiplier; // Adjust this value based on the minimum expected profit
+
 							let profitRange = maxProfit - minProfit;
-							let normalizedProfit = (profit - minProfit) / profitRange;
+							let normalizedProfit = (cashProfit - minProfit) / profitRange;
 							let adjustedProfit = Math.pow(normalizedProfit, 4); // Non-linear transformation for stronger differentiation
 							let opacity = Math.min(Math.max(adjustedProfit, 0), 1);
 							const greenOpacity = Math.max(0.5, opacity);
@@ -196,7 +168,7 @@
 
 							// Define gradient color based on profit value
 							let gradientColor =
-								profit > 0
+								cashProfit > 0
 									? `rgba(114, 177, 59, ${greenOpacity})`
 									: `rgba(255, 0, 0, ${redOpacity})`;
 
@@ -204,19 +176,26 @@
 							let gradient = `linear-gradient(90deg,rgba(0, 0, 0, 0) 0%, ${gradientColor} 100%)`;
 
 							// Ищем span с классом calc-table__profit-wrapper и добавляем к нему стиль
-							const htmlContent = data.replace(
-								'<span class="calc-table__profit-wrapper"',
-								`<span class="calc-table__profit-wrapper" style="background: ${gradient}"`
-							);
+							const htmlContent = `
+
+										<span class="calc-table__profit-wrapper" style="background: ${gradient}">${formatNumber(
+								cashProfit
+							)} ${currencySymbol} / ${periodLabel}</span>
+
+							`;
 
 							return htmlContent;
 						}
 
-						return data;
+						return cashProfit;
 					},
 				},
+				{
+					targets: [minerNameIndex, fullHashrateIndex, coinIncomeIndex],
+					visible: false,
+				},
 			],
-			order: [[profitIndex, "desc"]],
+			order: [[cashProfitIndex, "desc"]],
 		});
 
 		const debouncedTableSearchInputHandler = debounce(tableSearchInputHandler, 300);
@@ -225,7 +204,7 @@
 		$("#table-search").on("input", debouncedTableSearchInputHandler);
 
 		function tableSearchInputHandler(e) {
-			table.search(e.target.value).draw();
+			table.search(e.target.value.trim()).draw();
 		}
 
 		function extractDataAttrFromTableString(tableString, dataAttr) {
@@ -244,10 +223,9 @@
 		const periodIndex = 0;
 		const coinIncomeIndex = 1;
 		const incomeIndex = 2;
-		const consumptionIndex = 3;
-		const profitIndex = 4;
+		const electricityCostsIndex = 3;
+		const cashProfitIndex = 4;
 
-		const incomePerUnit = $("#income_per_unit").val();
 		const coinName = $("#coin-name").val();
 
 		$("#coin-period").DataTable({
@@ -321,13 +299,13 @@
 				},
 				{
 					data: periodIndex,
-					targets: consumptionIndex,
+					targets: electricityCostsIndex,
 					render: function (data, type) {
 						const period = data;
-						const consumption = $("#consumption").val();
+						const powerConsumption = $("#power-consumption").val();
 						const periodLabel = getPeriodLabelBySeconds(period);
 						const currencySymbol = getCurrencySymbol();
-						const costs = getCalculatedElectricityCosts(period, consumption);
+						const costs = getCalculatedElectricityCosts(period, powerConsumption);
 
 						if (type == "display") {
 							return `<span>${formatNumber(costs)} ${currencySymbol} ${periodLabel}</span>`;
@@ -337,18 +315,18 @@
 				},
 				{
 					data: periodIndex,
-					targets: profitIndex,
+					targets: cashProfitIndex,
 					render: function (data, type) {
 						const period = data;
 						const periodLabel = getPeriodLabelBySeconds(period);
 						const currencySymbol = getCurrencySymbol();
 
-						const cashProfit = getCoinTablesProfit(period);
+						const coinProfit = getCoinTablesProfit(period);
 
 						if (type == "display") {
-							return `<span>${formatNumber(cashProfit)} ${currencySymbol} ${periodLabel}</span>`;
+							return `<span>${formatNumber(coinProfit)} ${currencySymbol} ${periodLabel}</span>`;
 						}
-						return cryptoIncome;
+						return coinProfit;
 					},
 				},
 			],
@@ -359,51 +337,38 @@
 		const incomePerUnit = $("#income_per_unit").val();
 		const hashrate = $("#hashrate").val();
 		const hashrateUnit = $("#hashrate-label").text().trim();
-
-		return getCalculatedCoinIncome(period, incomePerUnit, hashrate, hashrateUnit);
-	}
-
-	function getCalculatedCoinIncome(period, incomePerUnit, hashrate, hashrateUnit) {
 		const convertedHashrate = convertHashrate(hashrate, hashrateUnit);
 
-		return period * incomePerUnit * convertedHashrate;
+		return getCalculatedCoinIncome(period, incomePerUnit, convertedHashrate);
+	}
+
+	function getCalculatedCoinIncome(period, incomePerUnit, hashrate) {
+		return period * incomePerUnit * hashrate;
 	}
 
 	function getCoinTablesProfit(period) {
-		const consumption = $("#consumption").val();
-		const commission = Number($("#commission").val());
-		const costs = getCalculatedElectricityCosts(period, consumption);
-		let cashIncome = getCoinTablesCashIncome(period);
+		const powerConsumption = $("#power-consumption").val();
+		const commissionPercent = Number($("#commission").val());
+		const costs = getCalculatedElectricityCosts(period, powerConsumption);
+		const cashIncome = getCoinTablesCashIncome(period);
+		const commission = commissionPercent > 0 ? (cashIncome * commissionPercent) / 100 : 0;
 
-		if (typeof commission === "number" && commission > 0) {
-			cashIncome *= commission / 100;
-		}
-
-		return cashIncome - costs;
+		return cashIncome - costs - commission;
 	}
 
-	function getCalculatedProfit(period, coinName, incomePerUnit, hashrate, hashrateUnit) {
-		const consumption = $("#consumption").val();
-		const commission = Number($("#commission").val());
+	function getCalculatedProfit(period, coinName, incomePerUnit, hashrate, consumption) {
+		const commissionPercent = Number($("#commission").val());
 		const costs = getCalculatedElectricityCosts(period, consumption);
-		let cashIncome = getCalculatedCashIncome(
-			period,
-			coinName,
-			incomePerUnit,
-			hashrate,
-			hashrateUnit
-		);
+		const cashIncome = getCalculatedCashIncome(period, coinName, incomePerUnit, hashrate);
+		const commission = commissionPercent > 0 ? (cashIncome * commissionPercent) / 100 : 0;
 
-		if (typeof commission === "number" && commission > 0) {
-			cashIncome *= commission / 100;
-		}
-
-		return cashIncome - costs;
+		return cashIncome - costs - commission;
 	}
 
 	function getCalculatedElectricityCosts(period, consumption) {
-		const electricity = $("#electricity").val();
 		const currency = $("input[name='currency']:checked").val();
+		const electricity = $("#electricity-price").val();
+
 		const costs = (period / 3600) * electricity * (consumption / 1000) * currency;
 
 		return costs;
@@ -412,19 +377,19 @@
 	function getCoinTablesCashIncome(period) {
 		const coinName = $("#coin-name").val();
 		const incomePerUnit = $("#income_per_unit").val();
-		const cashIncomePerUnit = $("#cash_income_per_unit").val();
 		const hashrate = $("#hashrate").val();
 		const hashrateUnit = $("#hashrate-label").text().trim();
 
-		return getCalculatedCashIncome(period, coinName, incomePerUnit, hashrate, hashrateUnit);
-	}
-
-	function getCalculatedCashIncome(period, coinName, incomePerUnit, hashrate, hashrateUnit) {
-		const currency = $("input[name='currency']:checked").val();
-		const currencyName = $("input[name='currency']:checked + label").text();
 		const convertedHashrate = convertHashrate(hashrate, hashrateUnit);
 
-		const cryptoIncome = period * incomePerUnit * convertedHashrate;
+		return getCalculatedCashIncome(period, coinName, incomePerUnit, convertedHashrate);
+	}
+
+	function getCalculatedCashIncome(period, coinName, incomePerUnit, hashrate) {
+		const currency = $("input[name='currency']:checked").val();
+		const currencyName = $("input[name='currency']:checked + label").text();
+
+		const cryptoIncome = period * incomePerUnit * hashrate;
 
 		let cashIncome = 0;
 
@@ -444,31 +409,39 @@
 	}
 
 	function getPeriodLabelBySeconds(seconds) {
-		switch (seconds) {
-			case "3600":
+		switch (Number(seconds)) {
+			case 3600:
 				return "Час";
-			case "86400":
+			case 86400:
 				return "День";
-			case "604800":
+			case 604800:
 				return "Неделя";
-			case "2592000":
+			case 2592000:
 				return "Месяц";
+			case 31104000:
+				return "Год";
 		}
 	}
 
 	function initForm() {
 		const debouncedDrawDataTables = debounce(drawDataTables, 300);
 
-		$("#calc-form-button").on("click", clickHandler);
+		$("#calc-from").on("submit", submitHandler);
 		$("#hashrate").on("input", (e) => validateNumberInput(e, 1));
-		$("#electricity").on("input", (e) => validateNumberInput(e, 1));
-		$("#consumption").on("input", (e) => validateNumberInput(e, 0));
+		$("#electricity-price").on("input", (e) => validateNumberInput(e, 0));
+		$("#power-consumption").on("input", (e) => validateNumberInput(e, 1));
 		$("#commission").on("input", (e) => validateNumberInput(e, 0, 100));
 
-		function clickHandler() {
+		function submitHandler(e) {
+			e.preventDefault();
 			debouncedDrawDataTables();
 			updateCustomMonthData();
 		}
+	}
+
+	function initDevicesPeriodForm() {
+		const debouncedDrawDevicesTable = debounce(() => drawDataTable("#coin-miners-table"), 300);
+		$("input[name='period']").on("input", debouncedDrawDevicesTable);
 	}
 
 	function validateNumberInput(e, min, max) {
@@ -534,9 +507,13 @@
 			}
 		}
 
-		if ((min !== undefined && min >= 0 && value.indexOf("-") !== -1) || value === "") {
+		if (min !== undefined && min >= 0 && value.indexOf("-") !== -1) {
 			input.value = min.toString();
 		}
+	}
+
+	function drawDataTable(tableSelector) {
+		$(tableSelector).DataTable().rows().invalidate("data").draw(false);
 	}
 
 	function drawDataTables() {
@@ -586,7 +563,7 @@
 
 	function updateCustomMonthData() {
 		const value = $("#custom-period").val();
-		const consumption = $("#consumption").val();
+		const consumption = $("#power-consumption").val();
 		const period = Number(value) * 3600 * 24 * 30;
 
 		const coinIncome = getCoinsTableCoinIncome(period);
@@ -598,10 +575,12 @@
 		$("#custom-income").html(
 			`${formatNumber(cashIncome)} ${getCurrencySymbol()} <b>${value}мес</b>`
 		);
-		$("#custom-consumption").html(
+		$("#custom-electricity-costs").html(
 			`${formatNumber(costs)} ${getCurrencySymbol()} <b>${value}мес</b>`
 		);
-		$("#custom-gain").html(`${formatNumber(profit, 2)} ${getCurrencySymbol()} <b>${value}мес</b>`);
+		$("#custom-profit").html(
+			`${formatNumber(profit, 2)} ${getCurrencySymbol()} <b>${value}мес</b>`
+		);
 	}
 
 	function formatNumber(num, digitalsCount = 2, forcePrecision = false) {

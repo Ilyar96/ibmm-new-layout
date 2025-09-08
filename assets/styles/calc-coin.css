@@ -1,6 +1,7 @@
 .calc-info {
 	margin: 3.625rem 0 0;
 }
+
 .calc-info__wrapper {
 	display: grid;
 	gap: 1rem;
@@ -16,7 +17,6 @@
 	--table-border-radius: 1.875rem;
 	--table-row-offset: 0.25rem;
 	border-collapse: separate;
-	table-layout: fixed;
 	border-spacing: 0 var(--table-row-offset);
 	width: 100%;
 	overflow: hidden;
@@ -26,7 +26,7 @@
 .coin-table th,
 .coin-table td,
 table.coin-table.dataTable tbody td {
-	padding: 0.75rem 0.3125rem;
+	padding: 0.75rem 0.3125rem !important;
 	font-family: var(--font-family-quaternary);
 	font-weight: 400;
 	font-size: 1rem;
@@ -37,13 +37,13 @@ table.coin-table.dataTable tbody td {
 .coin-table th:first-child,
 .coin-table td:first-child,
 table.coin-table.dataTable tbody td:first-child {
-	padding-left: 1.875rem;
+	padding-left: 1.875rem !important;
 }
 
 .coin-table th:last-child,
 .coin-table td:last-child,
 table.coin-table.dataTable tbody td:last-child {
-	padding-right: 1.875rem;
+	padding-right: 1.875rem !important;
 }
 
 .coin-table th {
@@ -64,12 +64,15 @@ table.coin-table.dataTable tbody td:last-child {
 .coin-table thead th:first-child {
 	border-radius: var(--table-border-radius) 0 0 0;
 }
+
 .coin-table thead th:last-child {
 	border-radius: 0 var(--table-border-radius) 0 0;
 }
+
 .coin-table tfoot td:first-child {
 	border-radius: 0 0 0 var(--table-border-radius);
 }
+
 .coin-table tfoot td:last-child {
 	border-radius: 0 0 var(--table-border-radius) 0;
 }
@@ -98,24 +101,23 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 		linear-gradient(270deg, rgba(114, 177, 59, 1) 0%, rgba(59, 177, 100, 0) 100%);
 }
 
-.coin-table tbody tr.active td {
-	position: relative;
-	z-index: 2;
-}
-
 .coin-table__period {
 	width: 14%;
 }
+
 .coin-table__coin-income {
 	width: 34%;
 }
-.coin-table__income {
+
+.coin-table__cash-income {
 	width: 20%;
 }
-.coin-table__consumption {
+
+.coin-table__electricity-consumption {
 	width: 13%;
 }
-.coin-table__gain {
+
+.coin-table__profit {
 	width: 19%;
 }
 
@@ -151,6 +153,7 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	line-height: 1;
 	letter-spacing: -0.03em;
 }
+
 .coin-table__period-input {
 	max-width: 5.625rem;
 	padding: 0.4375rem 2.8125rem 0.4375rem 0.625rem;
@@ -195,10 +198,12 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	background: var(--color-card-background);
 	border-radius: 1.875rem;
 }
+
 .calc-form__item {
 	--form-field-height: 3.0625rem;
 	--form-field-placeholder-height: 1.8125rem;
 }
+
 .form-radio {
 	--form-radio-wrapper-height: 3.0625rem;
 	--form-radio-padding: 0.1875rem;
@@ -209,14 +214,17 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	border: 0.0625rem solid var(--color-border);
 	border-radius: 0.625rem;
 }
+
 .form-radio__item {
 	flex: 1 1;
 }
+
 .form-radio__input {
 	position: absolute;
 	opacity: 0;
 	appearance: none;
 }
+
 .form-radio__label {
 	display: inline-flex;
 	align-items: center;
@@ -242,9 +250,11 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	outline: 0.125rem solid var(--color-accent);
 	outline-offset: 0.125rem;
 }
+
 .calc-form__input-wrapper {
 	position: relative;
 }
+
 .calc-form__input-placeholder {
 	position: absolute;
 	left: 0.625rem;
@@ -265,6 +275,7 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	transform: translateY(-50%);
 	user-select: none;
 }
+
 .calc-form__input {
 	--padding-x: 0.625rem;
 	--placeholder-width: 0rem;
@@ -300,14 +311,14 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	--unit-offset: 0.375rem;
 }
 
-.calc-form__input[name="electricity"] {
+.calc-form__input[name="electricity-price"] {
 	--placeholder-width: 8.4375rem;
 	--placeholder-offset: 1.25rem;
 	--unit-width: 1.6875rem;
 	--unit-offset: 0.375rem;
 }
 
-.calc-form__input[name="consumption"] {
+.calc-form__input[name="power-consumption"] {
 	--placeholder-width: 8.8125rem;
 	--placeholder-offset: 1.25rem;
 	--unit-width: 2.9375rem;
@@ -334,8 +345,6 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	letter-spacing: -0.03em;
 	text-align: right;
 	color: #515151;
-}
-.calc-form__button {
 }
 
 .calc-table__title {
@@ -379,11 +388,22 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	color: #d2d2d2;
 }
 
+.calc-table__miner-link {
+	transition: color var(--transition-base);
+}
+
+.calc-table .sorting:focus-visible,
+.calc-table__miner-link:focus-visible {
+	outline: 0.125rem solid var(--color-accent);
+	outline-offset: 0.125rem;
+}
+
 .coin-info {
 	position: relative;
 	z-index: 1;
-	margin: 100px 0 0;
+	margin: 6.25rem 0 0;
 }
+
 /* Seo-text */
 
 .seo-text {
@@ -482,6 +502,7 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 .seo-text ul {
 	padding-left: 0;
 }
+
 .seo-text ul li {
 	padding-left: 1em;
 	margin: 1em 0;
@@ -772,9 +793,22 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 .seo-text__col > *:first-child {
 	margin-top: 0;
 }
+
 .seo-text > *:last-child,
 .seo-text__col > *:last-child {
 	margin-bottom: 0;
+}
+
+@media (hover: hover) {
+	.calc-table__miner-link:hover {
+		color: var(--color-accent);
+	}
+}
+
+@media (hover: none) {
+	.calc-table__miner-link:active {
+		color: var(--color-accent);
+	}
 }
 
 @media (min-width: 1200px) {
@@ -794,18 +828,23 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	.calc-table__coin {
 		width: 11% !important;
 	}
+
 	.calc-table__hashrate {
 		width: 10% !important;
 	}
-	.calc-table__electricity {
+
+	.calc-table__power-consumption {
 		width: 11% !important;
 	}
+
 	.calc-table__income {
 		width: 14% !important;
 	}
-	.calc-table__consumption {
+
+	.calc-table__electricity-costs {
 		width: 12% !important;
 	}
+
 	.calc-table__profit {
 		width: 16% !important;
 	}
@@ -858,6 +897,7 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 		margin: 5.2em 0 0;
 	}
 }
+
 @media (max-width: 1199px) {
 	.coin-table {
 		--table-border-radius: 1.25rem;
@@ -866,20 +906,20 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	.coin-table th,
 	.coin-table td,
 	table.coin-table.dataTable tbody td {
-		padding: 0.625rem 1.25rem;
+		padding: 0.625rem 1.25rem !important;
 		font-size: 0.9375rem;
 	}
 
 	.coin-table th:first-child,
 	.coin-table td:first-child,
 	table.coin-table.dataTable tbody td:first-child {
-		padding-left: 1.25rem;
+		padding-left: 1.25rem !important;
 	}
 
 	.coin-table th:last-child,
 	.coin-table td:last-child,
 	table.coin-table.dataTable tbody td:last-child {
-		padding-right: 1.25rem;
+		padding-right: 1.25rem !important;
 	}
 
 	.coin-table tfoot td {
@@ -905,20 +945,20 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	}
 
 	.calc-form__input[name="hashrate"],
-	.calc-form__input[name="electricity"],
-	.calc-form__input[name="consumption"],
+	.calc-form__input[name="electricity-price"],
+	.calc-form__input[name="power-consumption"],
 	.calc-form__input[name="commission"] {
 		--placeholder-offset: 0.875rem;
 	}
 
 	.calc-table__title {
 		padding: 0;
-		margin: 0 0 20px;
+		margin: 0 0 1.25rem;
 		font-size: 1.875rem;
 	}
 
 	.coin-info {
-		margin: 80px 0 0;
+		margin: 5rem 0 0;
 	}
 
 	.seo-text {
@@ -942,14 +982,10 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 }
 
 @media (max-width: 991px) {
-	.coin-table {
-		table-layout: fixed;
-	}
-
 	.coin-table th,
 	.coin-table td,
 	table.coin-table.dataTable tbody td {
-		padding: 0.625rem 1.25rem;
+		padding: 0.625rem 1.25rem !important;
 		font-size: 0.9375rem;
 	}
 
@@ -982,10 +1018,12 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 		display: block;
 		height: 2.375rem;
 	}
+
 	.coin-table[data-adaptive="991"] thead tr {
 		margin: 0 0 var(--table-row-offset);
 		border-radius: var(--table-border-radius) var(--table-border-radius) 0 0;
 	}
+
 	.coin-table[data-adaptive="991"] tfoot tr {
 		margin: var(--table-row-offset) 0 0;
 		border-radius: 0 0 var(--table-border-radius) var(--table-border-radius);
@@ -1069,27 +1107,29 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 		min-width: auto;
 	}
 }
+
 @media (max-width: 767px) {
 	.coin-table {
 		--table-border-radius: 0.875rem;
 	}
+
 	.coin-table th,
 	.coin-table td,
 	table.coin-table.dataTable tbody td {
-		padding: 0.5rem 0.3125rem;
+		padding: 0.5rem var(--container-padding) !important;
 		font-size: 0.875rem;
 	}
 
 	.coin-table th:first-child,
 	.coin-table td:first-child,
 	table.coin-table.dataTable tbody td:first-child {
-		padding-left: var(--container-padding);
+		padding-left: var(--container-padding) !important;
 	}
 
 	.coin-table th:last-child,
 	.coin-table td:last-child,
 	table.coin-table.dataTable tbody td:last-child {
-		padding-right: var(--container-padding);
+		padding-right: var(--container-padding) !important;
 	}
 
 	.coin-table tfoot td {
@@ -1115,14 +1155,14 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	}
 
 	.calc-form__input[name="hashrate"],
-	.calc-form__input[name="electricity"],
-	.calc-form__input[name="consumption"],
+	.calc-form__input[name="electricity-price"],
+	.calc-form__input[name="power-consumption"],
 	.calc-form__input[name="commission"] {
 		--placeholder-offset: 0.75rem;
 	}
 
 	.coin-info {
-		margin: 60px 0 0;
+		margin: 3.75rem 0 0;
 	}
 
 	.seo-text__row {

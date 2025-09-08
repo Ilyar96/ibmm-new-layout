@@ -767,9 +767,9 @@
 										<tr>
 											<th class="coin-table__period">Период</th>
 											<th class="coin-table__coin-income">Награда</th>
-											<th class="coin-table__income">Доход</th>
-											<th class="coin-table__consumption">Расходы</th>
-											<th class="coin-table__gain">Прибыль</th>
+											<th class="coin-table__cash-income">Доход</th>
+											<th class="coin-table__electricity-consumption">Расходы</th>
+											<th class="coin-table__profit">Прибыль</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -784,11 +784,11 @@
 													</span>
 												</span>
 											</td>
-											<td class="coin-table__income" data-label="Доход">
+											<td class="coin-table__cash-income" data-label="Доход">
 											</td>
-											<td class="coin-table__consumption" data-label="Расходы">
+											<td class="coin-table__electricity-consumption" data-label="Расходы">
 											</td>
-											<td class="coin-table__gain" data-label="Прибыль">
+											<td class="coin-table__profit" data-label="Прибыль">
 											</td>
 										</tr>
 										<tr>
@@ -802,11 +802,11 @@
 													</span>
 												</span>
 											</td>
-											<td class="coin-table__income" data-label="Доход">
+											<td class="coin-table__cash-income" data-label="Доход">
 											</td>
-											<td class="coin-table__consumption" data-label="Расходы">
+											<td class="coin-table__electricity-consumption" data-label="Расходы">
 											</td>
-											<td class="coin-table__gain" data-label="Прибыль">
+											<td class="coin-table__profit" data-label="Прибыль">
 											</td>
 										</tr>
 										<tr>
@@ -820,11 +820,11 @@
 													</span>
 												</span>
 											</td>
-											<td class="coin-table__income" data-label="Доход">
+											<td class="coin-table__cash-income" data-label="Доход">
 											</td>
-											<td class="coin-table__consumption" data-label="Расходы">
+											<td class="coin-table__electricity-consumption" data-label="Расходы">
 											</td>
-											<td class="coin-table__gain" data-label="Прибыль">
+											<td class="coin-table__profit" data-label="Прибыль">
 											</td>
 										</tr>
 										<tr>
@@ -838,14 +838,14 @@
 													</span>
 												</span>
 											</td>
-											<td class="coin-table__income" data-label="Доход">
+											<td class="coin-table__cash-income" data-label="Доход">
 												<span>
 													<span id="month-coin-income"></span>
 												</span>
 											</td>
-											<td class="coin-table__consumption" data-label="Расходы">
+											<td class="coin-table__electricity-consumption" data-label="Расходы">
 											</td>
-											<td class="coin-table__gain" data-label="Прибыль">
+											<td class="coin-table__profit" data-label="Прибыль">
 											</td>
 										</tr>
 									</tbody>
@@ -867,9 +867,9 @@
 										<tr>
 											<th class="coin-table__period">Свой срок</th>
 											<th class="coin-table__coin-income">Награда</th>
-											<th class="coin-table__income">Доход</th>
-											<th class="coin-table__consumption">Расходы</th>
-											<th class="coin-table__gain">Прибыль</th>
+											<th class="coin-table__cash-income">Доход</th>
+											<th class="coin-table__electricity-consumption">Расходы</th>
+											<th class="coin-table__profit">Прибыль</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -889,19 +889,19 @@
 													</span>
 												</span>
 											</td>
-											<td class="coin-table__income" data-label="Доход">
+											<td class="coin-table__cash-income" data-label="Доход">
 												<span>
 													<span id="custom-income"></span>
 												</span>
 											</td>
-											<td class="coin-table__consumption" data-label="Расходы">
+											<td class="coin-table__electricity-consumption" data-label="Расходы">
 												<span>
-													<span id="custom-consumption"></span>
+													<span id="custom-electricity-costs"></span>
 												</span>
 											</td>
-											<td class="coin-table__gain" data-label="Прибыль">
+											<td class="coin-table__profit" data-label="Прибыль">
 												<span>
-													<span id="custom-gain"></span>
+													<span id="custom-profit"></span>
 												</span>
 											</td>
 										</tr>
@@ -919,7 +919,7 @@
 							</div>
 
 						</div>
-						<div class="calc-info__form calc-form">
+						<form id="calc-from" class="calc-info__form calc-form">
 							<div class="calc-form__item">
 								<div class="calc-form__radio form-radio">
 									<div class="form-radio__item">
@@ -942,16 +942,16 @@
 							</div>
 							<div class="calc-form__item">
 								<div class="calc-form__input-wrapper">
-									<label class="calc-form__input-placeholder" for="electricity">Потреб. эл.энергии:</label>
-									<input id="electricity" class="calc-form__input" type="text" name="electricity" value="500">
-									<label class="calc-form__input-unit" for="electricity">Ватт</label>
+									<label class="calc-form__input-placeholder" for="power-consumption">Потреб. эл.энергии:</label>
+									<input id="power-consumption" class="calc-form__input" type="text" name="power-consumption" value="500">
+									<label class="calc-form__input-unit" for="power-consumption">Ватт</label>
 								</div>
 							</div>
 							<div class="calc-form__item">
 								<div class="calc-form__input-wrapper">
-									<label class="calc-form__input-placeholder" for="consumption">Цена на эл.энергию:</label>
-									<input id="consumption" class="calc-form__input" type="text" name="consumption" value="5">
-									<label class="calc-form__input-unit" for="consumption">₽/кВт ч.</label>
+									<label class="calc-form__input-placeholder" for="electricity-price">Цена на эл.энергию:</label>
+									<input id="electricity-price" class="calc-form__input" type="text" name="electricity-price" value="5">
+									<label class="calc-form__input-unit" for="electricity-price">₽/кВт ч.</label>
 								</div>
 							</div>
 							<div class="calc-form__item">
@@ -962,8 +962,8 @@
 								</div>
 							</div>
 
-							<button id="calc-form-button" class="calc-form__button button button--primary" type="button">Рассчитать</button>
-						</div>
+							<button class="calc-form__button button button--primary" type="submit">Рассчитать</button>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -982,15 +982,15 @@
 							<div class="calc-table__filters">
 								<div class="calc-table__period form-radio">
 									<div class="form-radio__item">
-										<input id="period-day" class="form-radio__input" type="radio" name="period" value="day" checked>
+										<input id="period-day" class="form-radio__input" type="radio" name="period" value="86400" checked>
 										<label class="form-radio__label" for="period-day">День</label>
 									</div>
 									<div class="form-radio__item">
-										<input id="period-month" class="form-radio__input" type="radio" name="period" value="month">
+										<input id="period-month" class="form-radio__input" type="radio" name="period" value="2592000">
 										<label class="form-radio__label" for="period-month">Месяц</label>
 									</div>
 									<div class="form-radio__item">
-										<input id="period-year" class="form-radio__input" type="radio" name="period" value="year">
+										<input id="period-year" class="form-radio__input" type="radio" name="period" value="31104000">
 										<label class="form-radio__label" for="period-year">Год</label>
 									</div>
 								</div>
@@ -1008,13 +1008,13 @@
 									<th class="calc-table__hashrate">
 										<span class="calc-table__th-wrapper">Хэшрейт</span>
 									</th>
-									<th class="calc-table__electricity">
+									<th class="calc-table__power-consumption">
 										<span class="calc-table__th-wrapper">Мощность</span>
 									</th>
 									<th class="calc-table__income">
 										<span class="calc-table__th-wrapper">Награда</span>
 									</th>
-									<th class="calc-table__consumption">
+									<th class="calc-table__electricity-costs">
 										<span class="calc-table__th-wrapper">Расходы</span>
 									</th>
 									<th class="calc-table__profit">
@@ -1025,99 +1025,45 @@
 							<tbody>
 								<tr>
 									<td class="calc-table__miner" data-label="Модель">
-										<a href="#" class="calc-table__miner-link">Jasminer X44-P 23 Gh/s</a>
+										<a href="#" class="calc-table__miner-link">Bitmain Antminer E11 9000 Mh/s</a>
 									</td>
-									<td class="calc-table__coin" data-label="Монета">
-										<span class="calc-table__coin-wrapper" data-coin="etc">
-											<img src="assets/img/coins/etc.png" alt="etc" class="calc-table__coin-icon">
-											<span>ETC</span>
-										</span>
-									</td>
-									<td class="calc-table__hashrate" data-label="Хэшрейт">1.16 Ph/s</td>
-									<td class="calc-table__electricity" data-label="Мощность">11020 w</td>
-									<td class="calc-table__income" data-label="Награда">
-										<span class="calc-table__income-wrapper">
-											<span class="calc-table__income-value" data-income="0.008639">0.008639 ₽</span>
-											<span class="calc-table__income-period">
-												/ День
-											</span>
-										</span>
-									</td>
-									<td class="calc-table__consumption" data-label="Расходы">
-										<span class="calc-table__consumption-wrapper">
-											<span class="calc-table__consumption-value" data-consumption="306">306 ₽</span>
-											<span class="calc-table__consumption-period">
-												/ День
-											</span>
-										</span>
-									</td>
-									<td class="calc-table__profit" data-label="Чистый доход">
-										<span class="calc-table__profit-wrapper" data-profit="1680.87">1 680.87 ₽ / День</span>
-									</td>
+									<td class="calc-table__coin" data-label="Монета">ETC</td>
+									<td class="calc-table__hashrate" data-label="Хэшрейт">9000000000</td>
+									<td class="calc-table__power-consumption" data-label="Мощность">2340</td>
+									<td class="calc-table__income" data-label="Награда"></td>
+									<td class="calc-table__electricity-costs" data-label="Расходы"></td>
+									<td class="calc-table__profit" data-label="Чистый доход"></td>
+									<td class="miner-name" hidden>Bitmain Antminer E11 9000 Mh/s</td>
+									<td class="miner-full-hashrate" hidden>9000 Mh/s</td>
+									<td class="coin-profit" hidden>6.74765e-16</td>
 								</tr>
 								<tr>
 									<td class="calc-table__miner" data-label="Модель">
-										<a href="#" class="calc-table__miner-link">Bitmain Antminer S23 Hyd 3u</a>
+										<a href="#" class="calc-table__miner-link">Bombax EZ-100-C 3800 Mh/s</a>
 									</td>
-									<td class="calc-table__coin" data-label="Монета">
-										<span class="calc-table__coin-wrapper" data-coin="btc">
-											<img src="assets/img/coins/btc.png" alt="btc" class="calc-table__coin-icon">
-											<span>BTC</span>
-										</span>
-									</td>
-									<td class="calc-table__hashrate" data-label="Хэшрейт">1.5 Ph/s</td>
-									<td class="calc-table__electricity" data-label="Мощность">1102 w</td>
-									<td class="calc-table__income" data-label="Награда">
-										<span class="calc-table__income-wrapper">
-											<span class="calc-table__income-value" data-income="0.009">0.009 ₽</span>
-											<span class="calc-table__income-period">
-												/ День
-											</span>
-										</span>
-									</td>
-									<td class="calc-table__consumption" data-label="Расходы">
-										<span class="calc-table__consumption-wrapper">
-											<span class="calc-table__consumption-value" data-consumption="350">350 ₽</span>
-											<span class="calc-table__consumption-period">
-												/ День
-											</span>
-										</span>
-									</td>
-									<td class="calc-table__profit" data-label="Чистый доход">
-										<span class="calc-table__profit-wrapper" data-profit="1700">1 700 ₽ / День</span>
-									</td>
+									<td class="calc-table__coin" data-label="Монета">ETC</td>
+									<td class="calc-table__hashrate" data-label="Хэшрейт">3800000000</td>
+									<td class="calc-table__power-consumption" data-label="Мощность">570</td>
+									<td class="calc-table__income" data-label="Награда"></td>
+									<td class="calc-table__electricity-costs" data-label="Расходы"></td>
+									<td class="calc-table__profit" data-label="Чистый доход"></td>
+									<td class="miner-name" hidden>Bombax EZ-100-C 3800 Mh/s</td>
+									<td class="miner-full-hashrate" hidden>3800 Mh/s</td>
+									<td class="coin-profit" hidden>6.74765e-16</td>
 								</tr>
 								<tr>
 									<td class="calc-table__miner" data-label="Модель">
-										<a href="#" class="calc-table__miner-link">Bitmain Antminer S23 Hyd 3u</a>
+										<a href="#" class="calc-table__miner-link">iPollo V2H 3 Gh/s</a>
 									</td>
-									<td class="calc-table__coin" data-label="Монета">
-										<span class="calc-table__coin-wrapper" data-coin="btc">
-											<img src="assets/img/coins/btc.png" alt="btc" class="calc-table__coin-icon">
-											<span>BTC</span>
-										</span>
-									</td>
-									<td class="calc-table__hashrate" data-label="Хэшрейт">1.5 Ph/s</td>
-									<td class="calc-table__electricity" data-label="Мощность">1102 w</td>
-									<td class="calc-table__income" data-label="Награда">
-										<span class="calc-table__income-wrapper">
-											<span class="calc-table__income-value" data-income="0.009">0.009 ₽</span>
-											<span class="calc-table__income-period">
-												/ День
-											</span>
-										</span>
-									</td>
-									<td class="calc-table__consumption" data-label="Расходы">
-										<span class="calc-table__consumption-wrapper">
-											<span class="calc-table__consumption-value" data-consumption="350">350 ₽</span>
-											<span class="calc-table__consumption-period">
-												/ День
-											</span>
-										</span>
-									</td>
-									<td class="calc-table__profit" data-label="Чистый доход">
-										<span class="calc-table__profit-wrapper" data-profit="1700">1 700 ₽ / День</span>
-									</td>
+									<td class="calc-table__coin" data-label="Монета">ETC</td>
+									<td class="calc-table__hashrate" data-label="Хэшрейт">3000000000</td>
+									<td class="calc-table__power-consumption" data-label="Мощность">475</td>
+									<td class="calc-table__income" data-label="Награда"></td>
+									<td class="calc-table__electricity-costs" data-label="Расходы"></td>
+									<td class="calc-table__profit" data-label="Чистый доход"></td>
+									<td class="miner-name" hidden>iPollo V2H 3 Gh/s</td>
+									<td class="miner-full-hashrate" hidden>3 Gh/s</td>
+									<td class="coin-profit" hidden>6.74765e-16</td>
 								</tr>
 							</tbody>
 						</table>
