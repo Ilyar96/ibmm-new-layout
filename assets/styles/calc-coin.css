@@ -1,14 +1,24 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 3 versions
+*/
+
 .calc-info {
 	margin: 3.625rem 0 0;
 }
 
 .calc-info__wrapper {
+	display: -ms-grid;
 	display: grid;
 	gap: 1rem;
 }
 
 .calc-info__coin {
+	display: -ms-grid;
 	display: grid;
+	-ms-flex-line-pack: justify;
 	align-content: space-between;
 	gap: 1rem;
 }
@@ -52,6 +62,7 @@ table.coin-table.dataTable tbody td:last-child {
 }
 
 .coin-table tfoot td {
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	height: 3.0625rem;
 }
@@ -89,6 +100,13 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 }
 
 .coin-table tbody tr.active {
+	background: rgba(25, 30, 32, 0.5) -o-linear-gradient(right, rgba(114, 177, 59, 1) 0%, rgba(
+					59,
+					177,
+					100,
+					0
+				)
+				100%);
 	background: rgba(25, 30, 32, 0.5) -webkit-gradient(linear, right top, left top, from(rgba(114, 177, 59, 1)), to(rgba(59, 177, 100, 0)));
 	background: rgba(25, 30, 32, 0.5) -o-linear-gradient(right, rgba(114, 177, 59, 1) 0%, rgba(
 					59,
@@ -122,14 +140,23 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 }
 
 .coin-table__coin-income-wrapper {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	gap: 0.625rem;
 }
 
 .coin-table__coin-income-unit {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 0.1875rem;
 	font-weight: 700;
@@ -138,9 +165,12 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 .coin-table__coin-icon {
 	display: inline-block;
 	--icon-size: 1.125rem;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 auto;
 	flex: 0 0 auto;
 	width: auto;
 	height: var(--icon-size);
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 
@@ -192,6 +222,7 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 
 /* calc-form */
 .calc-form {
+	display: -ms-grid;
 	display: grid;
 	gap: 0.625rem;
 	padding: 3.75rem 2.3125rem;
@@ -207,7 +238,11 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 .form-radio {
 	--form-radio-wrapper-height: 3.0625rem;
 	--form-radio-padding: 0.1875rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	padding: var(--form-radio-padding);
 	background: var(--white-10);
@@ -216,18 +251,28 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 }
 
 .form-radio__item {
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1;
 	flex: 1 1;
 }
 
 .form-radio__input {
 	position: absolute;
 	opacity: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
 	appearance: none;
 }
 
 .form-radio__label {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	width: 100%;
 	height: calc(var(--form-radio-wrapper-height) - var(--form-radio-padding) * 2);
@@ -260,7 +305,11 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	left: 0.625rem;
 	top: 50%;
 	z-index: 1;
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	height: var(--form-field-placeholder-height);
 	padding: 0 0.625rem;
@@ -272,7 +321,12 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	font-size: 0.75rem;
 	line-height: 130%;
 	letter-spacing: -0.03em;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 }
 
@@ -338,6 +392,8 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	top: 50%;
 	z-index: 1;
 	margin: 0;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 	font-weight: 500;
 	font-size: 0.875rem;
@@ -373,14 +429,21 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 
 .calc-table__coin-icon {
 	--icon-size: 1.1875rem;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--icon-size);
 	flex: 0 0 var(--icon-size);
 	width: var(--icon-size);
 	height: var(--icon-size);
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 
 .calc-table__coin-wrapper {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 0.25rem;
 	font-weight: 700;
@@ -389,6 +452,8 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 }
 
 .calc-table__miner-link {
+	-webkit-transition: color var(--transition-base);
+	-o-transition: color var(--transition-base);
 	transition: color var(--transition-base);
 }
 
@@ -416,6 +481,7 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 }
 
 .seo-text__row {
+	display: -ms-grid;
 	display: grid;
 	gap: 2.5em;
 	margin: 2.5em 0 0;
@@ -514,6 +580,8 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 .seo-text a {
 	color: var(--color-accent);
 	text-decoration: underline;
+	-webkit-transition: color 0.3s ease;
+	-o-transition: color 0.3s ease;
 	transition: color 0.3s ease;
 }
 
@@ -782,6 +850,8 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 .seo-text nav a {
 	color: var(--color-accent);
 	text-decoration: none;
+	-webkit-transition: color 0.3s ease;
+	-o-transition: color 0.3s ease;
 	transition: color 0.3s ease;
 }
 
@@ -813,6 +883,7 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 
 @media (min-width: 1200px) {
 	.calc-info__wrapper {
+		-ms-grid-columns: 1fr 1.9375rem 34.1875rem;
 		grid-template-columns: 1fr 34.1875rem;
 		gap: 1.9375rem;
 	}
@@ -892,6 +963,7 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	}
 
 	.seo-text__row {
+		-ms-grid-columns: 1fr 5.9em 1fr;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 5.9em;
 		margin: 5.2em 0 0;
@@ -1067,6 +1139,7 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 		-ms-flex-pack: justify;
 		justify-content: space-between;
 		font-weight: 400;
+		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 	}
 
@@ -1168,5 +1241,9 @@ table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	.seo-text__row {
 		gap: 2em;
 		margin: 2em 0 0;
+	}
+
+	.calc-table__header {
+		margin: 0 0 1rem;
 	}
 }
