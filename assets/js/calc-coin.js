@@ -1,5 +1,9 @@
 (function () {
+	initCoinPeriodTable();
 	initCalcTable();
+	initCustomPeriod();
+	initForm();
+	updateCustomMonthData();
 
 	// Calc table
 	function initCalcTable() {
@@ -144,7 +148,6 @@
 					type: "num",
 					render: function (data, type) {
 						const income = Number(extractDataAttrFromTableString(data, "income"));
-						console.log(income);
 
 						if (type === "sort") {
 							return isNaN(income) ? 0 : income;
@@ -221,131 +224,6 @@
 		// Добавляем поиск через поле table-search
 		$("#table-search").on("input", debouncedTableSearchInputHandler);
 
-		// Функция для фильтрации таблицы по монете
-		function filterTableByCoin(coin) {
-			// Проверяем, что таблица существует и инициализирована
-			if (!$("#calc-table").length) {
-				console.warn("Элемент таблицы не найден");
-				return;
-			}
-
-			if (!$.fn.DataTable.isDataTable("#calc-table")) {
-				console.warn("DataTable еще не инициализирована");
-				return;
-			}
-
-			const table = $("#calc-table").DataTable();
-
-			// Дополнительная проверка
-			if (!table || !table.settings) {
-				console.warn("DataTable не готова к использованию");
-				return;
-			}
-
-			try {
-				// Обновляем локальный фильтр по монете
-				filterState.setCoinFilter(coin);
-
-				// Перерисовываем таблицу для применения фильтров
-				table.draw();
-			} catch (error) {
-				console.error("Ошибка при фильтрации таблицы:", error);
-			}
-		}
-
-		// Функция для обновления активного состояния ссылок монет
-		function updateActiveCoinState(activeCoin) {
-			// Убираем активный класс у всех ссылок
-			$(".calc-header__coin").removeClass("active");
-
-			// Добавляем активный класс к выбранной монете
-			if (activeCoin === "all") {
-				$('.calc-header__coin[href*="coin=all"]').addClass("active");
-			} else {
-				$(`.calc-header__coin[href*="coin=${activeCoin}"]`).addClass("active");
-			}
-		}
-
-		// Функция для получения GET параметров из URL
-		function getUrlParameter(name) {
-			const urlParams = new URLSearchParams(window.location.search);
-			return urlParams.get(name);
-		}
-
-		// Функция для обновления URL без перезагрузки страницы
-		function updateUrlParameter(name, value) {
-			const url = new URL(window.location);
-			if (value === "all") {
-				url.searchParams.delete(name);
-			} else {
-				url.searchParams.set(name, value);
-			}
-			window.history.pushState({}, "", url);
-		}
-
-		// Основная функция инициализации фильтра по монетам
-		function initCoinFilter() {
-			// Получаем параметр coin из URL при загрузке страницы
-			const initialCoin = getUrlParameter("coin") || "all";
-			let filterApplied = false; // Флаг для предотвращения множественных вызовов
-
-			// Устанавливаем начальное состояние
-			updateActiveCoinState(initialCoin);
-
-			// Функция для применения начального фильтра
-			function applyInitialFilter() {
-				if ($.fn.DataTable.isDataTable("#calc-table") && !filterApplied) {
-					filterApplied = true;
-					filterTableByCoin(initialCoin);
-				} else if (!filterApplied) {
-					// Если таблица еще не готова, ждем еще немного
-					setTimeout(applyInitialFilter, 50);
-				}
-			}
-
-			// Ждем полной инициализации таблицы перед применением фильтра
-			setTimeout(applyInitialFilter, 100);
-
-			// Дополнительный обработчик события инициализации DataTable
-			$("#calc-table").on("init.dt", function () {
-				// Применяем фильтр после полной инициализации таблицы
-				if (!filterApplied) {
-					setTimeout(() => {
-						filterApplied = true;
-						filterTableByCoin(initialCoin);
-					}, 50);
-				}
-			});
-
-			// Обработчик кликов по ссылкам монет
-			$(".calc-header__coin[data-coin-filter]").on("click", function (e) {
-				e.preventDefault();
-
-				const href = $(this).attr("href");
-				const coinMatch = href.match(/coin=([^&]+)/);
-
-				if (coinMatch) {
-					const coin = coinMatch[1];
-
-					// Обновляем URL
-					updateUrlParameter("coin", coin);
-
-					// Обновляем активное состояние
-					updateActiveCoinState(coin);
-
-					// Фильтруем таблицу
-					filterTableByCoin(coin);
-				}
-			});
-
-			// Обработчик изменения URL через кнопки браузера
-			$(window).on("popstate", function () {
-				const currentCoin = getUrlParameter("coin") || "all";
-				updateActiveCoinState(currentCoin);
-				filterTableByCoin(currentCoin);
-			});
-		}
-
 		function tableSearchInputHandler(e) {
 			table.search(e.target.value).draw();
 		}
@@ -359,12 +237,391 @@
 			}
 			return "";
 		}
+	}
 
-		function resetCoinFilter() {
-			updateUrlParameter("coin", "all");
-			updateActiveCoinState("all");
-			filterState.resetCoinFilter();
-			filterTableByCoin("all");
+	// Calc table
+	function initCoinPeriodTable() {
+		const periodIndex = 0;
+		const coinIncomeIndex = 1;
+		const incomeIndex = 2;
+		const consumptionIndex = 3;
+		const profitIndex = 4;
+
+		const incomePerUnit = $("#income_per_unit").val();
+		const coinName = $("#coin-name").val();
+
+		$("#coin-period").DataTable({
+			paging: false,
+			info: false,
+			searching: false,
+			ordering: false,
+			language: {
+				// TODO поменять путь на правильный
+				url: "./assets/js/datatables_lang_ru.json",
+			},
+			columnDefs: [
+				{
+					data: periodIndex,
+					targets: [periodIndex],
+					type: "string",
+					render: function (data, type) {
+						if (type == "display") {
+							switch (data) {
+								case "3600":
+									return "<span>1 час</span>";
+								case "86400":
+									return "<span>1 день</span>";
+								case "604800":
+									return "<span>1 неделя</span>";
+								case "2592000":
+									return "<span>1 месяц</span>";
+							}
+							return data;
+						}
+						return data;
+					},
+				},
+				{
+					data: periodIndex,
+					targets: coinIncomeIndex,
+					render: function (data, type, row) {
+						const period = data;
+						let cryptoIncome = getCalculatedCoinIncome(period);
+
+						if (type == "display") {
+							if (coinName == "DOGE+LTC") {
+								return " ";
+							} else {
+								return `<span class="coin-table__coin-income-wrapper">
+													<span class="coin-table__coin-income-value">${formatNumber(cryptoIncome, 0)}</span>
+													<span class="coin-table__coin-income-unit">
+														<img src="assets/img/coins/${coinName}.png" class="coin-table__coin-icon" alt="${coinName.toUpperCase()}">
+														<span>${coinName.toUpperCase()}</span>
+													</span>
+												</span>`;
+							}
+						}
+						return cryptoIncome;
+					},
+				},
+				{
+					data: periodIndex,
+					targets: incomeIndex,
+					render: function (data, type) {
+						const period = data;
+						const periodLabel = getPeriodLabelBySeconds(period);
+						const currencySymbol = getCurrencySymbol();
+						const cashIncome = getCalculatedCashIncome(period);
+
+						if (type == "display") {
+							return `<span>${formatNumber(cashIncome)} ${currencySymbol} ${periodLabel}</span>`;
+						}
+						return cryptoIncome;
+					},
+				},
+				{
+					data: periodIndex,
+					targets: consumptionIndex,
+					render: function (data, type) {
+						const period = data;
+						const periodLabel = getPeriodLabelBySeconds(period);
+						const currencySymbol = getCurrencySymbol();
+						const costs = getCalculatedElectricityCosts(period);
+
+						if (type == "display") {
+							return `<span>${formatNumber(costs)} ${currencySymbol} ${periodLabel}</span>`;
+						}
+						return costs;
+					},
+				},
+				{
+					data: periodIndex,
+					targets: profitIndex,
+					render: function (data, type) {
+						const period = data;
+						const periodLabel = getPeriodLabelBySeconds(period);
+						const currencySymbol = getCurrencySymbol();
+
+						const cashProfit = getCalculatedProfit(period);
+
+						if (type == "display") {
+							return `<span>${formatNumber(cashProfit)} ${currencySymbol} ${periodLabel}</span>`;
+						}
+						return cryptoIncome;
+					},
+				},
+			],
+		});
+	}
+
+	function getCalculatedCoinIncome(period) {
+		const incomePerUnit = $("#income_per_unit").val();
+		const hashrate = $("#hashrate").val();
+		const hashrateUnit = $("#hashrate-label").text().trim();
+		const convertedHashrate = convertHashrate(hashrate, hashrateUnit);
+
+		return period * incomePerUnit * convertedHashrate;
+	}
+
+	function getCalculatedProfit(period) {
+		const commission = Number($("#commission").val());
+		const costs = getCalculatedElectricityCosts(period);
+		let cashIncome = getCalculatedCashIncome(period);
+
+		if (typeof commission === "number" && commission > 0) {
+			cashIncome *= commission / 100;
 		}
+
+		return cashIncome - costs;
+	}
+
+	function getCalculatedElectricityCosts(period) {
+		let electricity = $("#electricity").val();
+		let consumption = $("#consumption").val();
+		let currency = $("input[name='currency']:checked").val();
+		let costs = (period / 3600) * electricity * (consumption / 1000) * currency;
+
+		return costs;
+	}
+
+	function getCalculatedCashIncome(period) {
+		const coinName = $("#coin-name").val();
+		const incomePerUnit = $("#income_per_unit").val();
+		const cashIncomePerUnit = $("#cash_income_per_unit").val();
+		const hashrate = $("#hashrate").val();
+		const hashrateUnit = $("#hashrate-label").text().trim();
+		const currency = $("input[name='currency']:checked").val();
+		const currencyName = $("input[name='currency']:checked + label").text();
+		const convertedHashrate = convertHashrate(hashrate, hashrateUnit);
+
+		const cryptoIncome = period * incomePerUnit * convertedHashrate;
+
+		let cashIncome = 0;
+
+		if (coinName == "DOGE+LTC") {
+			cashIncome =
+				((cashIncomePerUnit * convertedHashrate * period) / $("#base_currency_factor").val()) *
+				currency;
+		} else {
+			cashIncome = cryptoIncome * $("#coin-rate").val().replaceAll(" ", "");
+
+			if (currencyName === "RUB") {
+				cashIncome *= $("#usd-to-rub").val();
+			}
+		}
+
+		return cashIncome;
+	}
+
+	function getPeriodLabelBySeconds(seconds) {
+		switch (seconds) {
+			case "3600":
+				return "Час";
+			case "86400":
+				return "День";
+			case "604800":
+				return "Неделя";
+			case "2592000":
+				return "Месяц";
+		}
+	}
+
+	function initForm() {
+		const debouncedDrawDataTables = debounce(drawDataTables, 300);
+
+		$("input[name='currency']").on("input", () => {
+			debouncedDrawDataTables();
+			updateCustomMonthData();
+		});
+		$("#hashrate").on("input", (e) => inputHandler(e, 1));
+		$("#electricity").on("input", (e) => inputHandler(e, 1));
+		$("#consumption").on("input", (e) => inputHandler(e, 0));
+		$("#commission").on("input", (e) => inputHandler(e, 0, 100));
+
+		function inputHandler(e, min, max) {
+			validateNumberInput(e, min, max);
+			debouncedDrawDataTables();
+			updateCustomMonthData();
+		}
+	}
+
+	function validateNumberInput(e, min, max) {
+		const input = e.target;
+		let value = input.value;
+
+		// Заменяем запятую на точку
+		value = value.replace(/,/g, ".");
+
+		const allowedChars = /^[0-9.,-]*$/;
+
+		// Проверяем, что введены только разрешенные символы
+		if (!allowedChars.test(value)) {
+			// Удаляем недопустимые символы
+			value = value.replace(/[^0-9.,-]/g, "");
+		}
+
+		// Проверяем количество минусов (только один в начале)
+		const minusCount = (value.match(/-/g) || []).length;
+		if (minusCount > 1 || (minusCount === 1 && value.indexOf("-") !== 0)) {
+			// Удаляем все минусы и добавляем один в начало, если нужно
+			value = value.replace(/-/g, "");
+			if (value.startsWith("-")) {
+				value = "-" + value;
+			}
+		}
+
+		// Проверяем количество точек (только одна)
+		const dotCount = (value.match(/\./g) || []).length;
+		if (dotCount > 1) {
+			// Оставляем только первую точку
+			const firstDotIndex = value.indexOf(".");
+			value =
+				value.substring(0, firstDotIndex + 1) +
+				value.substring(firstDotIndex + 1).replace(/\./g, "");
+		}
+
+		// Не позволяем точку в начале числа (кроме случаев типа ".5")
+		if (value.startsWith(".") && value.length > 1) {
+			// Это допустимо для десятичных дробей
+		} else if (value === ".") {
+			value = "0.";
+		}
+
+		// Не позволяем минус после точки
+		if (value.includes(".") && value.indexOf("-") > value.indexOf(".")) {
+			value = value.replace(/-/g, "");
+		}
+
+		// Обновляем значение в input
+		input.value = value;
+
+		// Проверяем диапазон, если заданы min и max
+		if (value !== "" && value !== "-" && value !== ".") {
+			const numValue = parseFloat(value);
+
+			if (!isNaN(numValue)) {
+				if (min !== undefined && numValue < min) {
+					input.value = min.toString();
+				} else if (max !== undefined && numValue > max) {
+					input.value = max.toString();
+				}
+			}
+		}
+
+		if ((min !== undefined && min >= 0 && value.indexOf("-") !== -1) || value === "") {
+			input.value = min.toString();
+		}
+	}
+
+	function drawDataTables() {
+		$("#coin-miners-table").DataTable().rows().invalidate("data").draw(false);
+		$("#coin-period").DataTable().rows().invalidate("data").draw(false);
+	}
+
+	function initCustomPeriod() {
+		const customPeriodInput = document.getElementById("custom-period");
+
+		if (!customPeriodInput) {
+			return;
+		}
+
+		customPeriodInput.addEventListener("input", customPeriodInputHandler);
+
+		function customPeriodInputHandler(e) {
+			validateNumberInput(e, 1);
+			updateCustomMonthData();
+		}
+	}
+
+	function getCurrencySymbol() {
+		const currencyLabel = $("input[name='currency']:checked + label")?.text()?.toLowerCase();
+
+		if (!currencyLabel) {
+			return "";
+		}
+
+		return currencyLabel === "rub" ? "&nbsp₽" : "$";
+	}
+
+	function convertHashrate(hashrate, hashrateUnit) {
+		switch (hashrateUnit) {
+			case "Th/s":
+				return (hashrate = hashrate * 10 ** 12);
+			case "Gh/s":
+				return (hashrate = hashrate * 10 ** 9);
+			case "Mh/s":
+				return (hashrate = hashrate * 10 ** 6);
+			case "Kh/s":
+				return (hashrate = hashrate * 10 ** 3);
+			default:
+				return hashrate;
+		}
+	}
+
+	function updateCustomMonthData() {
+		const value = $("#custom-period").val();
+		const period = Number(value) * 3600 * 24 * 30;
+
+		const coinIncome = getCalculatedCoinIncome(period);
+		const cashIncome = getCalculatedCashIncome(period);
+		const costs = getCalculatedElectricityCosts(period);
+		const profit = getCalculatedProfit(period);
+
+		$("#cistom-coin-income").html(coinIncome);
+		$("#custom-income").html(
+			`${formatNumber(cashIncome)} ${getCurrencySymbol()} <b>${value}мес</b>`
+		);
+		$("#custom-consumption").html(
+			`${formatNumber(costs)} ${getCurrencySymbol()} <b>${value}мес</b>`
+		);
+		$("#custom-gain").html(`${formatNumber(profit, 2)} ${getCurrencySymbol()} <b>${value}мес</b>`);
+	}
+
+	function formatNumber(num, digitalsCount = 2) {
+		// Проверяем, что число валидное
+		if (isNaN(num) || num === null || num === undefined) {
+			return "0";
+		}
+
+		// Преобразуем в число, если это строка
+		num = Number(num);
+
+		// Если число равно 0, возвращаем "0"
+		if (num === 0) {
+			return "0";
+		}
+
+		// Вычисляем минимальный порог на основе количества знаков после запятой
+		const threshold = Math.pow(10, -digitalsCount);
+
+		// Если число меньше порога, используем специальную логику для очень малых чисел
+		if (Math.abs(num) < threshold && num !== 0) {
+			// Для очень малых чисел используем toFixed с достаточным количеством знаков
+			// Находим порядок числа (количество нулей после запятой)
+			const absNum = Math.abs(num);
+			const order = Math.floor(Math.log10(absNum));
+
+			// Количество знаков после запятой = |порядок| + digitalsCount + 1
+			// Это гарантирует, что мы покажем первую значащую цифру и еще digitalsCount знаков
+			const precision = Math.abs(order) + 1;
+
+			// Ограничиваем максимальную точность разумным значением
+			const maxPrecision = Math.min(precision, 15);
+
+			// Форматируем с найденной точностью
+			const formatted = num.toFixed(maxPrecision);
+
+			// Убираем лишние нули в конце
+			return parseFloat(formatted).toString();
+		}
+
+		// Форматируем число с помощью Intl.NumberFormat
+		const formatter = new Intl.NumberFormat("ru-RU", {
+			minimumFractionDigits: 0,
+			maximumFractionDigits: digitalsCount,
+		});
+
+		// Заменяем запятую на точку
+		return formatter.format(num).replace(",", ".");
 	}
 })();

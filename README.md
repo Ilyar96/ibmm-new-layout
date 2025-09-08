@@ -11,3 +11,5 @@
 $(".calc-header__coin[data-coin-filter]").on("click", function (e) {
 	...
 ```
+
+debounce,js

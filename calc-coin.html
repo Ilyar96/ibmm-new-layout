@@ -750,7 +750,15 @@
 					<div class="calc-info__wrapper">
 						<div class="calc-info__coin">
 							<div class="calc-info__table-wrapper">
-								<table class="coin-table coin-table--main" data-adaptive="991">
+								<input type="hidden" id="base_currency_factor" value="0.01226157369941487801368040777560963761061429977417">
+								<!-- Стоимость монеты в usd -->
+								<input type="hidden" id="coin-rate" value="18.4">
+								<input type="hidden" id="usd-to-rub" value="81.56">
+								<input type="hidden" id="income_per_unit" value="0.00000000000000067476500000000002989710023787395838">
+								<input type="hidden" id="cash_income_per_unit" value="0.00000000000001241289999999999941794811039795161538">
+								<input type="hidden" id="coin-name" value="etc">
+
+								<table id="coin-period" class="coin-table coin-table--main" data-adaptive="991">
 									<thead>
 										<tr>
 											<th class="coin-table__period">Период</th>
@@ -762,11 +770,7 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td class="coin-table__period" data-label="Период">
-												<span>
-													1 час
-												</span>
-											</td>
+											<td class="coin-table__period" data-label="Период">3600</td>
 											<td class="coin-table__coin-income" data-label="Награда">
 												<span class="coin-table__coin-income-wrapper">
 													<span class="coin-table__coin-income-value">2.4291540000000005e-7</span>
@@ -787,11 +791,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td class="coin-table__period" data-label="Период">
-												<span>
-													1 день
-												</span>
-											</td>
+											<td class="coin-table__period" data-label="Период">86400</td>
 											<td class="coin-table__coin-income" data-label="Награда">
 												<span class="coin-table__coin-income-wrapper">
 													<span class="coin-table__coin-income-value">0.0000058299696</span>
@@ -812,11 +812,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td class="coin-table__period" data-label="Период">
-												<span>
-													1 неделя
-												</span>
-											</td>
+											<td class="coin-table__period" data-label="Период">604800</td>
 											<td class="coin-table__coin-income" data-label="Награда">
 												<span class="coin-table__coin-income-wrapper">
 													<span class="coin-table__coin-income-value">0.000040809787200000005</span>
@@ -837,12 +833,10 @@
 											</td>
 										</tr>
 										<tr>
-											<td class="coin-table__period" data-label="Период">
-												<span>1 месяц</span>
-											</td>
+											<td class="coin-table__period" data-label="Период">2592000</td>
 											<td class="coin-table__coin-income" data-label="Награда">
 												<span class="coin-table__coin-income-wrapper">
-													<span class="coin-table__coin-income-value">0.000174899088</span>
+													<span id="month-coin-income" class="coin-table__coin-income-value">0.000174899088</span>
 													<span class="coin-table__coin-income-unit">
 														<img src="assets/img/coins/etc.png" class="coin-table__coin-icon" alt="ETC">
 														<span>ETC</span>
@@ -850,7 +844,10 @@
 												</span>
 											</td>
 											<td class="coin-table__income" data-label="Доход">
-												<span>0.259157 ₽ Месяц</span>
+												<span>
+													<span id="month-coin-income">0.259157 ₽</span>
+													Месяц
+												</span>
 											</td>
 											<td class="coin-table__consumption" data-label="Расходы">
 												<span>0 ₽ Месяц</span>
@@ -902,17 +899,17 @@
 											</td>
 											<td class="coin-table__income" data-label="Доход">
 												<span>
-													<span id="custom-income">0.00036 ₽</span> <span class="coin-table__custom-period">6 мес</span>
+													<span id="custom-income"></span>
 												</span>
 											</td>
 											<td class="coin-table__consumption" data-label="Расходы">
 												<span>
-													<span id="custom-consumption">0 ₽</span> <span class="coin-table__custom-period">6 мес</span>
+													<span id="custom-consumption"></span>
 												</span>
 											</td>
 											<td class="coin-table__gain" data-label="Прибыль">
 												<span>
-													<span id="custom-gain">0.00036 ₽</span> <span class="coin-table__custom-period">6 мес</span>
+													<span id="custom-gain"></span>
 												</span>
 											</td>
 										</tr>
@@ -934,11 +931,11 @@
 							<div class="calc-form__item">
 								<div class="calc-form__radio form-radio">
 									<div class="form-radio__item">
-										<input id="currency-rub" class="form-radio__input" type="radio" name="currency" value="rub" checked>
+										<input id="currency-rub" class="form-radio__input" type="radio" name="currency" value="1" checked>
 										<label class="form-radio__label" for="currency-rub">RUB</label>
 									</div>
 									<div class="form-radio__item">
-										<input id="currency-usd" class="form-radio__input" type="radio" name="currency" value="usd">
+										<input id="currency-usd" class="form-radio__input" type="radio" name="currency" value="0.01230047">
 										<label class="form-radio__label" for="currency-usd">USD</label>
 									</div>
 								</div>
@@ -947,15 +944,15 @@
 							<div class="calc-form__item">
 								<div class="calc-form__input-wrapper">
 									<label class="calc-form__input-placeholder" for="hashrate">Хэшрейт:</label>
-									<input id="hashrate" class="calc-form__input" type="text" name="hashrate" value="123">
-									<label class="calc-form__input-unit" for="hashrate">Kh/s</label>
+									<input id="hashrate" class="calc-form__input" type="text" name="hashrate" value="100">
+									<label id="hashrate-label" class="calc-form__input-unit" for="hashrate">Kh/s</label>
 								</div>
 							</div>
 							<div class="calc-form__item">
 								<div class="calc-form__input-wrapper">
-									<label class="calc-form__input-placeholder" for="power">Потреб. эл.энергии:</label>
-									<input id="power" class="calc-form__input" type="text" name="power" value="500">
-									<label class="calc-form__input-unit" for="power">Ватт</label>
+									<label class="calc-form__input-placeholder" for="electricity">Потреб. эл.энергии:</label>
+									<input id="electricity" class="calc-form__input" type="text" name="electricity" value="500">
+									<label class="calc-form__input-unit" for="electricity">Ватт</label>
 								</div>
 							</div>
 							<div class="calc-form__item">
@@ -967,9 +964,9 @@
 							</div>
 							<div class="calc-form__item">
 								<div class="calc-form__input-wrapper">
-									<label class="calc-form__input-placeholder" for="comission">Комиссия пула:</label>
-									<input id="comission" class="calc-form__input" type="text" name="comission" value="0">
-									<label class="calc-form__input-unit" for="comission">%</label>
+									<label class="calc-form__input-placeholder" for="commission">Комиссия пула:</label>
+									<input id="commission" class="calc-form__input" type="text" name="commission" value="0">
+									<label class="calc-form__input-unit" for="commission">%</label>
 								</div>
 							</div>
 
@@ -1019,7 +1016,7 @@
 									<th class="calc-table__hashrate">
 										<span class="calc-table__th-wrapper">Хэшрейт</span>
 									</th>
-									<th class="calc-table__power">
+									<th class="calc-table__electricity">
 										<span class="calc-table__th-wrapper">Мощность</span>
 									</th>
 									<th class="calc-table__income">
@@ -1045,7 +1042,7 @@
 										</span>
 									</td>
 									<td class="calc-table__hashrate" data-label="Хэшрейт">1.16 Ph/s</td>
-									<td class="calc-table__power" data-label="Мощность">11020 w</td>
+									<td class="calc-table__electricity" data-label="Мощность">11020 w</td>
 									<td class="calc-table__income" data-label="Награда">
 										<span class="calc-table__income-wrapper">
 											<span class="calc-table__income-value" data-income="0.008639">0.008639 ₽</span>
@@ -1077,7 +1074,7 @@
 										</span>
 									</td>
 									<td class="calc-table__hashrate" data-label="Хэшрейт">1.5 Ph/s</td>
-									<td class="calc-table__power" data-label="Мощность">1102 w</td>
+									<td class="calc-table__electricity" data-label="Мощность">1102 w</td>
 									<td class="calc-table__income" data-label="Награда">
 										<span class="calc-table__income-wrapper">
 											<span class="calc-table__income-value" data-income="0.009">0.009 ₽</span>
@@ -1109,7 +1106,7 @@
 										</span>
 									</td>
 									<td class="calc-table__hashrate" data-label="Хэшрейт">1.5 Ph/s</td>
-									<td class="calc-table__power" data-label="Мощность">1102 w</td>
+									<td class="calc-table__electricity" data-label="Мощность">1102 w</td>
 									<td class="calc-table__income" data-label="Награда">
 										<span class="calc-table__income-wrapper">
 											<span class="calc-table__income-value" data-income="0.009">0.009 ₽</span>
@@ -1455,12 +1452,9 @@
 
 	<script src="assets/js/jquery-3.7.1.min.js"></script>
 	<script src="assets/js/jquery.dataTables.min.js"></script>
-	<script src="assets/js/lodash/debounce,js"></script>
-	<script src="assets/js/swiper-bundle.min.js"></script>
-	<script src="assets/js/swiper-bundle.min.js"></script>
+	<script src="assets/js/lodash/debounce.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/menu.js"></script>
-	<script src="assets/js/calc.js"></script>
 	<script src="assets/js/calc-coin.js"></script>
 </body>
 

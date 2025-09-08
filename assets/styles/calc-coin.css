@@ -8,6 +8,7 @@
 
 .calc-info__coin {
 	display: grid;
+	align-content: space-between;
 	gap: 1rem;
 }
 
@@ -23,7 +24,8 @@
 }
 
 .coin-table th,
-.coin-table td {
+.coin-table td,
+table.coin-table.dataTable tbody td {
 	padding: 0.75rem 0.3125rem;
 	font-family: var(--font-family-quaternary);
 	font-weight: 400;
@@ -33,12 +35,14 @@
 }
 
 .coin-table th:first-child,
-.coin-table td:first-child {
+.coin-table td:first-child,
+table.coin-table.dataTable tbody td:first-child {
 	padding-left: 1.875rem;
 }
 
 .coin-table th:last-child,
-.coin-table td:last-child {
+.coin-table td:last-child,
+table.coin-table.dataTable tbody td:last-child {
 	padding-right: 1.875rem;
 }
 
@@ -48,6 +52,7 @@
 }
 
 .coin-table tfoot td {
+	box-sizing: border-box;
 	height: 3.0625rem;
 }
 
@@ -292,7 +297,7 @@
 	--unit-offset: 0.375rem;
 }
 
-.calc-form__input[name="power"] {
+.calc-form__input[name="electricity"] {
 	--placeholder-width: 8.4375rem;
 	--placeholder-offset: 1.25rem;
 	--unit-width: 1.6875rem;
@@ -306,7 +311,7 @@
 	--unit-offset: 0.375rem;
 }
 
-.calc-form__input[name="comission"] {
+.calc-form__input[name="commission"] {
 	--placeholder-width: 6.875rem;
 	--placeholder-offset: 1.25rem;
 	--unit-width: 0.6875rem;
@@ -789,7 +794,7 @@
 	.calc-table__hashrate {
 		width: 10% !important;
 	}
-	.calc-table__power {
+	.calc-table__electricity {
 		width: 11% !important;
 	}
 	.calc-table__income {
@@ -856,18 +861,21 @@
 	}
 
 	.coin-table th,
-	.coin-table td {
+	.coin-table td,
+	table.coin-table.dataTable tbody td {
 		padding: 0.625rem 1.25rem;
 		font-size: 0.9375rem;
 	}
 
 	.coin-table th:first-child,
-	.coin-table td:first-child {
+	.coin-table td:first-child,
+	table.coin-table.dataTable tbody td:first-child {
 		padding-left: 1.25rem;
 	}
 
 	.coin-table th:last-child,
-	.coin-table td:last-child {
+	.coin-table td:last-child,
+	table.coin-table.dataTable tbody td:last-child {
 		padding-right: 1.25rem;
 	}
 
@@ -894,9 +902,9 @@
 	}
 
 	.calc-form__input[name="hashrate"],
-	.calc-form__input[name="power"],
+	.calc-form__input[name="electricity"],
 	.calc-form__input[name="consumption"],
-	.calc-form__input[name="comission"] {
+	.calc-form__input[name="commission"] {
 		--placeholder-offset: 0.875rem;
 	}
 
@@ -936,7 +944,8 @@
 	}
 
 	.coin-table th,
-	.coin-table td {
+	.coin-table td,
+	table.coin-table.dataTable tbody td {
 		padding: 0.625rem 1.25rem;
 		font-size: 0.9375rem;
 	}
@@ -1017,6 +1026,7 @@
 		-ms-flex-pack: justify;
 		justify-content: space-between;
 		font-weight: 400;
+		box-sizing: border-box;
 	}
 
 	.coin-table[data-adaptive="991"] tbody td:last-child {
@@ -1061,18 +1071,21 @@
 		--table-border-radius: 0.875rem;
 	}
 	.coin-table th,
-	.coin-table td {
+	.coin-table td,
+	table.coin-table.dataTable tbody td {
 		padding: 0.5rem 0.3125rem;
 		font-size: 0.875rem;
 	}
 
 	.coin-table th:first-child,
-	.coin-table td:first-child {
+	.coin-table td:first-child,
+	table.coin-table.dataTable tbody td:first-child {
 		padding-left: var(--container-padding);
 	}
 
 	.coin-table th:last-child,
-	.coin-table td:last-child {
+	.coin-table td:last-child,
+	table.coin-table.dataTable tbody td:last-child {
 		padding-right: var(--container-padding);
 	}
 
@@ -1099,9 +1112,9 @@
 	}
 
 	.calc-form__input[name="hashrate"],
-	.calc-form__input[name="power"],
+	.calc-form__input[name="electricity"],
 	.calc-form__input[name="consumption"],
-	.calc-form__input[name="comission"] {
+	.calc-form__input[name="commission"] {
 		--placeholder-offset: 0.75rem;
 	}
 
