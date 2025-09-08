@@ -750,6 +750,9 @@
 					<div class="calc-info__wrapper">
 						<div class="calc-info__coin">
 							<div class="calc-info__table-wrapper">
+
+
+								<!-- Данные из бека -->
 								<input type="hidden" id="base_currency_factor" value="0.01226157369941487801368040777560963761061429977417">
 								<!-- Стоимость монеты в usd -->
 								<input type="hidden" id="coin-rate" value="18.4">
@@ -757,6 +760,7 @@
 								<input type="hidden" id="income_per_unit" value="0.00000000000000067476500000000002989710023787395838">
 								<input type="hidden" id="cash_income_per_unit" value="0.00000000000001241289999999999941794811039795161538">
 								<input type="hidden" id="coin-name" value="etc">
+								<!-- / Данные из бека -->
 
 								<table id="coin-period" class="coin-table coin-table--main" data-adaptive="991">
 									<thead>
@@ -773,7 +777,7 @@
 											<td class="coin-table__period" data-label="Период">3600</td>
 											<td class="coin-table__coin-income" data-label="Награда">
 												<span class="coin-table__coin-income-wrapper">
-													<span class="coin-table__coin-income-value">2.4291540000000005e-7</span>
+													<span class="coin-table__coin-income-value"></span>
 													<span class="coin-table__coin-income-unit">
 														<img src="assets/img/coins/etc.png" class="coin-table__coin-icon" alt="ETC">
 														<span>ETC</span>
@@ -781,20 +785,17 @@
 												</span>
 											</td>
 											<td class="coin-table__income" data-label="Доход">
-												<span>0.00036 ₽ Час</span>
 											</td>
 											<td class="coin-table__consumption" data-label="Расходы">
-												<span>0 ₽ Час</span>
 											</td>
 											<td class="coin-table__gain" data-label="Прибыль">
-												<span>0.00036 ₽ Час</span>
 											</td>
 										</tr>
 										<tr>
 											<td class="coin-table__period" data-label="Период">86400</td>
 											<td class="coin-table__coin-income" data-label="Награда">
 												<span class="coin-table__coin-income-wrapper">
-													<span class="coin-table__coin-income-value">0.0000058299696</span>
+													<span class="coin-table__coin-income-value"></span>
 													<span class="coin-table__coin-income-unit">
 														<img src="assets/img/coins/etc.png" class="coin-table__coin-icon" alt="ETC">
 														<span>ETC</span>
@@ -802,20 +803,17 @@
 												</span>
 											</td>
 											<td class="coin-table__income" data-label="Доход">
-												<span>0.008639 ₽ День</span>
 											</td>
 											<td class="coin-table__consumption" data-label="Расходы">
-												<span>0 ₽ День</span>
 											</td>
 											<td class="coin-table__gain" data-label="Прибыль">
-												<span>0.008639 ₽ День</span>
 											</td>
 										</tr>
 										<tr>
 											<td class="coin-table__period" data-label="Период">604800</td>
 											<td class="coin-table__coin-income" data-label="Награда">
 												<span class="coin-table__coin-income-wrapper">
-													<span class="coin-table__coin-income-value">0.000040809787200000005</span>
+													<span class="coin-table__coin-income-value"></span>
 													<span class="coin-table__coin-income-unit">
 														<img src="assets/img/coins/etc.png" class="coin-table__coin-icon" alt="ETC">
 														<span>ETC</span>
@@ -823,20 +821,17 @@
 												</span>
 											</td>
 											<td class="coin-table__income" data-label="Доход">
-												<span>0.06047 ₽ Неделя</span>
 											</td>
 											<td class="coin-table__consumption" data-label="Расходы">
-												<span>0 ₽ Неделя</span>
 											</td>
 											<td class="coin-table__gain" data-label="Прибыль">
-												<span>0.06047 ₽ Неделя</span>
 											</td>
 										</tr>
 										<tr>
 											<td class="coin-table__period" data-label="Период">2592000</td>
 											<td class="coin-table__coin-income" data-label="Награда">
 												<span class="coin-table__coin-income-wrapper">
-													<span id="month-coin-income" class="coin-table__coin-income-value">0.000174899088</span>
+													<span id="month-coin-income" class="coin-table__coin-income-value"></span>
 													<span class="coin-table__coin-income-unit">
 														<img src="assets/img/coins/etc.png" class="coin-table__coin-icon" alt="ETC">
 														<span>ETC</span>
@@ -845,15 +840,12 @@
 											</td>
 											<td class="coin-table__income" data-label="Доход">
 												<span>
-													<span id="month-coin-income">0.259157 ₽</span>
-													Месяц
+													<span id="month-coin-income"></span>
 												</span>
 											</td>
 											<td class="coin-table__consumption" data-label="Расходы">
-												<span>0 ₽ Месяц</span>
 											</td>
 											<td class="coin-table__gain" data-label="Прибыль">
-												<span>0.259157 ₽ Месяц</span>
 											</td>
 										</tr>
 									</tbody>
@@ -970,7 +962,7 @@
 								</div>
 							</div>
 
-							<button class="calc-form__button button button--primary" type="button">Рассчитать</button>
+							<button id="calc-form-button" class="calc-form__button button button--primary" type="button">Рассчитать</button>
 						</div>
 					</div>
 				</div>

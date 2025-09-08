@@ -286,14 +286,14 @@
 					targets: coinIncomeIndex,
 					render: function (data, type, row) {
 						const period = data;
-						let cryptoIncome = getCalculatedCoinIncome(period);
+						let cryptoIncome = getCoinsTableCoinIncome(period);
 
 						if (type == "display") {
 							if (coinName == "DOGE+LTC") {
 								return " ";
 							} else {
 								return `<span class="coin-table__coin-income-wrapper">
-													<span class="coin-table__coin-income-value">${formatNumber(cryptoIncome, 0)}</span>
+													<span class="coin-table__coin-income-value">${formatNumber(cryptoIncome, 8)}</span>
 													<span class="coin-table__coin-income-unit">
 														<img src="assets/img/coins/${coinName}.png" class="coin-table__coin-icon" alt="${coinName.toUpperCase()}">
 														<span>${coinName.toUpperCase()}</span>
@@ -311,7 +311,7 @@
 						const period = data;
 						const periodLabel = getPeriodLabelBySeconds(period);
 						const currencySymbol = getCurrencySymbol();
-						const cashIncome = getCalculatedCashIncome(period);
+						const cashIncome = getCoinTablesCashIncome(period);
 
 						if (type == "display") {
 							return `<span>${formatNumber(cashIncome)} ${currencySymbol} ${periodLabel}</span>`;
@@ -324,9 +324,10 @@
 					targets: consumptionIndex,
 					render: function (data, type) {
 						const period = data;
+						const consumption = $("#consumption").val();
 						const periodLabel = getPeriodLabelBySeconds(period);
 						const currencySymbol = getCurrencySymbol();
-						const costs = getCalculatedElectricityCosts(period);
+						const costs = getCalculatedElectricityCosts(period, consumption);
 
 						if (type == "display") {
 							return `<span>${formatNumber(costs)} ${currencySymbol} ${periodLabel}</span>`;
@@ -342,7 +343,7 @@
 						const periodLabel = getPeriodLabelBySeconds(period);
 						const currencySymbol = getCurrencySymbol();
 
-						const cashProfit = getCalculatedProfit(period);
+						const cashProfit = getCoinTablesProfit(period);
 
 						if (type == "display") {
 							return `<span>${formatNumber(cashProfit)} ${currencySymbol} ${periodLabel}</span>`;
@@ -354,19 +355,25 @@
 		});
 	}
 
-	function getCalculatedCoinIncome(period) {
+	function getCoinsTableCoinIncome(period) {
 		const incomePerUnit = $("#income_per_unit").val();
 		const hashrate = $("#hashrate").val();
 		const hashrateUnit = $("#hashrate-label").text().trim();
+
+		return getCalculatedCoinIncome(period, incomePerUnit, hashrate, hashrateUnit);
+	}
+
+	function getCalculatedCoinIncome(period, incomePerUnit, hashrate, hashrateUnit) {
 		const convertedHashrate = convertHashrate(hashrate, hashrateUnit);
 
 		return period * incomePerUnit * convertedHashrate;
 	}
 
-	function getCalculatedProfit(period) {
+	function getCoinTablesProfit(period) {
+		const consumption = $("#consumption").val();
 		const commission = Number($("#commission").val());
-		const costs = getCalculatedElectricityCosts(period);
-		let cashIncome = getCalculatedCashIncome(period);
+		const costs = getCalculatedElectricityCosts(period, consumption);
+		let cashIncome = getCoinTablesCashIncome(period);
 
 		if (typeof commission === "number" && commission > 0) {
 			cashIncome *= commission / 100;
@@ -375,21 +382,44 @@
 		return cashIncome - costs;
 	}
 
-	function getCalculatedElectricityCosts(period) {
-		let electricity = $("#electricity").val();
-		let consumption = $("#consumption").val();
-		let currency = $("input[name='currency']:checked").val();
-		let costs = (period / 3600) * electricity * (consumption / 1000) * currency;
+	function getCalculatedProfit(period, coinName, incomePerUnit, hashrate, hashrateUnit) {
+		const consumption = $("#consumption").val();
+		const commission = Number($("#commission").val());
+		const costs = getCalculatedElectricityCosts(period, consumption);
+		let cashIncome = getCalculatedCashIncome(
+			period,
+			coinName,
+			incomePerUnit,
+			hashrate,
+			hashrateUnit
+		);
+
+		if (typeof commission === "number" && commission > 0) {
+			cashIncome *= commission / 100;
+		}
+
+		return cashIncome - costs;
+	}
+
+	function getCalculatedElectricityCosts(period, consumption) {
+		const electricity = $("#electricity").val();
+		const currency = $("input[name='currency']:checked").val();
+		const costs = (period / 3600) * electricity * (consumption / 1000) * currency;
 
 		return costs;
 	}
 
-	function getCalculatedCashIncome(period) {
+	function getCoinTablesCashIncome(period) {
 		const coinName = $("#coin-name").val();
 		const incomePerUnit = $("#income_per_unit").val();
 		const cashIncomePerUnit = $("#cash_income_per_unit").val();
 		const hashrate = $("#hashrate").val();
 		const hashrateUnit = $("#hashrate-label").text().trim();
+
+		return getCalculatedCashIncome(period, coinName, incomePerUnit, hashrate, hashrateUnit);
+	}
+
+	function getCalculatedCashIncome(period, coinName, incomePerUnit, hashrate, hashrateUnit) {
 		const currency = $("input[name='currency']:checked").val();
 		const currencyName = $("input[name='currency']:checked + label").text();
 		const convertedHashrate = convertHashrate(hashrate, hashrateUnit);
@@ -429,17 +459,13 @@
 	function initForm() {
 		const debouncedDrawDataTables = debounce(drawDataTables, 300);
 
-		$("input[name='currency']").on("input", () => {
-			debouncedDrawDataTables();
-			updateCustomMonthData();
-		});
-		$("#hashrate").on("input", (e) => inputHandler(e, 1));
-		$("#electricity").on("input", (e) => inputHandler(e, 1));
-		$("#consumption").on("input", (e) => inputHandler(e, 0));
-		$("#commission").on("input", (e) => inputHandler(e, 0, 100));
+		$("#calc-form-button").on("click", clickHandler);
+		$("#hashrate").on("input", (e) => validateNumberInput(e, 1));
+		$("#electricity").on("input", (e) => validateNumberInput(e, 1));
+		$("#consumption").on("input", (e) => validateNumberInput(e, 0));
+		$("#commission").on("input", (e) => validateNumberInput(e, 0, 100));
 
-		function inputHandler(e, min, max) {
-			validateNumberInput(e, min, max);
+		function clickHandler() {
 			debouncedDrawDataTables();
 			updateCustomMonthData();
 		}
@@ -560,14 +586,15 @@
 
 	function updateCustomMonthData() {
 		const value = $("#custom-period").val();
+		const consumption = $("#consumption").val();
 		const period = Number(value) * 3600 * 24 * 30;
 
-		const coinIncome = getCalculatedCoinIncome(period);
-		const cashIncome = getCalculatedCashIncome(period);
-		const costs = getCalculatedElectricityCosts(period);
-		const profit = getCalculatedProfit(period);
+		const coinIncome = getCoinsTableCoinIncome(period);
+		const cashIncome = getCoinTablesCashIncome(period);
+		const costs = getCalculatedElectricityCosts(period, consumption);
+		const profit = getCoinTablesProfit(period);
 
-		$("#cistom-coin-income").html(coinIncome);
+		$("#cistom-coin-income").html(formatNumber(coinIncome, 8));
 		$("#custom-income").html(
 			`${formatNumber(cashIncome)} ${getCurrencySymbol()} <b>${value}мес</b>`
 		);
@@ -577,7 +604,7 @@
 		$("#custom-gain").html(`${formatNumber(profit, 2)} ${getCurrencySymbol()} <b>${value}мес</b>`);
 	}
 
-	function formatNumber(num, digitalsCount = 2) {
+	function formatNumber(num, digitalsCount = 2, forcePrecision = false) {
 		// Проверяем, что число валидное
 		if (isNaN(num) || num === null || num === undefined) {
 			return "0";
@@ -591,37 +618,39 @@
 			return "0";
 		}
 
+		// Если forcePrecision = true, используем точное количество знаков
+		if (forcePrecision) {
+			return formatIntl(digitalsCount);
+		}
+
 		// Вычисляем минимальный порог на основе количества знаков после запятой
 		const threshold = Math.pow(10, -digitalsCount);
 
 		// Если число меньше порога, используем специальную логику для очень малых чисел
 		if (Math.abs(num) < threshold && num !== 0) {
-			// Для очень малых чисел используем toFixed с достаточным количеством знаков
-			// Находим порядок числа (количество нулей после запятой)
+			// Для очень малых чисел находим количество нулей после запятой
 			const absNum = Math.abs(num);
 			const order = Math.floor(Math.log10(absNum));
 
 			// Количество знаков после запятой = |порядок| + digitalsCount + 1
-			// Это гарантирует, что мы покажем первую значащую цифру и еще digitalsCount знаков
+			// Это гарантирует, что мы покажем первую значащую цифру + 1
 			const precision = Math.abs(order) + 1;
 
 			// Ограничиваем максимальную точность разумным значением
 			const maxPrecision = Math.min(precision, 15);
 
-			// Форматируем с найденной точностью
-			const formatted = num.toFixed(maxPrecision);
-
-			// Убираем лишние нули в конце
-			return parseFloat(formatted).toString();
+			return formatIntl(maxPrecision);
 		}
 
-		// Форматируем число с помощью Intl.NumberFormat
-		const formatter = new Intl.NumberFormat("ru-RU", {
-			minimumFractionDigits: 0,
-			maximumFractionDigits: digitalsCount,
-		});
+		return formatIntl(digitalsCount);
 
-		// Заменяем запятую на точку
-		return formatter.format(num).replace(",", ".");
+		function formatIntl(digitalsCount) {
+			const formatter = new Intl.NumberFormat("ru-RU", {
+				minimumFractionDigits: 0,
+				maximumFractionDigits: digitalsCount,
+			});
+
+			return formatter.format(num).replace(",", ".");
+		}
 	}
 })();

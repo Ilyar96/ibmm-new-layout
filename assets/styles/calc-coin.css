@@ -74,12 +74,14 @@ table.coin-table.dataTable tbody td:last-child {
 	border-radius: 0 0 var(--table-border-radius) 0;
 }
 
-.coin-table tbody tr {
+.coin-table tbody tr,
+table.dataTable.coin-table tbody tr {
 	background: rgba(25, 30, 32, 0.5);
 	background-attachment: fixed !important;
 }
 
-.coin-table--main tbody tr:nth-child(2n + 1) {
+.coin-table--main tbody tr:nth-child(2n + 1),
+table.dataTable.coin-table--main tbody tr:nth-child(2n + 1) {
 	background: transparent;
 }
 
@@ -134,9 +136,10 @@ table.coin-table.dataTable tbody td:last-child {
 .coin-table__coin-icon {
 	display: inline-block;
 	--icon-size: 1.125rem;
-	flex: 0 0 var(--icon-size);
-	width: var(--icon-size);
+	flex: 0 0 auto;
+	width: auto;
 	height: var(--icon-size);
+	object-fit: contain;
 }
 
 .coin-table__period-wrapper {
