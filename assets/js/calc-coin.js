@@ -48,7 +48,7 @@
 						if (type === "display") {
 							return `
 								<span class="calc-table__coin-wrapper" data-coin="${data}">
-											<img src="assets/img/coins/${data}.png" alt="${data}" class="calc-table__coin-icon">
+											<img src="assets/img/coins/${data.toLowerCase()}.png" alt="${data}" class="calc-table__coin-icon">
 											<span>${data.toUpperCase()}</span>
 										</span>
 							`;
@@ -573,13 +573,13 @@
 
 		$("#cistom-coin-income").html(formatNumber(coinIncome, 8));
 		$("#custom-income").html(
-			`${formatNumber(cashIncome)} ${getCurrencySymbol()} <b>${value}мес</b>`
+			`${formatNumber(cashIncome)} ${getCurrencySymbol()}  &nbsp<b>${value}мес</b>`
 		);
 		$("#custom-electricity-costs").html(
-			`${formatNumber(costs)} ${getCurrencySymbol()} <b>${value}мес</b>`
+			`${formatNumber(costs)} ${getCurrencySymbol()} &nbsp<b>${value}мес</b>`
 		);
 		$("#custom-profit").html(
-			`${formatNumber(profit, 2)} ${getCurrencySymbol()} <b>${value}мес</b>`
+			`${formatNumber(profit, 2)} ${getCurrencySymbol()} &nbsp<b>${value}мес</b>`
 		);
 	}
 
