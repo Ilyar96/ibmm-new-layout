@@ -9,6 +9,32 @@
 	min-height: 100vh;
 	min-height: 100dvh;
 }
+
+.hotel-intro::before {
+	position: absolute;
+	top: -42.75rem;
+	left: -38.25rem;
+	z-index: -1;
+	content: "";
+	width: 47rem;
+	height: 131.5rem;
+	background: radial-gradient(50% 50%, rgba(38, 98, 246, 0.3) 0%, rgba(38, 98, 246, 0) 100%);
+	transform: rotate(32deg);
+	pointer-events: none;
+}
+.hotel-intro::after {
+	content: "";
+	position: absolute;
+	top: -38.3125rem;
+	right: -41.875rem;
+	z-index: -1;
+	width: 83rem;
+	height: 83rem;
+	background: radial-gradient(50% 50%, rgba(38, 98, 246, 0.3) 0%, rgba(38, 98, 246, 0) 100%);
+	pointer-events: none;
+	opacity: 0.3;
+}
+
 .hotel-intro__video-wrapper {
 	position: absolute;
 	inset: 0;
@@ -48,7 +74,7 @@
 	position: relative;
 	z-index: 3;
 	width: 100%;
-	padding: calc(var(--header-height) + 8vh) 0 12vh;
+	padding: calc(var(--header-height) + 8vh) 0 25vh;
 }
 .hotel-intro__title {
 	max-width: 58.125rem;
@@ -138,18 +164,42 @@
 	transform: translate(-50%, -50%);
 }
 
-.hotel-intro__stats {
+.hotel-stats {
+	margin: 5.375rem 0 0;
 }
-
-.stat-card {
+.container {
 }
-.stat-card__content {
+.hotel-stats__list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 12.375rem;
 }
-.stat-card__number {
+.hotel-stats__card {
+	list-style: none;
 }
-.stat-card__label {
+.hotel-stats__card-content {
+	font-family: var(--font-family-quinary);
+	color: var(--color-text-primary);
 }
-.stat-card__description {
+.hotel-stats__card-number {
+	font-weight: 700;
+	font-size: 6rem;
+	line-height: 1;
+}
+.hotel-stats__card-label {
+	font-weight: 400;
+	font-size: 1.625rem;
+	line-height: 120%;
+}
+.hotel-stats__card-description {
+	padding: 0.875rem 0 0;
+	margin: 0.75rem 0 0;
+	font-weight: 400;
+	font-size: 1.0625rem;
+	line-height: 140%;
+	color: rgba(255, 255, 255, 0.5);
+	border-top: 0.0625rem solid var(--white-100);
+	text-wrap-style: balance;
 }
 
 @keyframes rotateBackground {
@@ -175,72 +225,117 @@
 }
 
 @media (max-width: 1199px) {
+	.hotel-intro::before {
+		top: -72.8125rem;
+		left: -20.25rem;
+	}
+	.hotel-intro::after {
+		width: 66.375rem;
+		height: 66.375rem;
+	}
+
 	.hotel-intro__title {
-		font-size: 38px;
+		font-size: 2.375rem;
 	}
 
 	.hotel-intro__add-info {
-		gap: 24px;
+		gap: 1.5rem;
 	}
 
 	.hotel-intro__text {
-		font-size: 20px;
+		font-size: 1.25rem;
 	}
 
 	.hotel-intro__fns-logo {
-		flex: 0 0 70px;
-		width: 70px;
-		height: 73px;
+		flex: 0 0 4.375rem;
+		width: 4.375rem;
+		height: 4.5625rem;
 	}
 
 	.hotel-intro__video-trigger {
-		--play-btn-size: 200px;
+		--play-btn-size: 12.5rem;
+	}
+
+	.hotel-stats__list {
+		gap: 40px;
+	}
+
+	.hotel-stats__card-number {
+		font-size: 50px;
+	}
+	.hotel-stats__card-label {
+		margin: 4px 0 0;
+		font-size: 18px;
+	}
+	.hotel-stats__card-description {
+		padding: 0.875rem 0 0;
+		margin: 0.75rem 0 0;
+		font-size: 14px;
 	}
 }
 
 @media (max-width: 991px) {
+	.hotel-intro::after {
+		display: none;
+	}
+
+	.hotel-stats {
+		margin: 40px 0 60px;
+	}
+
+	.hotel-stats__list {
+		grid-template-columns: 1fr;
+	}
+
+	.hotel-stats__card-description {
+		text-wrap-style: initial;
+	}
 }
 
 @media (max-width: 768px) {
+	.hotel-intro::before {
+		opacity: 0.5;
+	}
+
 	.hotel-intro__inner {
-		padding: calc(var(--header-height)) 0 60px;
+		padding: calc(var(--header-height)) 0 3.75rem;
 	}
 
 	.hotel-intro__title {
-		font-size: 22px;
+		font-size: 1.375rem;
 	}
 
 	.hotel-intro__add-info {
-		gap: 16px;
+		gap: 1rem;
 	}
 
 	.hotel-intro__text {
-		font-size: 14px;
+		font-size: 0.875rem;
 	}
 
 	.hotel-intro__fns-logo {
-		flex: 0 0 50px;
-		width: 50px;
-		height: 53px;
+		flex: 0 0 3.125rem;
+		width: 3.125rem;
+		height: 3.3125rem;
 	}
 
 	.hotel-intro__video-trigger {
-		--play-btn-size: 80px;
-		margin: 20px 0 0;
+		--play-btn-size: 5rem;
+		margin: 1.25rem 0 0;
 		align-self: center;
 	}
 
 	.hotel-intro__row {
 		flex-direction: column;
 		align-items: start;
-		margin: 40px 0 0;
+		margin: 2.5rem 0 0;
 	}
 
 	.hotel-intro__actions {
 		flex-wrap: wrap;
-		gap: 16px;
+		gap: 1rem;
 		order: 1;
-		margin: 4px 0 0;
+		margin: 0.25rem 0 0;
 		align-self: center;
 	}
 
@@ -248,6 +343,18 @@
 		display: grid;
 		display: contents;
 		gap: 1.25rem;
+	}
+
+	.hotel-stats__list {
+		gap: 32px;
+	}
+
+	.hotel-stats__card-number {
+		font-size: 44px;
+	}
+	.hotel-stats__card-label {
+		margin: 6px 0 0;
+		font-size: 16px;
 	}
 }
 
