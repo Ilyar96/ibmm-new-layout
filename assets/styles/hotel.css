@@ -1,0 +1,258 @@
+.header__wrapper::after {
+	display: none;
+}
+
+.hotel-intro {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	min-height: 100dvh;
+}
+.hotel-intro__video-wrapper {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.hotel-intro__video-wrapper::after {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	content: "";
+	display: block;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	background: linear-gradient(1deg, var(--color-background) 1.25rem, transparent 21.875rem);
+}
+
+.hotel-intro__video {
+	width: 100%;
+	height: 100%;
+	opacity: 0.25;
+	object-fit: cover;
+	object-position: center;
+	z-index: -1;
+	position: relative;
+}
+.hotel-intro__container {
+	display: flex;
+	align-items: center;
+	flex-grow: 1;
+}
+.hotel-intro__inner {
+	position: relative;
+	z-index: 3;
+	width: 100%;
+	padding: calc(var(--header-height) + 8vh) 0 12vh;
+}
+.hotel-intro__title {
+	max-width: 58.125rem;
+	margin: 0;
+	font-family: var(--font-family-secondary);
+	font-weight: 600;
+	font-size: 2.8125rem;
+	line-height: 130%;
+	letter-spacing: -0.03em;
+}
+
+.hotel-intro__row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.25rem;
+	margin: 8vh 0 0;
+}
+
+.hotel-intro__add-info {
+	display: flex;
+	align-items: center;
+	gap: 2.4375rem;
+}
+.hotel-intro__fns-logo {
+	flex: 0 0 5.1875rem;
+	width: 5.1875rem;
+	height: 5.4375rem;
+	object-fit: contain;
+	filter: grayscale(1);
+}
+.hotel-intro__text {
+	max-width: 32rem;
+	margin: 0;
+	font-family: var(--font-family-quinary);
+	font-weight: 400;
+	font-size: 1.4375rem;
+	line-height: 130%;
+	letter-spacing: -0.03em;
+}
+.hotel-intro__actions {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+	margin: 10vh 0 0;
+}
+.hotel-intro__btn {
+}
+.hotel-intro__video-trigger {
+	--play-btn-size: 16.125rem;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 var(--play-btn-size);
+	width: var(--play-btn-size);
+	height: var(--play-btn-size);
+	transition: transform 0.3s ease;
+}
+
+.hotel-intro__play {
+	width: var(--play-btn-size);
+	height: var(--play-btn-size);
+	transition: transform 0.3s ease;
+}
+.hotel-intro__play::after {
+	position: absolute;
+	inset: 0;
+	content: "";
+	background: url(../img/play-bg.svg);
+	width: var(--play-btn-size);
+	height: var(--play-btn-size);
+	background-repeat: no-repeat;
+	background-position: center;
+	animation: rotateBackground 10s linear infinite;
+	background-size: var(--play-btn-size);
+}
+
+.hotel-intro__play-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 1;
+	width: calc(var(--play-btn-size) / 7.3);
+	height: calc(var(--play-btn-size) / 6.5);
+	object-fit: contain;
+	transform: translate(-50%, -50%);
+}
+
+.hotel-intro__stats {
+}
+
+.stat-card {
+}
+.stat-card__content {
+}
+.stat-card__number {
+}
+.stat-card__label {
+}
+.stat-card__description {
+}
+
+@keyframes rotateBackground {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+@media (hover: hover) {
+	.hotel-intro__video-trigger:hover .hotel-intro__play {
+		transform: scale(1.1);
+	}
+}
+
+.hotel-intro__video-trigger:active .hotel-intro__play {
+	transform: scale(0.95);
+}
+
+@media (max-width: 1199px) {
+	.hotel-intro__title {
+		font-size: 38px;
+	}
+
+	.hotel-intro__add-info {
+		gap: 24px;
+	}
+
+	.hotel-intro__text {
+		font-size: 20px;
+	}
+
+	.hotel-intro__fns-logo {
+		flex: 0 0 70px;
+		width: 70px;
+		height: 73px;
+	}
+
+	.hotel-intro__video-trigger {
+		--play-btn-size: 200px;
+	}
+}
+
+@media (max-width: 991px) {
+}
+
+@media (max-width: 768px) {
+	.hotel-intro__inner {
+		padding: calc(var(--header-height)) 0 60px;
+	}
+
+	.hotel-intro__title {
+		font-size: 22px;
+	}
+
+	.hotel-intro__add-info {
+		gap: 16px;
+	}
+
+	.hotel-intro__text {
+		font-size: 14px;
+	}
+
+	.hotel-intro__fns-logo {
+		flex: 0 0 50px;
+		width: 50px;
+		height: 53px;
+	}
+
+	.hotel-intro__video-trigger {
+		--play-btn-size: 80px;
+		margin: 20px 0 0;
+		align-self: center;
+	}
+
+	.hotel-intro__row {
+		flex-direction: column;
+		align-items: start;
+		margin: 40px 0 0;
+	}
+
+	.hotel-intro__actions {
+		flex-wrap: wrap;
+		gap: 16px;
+		order: 1;
+		margin: 4px 0 0;
+		align-self: center;
+	}
+
+	.hotel-intro__col {
+		display: grid;
+		display: contents;
+		gap: 1.25rem;
+	}
+}
+
+@media (max-width: 575px) {
+	.hotel-intro__btn {
+		flex: 0 0 100%;
+	}
+}
