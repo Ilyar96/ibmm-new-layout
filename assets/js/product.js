@@ -69,9 +69,13 @@
 		}
 
 		// Main gallery
-		Fancybox.bind('[data-fancybox="product-main"]', {});
+		Fancybox.bind('[data-fancybox="product-main"]', {
+			placeFocusBack: false,
+		});
 
 		// Product 2 gallery
-		Fancybox.bind('[data-fancybox="product-2"]', {});
+		Fancybox.bind('[data-fancybox="product-2"]', {
+			placeFocusBack: false,
+		});
 	}
 })();

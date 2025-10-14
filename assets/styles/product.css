@@ -1760,6 +1760,7 @@
 
 	.expert-opinion__button {
 		--btn-height: 3.375rem;
+		min-height: var(--btn-height);
 	}
 
 	.delivery-block__map {

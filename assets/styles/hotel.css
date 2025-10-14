@@ -707,6 +707,67 @@
 	object-fit: contain;
 }
 
+.hotel-gallery {
+	margin: 9.375rem 0 7.5rem;
+}
+
+.hotel-gallery__title {
+	margin: 0 0 2.5rem;
+	text-align: center;
+}
+
+.hotel-gallery__slider {
+	--gallery-offset: 1.25rem;
+	min-width: 0;
+	padding-bottom: 3.125rem;
+	margin: 0 calc(var(--gallery-offset) / -2);
+}
+
+.hotel-gallery__slide {
+	padding: 0 calc(var(--gallery-offset) / 2);
+	display: block;
+}
+
+.hotel-gallery__slide:focus-visible {
+	outline: 0.125rem solid var(--color-accent);
+}
+
+.hotel-gallery__img-wrapper {
+	position: relative;
+	overflow: hidden;
+	height: 0;
+	padding-bottom: 49%;
+	border-radius: 1rem;
+	filter: grayscale(0.4);
+	background: var(--color-card-background);
+	transition: filter var(--transition-base), transform var(--transition-base);
+}
+
+.hotel-gallery__img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform var(--transition-base);
+}
+
+.hotel-gallery__img-wrapper:hover .hotel-gallery__img {
+	transform: scale(1.05);
+}
+
+.hotel-gallery__pagination,
+.hotel-steps__pagination {
+	--swiper-pagination-bottom: 0;
+}
+
+.hotel-gallery .swiper-pagination-bullet,
+.hotel-steps__slider .swiper-pagination-bullet {
+	--swiper-pagination-bullet-inactive-color: var(--white-100);
+	--swiper-pagination-bullet-width: 0.625rem;
+	--swiper-pagination-bullet-height: 0.625rem;
+}
+
 @keyframes hotelStepArc {
 	to {
 		stroke-dashoffset: 0;
@@ -748,6 +809,10 @@
 	.hotel-cabinet-feature:hover {
 		transform: translateY(-0.375rem);
 		box-shadow: 0 0.0625rem 0.75rem 0.125rem rgba(255, 255, 255, 0.05);
+	}
+
+	.hotel-gallery__img-wrapper:hover {
+		filter: grayscale(0);
 	}
 }
 
@@ -1019,6 +1084,19 @@
 		display: none;
 		height: auto;
 	}
+
+	.hotel-gallery {
+		margin: 7.5rem 0 6.25rem;
+	}
+
+	.hotel-gallery__slider,
+	.hotel-steps__slider {
+		padding-bottom: 2.125rem;
+	}
+
+	.hotel-gallery__slider {
+		--gallery-offset: 0;
+	}
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -1065,18 +1143,8 @@
 		margin-top: 1.875rem;
 	}
 
-	.hotel-steps__slider {
-		padding-bottom: 2.5rem;
-	}
-
 	.hotel-steps__steps {
 		display: none;
-	}
-
-	.hotel-steps__slider .swiper-pagination-bullet {
-		--swiper-pagination-bullet-inactive-color: var(--white-100);
-		--swiper-pagination-bullet-width: 0.75rem;
-		--swiper-pagination-bullet-height: 0.75rem;
 	}
 }
 
@@ -1339,6 +1407,10 @@
 
 	.hotel-cabinet-feature__text {
 		margin: 0.5rem 0 0;
+	}
+
+	.hotel-gallery {
+		margin: 5.625rem 0 5rem;
 	}
 }
 
