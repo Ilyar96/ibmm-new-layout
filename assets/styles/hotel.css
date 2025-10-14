@@ -846,6 +846,8 @@
 }
 
 .hotel-about__footnote {
+	position: relative;
+	z-index: 1;
 	margin: 8.75rem 0 0;
 	font-family: var(--font-family-quinary);
 	font-weight: 400;
@@ -1619,7 +1621,8 @@
 		margin: 5rem 0;
 	}
 
-	.hotel-about__body {
+	.hotel-about__body,
+	.hotel-about__footnote {
 		max-width: 21.25rem;
 	}
 
@@ -1696,7 +1699,7 @@
 @media (max-width: 479px) {
 	.hotel-about__image {
 		position: relative;
-		top: -4.375rem;
+		top: -3.775rem;
 		left: 50%;
 		margin-bottom: -9.375rem;
 		transform: translate(-50%, 0);
@@ -1711,5 +1714,15 @@
 
 	.hotel-about::before {
 		opacity: 0.8;
+	}
+
+	.hotel-about__container {
+		display: flex;
+		flex-direction: column;
+	}
+	.hotel-about__footnote {
+		max-width: 100%;
+		margin: 2rem 0 0;
+		order: 2;
 	}
 }
