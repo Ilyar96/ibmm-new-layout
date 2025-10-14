@@ -768,6 +768,108 @@
 	--swiper-pagination-bullet-height: 0.625rem;
 }
 
+.hotel-about {
+	--bg-width: 225.75rem;
+	--bg-height: 174.75rem;
+	--bg-top-pos: -51.25rem;
+	--bg-left-pos: -46.875rem;
+	position: relative;
+	margin: 28.25rem 0 6.25rem;
+}
+
+.hotel-about::before {
+	content: "";
+	position: absolute;
+	top: var(--bg-top-pos);
+	left: var(--bg-left-pos);
+	z-index: 0;
+	width: var(--bg-width);
+	height: var(--bg-height);
+	background: url("../img/hotel/hotel-about-bg.svg") no-repeat center / var(--bg-width)
+		var(--bg-height);
+	pointer-events: none;
+}
+
+.hotel-about__logo {
+	width: 32rem;
+	object-fit: contain;
+}
+
+.hotel-about__vendors {
+	display: flex;
+	align-items: center;
+	gap: 3.1875rem;
+	margin: 9.125rem 0 0;
+}
+
+.hotel-about__vendor {
+	list-style: none;
+}
+
+.hotel-about__vendor-logo {
+	width: auto;
+	height: 2.1875rem;
+	object-fit: contain;
+}
+
+.hotel-about__vendor-logo--bitmain {
+	height: 1.5625rem;
+}
+
+.hotel-about__body {
+	position: relative;
+	z-index: 1;
+	max-width: 58.875rem;
+}
+
+.hotel-about__content {
+	position: relative;
+	z-index: 2;
+}
+
+.hotel-about__title {
+	margin: 5.0625rem 0 0;
+	font-size: 3.4375rem;
+	line-height: 1.5;
+	letter-spacing: -0.02em;
+	text-transform: uppercase;
+}
+
+.hotel-about__description {
+	max-width: 35.625rem;
+	margin: 4.875rem 0 0;
+	font-family: var(--font-family-quinary);
+	font-weight: 500;
+	font-size: 1.625rem;
+	line-height: 130%;
+	letter-spacing: -0.03em;
+}
+
+.hotel-about__footnote {
+	margin: 8.75rem 0 0;
+	font-family: var(--font-family-quinary);
+	font-weight: 400;
+	font-size: 0.875rem;
+	line-height: 150%;
+	letter-spacing: -0.02em;
+	color: rgba(255, 255, 255, 0.3);
+}
+
+.hotel-about__footnote-star {
+	position: relative;
+	top: 0.1875rem;
+}
+
+.hotel-about__image {
+	position: absolute;
+	top: -29.6875rem;
+	left: 49.0625rem;
+	z-index: 0;
+	width: 108.4375rem;
+	height: 117.3125rem;
+	object-fit: contain;
+}
+
 @keyframes hotelStepArc {
 	to {
 		stroke-dashoffset: 0;
@@ -1097,6 +1199,63 @@
 	.hotel-gallery__slider {
 		--gallery-offset: 0;
 	}
+
+	.hotel-about {
+		--bg-width: 112.875rem;
+		--bg-height: 87.375rem;
+		--bg-top-pos: -22.5rem;
+		--bg-left-pos: -20.625rem;
+		margin: 12.5rem 0 15rem;
+	}
+
+	.hotel-about__vendors {
+		gap: 1.5rem;
+		margin: 5rem 0 0;
+	}
+
+	.hotel-about__body {
+		max-width: 29.375rem;
+	}
+
+	.hotel-about__logo {
+		width: 16.4375rem;
+	}
+
+	.hotel-about__vendor-logo--whatsminer {
+		width: 10.8125rem;
+		height: auto;
+	}
+
+	.hotel-about__vendor-logo--bitmain {
+		width: 7rem;
+		height: auto;
+	}
+
+	.hotel-about__vendor-logo--canaan {
+		width: 5.625rem;
+		height: auto;
+	}
+
+	.hotel-about__title {
+		font-size: 1.75rem;
+	}
+
+	.hotel-about__description {
+		margin: 3.125rem 0 0;
+		font-size: 1.125rem;
+	}
+
+	.hotel-about__footnote {
+		margin: 3.125rem 0 0;
+		font-size: 0.8125rem;
+	}
+
+	.hotel-about__image {
+		top: -8.125rem;
+		left: 22.5rem;
+		width: 56.25rem;
+		height: 60.875rem;
+	}
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -1412,6 +1571,64 @@
 	.hotel-gallery {
 		margin: 5.625rem 0 5rem;
 	}
+
+	.hotel-about__vendors {
+		gap: 1.25rem;
+		margin: 2.5rem 0 0;
+	}
+
+	.hotel-about__vendor--whatsminer {
+		width: 35%;
+	}
+
+	.hotel-about__vendor--bitmain {
+		width: 21%;
+	}
+
+	.hotel-about__vendor--canaan {
+		width: 21%;
+	}
+
+	.hotel-about__vendor-logo {
+		width: 100%;
+	}
+
+	.hotel-about__title {
+		margin: 2.5rem 0 0;
+		font-size: 1.25rem;
+	}
+
+	.hotel-about__footnote {
+		margin: 2.5rem 0 0;
+	}
+
+	.hotel-about__description {
+		margin: 1.875rem 0 0;
+		font-size: 0.875rem;
+	}
+
+	.hotel-about__logo {
+		width: 12rem;
+	}
+
+	.hotel-about {
+		--bg-width: 63.25rem;
+		--bg-height: 48.875rem;
+		--bg-top-pos: -11.25rem;
+		--bg-left-pos: -11.25rem;
+		margin: 5rem 0;
+	}
+
+	.hotel-about__body {
+		max-width: 21.25rem;
+	}
+
+	.hotel-about__image {
+		top: 0rem;
+		left: 16.25rem;
+		width: 26.875rem;
+		height: 29.0625rem;
+	}
 }
 
 @media (max-width: 575px) {
@@ -1473,5 +1690,26 @@
 
 	.hotel-plans__list {
 		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 479px) {
+	.hotel-about__image {
+		position: relative;
+		top: -4.375rem;
+		left: 50%;
+		margin-bottom: -9.375rem;
+		transform: translate(-50%, 0);
+	}
+
+	.hotel-about {
+		--bg-width: 112.875rem;
+		--bg-height: 87.375rem;
+		--bg-top-pos: -16.25rem;
+		--bg-left-pos: -23.75rem;
+	}
+
+	.hotel-about::before {
+		opacity: 0.8;
 	}
 }
