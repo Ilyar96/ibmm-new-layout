@@ -10,10 +10,10 @@
 	<link rel="stylesheet" href="assets/styles/swiper-bundle.min.css">
 	<link rel="stylesheet" href="assets/styles/fancybox.css">
 	<link rel="stylesheet" href="assets/styles/main.css">
-	<!-- TODO вынести из new-common.css в main.css -->
 	<link rel="stylesheet" href="assets/styles/new-common.css">
 	<link rel="stylesheet" href="assets/styles/faq.css">
 	<link rel="stylesheet" href="assets/styles/promo-banner.css">
+	<link rel="stylesheet" href="assets/styles/plyr.min.css">
 	<link rel="stylesheet" href="assets/styles/hotel.css">
 	<link rel="stylesheet" href="assets/styles/menu.css">
 </head>
@@ -708,7 +708,7 @@
 									<button class="hotel-intro__btn button button--secondary" type="button">Записаться на экскурсию</button>
 								</div>
 							</div>
-							<button class="hotel-intro__video-trigger" type="button">
+							<button class="hotel-intro__video-trigger" type="button" id="hotel-video-trigger">
 								<span class="hotel-intro__play">
 									<svg width="35" height="39" class="hotel-intro__play-icon" viewBox="0 0 35 39" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M32.6667 15.457C35.7778 17.2539 35.7778 21.7461 32.6667 23.5431L6.99999 38.3676C3.88888 40.1645 -1.57029e-07 37.9183 0 34.3245L1.29549e-06 4.67547C1.45252e-06 1.08165 3.88889 -1.16448 7 0.632428L32.6667 15.457Z" fill="#2F2F2F" />
@@ -1492,7 +1492,6 @@
 					</div>
 				</div>
 			</section>
-
 		</main>
 
 		<footer class="footer">
@@ -1722,6 +1721,25 @@
 		</footer>
 
 		<div class="overlay"></div>
+
+		<div class="video-popup">
+			<div class="video-popup__content">
+				<button class="video-popup__close" type="button">
+					<svg width="34px" height="34px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+						<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+						<g id="SVGRepo_iconCarrier">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" fill="#ffffff"></path>
+						</g>
+					</svg>
+				</button>
+				<div class="video-popup__video-wrapper">
+					<video id="video-player" class="video-popup__video" playsinline controls>
+						<source src="assets/video/otel.webm" type="video/mp4" />
+					</video>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<script src="assets/js/jquery-3.7.1.min.js"></script>
@@ -1729,9 +1747,10 @@
 	<script src="assets/js/swiper-bundle.min.js"></script>
 	<script src="assets/js/fancybox.umd.js"></script>
 	<script src="assets/js/main.js"></script>
-	<script src="assets/js/hotel.js"></script>
 	<script src="assets/js/menu.js"></script>
 	<script src="assets/js/faq.js"></script>
+	<script src="assets/js/plyr.min.js"></script>
+	<script src="assets/js/hotel.js"></script>
 </body>
 
 </html>

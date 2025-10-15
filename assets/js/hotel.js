@@ -2,6 +2,8 @@
 	"use strict";
 
 	initSliders();
+	initVideoPopup();
+	initVideoPlayer();
 
 	// Sliders
 	function initSliders() {
@@ -137,6 +139,61 @@
 					},
 				},
 			});
+		}
+	}
+
+	function initVideoPopup() {
+		const popup = document.querySelector(".video-popup");
+		const triggerBtn = document.getElementById("hotel-video-trigger");
+
+		triggerBtn.addEventListener("click", () => {
+			openVideoPopup(popup);
+		});
+
+		popup.addEventListener("click", (e) => {
+			if (!e.target.closest(".video-popup__content") || e.target.closest(".video-popup__close"))
+				closeVideoPopup(popup);
+		});
+	}
+
+	function getScrollbarWidth() {
+		return window.innerWidth - document.documentElement.clientWidth;
+	}
+
+	function setScrollbarWidth(width) {
+		document.body.style.paddingRight = width + "px";
+		document.querySelector(".header").style.right = width + "px";
+	}
+
+	function removeScrollbarWidth() {
+		document.body.style.paddingRight = "0";
+		document.querySelector(".header").style.right = "0";
+	}
+
+	function openVideoPopup(popup) {
+		popup.classList.add("active");
+		document.body.classList.add("modal-open");
+
+		if (window.player?.play) {
+			setTimeout(window.player.play, 500);
+			setScrollbarWidth(getScrollbarWidth());
+		}
+	}
+
+	function closeVideoPopup(popup) {
+		popup.classList.remove("active");
+		document.body.classList.remove("modal-open");
+		removeScrollbarWidth();
+
+		if (window.player?.play) {
+			window.player.pause();
+		}
+	}
+
+	function initVideoPlayer() {
+		if (document.getElementById("video-player") && typeof Plyr !== "undefined") {
+			const player = new Plyr("#video-player", {});
+			window.player = player;
 		}
 	}
 })();
