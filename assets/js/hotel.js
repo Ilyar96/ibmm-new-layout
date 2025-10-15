@@ -119,5 +119,24 @@
 				},
 			});
 		}
+
+		const CASES_SLIDER_SELECTOR = "#cases-slider";
+		if (document.querySelector(CASES_SLIDER_SELECTOR)) {
+			new Swiper(CASES_SLIDER_SELECTOR, {
+				slidesPerView: 1,
+				spaceBetween: 0,
+				speed: TRANSITION_SPEED,
+				scrollbar: {
+					el: ".hotel-cases__slider-scrollbar",
+					draggable: true,
+				},
+				breakpoints: {
+					1200: {
+						slidesPerView: "auto",
+						spaceBetween: 0,
+					},
+				},
+			});
+		}
 	}
 })();
