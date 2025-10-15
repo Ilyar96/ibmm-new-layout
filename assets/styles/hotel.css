@@ -1056,6 +1056,40 @@
 	background-image: url(../img/faq-close-dark.svg);
 }
 
+.promo-banner--hotel {
+	--bg-decor-width: 203.625rem;
+	--bg-decor-height: 123.3125rem;
+	--bg-decor-pos-left: -25rem;
+	--bg-decor-pos-top: -68.75rem;
+	margin: 12.5rem 0;
+}
+
+.promo-banner--hotel .promo-banner__image-wrapper::before {
+	display: none;
+}
+
+.promo-banner--hotel .promo-banner__image-wrapper::after {
+	position: absolute;
+	top: var(--bg-decor-pos-top);
+	left: var(--bg-decor-pos-left);
+	z-index: 0;
+	content: "";
+	width: var(--bg-decor-width);
+	height: var(--bg-decor-height);
+	background: url(../img/hotel/promo-banner-bg.png) no-repeat center / var(--bg-decor-width)
+		var(--bg-decor-height);
+	pointer-events: none;
+}
+
+.promo-banner--hotel .promo-banner__image {
+	z-index: 1;
+	top: auto;
+	bottom: -13.5625rem;
+	right: 0;
+	width: 81.25rem;
+	height: 45.6875rem;
+}
+
 @keyframes hotelStepArc {
 	to {
 		stroke-dashoffset: 0;
@@ -1499,6 +1533,22 @@
 	.hotel-cases__user-avatar-wrapper {
 		--avatar-size: 3rem;
 	}
+
+	.promo-banner--hotel {
+		--bg-decor-width: 142.5rem;
+		--bg-decor-height: 86.3125rem;
+		--bg-decor-pos-left: -18.125rem;
+		--bg-decor-pos-top: -46.875rem;
+		margin: 7.5rem 0 6.25rem;
+	}
+
+	.promo-banner--hotel .promo-banner__image {
+		bottom: -10.4375rem;
+		right: auto;
+		left: 14.875rem;
+		width: 56.875rem;
+		height: 33.875rem;
+	}
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -1914,6 +1964,17 @@
 	.hotel-cases__card-footer {
 		flex-wrap: wrap;
 	}
+
+	.promo-banner--hotel {
+		margin: 5.625rem 0 5rem;
+	}
+
+	.promo-banner--hotel .promo-banner__image {
+		bottom: -6.0625rem;
+		left: 16.75rem;
+		width: 34.125rem;
+		height: 20.3125rem;
+	}
 }
 
 @media (max-width: 575px) {
@@ -1979,6 +2040,28 @@
 
 	.hotel-cases__card-features {
 		grid-template-columns: 1fr;
+	}
+
+	.promo-banner--hotel {
+		--bg-decor-pos-left: auto;
+		--bg-decor-pos-top: -35.625rem;
+	}
+
+	.promo-banner--hotel .promo-banner__image-wrapper::after {
+		right: -64.375rem;
+	}
+
+	.promo-banner--hotel .promo-banner__image {
+		bottom: -4.375rem;
+		left: auto;
+		right: 0;
+		width: 23.875rem;
+		height: 14.8125rem;
+		opacity: 1;
+	}
+
+	.promo-banner--hotel .promo-banner__content {
+		padding-bottom: 11.25rem;
 	}
 }
 
