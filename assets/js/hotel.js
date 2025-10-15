@@ -157,7 +157,24 @@
 	}
 
 	function getScrollbarWidth() {
-		return window.innerWidth - document.documentElement.clientWidth;
+		const scrollDiv = document.createElement("div");
+
+		scrollDiv.style.cssText = `
+			 width: 100px;
+			 height: 100px;
+			 overflow: scroll;
+			 visibility: hidden;
+			 position: absolute;
+			 top: -9999px; // Move it off-screen
+		 `;
+
+		document.body.appendChild(scrollDiv);
+
+		const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+
+		document.body.removeChild(scrollDiv);
+
+		return scrollbarWidth;
 	}
 
 	function setScrollbarWidth(width) {
