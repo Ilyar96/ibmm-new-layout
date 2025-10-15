@@ -1036,6 +1036,26 @@
 	--slider-gap: var(--slide-offset);
 }
 
+.faq__title {
+	text-align: center;
+}
+
+.faq--hotel .faq__item.active {
+	background: var(--white-100);
+	color: var(--color-text-dark);
+}
+.faq--hotel .faq__item.active .faq__item-title {
+	color: var(--color-text-dark);
+}
+
+.faq--hotel .faq__item.active .faq__item-body {
+	color: #4a4a4a;
+}
+
+.faq--hotel .faq__item.active .faq__item-header::after {
+	background-image: url(../img/faq-close-dark.svg);
+}
+
 @keyframes hotelStepArc {
 	to {
 		stroke-dashoffset: 0;
