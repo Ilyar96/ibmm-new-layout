@@ -409,9 +409,9 @@
 	--circle-diameter: 3.125rem;
 	--stroke-width: 0.3125rem;
 	--circle-diameter-num: 50;
-	/* 3.125rem */
 	--stroke-width-num: 5;
 	--pi: 3.1415926535;
+	display: block;
 	position: relative;
 	width: var(--circle-diameter);
 	height: var(--circle-diameter);
@@ -1049,6 +1049,7 @@
 	background: var(--white-100);
 	color: var(--color-text-dark);
 }
+
 .faq--hotel .faq__item.active .faq__item-title {
 	color: var(--color-text-dark);
 }
@@ -1642,9 +1643,11 @@ body.modal-open {
 	.hotel-cases__card-header-title {
 		font-size: 1.5rem;
 	}
+
 	.hotel-cases__card-header-description {
 		font-size: 1rem;
 	}
+
 	.hotel-cases__card-header-num {
 		position: relative;
 		top: -0.5rem;

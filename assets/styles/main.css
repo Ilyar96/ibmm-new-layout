@@ -4404,13 +4404,14 @@ hr {
 	.header__action-btn--menu {
 		width: 2.375rem;
 		padding: 0.5rem;
+		border-radius: 0.5rem;
 	}
 
 	.header__menu-icon {
 		-webkit-box-flex: 0;
-		-ms-flex: 0 0 1rem;
-		flex: 0 0 1rem;
-		width: 1rem;
+		-ms-flex: 0 0 1.25rem;
+		flex: 0 0 1.25rem;
+		width: 1.25rem;
 		height: auto;
 	}
 
@@ -5180,8 +5181,21 @@ hr {
 	}
 
 	.header__logo-img {
-		width: 12rem;
-		height: 1.4375rem;
+		width: 8.5625rem;
+		height: auto;
+	}
+
+	.header__menu-icon {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 0.875rem;
+		flex: 0 0 0.875rem;
+		width: 0.875rem;
+	}
+
+	.header__action-btn--menu {
+		height: 2rem;
+		width: 2rem;
+		padding: 0.3125rem;
 	}
 
 	.hero {

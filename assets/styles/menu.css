@@ -474,7 +474,7 @@
 	}
 
 	.header__wrapper {
-		padding: 40px 0;
+		padding: 2.5rem 0;
 	}
 
 	.menu {
@@ -784,7 +784,7 @@
 
 @media (max-width: 767px) {
 	.header__wrapper {
-		padding: 25px 0;
+		padding: 0.875rem 0;
 	}
 }
 @media (max-width: 479px) {
