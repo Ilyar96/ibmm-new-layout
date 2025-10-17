@@ -1,0 +1,48 @@
+name: Deploy via FTP
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.html"
+      - "**.php"
+      - "assets/**"
+      - ".github/workflows/ftp-deploy.yml"
+  workflow_dispatch:
+
+jobs:
+  ftp-deploy:
+    name: Upload to FTP
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ftp-deploy-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Используем SamKirkland/FTP-Deploy-Action для синхронизации файлов
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Необязательно: задайте в Secrets при необходимости (по умолчанию 21 и ftp)
+          port: ${{ secrets.FTP_PORT }}
+          protocol: ${{ secrets.FTP_PROTOCOL }} # ftp | ftps
+          # Что загружаем и куда
+          local-dir: ./
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          # Файл состояния синхронизации создаётся на сервере, облегчает инкрементальные заливки
+          state-name: .ftp-deploy-sync-state.json
+          # Исключаем служебные и ненужные файлы
+          exclude: |
+            **/.git*/**
+            **/.github/**
+            **/.DS_Store
+            **/node_modules/**
+            **/*.map
+            **/*.zip
+            **/README*.
+            **/LICENSE*

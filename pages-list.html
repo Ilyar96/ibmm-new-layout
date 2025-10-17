@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Список страниц</title>
+	<style>
+		:root {
+			--bg: #0b0f1a;
+			--card: #121726;
+			--text: #e7ecff;
+			--muted: #92a0c6;
+			--accent: #2662f6;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			padding: 40px 20px;
+			background: var(--bg);
+			color: var(--text);
+			font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+			line-height: 1.5;
+		}
+
+		.container {
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+
+		h1 {
+			margin: 0 0 20px;
+			font-size: 28px;
+		}
+
+		.note {
+			margin: 0 0 24px;
+			color: var(--muted);
+			font-size: 14px;
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+			gap: 12px;
+		}
+
+		a.page {
+			display: block;
+			padding: 14px 16px;
+			border-radius: 10px;
+			background: var(--card);
+			color: var(--text);
+			text-decoration: none;
+			border: 1px solid #20284a;
+			transition: transform .15s ease, border-color .15s ease, background-color .15s ease;
+			word-break: break-all;
+		}
+
+		a.page:hover {
+			transform: translateY(-2px);
+			border-color: var(--accent);
+			background: #151c33;
+		}
+
+		.file {
+			display: block;
+			font-weight: 600;
+		}
+
+		.path {
+			display: block;
+			color: var(--muted);
+			font-size: 12px;
+			margin-top: 2px;
+		}
+
+		footer {
+			margin-top: 28px;
+			color: var(--muted);
+			font-size: 12px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Список HTML‑страниц</h1>
+
+		<div class="grid">
+			<a class="page" href="index.html" target="_blank" rel="noopener">
+				<span class="file">index.html</span><span class="path">./index.html</span>
+			</a>
+			<a class="page" href="404.html" target="_blank" rel="noopener">
+				<span class="file">404.html</span><span class="path">./404.html</span>
+			</a>
+			<a class="page" href="blog.html" target="_blank" rel="noopener">
+				<span class="file">blog.html</span><span class="path">./blog.html</span>
+			</a>
+			<a class="page" href="calc.html" target="_blank" rel="noopener">
+				<span class="file">calc.html</span><span class="path">./calc.html</span>
+			</a>
+			<a class="page" href="calc-coin.html" target="_blank" rel="noopener">
+				<span class="file">calc-coin.html</span><span class="path">./calc-coin.html</span>
+			</a>
+			<a class="page" href="catalog.html" target="_blank" rel="noopener">
+				<span class="file">catalog.html</span><span class="path">./catalog.html</span>
+			</a>
+			<a class="page" href="coins.html" target="_blank" rel="noopener">
+				<span class="file">coins.html</span><span class="path">./coins.html</span>
+			</a>
+			<a class="page" href="compare.html" target="_blank" rel="noopener">
+				<span class="file">compare.html</span><span class="path">./compare.html</span>
+			</a>
+			<a class="page" href="favorites.html" target="_blank" rel="noopener">
+				<span class="file">favorites.html</span><span class="path">./favorites.html</span>
+			</a>
+			<a class="page" href="hotel.html" target="_blank" rel="noopener">
+				<span class="file">hotel.html</span><span class="path">./hotel.html</span>
+			</a>
+			<a class="page" href="miner-profit.html" target="_blank" rel="noopener">
+				<span class="file">miner-profit.html</span><span class="path">./miner-profit.html</span>
+			</a>
+			<a class="page" href="news-single.html" target="_blank" rel="noopener">
+				<span class="file">news-single.html</span><span class="path">./news-single.html</span>
+			</a>
+			<a class="page" href="news-single-example.html" target="_blank" rel="noopener">
+				<span class="file">news-single-example.html</span><span class="path">./news-single-example.html</span>
+			</a>
+			<a class="page" href="product.html" target="_blank" rel="noopener">
+				<span class="file">product.html</span><span class="path">./product.html</span>
+			</a>
+		</div>
+	</div>
+</body>
+
+</html>
