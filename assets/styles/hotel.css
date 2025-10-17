@@ -1,4 +1,15 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 3 versions
+*/
+
 .header {
+	-webkit-transition: height var(--transition-base), background-color var(--transition-base),
+		padding var(--transition-base);
+	-o-transition: height var(--transition-base), background-color var(--transition-base),
+		padding var(--transition-base);
 	transition: height var(--transition-base), background-color var(--transition-base),
 		padding var(--transition-base);
 }
@@ -17,7 +28,12 @@
 
 .hotel-intro {
 	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 	min-height: 100vh;
 	min-height: 100dvh;
@@ -31,7 +47,10 @@
 	content: "";
 	width: 47rem;
 	height: 131.5rem;
+	background: -o-radial-gradient(50% 50%, rgba(38, 98, 246, 0.3) 0%, rgba(38, 98, 246, 0) 100%);
 	background: radial-gradient(50% 50%, rgba(38, 98, 246, 0.3) 0%, rgba(38, 98, 246, 0) 100%);
+	-webkit-transform: rotate(32deg);
+	-ms-transform: rotate(32deg);
 	transform: rotate(32deg);
 	pointer-events: none;
 }
@@ -44,6 +63,7 @@
 	z-index: -1;
 	width: 83rem;
 	height: 83rem;
+	background: -o-radial-gradient(50% 50%, rgba(38, 98, 246, 0.3) 0%, rgba(38, 98, 246, 0) 100%);
 	background: radial-gradient(50% 50%, rgba(38, 98, 246, 0.3) 0%, rgba(38, 98, 246, 0) 100%);
 	pointer-events: none;
 	opacity: 0.3;
@@ -67,6 +87,7 @@
 	width: 100%;
 	height: 100%;
 	pointer-events: none;
+	background: -o-linear-gradient(89deg, var(--color-background) 1.25rem, transparent 21.875rem);
 	background: linear-gradient(1deg, var(--color-background) 1.25rem, transparent 21.875rem);
 }
 
@@ -74,15 +95,23 @@
 	width: 100%;
 	height: 100%;
 	opacity: 0.25;
+	-o-object-fit: cover;
 	object-fit: cover;
+	-o-object-position: center;
 	object-position: center;
 	z-index: -1;
 	position: relative;
 }
 
 .hotel-intro__container {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-flex: 1;
+	-ms-flex-positive: 1;
 	flex-grow: 1;
 }
 
@@ -100,24 +129,38 @@
 }
 
 .hotel-intro__row {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 	gap: 1.25rem;
 	margin: 8vh 0 0;
 }
 
 .hotel-intro__add-info {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 2.4375rem;
 }
 
 .hotel-intro__fns-logo {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 5.1875rem;
 	flex: 0 0 5.1875rem;
 	width: 5.1875rem;
 	height: 5.4375rem;
+	-o-object-fit: contain;
 	object-fit: contain;
+	-webkit-filter: grayscale(1);
 	filter: grayscale(1);
 }
 
@@ -132,7 +175,11 @@
 }
 
 .hotel-intro__actions {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 1.5rem;
 	margin: 10vh 0 0;
@@ -141,19 +188,35 @@
 .hotel-intro__video-trigger {
 	--play-btn-size: 16.125rem;
 	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--play-btn-size);
 	flex: 0 0 var(--play-btn-size);
 	width: var(--play-btn-size);
 	height: var(--play-btn-size);
+	-webkit-transition: -webkit-transform 0.3s ease;
+	transition: -webkit-transform 0.3s ease;
+	-o-transition: transform 0.3s ease;
 	transition: transform 0.3s ease;
+	transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 
 .hotel-intro__play {
 	width: var(--play-btn-size);
 	height: var(--play-btn-size);
+	-webkit-transition: -webkit-transform 0.3s ease;
+	transition: -webkit-transform 0.3s ease;
+	-o-transition: transform 0.3s ease;
 	transition: transform 0.3s ease;
+	transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 
 .hotel-intro__play::after {
@@ -165,6 +228,7 @@
 	height: var(--play-btn-size);
 	background-repeat: no-repeat;
 	background-position: center;
+	-webkit-animation: rotateBackground 10s linear infinite;
 	animation: rotateBackground 10s linear infinite;
 	background-size: var(--play-btn-size);
 }
@@ -176,7 +240,10 @@
 	z-index: 1;
 	width: calc(var(--play-btn-size) / 7.3);
 	height: calc(var(--play-btn-size) / 6.5);
+	-o-object-fit: contain;
 	object-fit: contain;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 }
 
@@ -185,7 +252,9 @@
 }
 
 .hotel-stats__list {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 1fr 12.375rem 1fr 12.375rem 1fr;
 	grid-template-columns: repeat(3, 1fr);
 	width: 100%;
 	gap: 12.375rem;
@@ -235,7 +304,9 @@
 }
 
 .hotel-advantages__cards {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 1fr 1.25rem 1fr;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 1.25rem;
 }
@@ -246,6 +317,8 @@
 	padding: 3.625rem 0 3.75rem 5rem;
 	background: var(--color-card-background);
 	border-radius: 1.25rem;
+	-webkit-transition: background-color var(--transition-base), color var(--transition-base);
+	-o-transition: background-color var(--transition-base), color var(--transition-base);
 	transition: background-color var(--transition-base), color var(--transition-base);
 	list-style: none;
 	color: var(--color-text-primary);
@@ -287,10 +360,15 @@
 	top: 50%;
 	right: 2.1875rem;
 	z-index: 0;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--icon-width);
 	flex: 0 0 var(--icon-width);
 	width: var(--icon-width);
 	height: var(--icon-height);
+	-o-object-fit: contain;
 	object-fit: contain;
+	-webkit-transform: translate(0, -50%);
+	-ms-transform: translate(0, -50%);
 	transform: translate(0, -50%);
 }
 
@@ -323,6 +401,8 @@
 }
 
 .hotel-steps__wrapper {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 	gap: 2.75rem;
 	min-width: 0;
@@ -330,6 +410,8 @@
 
 .hotel-steps__slider {
 	min-width: 0;
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1;
 	flex: 1 1;
 }
 
@@ -338,7 +420,9 @@
 }
 
 .hotel-steps__card {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 19.5rem 2.75rem 1fr;
 	grid-template-columns: 19.5rem 1fr;
 	gap: 2.75rem;
 	height: 100%;
@@ -373,8 +457,13 @@
 	height: 0;
 	padding-bottom: 68.25%;
 	border-radius: 1.25rem;
+	-webkit-filter: grayscale(1);
 	filter: grayscale(1);
+	-webkit-transition: -webkit-filter var(--transition-base);
+	transition: -webkit-filter var(--transition-base);
+	-o-transition: filter var(--transition-base);
 	transition: filter var(--transition-base);
+	transition: filter var(--transition-base), -webkit-filter var(--transition-base);
 }
 
 .hotel-steps__img {
@@ -382,6 +471,7 @@
 	inset: 0;
 	width: 100%;
 	height: 100%;
+	-o-object-fit: cover;
 	object-fit: cover;
 }
 
@@ -389,17 +479,28 @@
 	--steps-gap: 3.125rem;
 	--animation-duration: 5s;
 	--animation-delay: 0s;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 24rem;
 	flex: 0 0 24rem;
 }
 
 .hotel-steps__steps-inner {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 	gap: var(--steps-gap);
 }
 
 .hotel-steps__step-item {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 0.75rem;
 	list-style: none;
@@ -425,6 +526,8 @@
 	left: 50%;
 	width: calc(var(--circle-diameter) - var(--stroke-width) * 2);
 	height: calc(var(--circle-diameter) - var(--stroke-width) * 2);
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	background-color: #222;
 	border-radius: 50%;
@@ -455,7 +558,11 @@
 	z-index: 1;
 	width: 100%;
 	height: 100%;
+	-webkit-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
 	transform: rotate(-90deg);
+	-webkit-transform-origin: 50% 50%;
+	-ms-transform-origin: 50% 50%;
 	transform-origin: 50% 50%;
 }
 
@@ -467,6 +574,7 @@
 }
 
 .hotel-steps__step-item.circle-animate circle {
+	-webkit-animation: hotelStepArc var(--animation-duration) linear forwards var(--animation-delay);
 	animation: hotelStepArc var(--animation-duration) linear forwards var(--animation-delay);
 }
 
@@ -477,6 +585,8 @@
 	line-height: 100%;
 	letter-spacing: -0.03em;
 	color: #222;
+	-webkit-transition: color var(--transition-base);
+	-o-transition: color var(--transition-base);
 	transition: color var(--transition-base);
 }
 
@@ -494,7 +604,9 @@
 }
 
 .hotel-plans__list {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 1fr 2.5rem 1fr 2.5rem 1fr 2.5rem 1fr;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 2.5rem;
 }
@@ -511,7 +623,13 @@
 	letter-spacing: normal;
 	color: #b3b3b3;
 	list-style: none;
+	-webkit-transition: -webkit-transform var(--transition-base),
+		-webkit-box-shadow var(--transition-base);
+	transition: -webkit-transform var(--transition-base), -webkit-box-shadow var(--transition-base);
+	-o-transition: transform var(--transition-base), box-shadow var(--transition-base);
 	transition: transform var(--transition-base), box-shadow var(--transition-base);
+	transition: transform var(--transition-base), box-shadow var(--transition-base),
+		-webkit-transform var(--transition-base), -webkit-box-shadow var(--transition-base);
 }
 
 .hotel-plans__card--accent {
@@ -544,14 +662,23 @@
 }
 
 .hotel-plans__features {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 	gap: 0.9375rem;
 	margin: 1.125rem 0 0;
 }
 
 .hotel-plans__feature {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 1rem;
 	list-style: none;
@@ -561,6 +688,8 @@
 	--icon-size: 1.75rem;
 	position: relative;
 	top: -0.125rem;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--icon-size);
 	flex: 0 0 var(--icon-size);
 	width: var(--icon-size);
 	height: var(--icon-size);
@@ -572,8 +701,14 @@
 
 .hotel-plans__btn {
 	--btn-height: 3.25rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	width: 100%;
 	height: var(--btn-height);
@@ -585,6 +720,8 @@
 	color: #b3b3b3;
 	border: 0.0825rem solid #b3b3b3;
 	border-radius: 0.3125rem;
+	-webkit-transition: all var(--transition-base);
+	-o-transition: all var(--transition-base);
 	transition: all var(--transition-base);
 }
 
@@ -599,13 +736,19 @@
 }
 
 .hotel-cabinet__grid {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 51.9375rem 1fr;
 	grid-template-columns: 51.9375rem 1fr;
 }
 
 .hotel-cabinet__content-header {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 1fr 1.25rem 1fr;
 	grid-template-columns: repeat(2, 1fr);
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 	gap: 1.25rem;
 }
@@ -631,8 +774,12 @@
 }
 
 .hotel-cabinet__lists {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 1fr 1.25rem 1fr;
 	grid-template-columns: repeat(2, 1fr);
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 	gap: 1.25rem;
 	margin: 2.5rem 0 0;
@@ -657,7 +804,9 @@
 }
 
 .hotel-cabinet__features {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 1fr 1.25rem 1fr 1.25rem 1fr;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 1.25rem;
 	margin: 3.75rem 0 0;
@@ -674,14 +823,23 @@
 	line-height: 150%;
 	letter-spacing: -0.02em;
 	color: var(--color-text-primary);
+	-webkit-transition: -webkit-transform var(--transition-base),
+		-webkit-box-shadow var(--transition-base);
+	transition: -webkit-transform var(--transition-base), -webkit-box-shadow var(--transition-base);
+	-o-transition: transform var(--transition-base), box-shadow var(--transition-base);
 	transition: transform var(--transition-base), box-shadow var(--transition-base);
+	transition: transform var(--transition-base), box-shadow var(--transition-base),
+		-webkit-transform var(--transition-base), -webkit-box-shadow var(--transition-base);
 }
 
 .feature-card__icon {
 	--icon-size: 1.5625rem;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--icon-size);
 	flex: 0 0 var(--icon-size);
 	width: var(--icon-size);
 	height: var(--icon-size);
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 
@@ -714,6 +872,7 @@
 	z-index: 0;
 	width: var(--img-width);
 	height: var(--img-height);
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 
@@ -748,9 +907,16 @@
 	height: 0;
 	padding-bottom: 49%;
 	border-radius: 1rem;
+	-webkit-filter: grayscale(0.4);
 	filter: grayscale(0.4);
 	background: var(--color-card-background);
+	-webkit-transition: -webkit-filter var(--transition-base),
+		-webkit-transform var(--transition-base);
+	transition: -webkit-filter var(--transition-base), -webkit-transform var(--transition-base);
+	-o-transition: filter var(--transition-base), transform var(--transition-base);
 	transition: filter var(--transition-base), transform var(--transition-base);
+	transition: filter var(--transition-base), transform var(--transition-base),
+		-webkit-filter var(--transition-base), -webkit-transform var(--transition-base);
 }
 
 .hotel-gallery__img {
@@ -758,11 +924,18 @@
 	inset: 0;
 	width: 100%;
 	height: 100%;
+	-o-object-fit: cover;
 	object-fit: cover;
+	-webkit-transition: -webkit-transform var(--transition-base);
+	transition: -webkit-transform var(--transition-base);
+	-o-transition: transform var(--transition-base);
 	transition: transform var(--transition-base);
+	transition: transform var(--transition-base), -webkit-transform var(--transition-base);
 }
 
 .hotel-gallery__img-wrapper:hover .hotel-gallery__img {
+	-webkit-transform: scale(1.05);
+	-ms-transform: scale(1.05);
 	transform: scale(1.05);
 }
 
@@ -802,11 +975,16 @@
 
 .hotel-about__logo {
 	width: 32rem;
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 
 .hotel-about__vendors {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 3.1875rem;
 	margin: 9.125rem 0 0;
@@ -819,6 +997,7 @@
 .hotel-about__vendor-logo {
 	width: auto;
 	height: 2.1875rem;
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 
@@ -879,6 +1058,7 @@
 	z-index: 0;
 	width: 108.4375rem;
 	height: 117.3125rem;
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 
@@ -909,7 +1089,12 @@
 }
 
 .hotel-cases__card {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 	gap: 3.75rem;
 	height: 100%;
@@ -919,8 +1104,14 @@
 }
 
 .hotel-cases__card-header {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 	gap: 1.25rem;
 	font-family: var(--font-family-quinary);
@@ -950,11 +1141,14 @@
 
 .hotel-cases__card-header-num {
 	font-size: 2.6875rem;
+	-ms-flex-item-align: start;
 	align-self: flex-start;
 }
 
 .hotel-cases__card-features {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 1fr 1.5rem 1fr 1.5rem 1fr 1.5rem 1fr;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 1.5rem;
 	margin-top: auto;
@@ -966,17 +1160,29 @@
 }
 
 .hotel-cases__card-footer {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 	gap: 0.875rem 1.25rem;
 }
 
 .hotel-cases__user {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 1rem;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 15.25rem;
 	flex: 0 0 15.25rem;
 	padding-right: 1.25rem;
+	-ms-flex-item-align: self-start;
+	-ms-grid-row-align: self-start;
 	align-self: self-start;
 }
 
@@ -984,6 +1190,8 @@
 	--avatar-size: 3.375rem;
 	width: var(--avatar-size);
 	height: var(--avatar-size);
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--avatar-size);
 	flex: 0 0 var(--avatar-size);
 	border-radius: 50%;
 	overflow: hidden;
@@ -993,6 +1201,7 @@
 .hotel-cases__user-avatar {
 	width: 100%;
 	height: 100%;
+	-o-object-fit: cover;
 	object-fit: cover;
 }
 
@@ -1033,8 +1242,17 @@
 .feature-card--cases {
 	padding-top: 2rem;
 	background: var(--color-background);
+	-webkit-transition: color var(--transition-base), background var(--transition-base),
+		-webkit-transform var(--transition-base), -webkit-box-shadow var(--transition-base);
+	transition: color var(--transition-base), background var(--transition-base),
+		-webkit-transform var(--transition-base), -webkit-box-shadow var(--transition-base);
+	-o-transition: color var(--transition-base), background var(--transition-base),
+		transform var(--transition-base), box-shadow var(--transition-base);
 	transition: color var(--transition-base), background var(--transition-base),
 		transform var(--transition-base), box-shadow var(--transition-base);
+	transition: color var(--transition-base), background var(--transition-base),
+		transform var(--transition-base), box-shadow var(--transition-base),
+		-webkit-transform var(--transition-base), -webkit-box-shadow var(--transition-base);
 }
 
 .hotel-cases__slider-scrollbar {
@@ -1212,9 +1430,27 @@ body.modal-open {
 	visibility: visible;
 }
 
+@-webkit-keyframes hotelStepArc {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
 @keyframes hotelStepArc {
 	to {
 		stroke-dashoffset: 0;
+	}
+}
+
+@-webkit-keyframes rotateBackground {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
 	}
 }
 
@@ -1232,6 +1468,8 @@ body.modal-open {
 
 @media (hover: hover) {
 	.hotel-intro__video-trigger:hover:not(.active) .hotel-intro__play {
+		-webkit-transform: scale(1.1);
+		-ms-transform: scale(1.1);
 		transform: scale(1.1);
 	}
 
@@ -1240,7 +1478,10 @@ body.modal-open {
 	}
 
 	.hotel-plans__card:hover {
+		-webkit-transform: translateY(-0.625rem);
+		-ms-transform: translateY(-0.625rem);
 		transform: translateY(-0.625rem);
+		-webkit-box-shadow: 0 0 1.25rem 0.1875rem rgba(255, 255, 255, 0.1);
 		box-shadow: 0 0 1.25rem 0.1875rem rgba(255, 255, 255, 0.1);
 	}
 
@@ -1251,12 +1492,18 @@ body.modal-open {
 	}
 
 	.feature-card:hover {
+		-webkit-transform: translateY(-0.375rem);
+		-ms-transform: translateY(-0.375rem);
 		transform: translateY(-0.375rem);
+		-webkit-box-shadow: 0 0.0625rem 0.75rem 0.125rem rgba(255, 255, 255, 0.05);
 		box-shadow: 0 0.0625rem 0.75rem 0.125rem rgba(255, 255, 255, 0.05);
 	}
 
 	.feature-card--cases:hover {
+		-webkit-transform: initial;
+		-ms-transform: initial;
 		transform: initial;
+		-webkit-box-shadow: none;
 		box-shadow: none;
 		background: var(--white-100);
 		color: var(--color-text-dark);
@@ -1267,11 +1514,14 @@ body.modal-open {
 	}
 
 	.hotel-gallery__img-wrapper:hover {
+		-webkit-filter: grayscale(0);
 		filter: grayscale(0);
 	}
 }
 
 .hotel-intro__video-trigger:active:not(.active) .hotel-intro__play {
+	-webkit-transform: scale(0.95);
+	-ms-transform: scale(0.95);
 	transform: scale(0.95);
 }
 
@@ -1283,6 +1533,9 @@ body.modal-open {
 	color: var(--color-text-primary);
 	border-color: var(--color-accent-hover);
 	background: var(--color-accent-hover);
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 }
 
@@ -1322,6 +1575,8 @@ body.modal-open {
 	}
 
 	.hotel-intro__fns-logo {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 4.375rem;
 		flex: 0 0 4.375rem;
 		width: 4.375rem;
 		height: 4.5625rem;
@@ -1357,6 +1612,7 @@ body.modal-open {
 	}
 
 	.hotel-advantages__cards {
+		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
 	}
 
@@ -1450,6 +1706,7 @@ body.modal-open {
 	}
 
 	.hotel-plans__list {
+		-ms-grid-columns: 1fr 1.25rem 1fr;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 1.25rem;
 	}
@@ -1503,6 +1760,7 @@ body.modal-open {
 	}
 
 	.hotel-cabinet__grid {
+		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
 	}
 
@@ -1636,6 +1894,7 @@ body.modal-open {
 	}
 
 	.hotel-cases__card-features {
+		-ms-grid-columns: 1fr 1rem 1fr;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 1rem;
 	}
@@ -1656,6 +1915,8 @@ body.modal-open {
 
 	.hotel-cases__user {
 		gap: 0.75rem;
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 13.75rem;
 		flex: 0 0 13.75rem;
 	}
 
@@ -1682,11 +1943,18 @@ body.modal-open {
 
 @media (min-width: 992px) and (max-width: 1199px) {
 	.hotel-steps__card {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
 	}
 
 	.hotel-steps__content {
+		-webkit-box-ordinal-group: 3;
+		-ms-flex-order: 2;
 		order: 2;
 	}
 
@@ -1705,6 +1973,7 @@ body.modal-open {
 	}
 
 	.hotel-stats__list {
+		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
 	}
 
@@ -1719,7 +1988,11 @@ body.modal-open {
 
 	.hotel-steps__steps {
 		--steps-gap: 1.25rem;
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
 		justify-content: center;
 		margin-top: 1.875rem;
 	}
@@ -1758,6 +2031,8 @@ body.modal-open {
 	}
 
 	.hotel-intro__fns-logo {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 3.125rem;
 		flex: 0 0 3.125rem;
 		width: 3.125rem;
 		height: 3.3125rem;
@@ -1766,24 +2041,37 @@ body.modal-open {
 	.hotel-intro__video-trigger {
 		--play-btn-size: 5rem;
 		margin: 1.25rem 0 0;
+		-ms-flex-item-align: center;
+		-ms-grid-row-align: center;
 		align-self: center;
 	}
 
 	.hotel-intro__row {
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
+		-webkit-box-align: start;
+		-ms-flex-align: start;
 		align-items: start;
 		margin: 2.5rem 0 0;
 	}
 
 	.hotel-intro__actions {
+		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
 		gap: 1rem;
+		-webkit-box-ordinal-group: 2;
+		-ms-flex-order: 1;
 		order: 1;
 		margin: 0.25rem 0 0;
+		-ms-flex-item-align: center;
+		-ms-grid-row-align: center;
 		align-self: center;
 	}
 
 	.hotel-intro__col {
+		display: -ms-grid;
 		display: grid;
 		display: contents;
 		gap: 1.25rem;
@@ -1861,6 +2149,7 @@ body.modal-open {
 	}
 
 	.hotel-steps__card {
+		-ms-grid-columns: (1fr) [2];
 		grid-template-columns: repeat(2, 1fr);
 		padding: 1.5rem var(--container-padding);
 		border-radius: 1rem;
@@ -1881,6 +2170,8 @@ body.modal-open {
 
 	.hotel-steps__steps {
 		--steps-gap: 1.25rem;
+		-webkit-box-pack: initial;
+		-ms-flex-pack: initial;
 		justify-content: initial;
 	}
 
@@ -1950,6 +2241,7 @@ body.modal-open {
 
 	.hotel-cabinet__content-header,
 	.hotel-cabinet__lists {
+		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
 		gap: 0;
 	}
@@ -1959,6 +2251,7 @@ body.modal-open {
 	}
 
 	.hotel-cabinet__features {
+		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
 		gap: 0.75rem;
 	}
@@ -2065,7 +2358,12 @@ body.modal-open {
 	}
 
 	.hotel-cases__card-header {
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
+		-webkit-box-align: start;
+		-ms-flex-align: start;
 		align-items: flex-start;
 		gap: 0.375rem;
 	}
@@ -2076,6 +2374,8 @@ body.modal-open {
 	}
 
 	.hotel-cases__card-header-text {
+		-webkit-box-ordinal-group: 3;
+		-ms-flex-order: 2;
 		order: 2;
 	}
 
@@ -2098,6 +2398,7 @@ body.modal-open {
 	}
 
 	.hotel-cases__card-footer {
+		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
 	}
 
@@ -2115,20 +2416,31 @@ body.modal-open {
 
 @media (max-width: 575px) {
 	.hotel-intro__btn {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 100%;
 		flex: 0 0 100%;
 	}
 
 	.hotel-advantages__card {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
 	}
 
 	.hotel-advantages__icon {
 		position: static;
+		-webkit-transform: initial;
+		-ms-transform: initial;
 		transform: initial;
 	}
 
 	.hotel-advantages__card-text {
+		-webkit-box-ordinal-group: 2;
+		-ms-flex-order: 1;
 		order: 1;
 		max-width: 100%;
 	}
@@ -2158,11 +2470,18 @@ body.modal-open {
 	}
 
 	.hotel-steps__card {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
 	}
 
 	.hotel-steps__content {
+		-webkit-box-ordinal-group: 3;
+		-ms-flex-order: 2;
 		order: 2;
 	}
 
@@ -2171,10 +2490,12 @@ body.modal-open {
 	}
 
 	.hotel-plans__list {
+		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
 	}
 
 	.hotel-cases__card-features {
+		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
 	}
 
@@ -2244,6 +2565,8 @@ body.modal-open {
 		top: -3.775rem;
 		left: 50%;
 		margin-bottom: -9.375rem;
+		-webkit-transform: translate(-50%, 0);
+		-ms-transform: translate(-50%, 0);
 		transform: translate(-50%, 0);
 	}
 
@@ -2259,13 +2582,20 @@ body.modal-open {
 	}
 
 	.hotel-about__container {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
 	}
 
 	.hotel-about__footnote {
 		max-width: 100%;
 		margin: 2rem 0 0;
+		-webkit-box-ordinal-group: 3;
+		-ms-flex-order: 2;
 		order: 2;
 	}
 }

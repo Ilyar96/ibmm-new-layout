@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 3 versions
+*/
+
 .catalog--favorites {
 	margin: 5.8125rem 0 0;
 }
@@ -10,7 +17,10 @@
 	content: "";
 	width: 47rem;
 	height: 131.5rem;
+	background: -o-radial-gradient(50% 50%, rgba(38, 98, 246, 0.3) 0%, rgba(38, 98, 246, 0) 100%);
 	background: radial-gradient(50% 50%, rgba(38, 98, 246, 0.3) 0%, rgba(38, 98, 246, 0) 100%);
+	-webkit-transform: rotate(32deg);
+	-ms-transform: rotate(32deg);
 	transform: rotate(32deg);
 	pointer-events: none;
 }
@@ -23,13 +33,18 @@
 	z-index: -1;
 	width: 83rem;
 	height: 83rem;
+	background: -o-radial-gradient(50% 50%, rgba(38, 98, 246, 0.3) 0%, rgba(38, 98, 246, 0) 100%);
 	background: radial-gradient(50% 50%, rgba(38, 98, 246, 0.3) 0%, rgba(38, 98, 246, 0) 100%);
 	pointer-events: none;
 	opacity: 0.3;
 }
 
 .catalog__actions {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 1.0625rem;
 	margin-left: auto;
@@ -49,8 +64,11 @@
 .catalog__clear-icon,
 .catalog__cart-icon {
 	--icon-width: 12px;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--icon-width);
 	flex: 0 0 var(--icon-width);
 	width: var(--icon-width);
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 
@@ -86,7 +104,11 @@
 }
 
 .filters__wrapper {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	gap: 0.625rem;
 }
@@ -95,6 +117,7 @@
 .filters__controls,
 .filters__active,
 .filters__list {
+	-ms-flex-wrap: nowrap;
 	flex-wrap: nowrap;
 }
 
@@ -113,8 +136,14 @@
 
 .product-card__action,
 .product-card__favorites-remove {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	width: 1.375rem;
 	height: 1.375rem;
@@ -128,12 +157,16 @@
 
 .product-card__action-icon,
 .product-card__compare-icon {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 22px;
 	flex: 0 0 22px;
 	width: 22px;
 	height: 22px;
 }
 
 .product-card__favorites-remove-icon {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 20px;
 	flex: 0 0 20px;
 	width: 20px;
 	height: 20px;
@@ -145,14 +178,21 @@
 }
 
 .product-card__specs {
+	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	gap: 10px;
 	max-width: 100%;
 }
 
 .product-card__image-wrapper {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	top: 13px;
 	left: 0;
@@ -200,6 +240,7 @@
 	}
 
 	.catalog__grid {
+		-ms-grid-columns: (1fr) [2];
 		grid-template-columns: repeat(2, 1fr);
 	}
 
@@ -209,6 +250,8 @@
 
 	.product-card__hashrate,
 	.product-card__price {
+		-webkit-box-flex: 1;
+		-ms-flex: 1 1 auto;
 		flex: 1 1 auto;
 		gap: 4px;
 		padding: 11px 16px;
@@ -233,6 +276,9 @@
 		left: var(--container-padding);
 		right: var(--container-padding);
 		bottom: 0;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
 		gap: 10px;
 	}
@@ -243,6 +289,8 @@
 	}
 
 	.catalog__btn--clear {
+		-webkit-box-ordinal-group: 3;
+		-ms-flex-order: 2;
 		order: 2;
 	}
 }
@@ -279,6 +327,7 @@
 	}
 
 	.catalog__grid {
+		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
 		gap: 10px;
 		margin: 48px 0 0;
@@ -294,7 +343,12 @@
 	}
 
 	.product-card__content {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
 		margin: 29px 0 0;
 		padding: 0 20px;
@@ -315,17 +369,23 @@
 	}
 
 	.product-card__row {
+		-webkit-box-ordinal-group: 3;
+		-ms-flex-order: 2;
 		order: 2;
 		margin: 20px 0 0;
 	}
 
 	.product-card__spec {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 100%;
 		flex: 0 0 100%;
 		gap: 6px;
 		font-size: 14px;
 	}
 
 	.product-card__spec-label {
+		-webkit-box-ordinal-group: 2;
+		-ms-flex-order: 1;
 		order: 1;
 	}
 }
