@@ -138,7 +138,6 @@
 	--img-y-transform: 0.875rem;
 	--img-width: 33.625rem;
 	--img-height: 13.125rem;
-	--img-rotate-deg: 0deg;
 }
 
 .tools__item-bg-wrapper::before {
@@ -175,12 +174,9 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	-webkit-transform: translate(-50%, calc(-50% + var(--img-y-transform, 0)))
-		rotate(var(--img-rotate-deg, 0deg));
-	-ms-transform: translate(-50%, calc(-50% + var(--img-y-transform, 0)))
-		rotate(var(--img-rotate-deg, 0deg));
-	transform: translate(-50%, calc(-50% + var(--img-y-transform, 0)))
-		rotate(var(--img-rotate-deg, 0deg));
+	-webkit-transform: translate(-50%, calc(-50% + var(--img-y-transform, 0)));
+	-ms-transform: translate(-50%, calc(-50% + var(--img-y-transform, 0)));
+	transform: translate(-50%, calc(-50% + var(--img-y-transform, 0)));
 	width: var(--img-width);
 	height: var(--img-height);
 	-o-object-fit: cover;
@@ -190,12 +186,9 @@
 }
 
 .tools__item-bg-wrapper--comparison .tools__item-bg {
-	-webkit-transform: translate(-50%, calc(-50% + var(--img-y-transform, 0)))
-		rotate(var(--img-rotate-deg, 0deg));
-	-ms-transform: translate(-50%, calc(-50% + var(--img-y-transform, 0)))
-		rotate(var(--img-rotate-deg, 0deg));
-	transform: translate(-50%, calc(-50% + var(--img-y-transform, 0)))
-		rotate(var(--img-rotate-deg, 0deg));
+	-webkit-transform: translate(-50%, calc(-50% + var(--img-y-transform, 0)));
+	-ms-transform: translate(-50%, calc(-50% + var(--img-y-transform, 0)));
+	transform: translate(-50%, calc(-50% + var(--img-y-transform, 0)));
 }
 
 .tools__item-title-wrapper {
