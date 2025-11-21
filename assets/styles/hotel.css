@@ -124,6 +124,7 @@
 
 .hotel-intro__title {
 	max-width: 58.125rem;
+	font-weight: 900;
 	margin: 0;
 	font-family: var(--font-family-secondary);
 }
@@ -245,6 +246,12 @@
 	-webkit-transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
+}
+
+.hotel-intro__btn {
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	font-size: 0.875rem;
 }
 
 .hotel-stats {
