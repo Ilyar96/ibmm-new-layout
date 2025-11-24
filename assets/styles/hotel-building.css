@@ -764,6 +764,233 @@
 	color: var(--white-100);
 }
 
+/* gas-solution */
+.gas-solution {
+	margin: 252px 0 0;
+}
+.gas-solution__container {
+}
+.container {
+}
+.gas-solution__header {
+	margin: 0px 0 67px;
+}
+
+.hotel-header {
+}
+.hotel-header__title {
+}
+.hotel-header__description {
+}
+.gas-solution__wrapper {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+}
+.gas-solution__problem {
+	padding: 50px 30px 58px;
+	background: var(--black-100);
+}
+.gas-solution__problem,
+.gas-solution__diagram {
+	border: 1px solid #fff;
+	border-radius: 20px;
+}
+
+.gas-solution__problem-block {
+}
+.gas-solution__problem-title {
+	margin: 0 0 18px;
+	font-family: var(--font-family-secondary);
+	font-weight: 600;
+	font-size: 32px;
+	line-height: 140%;
+	letter-spacing: -0.03em;
+	color: var(--color-text-primary);
+}
+.gas-solution__problem-text,
+.gas-solution__solution-item {
+	font-family: var(--font-family-quinary);
+	font-weight: 400;
+	font-size: 17px;
+	line-height: 150%;
+	letter-spacing: -0.03em;
+	color: var(--color-text-primary);
+}
+
+.gas-solution__problem-text {
+	margin: 10px 0 0;
+}
+
+.gas-solution__solution {
+	margin: 44px 0 0;
+}
+.gas-solution__solution-list {
+	margin: 28px 0 0;
+}
+.gas-solution__solution-item {
+	list-style: none;
+}
+.gas-solution__solution-item::before {
+	content: "✓ ";
+}
+.gas-solution__solution-icon {
+}
+.gas-solution__economics {
+	margin: 34px 0 0;
+}
+.gas-solution__economics-title {
+}
+.gas-solution__economics-table {
+	margin: 29px 0 0;
+}
+.gas-solution__economics-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 30px 20px;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 133%;
+	color: #777;
+	letter-spacing: normal;
+	border-radius: 10px;
+}
+
+.gas-solution__economics-row:nth-child(odd) {
+	padding: 20px;
+	background: #121618;
+}
+
+.gas-solution__economics-row--highlight {
+	border: 1px solid var(--white-100);
+	color: var(--color-text-primary);
+}
+
+.gas-solution__economics-label {
+}
+.gas-solution__economics-value {
+}
+.gas-solution__economics-row--highlight {
+}
+.gas-solution__action {
+}
+.gas-solution__button {
+	width: 100%;
+	margin-top: 60px;
+	font-size: 14px;
+	letter-spacing: -0.03em;
+}
+.gas-solution__diagram {
+	--bg-width: 753px;
+	--bg-height: 306px;
+	--bg-top: 122px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+	background: url("../img/hotel-building/diagram-bg.png") left top var(--bg-top) / var(--bg-width)
+		var(--bg-height) no-repeat;
+}
+.gas-solution__diagram-list {
+	padding: 60px 138px 92px 142px;
+}
+.gas-solution__diagram-item {
+	--top: 10px;
+	--icon-width: 12px;
+	--icon-height: 23px;
+	position: relative;
+	display: flex;
+	gap: 90px;
+	padding-bottom: 52px;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 400;
+	font-size: 32px;
+	line-height: 140%;
+	letter-spacing: -0.03em;
+	color: var(--color-text-primary);
+}
+
+.gas-solution__diagram-item:last-child {
+	padding-bottom: 0;
+}
+
+.gas-solution__diagram-item:not(:last-child)::before,
+.gas-solution__diagram-item:not(:last-child)::after {
+	position: absolute;
+	top: var(--top);
+	left: 86px;
+	z-index: -1;
+	content: "";
+	width: 2px;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.gas-solution__diagram-item:not(:last-child)::after {
+	z-index: 1;
+	background: var(--white-100);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.gas-solution__diagram-item.active:not(:has(~ .gas-solution__diagram-item.active))::after {
+	height: calc(50% + 23px - 10px);
+	top: 0;
+}
+
+.gas-solution__diagram-item.active:not(:last-child)::after {
+	opacity: 1;
+	visibility: visible;
+}
+.gas-solution__diagram-item.active::after {
+	top: var(--top) !important;
+}
+.gas-solution__diagram-icon,
+.gas-solution__btc-icon {
+	position: absolute;
+	order: 2;
+	top: var(--top);
+	left: 81px;
+	border-radius: 20px;
+	flex: 0 0 var(--icon-width);
+	width: var(--icon-width);
+	height: var(--icon-height);
+	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+	background: #3f3f3f;
+	line-height: 140%;
+}
+
+.gas-solution__btc-icon {
+	--icon-width: 50px;
+	--icon-height: 50px;
+	top: 5px;
+	z-index: 4;
+	background: transparent;
+	color: #3f3f3f;
+	transition: color var(--transition-base);
+	transform: translate(-18px);
+}
+
+.gas-solution__diagram-item.active .gas-solution__btc-icon {
+	color: var(--white-100);
+}
+
+.gas-solution__diagram-item.active .gas-solution__diagram-icon {
+	box-shadow: 0 0 15px 0 var(--white-100);
+	background: var(--white-100);
+}
+
+.gas-solution__diagram-number {
+	order: 1;
+	width: 42px;
+}
+.gas-solution__diagram-text {
+	order: 3;
+}
+
 @media (hover: hover) {
 	.slider-nav-button:hover {
 		background: var(--white-100);
@@ -838,10 +1065,13 @@
 		visibility: visible;
 	}
 
-	.tariffs__card:nth-child(1),
-	.tariffs__card:nth-child(3) {
+	.tariffs__header {
+		margin: 0px 0px 8rem;
+	}
+
+	.tariffs__card--accent {
 		position: relative;
-		top: 3.75rem;
+		top: -3.75rem;
 	}
 
 	.tariffs__card--accent .tariffs__section--cons {
@@ -849,6 +1079,11 @@
 	}
 	.tariffs__card--accent .tariffs__section--example {
 		padding-bottom: 1.125rem;
+	}
+
+	.gas-solution__header .section-header__description {
+		padding: 0;
+		margin-top: -10px;
 	}
 }
 
@@ -1071,6 +1306,79 @@
 
 	.tariffs__section-title {
 		font-size: 1.125rem;
+	}
+
+	.gas-solution {
+		margin: 100px 0 0;
+	}
+
+	.gas-solution__header {
+		margin: 0 0 40px;
+	}
+
+	.gas-solution__wrapper {
+		grid-template-columns: 1fr;
+		gap: 20px;
+	}
+
+	.gas-solution__diagram {
+		--bg-width: 440px;
+		--bg-height: 179px;
+		--bg-top: 57px;
+	}
+
+	.gas-solution__diagram-list {
+		padding: 290px 80px 40px var(--container-padding);
+	}
+
+	.gas-solution__diagram-item {
+		gap: 60px;
+		font-size: 24px;
+		padding-bottom: 40px;
+	}
+
+	.gas-solution__diagram-icon,
+	.gas-solution__btc-icon {
+		left: 60px;
+	}
+
+	.gas-solution__btc-icon {
+		--icon-width: 42px;
+		--icon-height: 42px;
+		top: -2px;
+		transform: translate(-15px);
+	}
+
+	.gas-solution__diagram-item:not(:last-child)::before,
+	.gas-solution__diagram-item:not(:last-child)::after {
+		left: 65px;
+	}
+
+	.gas-solution__problem {
+		padding: 40px var(--container-padding) 38px;
+	}
+
+	.gas-solution__problem-title {
+		font-size: 28px;
+		margin-bottom: 16px;
+	}
+
+	.gas-solution__problem-text,
+	.gas-solution__solution-item {
+		font-size: 16px;
+	}
+
+	.gas-solution__economics-row {
+		font-size: 16px;
+		padding: 25px 18px;
+	}
+
+	.gas-solution__economics-row:nth-child(odd) {
+		padding: 18px;
+	}
+
+	.gas-solution__button {
+		margin-top: 40px;
 	}
 }
 
@@ -1374,6 +1682,110 @@
 		padding: 12px 16px;
 		font-size: 14px;
 	}
+
+	.gas-solution {
+		margin: 60px 0 0;
+	}
+
+	.gas-solution__header {
+		margin: 0 0 32px;
+	}
+
+	.gas-solution__wrapper {
+		gap: 16px;
+	}
+
+	.gas-solution__problem {
+		padding: 24px var(--container-padding) 22px;
+	}
+
+	.gas-solution__problem-title {
+		font-size: 22px;
+		margin-bottom: 12px;
+		line-height: 125%;
+	}
+
+	.gas-solution__problem-text,
+	.gas-solution__solution-item {
+		font-size: 14px;
+		line-height: 150%;
+	}
+
+	.gas-solution__solution {
+		margin: 20px 0 0;
+	}
+
+	.gas-solution__solution-list {
+		margin: 20px 0 0;
+	}
+
+	.gas-solution__economics {
+		margin: 20px 0 0;
+	}
+
+	.gas-solution__economics-table {
+		margin: 20px 0 0;
+	}
+
+	.gas-solution__economics-row {
+		font-size: 14px;
+		padding: 20px 16px;
+		border-radius: 8px;
+	}
+
+	.gas-solution__economics-row:nth-child(odd) {
+		padding: 16px;
+	}
+
+	.gas-solution__button {
+		margin-top: 20px;
+		font-size: 14px;
+	}
+
+	.gas-solution__diagram {
+		--bg-width: 310px;
+		--bg-height: 126px;
+		--bg-top: 17px;
+	}
+
+	.gas-solution__diagram-list {
+		padding: 170px var(--container-padding) 20px;
+	}
+
+	.gas-solution__diagram-item {
+		--top: 0px;
+		--icon-width: 10px;
+		--icon-height: 20px;
+		gap: 30px;
+		font-size: 16px;
+		padding-bottom: 30px;
+	}
+
+	.gas-solution__diagram-item:not(:last-child)::before,
+	.gas-solution__diagram-item:not(:last-child)::after {
+		left: 41px;
+	}
+
+	.gas-solution__diagram-icon,
+	.gas-solution__btc-icon {
+		left: 37px;
+	}
+
+	.gas-solution__btc-icon {
+		--icon-width: 28px;
+		--icon-height: 28px;
+		top: -3px;
+		transform: translate(-10px);
+	}
+
+	.gas-solution__diagram-number {
+		width: 32px;
+		font-size: 16px;
+	}
+
+	.gas-solution__diagram-item.active:not(:has(~ .gas-solution__diagram-item.active))::after {
+		height: calc(50% + 20px - 8px);
+	}
 }
 
 @media (max-width: 575px) {
@@ -1394,5 +1806,11 @@
 
 	.hotel-stats {
 		margin: 2.5rem 0px 0px;
+	}
+}
+
+@media (max-width: 375px) {
+	.gas-solution__economics-row {
+		font-size: 13px;
 	}
 }
