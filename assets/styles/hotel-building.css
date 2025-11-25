@@ -19,7 +19,7 @@
 	padding: 0.5rem 0 0;
 	font-family: var(--font-family-quinary);
 	font-weight: 400;
-	font-size: 23px;
+	font-size: 1.4375rem;
 	line-height: 130%;
 	letter-spacing: -0.03em;
 	text-align: right;
@@ -1173,6 +1173,10 @@
 .hotel-projects__card--3 {
 }
 
+.hotel-stats--secondary {
+	margin: 17.9375rem 0 0;
+}
+
 @media (hover: hover) {
 	.slider-nav-button:hover {
 		background: var(--white-100);
@@ -1273,13 +1277,17 @@
 
 	.gas-solution__header .section-header__description {
 		padding: 0;
-		margin-top: -10px;
+		margin-top: -0.625rem;
 	}
 
 	.hotel-projects__header {
 		display: flex;
 		justify-content: space-between;
 		align-items: start;
+	}
+
+	.hotel-stats--secondary .hotel-stats__card-number {
+		font-size: 4.6875rem;
 	}
 }
 
@@ -1298,8 +1306,8 @@
 
 @media (max-width: 1199px) {
 	.section-header__description {
-		padding: 20px 0 0;
-		font-size: 20px;
+		padding: 1.25rem 0 0;
+		font-size: 1.25rem;
 		text-align: left;
 	}
 
@@ -1391,7 +1399,7 @@
 	}
 
 	.steps {
-		margin: 120px 0 0;
+		margin: 7.5rem 0 0;
 	}
 
 	.steps__wrapper {
@@ -1402,13 +1410,13 @@
 	.steps__info {
 		width: 100%;
 		flex: 0 0 100%;
-		padding: 40px var(--container-padding) 38px;
+		padding: 2.5rem var(--container-padding) 2.375rem;
 	}
 
 	.steps__title-card {
 		width: 100%;
 		position: static;
-		padding: 30px var(--container-padding);
+		padding: 1.875rem var(--container-padding);
 	}
 
 	.steps__title {
@@ -1417,7 +1425,7 @@
 	}
 
 	.steps__info-footer {
-		margin: 50px 0 0;
+		margin: 3.125rem 0 0;
 	}
 
 	.steps__slider-wrapper,
@@ -1430,27 +1438,27 @@
 	}
 
 	.slider-fraction {
-		width: 200px;
-		padding: 23px 30px 16px;
-		height: 80px;
-		font-size: 24px;
+		width: 12.5rem;
+		padding: 1.4375rem 1.875rem 1rem;
+		height: 5rem;
+		font-size: 1.5rem;
 	}
 
 	.swiper-pagination-current {
 		margin-right: 0.4375rem;
-		font-size: 48px;
+		font-size: 3rem;
 	}
 
 	.swiper-pagination-total {
-		margin-left: 6px;
+		margin-left: 0.375rem;
 	}
 
 	.steps__navigation {
-		gap: 22px;
+		gap: 1.375rem;
 	}
 
 	.slider-nav-button {
-		--btn-size: 80px;
+		--btn-size: 5rem;
 	}
 
 	.steps__slide {
@@ -1463,12 +1471,12 @@
 		width: 100%;
 		height: 100%;
 		box-shadow: none;
-		border: 1px solid var(--white-100);
+		border: 0.0625rem solid var(--white-100);
 	}
 
 	.slide__card-inner {
 		height: 100%;
-		padding: 28px var(--container-padding) 36px;
+		padding: 1.75rem var(--container-padding) 2.25rem;
 		justify-content: start;
 	}
 
@@ -1477,7 +1485,7 @@
 	}
 
 	.tariffs {
-		margin: 100px 0 0;
+		margin: 7.5rem 0 0;
 	}
 
 	.tariffs__grid {
@@ -1487,7 +1495,7 @@
 	}
 
 	.tariffs__section {
-		padding: 18px 16px;
+		padding: 1.125rem 1rem;
 		border-radius: 1rem;
 	}
 
@@ -1510,90 +1518,90 @@
 	}
 
 	.gas-solution {
-		margin: 100px 0 0;
+		margin: 7.5rem 0 0;
 	}
 
 	.gas-solution__header {
-		margin: 0 0 40px;
+		margin: 0 0 2.5rem;
 	}
 
 	.gas-solution__wrapper {
 		grid-template-columns: 1fr;
-		gap: 20px;
+		gap: 1.25rem;
 	}
 
 	.gas-solution__diagram {
-		--bg-width: 440px;
-		--bg-height: 179px;
-		--bg-top: 57px;
+		--bg-width: 27.5rem;
+		--bg-height: 11.1875rem;
+		--bg-top: 3.5625rem;
 	}
 
 	.gas-solution__diagram-list {
-		padding: 290px 80px 40px var(--container-padding);
+		padding: 18.125rem 5rem 2.5rem var(--container-padding);
 	}
 
 	.gas-solution__diagram-item {
-		gap: 60px;
-		font-size: 24px;
-		padding-bottom: 40px;
+		gap: 3.75rem;
+		font-size: 1.5rem;
+		padding-bottom: 2.5rem;
 	}
 
 	.gas-solution__diagram-icon,
 	.gas-solution__btc-icon {
-		left: 60px;
+		left: 3.75rem;
 	}
 
 	.gas-solution__btc-icon {
-		--icon-width: 42px;
-		--icon-height: 42px;
-		top: -2px;
-		transform: translate(-15px);
+		--icon-width: 2.625rem;
+		--icon-height: 2.625rem;
+		top: -0.125rem;
+		transform: translate(-0.9375rem);
 	}
 
 	.gas-solution__diagram-item:not(:last-child)::before,
 	.gas-solution__diagram-item:not(:last-child)::after {
-		left: 65px;
+		left: 4.0625rem;
 	}
 
 	.gas-solution__problem {
-		padding: 40px var(--container-padding) 38px;
+		padding: 2.5rem var(--container-padding) 2.375rem;
 	}
 
 	.gas-solution__problem-title {
-		font-size: 28px;
-		margin-bottom: 16px;
+		font-size: 1.75rem;
+		margin-bottom: 1rem;
 	}
 
 	.gas-solution__problem-text,
 	.gas-solution__solution-item {
-		font-size: 16px;
+		font-size: 1rem;
 	}
 
 	.gas-solution__economics-row {
-		font-size: 16px;
-		padding: 25px 18px;
+		font-size: 1rem;
+		padding: 1.5625rem 1.125rem;
 	}
 
 	.gas-solution__economics-row:nth-child(odd) {
-		padding: 18px;
+		padding: 1.125rem;
 	}
 
 	.gas-solution__button {
-		margin-top: 40px;
+		margin-top: 2.5rem;
 	}
 
 	.hotel-projects {
-		margin: 100px 0 0;
+		margin: 7.5rem 0 0;
 	}
 
 	.hotel-projects__header {
-		margin: 0 0 40px;
+		margin: 0 0 2.5rem;
 	}
 
 	.hotel-projects__map {
 		--map-width: 100vw;
 		--map-height: 50vw;
-		margin-top: -70px;
+		margin-top: -4.375rem;
 	}
 
 	.hotel-projects__cards {
@@ -1609,12 +1617,16 @@
 	}
 
 	.hotel-projects__card-spec {
-		font-size: 16px;
+		font-size: 1rem;
 	}
 
 	.hotel-projects__card-info {
-		padding: 25px;
-		font-size: 16px;
+		padding: 1.5625rem;
+		font-size: 1rem;
+	}
+
+	.hotel-stats--secondary {
+		margin: 7.5rem 0 0;
 	}
 }
 
@@ -1680,14 +1692,14 @@
 
 	.hotel-projects__cards {
 		grid-template-columns: 1fr;
-		margin-top: -40px;
+		margin-top: -2.5rem;
 	}
 }
 
 @media (max-width: 767px) {
 	.section-header__description {
-		padding: 12px 0 0;
-		font-size: 15px;
+		padding: 0.75rem 0 0;
+		font-size: 0.9375rem;
 		text-wrap-style: balance;
 	}
 
@@ -1762,116 +1774,116 @@
 	}
 
 	.steps {
-		margin: 80px 0 0;
+		margin: 5rem 0 0;
 	}
 
 	.steps__wrapper {
-		gap: 16px;
+		gap: 1rem;
 	}
 
 	.steps__title-card {
-		padding: 20px var(--container-padding);
-		border-radius: 20px;
+		padding: 1.25rem var(--container-padding);
+		border-radius: 1.25rem;
 	}
 
 	.steps__title-card-text {
-		grid-template-columns: 40px 1fr;
-		gap: 0 8px;
-		font-size: 18px;
+		grid-template-columns: 2.5rem 1fr;
+		gap: 0 0.5rem;
+		font-size: 1.125rem;
 	}
 
 	.steps__title-number {
-		font-size: 60px;
+		font-size: 3.75rem;
 	}
 
 	.steps__info {
-		padding: 20px var(--container-padding) 24px;
-		border-radius: 20px;
+		padding: 1.25rem var(--container-padding) 1.5rem;
+		border-radius: 1.25rem;
 	}
 
 	.steps__info-footer {
-		margin: 30px 0 0;
+		margin: 1.875rem 0 0;
 	}
 
 	.steps__title {
-		font-size: 24px;
+		font-size: 1.5rem;
 	}
 
 	.slider-fraction {
-		width: 150px;
-		padding: 13px 16px 8px;
-		height: 50px;
-		font-size: 16px;
+		width: 9.375rem;
+		padding: 0.8125rem 1rem 0.5rem;
+		height: 3.125rem;
+		font-size: 1rem;
 	}
 
 	.swiper-pagination-current {
-		margin-right: 5px;
-		font-size: 28px;
+		margin-right: 0.3125rem;
+		font-size: 1.75rem;
 	}
 
 	.swiper-pagination-total {
-		margin-left: 4px;
+		margin-left: 0.25rem;
 	}
 
 	.steps__navigation {
-		gap: 12px;
+		gap: 0.75rem;
 	}
 
 	.slider-nav-button {
-		--btn-size: 50px;
+		--btn-size: 3.125rem;
 	}
 
 	.slider-nav-button-icon {
-		--icon-size: 12px;
+		--icon-size: 0.75rem;
 	}
 
 	.slide__card-inner {
-		padding: 22px var(--container-padding) 24px;
+		padding: 1.375rem var(--container-padding) 1.5rem;
 	}
 
 	.steps__slide {
-		--slide-card-border-rds: 20px;
+		--slide-card-border-rds: 1.25rem;
 	}
 
 	.steps__days-count {
-		padding: 6px 12px;
-		font-size: 14px;
+		padding: 0.375rem 0.75rem;
+		font-size: 0.875rem;
 	}
 
 	.steps__slide-title {
-		margin: 20px 0 0;
-		font-size: 18px;
+		margin: 1.25rem 0 0;
+		font-size: 1.125rem;
 	}
 
 	.steps__description,
 	.steps__result {
-		padding: 20px 0 0;
-		font-size: 14px;
+		padding: 1.25rem 0 0;
+		font-size: 0.875rem;
 	}
 
 	.steps__description li + li {
-		margin-top: 8px;
+		margin-top: 0.5rem;
 	}
 
 	.steps__result {
-		gap: 10px;
+		gap: 0.625rem;
 	}
 
 	.steps__result-icon {
-		--icon-size: 20px;
+		--icon-size: 1.25rem;
 	}
 
 	.tariffs {
-		margin: 80px 0 0;
+		margin: 5rem 0 0;
 	}
 
 	.tariffs__header {
-		margin: 0 0 40px;
+		margin: 0 0 2.5rem;
 	}
 
 	.tariffs__card {
 		padding: var(--container-padding);
-		border-radius: 20px;
+		border-radius: 1.25rem;
 	}
 
 	.tariffs__card-header {
@@ -1922,166 +1934,166 @@
 	}
 
 	.tariffs__button {
-		--btn-height: 52px;
-		padding: 12px 16px;
-		font-size: 14px;
+		--btn-height: 3.25rem;
+		padding: 0.75rem 1rem;
+		font-size: 0.875rem;
 	}
 
 	.gas-solution {
-		margin: 80px 0 0;
+		margin: 5rem 0 0;
 	}
 
 	.gas-solution__header {
-		margin: 0 0 32px;
+		margin: 0 0 2rem;
 	}
 
 	.gas-solution__wrapper {
-		gap: 16px;
+		gap: 1rem;
 	}
 
 	.gas-solution__problem {
-		padding: 24px var(--container-padding) 22px;
+		padding: 1.5rem var(--container-padding) 1.375rem;
 	}
 
 	.gas-solution__problem-title {
-		font-size: 22px;
-		margin-bottom: 12px;
+		font-size: 1.375rem;
+		margin-bottom: 0.75rem;
 		line-height: 125%;
 	}
 
 	.gas-solution__problem-text,
 	.gas-solution__solution-item {
-		font-size: 14px;
+		font-size: 0.875rem;
 		line-height: 150%;
 	}
 
 	.gas-solution__solution {
-		margin: 20px 0 0;
+		margin: 1.25rem 0 0;
 	}
 
 	.gas-solution__solution-list {
-		margin: 20px 0 0;
+		margin: 1.25rem 0 0;
 	}
 
 	.gas-solution__economics {
-		margin: 20px 0 0;
+		margin: 1.25rem 0 0;
 	}
 
 	.gas-solution__economics-table {
-		margin: 20px 0 0;
+		margin: 1.25rem 0 0;
 	}
 
 	.gas-solution__economics-row {
-		font-size: 14px;
-		padding: 20px 16px;
-		border-radius: 8px;
+		font-size: 0.875rem;
+		padding: 1.25rem 1rem;
+		border-radius: 0.5rem;
 	}
 
 	.gas-solution__economics-row:nth-child(odd) {
-		padding: 16px;
+		padding: 1rem;
 	}
 
 	.gas-solution__button {
-		margin-top: 20px;
-		font-size: 14px;
+		margin-top: 1.25rem;
+		font-size: 0.875rem;
 	}
 
 	.gas-solution__diagram {
-		--bg-width: 310px;
-		--bg-height: 126px;
-		--bg-top: 17px;
+		--bg-width: 19.375rem;
+		--bg-height: 7.875rem;
+		--bg-top: 1.0625rem;
 	}
 
 	.gas-solution__diagram-list {
-		padding: 170px var(--container-padding) 20px;
+		padding: 10.625rem var(--container-padding) 1.25rem;
 	}
 
 	.gas-solution__diagram-item {
 		--top: 0;
-		--icon-width: 10px;
-		--icon-height: 20px;
-		gap: 30px;
-		font-size: 16px;
-		padding-bottom: 30px;
+		--icon-width: 0.625rem;
+		--icon-height: 1.25rem;
+		gap: 1.875rem;
+		font-size: 1rem;
+		padding-bottom: 1.875rem;
 	}
 
 	.gas-solution__diagram-item:not(:last-child)::before,
 	.gas-solution__diagram-item:not(:last-child)::after {
-		left: 41px;
+		left: 2.5625rem;
 	}
 
 	.gas-solution__diagram-icon,
 	.gas-solution__btc-icon {
-		left: 37px;
+		left: 2.3125rem;
 	}
 
 	.gas-solution__btc-icon {
-		--icon-width: 28px;
-		--icon-height: 28px;
-		top: -3px;
-		transform: translate(-10px);
+		--icon-width: 1.75rem;
+		--icon-height: 1.75rem;
+		top: -0.1875rem;
+		transform: translate(-0.625rem);
 	}
 
 	.gas-solution__diagram-number {
-		width: 32px;
-		font-size: 16px;
+		width: 2rem;
+		font-size: 1rem;
 	}
 
 	.gas-solution__diagram-item.active:not(:has(~ .gas-solution__diagram-item.active))::after {
-		height: calc(50% + 20px - 8px);
+		height: calc(50% + 1.25rem - 0.5rem);
 	}
 
 	.hotel-projects {
-		margin: 80px 0 0;
+		margin: 5rem 0 0;
 	}
 
 	.hotel-projects__header {
-		margin: 0 0 32px;
+		margin: 0 0 2rem;
 	}
 
 	.hotel-projects__map {
-		margin-top: -20px;
-		transform: translate(-14px, 0);
+		margin-top: -1.25rem;
+		transform: translate(-0.875rem, 0);
 	}
 
 	.hotel-projects__cards {
-		gap: 16px;
-		margin-top: 20px;
+		gap: 1rem;
+		margin-top: 1.25rem;
 	}
 
 	.hotel-projects__card {
-		padding: 22px var(--container-padding);
-		border-radius: 20px;
+		padding: 1.375rem var(--container-padding);
+		border-radius: 1.25rem;
 	}
 
 	.hotel-projects__card-link {
-		margin-bottom: 20px;
+		margin-bottom: 1.25rem;
 	}
 
 	.hotel-projects__card-title {
-		font-size: 18px;
+		font-size: 1.125rem;
 	}
 
 	.hotel-projects__card-specs {
-		padding-bottom: 20px;
-		margin-bottom: 20px;
-		gap: 8px;
+		padding-bottom: 1.25rem;
+		margin-bottom: 1.25rem;
+		gap: 0.5rem;
 	}
 
 	.hotel-projects__card-spec {
-		font-size: 14px;
+		font-size: 0.875rem;
 	}
 
 	.hotel-projects__card-info {
-		padding: 14px;
-		font-size: 14px;
+		padding: 0.875rem;
+		font-size: 0.875rem;
 		line-height: 140%;
-		border-radius: 14px;
+		border-radius: 0.875rem;
 	}
 
 	.hotel-projects__card-info-label {
-		margin: 20px 0 10px;
-		font-size: 14px;
+		margin: 1.25rem 0 0.625rem;
+		font-size: 0.875rem;
 	}
 
 	.hotel-projects__card-info-label:first-child {
@@ -2089,7 +2101,11 @@
 	}
 
 	.hotel-projects__card-info-value {
-		font-size: 14px;
+		font-size: 0.875rem;
+	}
+
+	.hotel-stats--secondary {
+		margin: 5rem 0 0;
 	}
 }
 
@@ -2119,6 +2135,6 @@
 
 @media (max-width: 375px) {
 	.gas-solution__economics-row {
-		font-size: 13px;
+		font-size: 0.8125rem;
 	}
 }
