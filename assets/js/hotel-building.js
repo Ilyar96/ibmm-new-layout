@@ -17,12 +17,8 @@
 				pagination: {
 					el: "#steps-slider-pagination",
 					type: "fraction",
-					formatFractionCurrent(current) {
-						return current < 10 ? `0${current}` : current;
-					},
-					formatFractionTotal(total) {
-						return total < 10 ? `0${total}` : total;
-					},
+					formatFractionCurrent,
+					formatFractionTotal,
 				},
 				breakpoints: {
 					1200: {
@@ -34,5 +30,42 @@
 				},
 			});
 		}
+
+		const CLIENTS_SLIDER_SELECTOR = "#clients-slider";
+		if (document.querySelector(CLIENTS_SLIDER_SELECTOR)) {
+			new Swiper(CLIENTS_SLIDER_SELECTOR, {
+				slidesPerView: 1,
+				loop: true,
+				autoHeight: true,
+				navigation: {
+					nextEl: "#clients-slider-next",
+					prevEl: "#clients-slider-prev",
+				},
+				pagination: {
+					el: "#clients-slider-pagination",
+					type: "fraction",
+					formatFractionCurrent,
+					formatFractionTotal,
+				},
+				breakpoints: {
+					1200: {
+						slidesPerView: "auto",
+						autoHeight: false,
+					},
+					992: {
+						slidesPerView: 2,
+						autoHeight: false,
+					},
+				},
+			});
+		}
+	}
+
+	function formatFractionCurrent(current) {
+		return current < 10 ? `0${current}` : current;
+	}
+
+	function formatFractionTotal(total) {
+		return total < 10 ? `0${total}` : total;
 	}
 })();

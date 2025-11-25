@@ -162,7 +162,6 @@ function initSelects() {
 			}
 
 			function openSelect() {
-				// Закрываем все остальные селекты перед открытием текущего
 				closeAllSelects();
 
 				list.hidden = false;
