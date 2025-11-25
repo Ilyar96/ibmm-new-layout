@@ -1479,6 +1479,177 @@
 					</ul>
 				</div>
 			</div>
+
+			<section class="hotel-calc">
+				<div class="hotel-calc__container container">
+					<div class="hotel-calc__header section-header">
+						<h2 class="section-header__title hotel-title">Сколько стоит <br>
+							и когда окупится?</h2>
+						<p class="section-header__description">Интерактивный калькулятор <br> для расчёта экономики проекта</p>
+					</div>
+					<div class="hotel-calc__body">
+						<div class="hotel-calc__form">
+							<div class="hotel-calc__field">
+								<label for="hotel-calc-power" class="hotel-calc__label"><span class="hotel-calc__label-inner">Мощность ЦОД (МВт):</span></label>
+								<input id="hotel-calc-power" type="number" class="hotel-calc__input" value="3" min="1">
+								<span class="hotel-calc__field-border"></span>
+							</div>
+
+							<div class="hotel-calc__field">
+								<button class="hotel-calc__label" type="button" data-select-label="building-type">
+									<span class="hotel-calc__label-inner">Тип строительства:</span>
+								</button>
+								<div class="hotel-calc__select select" id="building-type">
+									<button class="select__current" type="button" aria-haspopup="listbox" aria-expanded="false">
+										<span class="select__value">Ангарный</span>
+										<span class="select__icon">
+											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M6 9L12 15L18 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+											</svg>
+										</span>
+									</button>
+									<ul class="select__list" tabindex="-1" role="listbox" hidden>
+										<li class="select__option select__option--selected" data-value="angar" role="option">Ангарный</li>
+										<li class="select__option" data-value="container" role="option">Контейнерный</li>
+										<li class="select__option" data-value="building" role="option">Здание</li>
+									</ul>
+									<input type="hidden" name="building-type" value="angar">
+								</div>
+								<span class="hotel-calc__field-border"></span>
+							</div>
+
+							<div class="hotel-calc__field">
+								<button class="hotel-calc__label" type="button" data-select-label="cooling-type">
+									<span class="hotel-calc__label-inner">Тип охлаждения:</span>
+								</button>
+								<div class="hotel-calc__select select" id="cooling-type">
+									<button class="select__current" type="button" aria-haspopup="listbox" aria-expanded="false">
+										<span class="select__value">Воздушное</span>
+										<span class="select__icon">
+											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M6 9L12 15L18 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+											</svg>
+										</span>
+									</button>
+									<ul class="select__list" tabindex="-1" role="listbox" hidden>
+										<li class="select__option select__option--selected" data-value="air" role="option">Воздушное</li>
+										<li class="select__option" data-value="water" role="option">Водяное</li>
+										<li class="select__option" data-value="hybrid" role="option">Гибридное</li>
+									</ul>
+									<input type="hidden" name="cooling-type" value="water">
+								</div>
+								<span class="hotel-calc__field-border"></span>
+							</div>
+
+							<div class="hotel-calc__field">
+								<button class="hotel-calc__label" type="button" data-select-label="energy-source">
+									<span class="hotel-calc__label-inner">Источник энергии:</span>
+								</button>
+								<div class="hotel-calc__select select" id="energy-source">
+									<button class="select__current" type="button" aria-haspopup="listbox" aria-expanded="false">
+										<span class="select__value">Сеть</span>
+										<span class="select__icon">
+											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M6 9L12 15L18 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+											</svg>
+										</span>
+									</button>
+									<ul class="select__list" tabindex="-1" role="listbox" hidden>
+										<li class="select__option select__option--selected" data-value="
+										power-grid" role="option">Сеть</li>
+										<li class="select__option" data-value="generator" role="option">Генераторная установка</li>
+									</ul>
+									<input type="hidden" name="energy-source" value="power-grid">
+								</div>
+								<span class="hotel-calc__field-border"></span>
+							</div>
+
+							<div class="hotel-calc__field">
+								<label for="hotel-calc-electricity-price" class="hotel-calc__label"><span class="hotel-calc__label-inner">Тариф на электричество (₽/кВт·ч):</span></label>
+								<input id="hotel-calc-electricity-price" type="number" class="hotel-calc__input" value="2.3" step="0.1" min="0">
+								<span class="hotel-calc__field-border"></span>
+							</div>
+
+							<button class="hotel-calc__submit button button--primary">Получить детальный расчёт на email</button>
+						</div>
+
+						<div class="hotel-calc__results">
+							<div class="hotel-calc__result-block">
+								<h3 class="hotel-calc__result-title">CAPEX (Инвестиции):</h3>
+								<div class="hotel-calc__result-items">
+									<div class="hotel-calc__result-item">
+										<span class="hotel-calc__result-label">Строительство ЦОД:</span>
+										<span class="hotel-calc__result-value">45,000,000₽</span>
+									</div>
+									<div class="hotel-calc__result-item">
+										<span class="hotel-calc__result-label">Оборудование (900 ед):</span>
+										<span class="hotel-calc__result-value">162,000,000₽</span>
+									</div>
+									<div class="hotel-calc__result-item hotel-calc__result-item--total">
+										<span class="hotel-calc__result-label">Итого:</span>
+										<span class="hotel-calc__result-value">207,000,000₽</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="hotel-calc__result-block">
+								<h3 class="hotel-calc__result-title">OPEX (Ежемесячные расходы):</h3>
+								<div class="hotel-calc__result-items">
+									<div class="hotel-calc__result-item">
+										<span class="hotel-calc__result-label">Электричество:</span>
+										<span class="hotel-calc__result-value">3,240,000₽</span>
+									</div>
+									<div class="hotel-calc__result-item">
+										<span class="hotel-calc__result-label">Обслуживание:</span>
+										<span class="hotel-calc__result-value">450,000₽</span>
+									</div>
+									<div class="hotel-calc__result-item">
+										<span class="hotel-calc__result-label">Амортизация:</span>
+										<span class="hotel-calc__result-value">2,875,000₽</span>
+									</div>
+									<div class="hotel-calc__result-item hotel-calc__result-item--total">
+										<span class="hotel-calc__result-label">Итого:</span>
+										<span class="hotel-calc__result-value">6,565,000₽</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="hotel-calc__result-block">
+								<h3 class="hotel-calc__result-title">Доход (при BTC $60,000):</h3>
+								<div class="hotel-calc__result-items">
+									<div class="hotel-calc__result-item">
+										<span class="hotel-calc__result-label">Хешрейт:</span>
+										<span class="hotel-calc__result-value">126 PH/s</span>
+									</div>
+									<div class="hotel-calc__result-item">
+										<span class="hotel-calc__result-label">BTC в месяц:</span>
+										<span class="hotel-calc__result-value">1.85 BTC</span>
+									</div>
+									<div class="hotel-calc__result-item hotel-calc__result-item--total">
+										<span class="hotel-calc__result-label">Итого:</span>
+										<span class="hotel-calc__result-value">10,545,000₽</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="hotel-calc__summary">
+								<div class="hotel-calc__summary-item hotel-calc__summary-item--profit">
+									<span class="hotel-calc__summary-label">Чистая прибыль:</span>
+									<span class="hotel-calc__summary-unit">₽/мес</span>
+									<span class="hotel-calc__summary-value">3,980,000</span>
+								</div>
+								<div class="hotel-calc__summary-item hotel-calc__summary-item--roi">
+									<span class="hotel-calc__summary-label">ROI:</span>
+									<span class="hotel-calc__summary-unit">Мес</span>
+									<span class="hotel-calc__summary-value">52</span>
+								</div>
+							</div>
+
+							<p class="hotel-calc__disclaimer">Расчёт приблизительный. Реальная доходность зависит от курса BTC, сложности сети, uptime оборудования. Исторически майнинг показывал 35-110% годовых. Прошлые результаты не гарантируют будущих.</p>
+						</div>
+					</div>
+				</div>
+			</section>
 		</main>
 
 		<footer class="footer">
@@ -1711,6 +1882,7 @@
 	</div>
 
 
+	<script src="assets/js/jquery-3.7.1.min.js"></script>
 	<script src="assets/js/swiper-bundle.min.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/menu.js"></script>

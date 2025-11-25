@@ -124,6 +124,22 @@ function initSelects() {
 	// Кастомный select
 	const selects = document.querySelectorAll(".select");
 	if (selects.length > 0) {
+		// Функция для закрытия всех селектов
+		function closeAllSelects() {
+			selects.forEach((sel) => {
+				const selList = sel.querySelector(".select__list");
+				const selCurrent = sel.querySelector(".select__current");
+				const selOptions = sel.querySelectorAll(".select__option");
+
+				if (selList && !selList.hidden) {
+					selList.hidden = true;
+					selCurrent.setAttribute("aria-expanded", "false");
+					selOptions.forEach((opt) => opt.classList.remove("select__option--focused"));
+					sel.classList.remove("select--open");
+				}
+			});
+		}
+
 		selects.forEach((select) => {
 			const current = select.querySelector(".select__current");
 			const list = select.querySelector(".select__list");
@@ -146,6 +162,9 @@ function initSelects() {
 			}
 
 			function openSelect() {
+				// Закрываем все остальные селекты перед открытием текущего
+				closeAllSelects();
+
 				list.hidden = false;
 				current.setAttribute("aria-expanded", "true");
 				if (focusedIndex < 0) focusedIndex = 0;
@@ -166,7 +185,7 @@ function initSelects() {
 				}
 			});
 
-			options.forEach((option, idx) => {
+			options.forEach((option) => {
 				option.addEventListener("click", function (e) {
 					e.stopPropagation();
 					options.forEach((opt) => opt.classList.remove("select__option--selected"));
@@ -231,6 +250,7 @@ function initSelects() {
 
 			if (selectLabel) {
 				selectLabel.addEventListener("click", function (e) {
+					e.stopPropagation();
 					if (list.hidden) {
 						openSelect();
 						current.focus();
