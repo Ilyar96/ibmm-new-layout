@@ -1603,6 +1603,48 @@
 	list-style: none;
 }
 
+/* faq */
+.faq--hotel {
+	margin: 14.8125rem 0 0;
+}
+
+.faq__item-body p {
+	text-wrap-style: balance;
+}
+
+.faq__title {
+	margin: 0 0 3.8125rem;
+}
+
+.faq__item {
+	position: relative;
+	overflow: hidden;
+}
+
+.faq__item::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(360deg, #42697e 0%, #29363f 49.04%, #000 100%);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.faq__item.active::before {
+	opacity: 1;
+	visibility: visible;
+}
+
+.faq__item-body,
+.faq__item-header {
+	position: relative;
+	z-index: 1;
+}
+
 @media (hover: hover) {
 	.slider-nav-button:hover {
 		background: var(--white-100);
@@ -1743,6 +1785,11 @@
 
 	.hotel-stats--secondary .hotel-stats__card-number {
 		font-size: 4.6875rem;
+	}
+
+	.faq__item-title {
+		font-size: 2rem;
+		line-height: 100%;
 	}
 }
 
@@ -2116,7 +2163,7 @@
 	}
 
 	.hotel-calc__result-title {
-		font-size: 26px;
+		font-size: 1.625rem;
 	}
 
 	.clients {
@@ -2132,7 +2179,7 @@
 	}
 
 	.clients__card {
-		padding: 24px 20px;
+		padding: 1.5rem 1.25rem;
 		border-radius: 1.25rem;
 	}
 
@@ -2211,6 +2258,14 @@
 	.trust__card-text {
 		margin: 0.75rem 0 0;
 		font-size: 1rem;
+	}
+
+	.faq--hotel {
+		margin: 7.5rem 0 0;
+	}
+
+	.faq__title {
+		margin: 0 0 2.5rem;
 	}
 }
 
@@ -2739,10 +2794,10 @@
 	}
 
 	.hotel-calc__field {
-		--field-height: 40px;
-		--field-padding-x: 8px;
-		font-size: 11px;
-		border-radius: 8px;
+		--field-height: 2.5rem;
+		--field-padding-x: 0.5rem;
+		font-size: 0.6875rem;
+		border-radius: 0.5rem;
 	}
 
 	.hotel-calc__label {
@@ -2750,14 +2805,14 @@
 	}
 
 	.hotel-calc__label-inner {
-		padding: 8px;
-		border-radius: 8px;
+		padding: 0.5rem;
+		border-radius: 0.5rem;
 	}
 
 	.hotel-calc__input,
 	.hotel-calc__select .select__current,
 	.hotel-calc__select .select__option {
-		font-size: 12px;
+		font-size: 0.75rem;
 	}
 
 	.hotel-calc__select .select__current,
@@ -2770,12 +2825,12 @@
 	}
 
 	.hotel-calc__field-border {
-		border-radius: 8px;
+		border-radius: 0.5rem;
 	}
 
 	.hotel-calc__submit {
-		margin: 15px 0 0;
-		font-size: 12px;
+		margin: 0.9375rem 0 0;
+		font-size: 0.75rem;
 	}
 
 	.hotel-calc__results {
@@ -2792,19 +2847,19 @@
 	}
 
 	.hotel-calc__result-item {
-		padding: 15px 12px;
+		padding: 0.9375rem 0.75rem;
 		font-size: 0.875rem;
-		border-radius: 8px;
+		border-radius: 0.5rem;
 	}
 
 	.hotel-calc__result-item:nth-child(odd),
 	.hotel-calc__result-item--total {
-		padding-top: 8px;
-		padding-bottom: 8px;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
 	}
 
 	.hotel-calc__result-item--total:nth-child(even) {
-		margin-top: 8px;
+		margin-top: 0.5rem;
 	}
 
 	.hotel-calc__summary {
@@ -2814,20 +2869,20 @@
 	}
 
 	.hotel-calc__summary-item {
-		padding: 15px 15px 25px;
+		padding: 0.9375rem 0.9375rem 1.5625rem;
 		font-size: 0.875rem;
-		border-radius: 8px;
-		gap: 12px;
+		border-radius: 0.5rem;
+		gap: 0.75rem;
 	}
 
 	.hotel-calc__summary-value {
-		margin: 8px 0 0;
+		margin: 0.5rem 0 0;
 		font-size: 2rem;
 	}
 
 	.hotel-calc__disclaimer {
 		margin: 1rem 0 0;
-		font-size: 11px;
+		font-size: 0.6875rem;
 	}
 
 	.clients {
@@ -2914,6 +2969,14 @@
 		margin: 0.625rem 0 0;
 		font-size: 0.875rem;
 		line-height: 140%;
+	}
+
+	.faq--hotel {
+		margin: 5rem 0 0;
+	}
+
+	.faq__title {
+		margin: 0 0 2rem;
 	}
 }
 
