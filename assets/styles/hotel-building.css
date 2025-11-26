@@ -3026,7 +3026,7 @@
 	.gas-solution__btc-icon {
 		--icon-width: 1.75rem;
 		--icon-height: 1.75rem;
-		top: -0.1875rem;
+		top: -0.085rem;
 		-webkit-transform: translate(-0.625rem);
 		-ms-transform: translate(-0.625rem);
 		transform: translate(-0.625rem);
