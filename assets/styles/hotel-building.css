@@ -1832,6 +1832,7 @@
 .faq__item {
 	position: relative;
 	overflow: hidden;
+	background: var(--black-100);
 }
 
 .faq__item::before {
