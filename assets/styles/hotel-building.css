@@ -681,12 +681,22 @@
 		-webkit-box-shadow var(--transition-base);
 	transition: -webkit-transform var(--transition-base), -webkit-box-shadow var(--transition-base);
 	-o-transition: transform var(--transition-base), box-shadow var(--transition-base);
+	-webkit-transition: -webkit-transform var(--transition-base),
+		-webkit-box-shadow var(--transition-base);
 	transition: transform var(--transition-base), box-shadow var(--transition-base);
+	transition: transform var(--transition-base), box-shadow var(--transition-base),
+		-webkit-transform var(--transition-base), -webkit-box-shadow var(--transition-base);
 	transition: transform var(--transition-base), box-shadow var(--transition-base),
 		-webkit-transform var(--transition-base), -webkit-box-shadow var(--transition-base);
 }
 
 .tariffs__card--accent {
+	background: -o-linear-gradient(
+		bottom,
+		rgb(66, 105, 126) 0%,
+		rgb(41, 54, 63) 49.04%,
+		rgb(0, 0, 0) 100%
+	);
 	background: -webkit-gradient(
 		linear,
 		left bottom,
@@ -694,12 +704,6 @@
 		from(rgb(66, 105, 126)),
 		color-stop(49.04%, rgb(41, 54, 63)),
 		to(rgb(0, 0, 0))
-	);
-	background: -o-linear-gradient(
-		bottom,
-		rgb(66, 105, 126) 0%,
-		rgb(41, 54, 63) 49.04%,
-		rgb(0, 0, 0) 100%
 	);
 	background: linear-gradient(
 		360deg,
@@ -1117,25 +1121,28 @@
 .gas-solution__diagram-item:not(:last-child)::after {
 	z-index: 1;
 	background: var(--white-100);
-	opacity: 0;
-	visibility: hidden;
-	-webkit-transition: opacity var(--transition-base), visibility var(--transition-base);
-	-o-transition: opacity var(--transition-base), visibility var(--transition-base);
-	transition: opacity var(--transition-base), visibility var(--transition-base);
-}
-
-.gas-solution__diagram-item.active:not(:has(~ .gas-solution__diagram-item.active))::after {
-	height: calc(50% + 1.4375rem - 0.625rem);
-	top: 0;
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	transform: scale(0);
+	-webkit-transform-origin: top;
+	-ms-transform-origin: top;
+	transform-origin: top;
 }
 
 .gas-solution__diagram-item.active:not(:last-child)::after {
-	opacity: 1;
-	visibility: visible;
+	min-height: 100%;
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
 }
 
 .gas-solution__diagram-item.active::after {
-	top: var(--top) !important;
+	top: var(--top);
+	-webkit-transition: -webkit-transform linear 1.8s 0.2s;
+	transition: -webkit-transform linear 1.8s 0.2s;
+	-o-transition: transform linear 1.8s 0.2s;
+	transition: transform linear 1.8s 0.2s;
+	transition: transform linear 1.8s 0.2s, -webkit-transform linear 1.8s 0.2s;
 }
 
 .gas-solution__diagram-icon,
@@ -1168,9 +1175,9 @@
 	-webkit-transition: color var(--transition-base);
 	-o-transition: color var(--transition-base);
 	transition: color var(--transition-base);
-	-webkit-transform: translate(-1.125rem);
-	-ms-transform: translate(-1.125rem);
-	transform: translate(-1.125rem);
+	-webkit-transform: translate(-1.2rem);
+	-ms-transform: translate(-1.2rem);
+	transform: translate(-1.2rem);
 }
 
 .gas-solution__diagram-item.active .gas-solution__btc-icon {
@@ -1194,6 +1201,19 @@
 	-webkit-box-ordinal-group: 4;
 	-ms-flex-order: 3;
 	order: 3;
+}
+
+.gas-solution__diagram-number,
+.gas-solution__diagram-text {
+	color: #3f3f3f;
+	-webkit-transition: color var(--transition-base);
+	-o-transition: color var(--transition-base);
+	transition: color var(--transition-base);
+}
+
+.gas-solution__diagram-item.active .gas-solution__diagram-number,
+.gas-solution__diagram-item.active .gas-solution__diagram-text {
+	color: var(--text-color-primary);
 }
 
 /* hotel-projects */
@@ -1251,6 +1271,10 @@
 }
 
 .hotel-projects__card--2 {
+	background: var(--black-100) -o-linear-gradient(bottom, #42697e 0%, #29363f 49.04%, var(
+					--black-100
+				)
+				100%);
 	background: var(--black-100) -webkit-gradient(linear, left bottom, left top, from(#42697e), color-stop(49.04%, #29363f), to(var(--black-100)));
 	background: var(--black-100) -o-linear-gradient(bottom, #42697e 0%, #29363f 49.04%, var(
 					--black-100
@@ -1364,6 +1388,7 @@
 
 /* Hotel-calc */
 .hotel-calc {
+	scroll-margin-top: var(--header-height);
 	margin: 17.225rem 0 0;
 }
 
@@ -1595,6 +1620,8 @@
 }
 
 .hotel-calc__summary-item--profit {
+	background: var(--color-background) -o-linear-gradient(bottom, #42697e 0%, #29363f 49.04%, #000
+				100%);
 	background: var(--color-background) -webkit-gradient(linear, left bottom, left top, from(#42697e), color-stop(49.04%, #29363f), to(#000));
 	background: var(--color-background) -o-linear-gradient(bottom, #42697e 0%, #29363f 49.04%, #000
 				100%);
@@ -1792,8 +1819,8 @@
 
 .trust__card-number {
 	font-size: 2rem;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#666));
 	background: -o-linear-gradient(top, #fff 0%, #666 100%);
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#666));
 	background: linear-gradient(180deg, #fff 0%, #666 100%);
 	background-clip: text;
 	-webkit-background-clip: text;
@@ -1842,6 +1869,7 @@
 	z-index: 0;
 	width: 100%;
 	height: 100%;
+	background: -o-linear-gradient(bottom, #42697e 0%, #29363f 49.04%, #000 100%);
 	background: -webkit-gradient(
 		linear,
 		left bottom,
@@ -1850,7 +1878,6 @@
 		color-stop(49.04%, #29363f),
 		to(#000)
 	);
-	background: -o-linear-gradient(bottom, #42697e 0%, #29363f 49.04%, #000 100%);
 	background: linear-gradient(360deg, #42697e 0%, #29363f 49.04%, #000 100%);
 	opacity: 0;
 	visibility: hidden;
@@ -1919,6 +1946,7 @@
 		z-index: 0;
 		width: 100%;
 		height: 100%;
+		background: -o-linear-gradient(bottom, #42697e 0%, #29363f 49.04%, #000 100%);
 		background: -webkit-gradient(
 			linear,
 			left bottom,
@@ -1927,7 +1955,6 @@
 			color-stop(49.04%, #29363f),
 			to(#000)
 		);
-		background: -o-linear-gradient(bottom, #42697e 0%, #29363f 49.04%, #000 100%);
 		background: linear-gradient(360deg, #42697e 0%, #29363f 49.04%, #000 100%);
 		-webkit-transition: opacity var(--transition-base), visibility var(--transition-base);
 		-o-transition: opacity var(--transition-base), visibility var(--transition-base);
