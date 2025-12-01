@@ -21,6 +21,12 @@
 	color: var(--color-text-primary);
 }
 
+.hero__container {
+	-ms-flex-item-align: stretch;
+	-ms-grid-row-align: stretch;
+	align-self: stretch;
+}
+
 .hero__media {
 	--image-width: 53.4375rem;
 	position: absolute;
