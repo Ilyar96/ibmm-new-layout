@@ -92,6 +92,9 @@
 	letter-spacing: -0.02em;
 	text-align: center;
 	color: var(--color-accent);
+	-webkit-transition: color var(--transition-base);
+	-o-transition: color var(--transition-base);
+	transition: color var(--transition-base);
 }
 
 .contacts-popup__map-action:not(:first-child)::before {
@@ -124,6 +127,8 @@
 	position: absolute;
 	left: 50%;
 	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	width: 100%;
 	height: 25rem;
@@ -251,6 +256,10 @@
 		-ms-transform: scale(1.2);
 		transform: scale(1.2);
 	}
+
+	.contacts-popup__map-action:hover {
+		color: var(--color-accent-hover);
+	}
 }
 
 .contacts-popup__link:active {
@@ -262,6 +271,10 @@
 	-webkit-transform: scale(1.2);
 	-ms-transform: scale(1.2);
 	transform: scale(1.2);
+}
+
+.contacts-popup__map-action:active {
+	color: var(--color-accent-hover);
 }
 
 @media (min-width: 1200px) {
