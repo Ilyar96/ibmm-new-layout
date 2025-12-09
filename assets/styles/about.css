@@ -1,3 +1,76 @@
+/* About cards */
+
+.about-cards {
+	margin: 293px 0 0;
+}
+
+.about-cards__container {}
+
+.about-cards__list {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+}
+
+.about-cards__card {
+	position: relative;
+	display: flex;
+	align-items: end;
+	min-height: 801px;
+	padding: 64px 120px 46px 50px;
+	border: 1px solid var(--white-100);
+	border-radius: 20px;
+	overflow: hidden;
+}
+
+.about-cards__card::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+	z-index: 1;
+	pointer-events: none;
+}
+
+.about-cards__title {
+	position: relative;
+	z-index: 2;
+	margin: 0;
+	font-family: var(--font-family-secondary);
+	font-weight: 900;
+	font-size: 48px;
+	line-height: 130%;
+	letter-spacing: -0.03em;
+	text-transform: uppercase;
+	color: #f2fbfb;
+}
+
+.about-cards__img-wrapper--delivery {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.about-cards__img-wrapper--delivery::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 1;
+	pointer-events: none;
+}
+
+.about-cards__img {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
 @media (min-width: 1200px) {
 	.hero__media--about-us {
 		--image-width: 54.6875rem;
@@ -10,4 +83,51 @@
 	}
 }
 
-@media (max-width: 1199px) {}
+@media (max-width: 1199px) {
+	.about-cards {
+		margin: 200px 0 0;
+	}
+
+	.about-cards__list {
+		gap: 16px;
+		grid-template-columns: 1fr;
+	}
+
+	.about-cards__card {
+		min-height: 370px;
+		padding: 48px var(--container-padding) 36px;
+		border-radius: 18px;
+	}
+
+	.about-cards__title {
+		font-size: 33px;
+		line-height: 125%;
+		text-wrap-style: balance;
+	}
+}
+
+@media (max-width: 767px) {
+	.about-cards {
+		margin: 120px 0 0;
+	}
+
+	.about-cards__list {
+		grid-template-columns: 1fr;
+		gap: 12px;
+	}
+
+	.about-cards__card {
+		min-height: 260px;
+		padding: 16px var(--container-padding);
+		border-radius: 14px;
+	}
+
+	.about-cards__title {
+		font-size: 20px;
+		line-height: 130%;
+	}
+}
+
+@media (max-width: 479px) {
+	.about-cards__card {}
+}
