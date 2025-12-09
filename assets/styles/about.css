@@ -1,0 +1,13 @@
+@media (min-width: 1200px) {
+	.hero__media--about-us {
+		--image-width: 54.6875rem;
+		top: -2.5rem;
+		right: 6.1875rem;
+	}
+
+	.hero__media--about-us::before {
+		right: -73.5625rem;
+	}
+}
+
+@media (max-width: 1199px) {}
