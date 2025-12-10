@@ -5,10 +5,15 @@
 
 	// Sliders
 	function initSliders() {
-		const CLIENTS_REVIEWS_SLIDER_SELECTOR = "#clients-reviews-slider";
-		const sliderEl = document.querySelector(CLIENTS_REVIEWS_SLIDER_SELECTOR);
 
-		if (sliderEl) {
+		const PARTNERS_SLIDER_SELECTOR_1 = "#partners-slider-1";
+		const PARTNERS_SLIDER_SELECTOR_2 = "#partners-slider-2";
+		const CLIENTS_REVIEWS_SLIDER_SELECTOR = "#clients-reviews-slider";
+		const clientSliderEl = document.querySelector(CLIENTS_REVIEWS_SLIDER_SELECTOR);
+		const partnersSliderEl1 = document.querySelector(PARTNERS_SLIDER_SELECTOR_1);
+		const partnersSliderEl2 = document.querySelector(PARTNERS_SLIDER_SELECTOR_2);
+
+		if (clientSliderEl) {
 			const stackOffset = 13.5625; // Смещение в rem для swiper-slide-next
 
 			new Swiper(CLIENTS_REVIEWS_SLIDER_SELECTOR, {
@@ -61,6 +66,24 @@
 					}
 				}
 			});
+		}
+
+		// Бегущая строка партнёров через CSS анимацию
+		if (partnersSliderEl1) {
+			initMarquee(partnersSliderEl1, 'left');
+		}
+		if (partnersSliderEl2) {
+			initMarquee(partnersSliderEl2, 'right');
+		}
+
+		function initMarquee(slider, direction) {
+			const wrapper = slider.querySelector('.partners__slider-inner');
+			const slides = wrapper.innerHTML;
+			// Дублируем контент для бесшовного цикла
+			wrapper.innerHTML = slides + slides;
+			// Добавляем класс направления
+			wrapper.classList.add('marquee-wrapper');
+			wrapper.classList.add(direction === 'right' ? 'marquee-reverse' : 'marquee-forward');
 		}
 
 		// Установка transform с вендорными префиксами

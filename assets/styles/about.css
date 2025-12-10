@@ -548,6 +548,96 @@
 	transform: translateY(-50%);
 }
 
+/* Partners */
+.partners {
+	margin: 250px 0 0;
+}
+
+.partners__container {}
+
+.container {}
+
+.partners__title {
+	margin: 0 0 71px;
+}
+
+.about-title {}
+
+.partners__slider-wrapper {
+	--slider-gap: 70px;
+	margin: 0 calc(var(--slider-gap) / -2);
+}
+
+.partners__slider {
+	overflow: visible;
+}
+
+.partners__slider+.partners__slider {
+	margin-top: 71px;
+}
+
+.swiper {}
+
+.swiper-wrapper {}
+
+/* Бегущая строка партнёров */
+.marquee-wrapper {
+	display: flex;
+	width: max-content;
+	animation-duration: 20s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.marquee-forward {
+	animation-name: marquee-left;
+}
+
+.marquee-reverse {
+	animation-name: marquee-right;
+}
+
+@keyframes marquee-left {
+	0% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
+@keyframes marquee-right {
+	0% {
+		transform: translateX(-50%);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.partners__slide {
+	display: flex;
+	width: auto;
+	height: auto;
+	align-items: center;
+	padding: 0 calc(var(--slider-gap) / 2);
+}
+
+.partners__slide.swiper-slide {
+	width: auto;
+	transition: transform 0.6s ease, opacity 0.6s ease, z-index 0s;
+}
+
+.partners__slide-img {
+	max-height: 2.0625rem;
+	object-fit: contain;
+}
+
+.partners__slide-img--microbt {
+	max-height: 4.5625rem;
+}
 
 @media (hover: hover) {
 	.slider-nav-button:hover {
@@ -838,6 +928,31 @@
 	.media-card__description br {
 		display: none;
 	}
+
+	/* Partners */
+	.partners {
+		margin: 7.5rem 0 0;
+	}
+
+	.partners__title {
+		margin: 0 0 3rem;
+	}
+
+	.partners__slider-wrapper {
+		--slider-gap: 3rem;
+	}
+
+	.partners__slider+.partners__slider {
+		margin-top: 3rem;
+	}
+
+	.partners__slide-img {
+		max-height: 1.75rem;
+	}
+
+	.partners__slide-img--microbt {
+		max-height: 3.5rem;
+	}
 }
 
 @media (max-width: 991px) {
@@ -1069,5 +1184,34 @@
 
 	.media--about {
 		margin: 5rem 0 0;
+	}
+
+	/* Partners */
+	.partners {
+		margin: 5rem 0 0;
+	}
+
+	.partners__title {
+		margin: 0 0 2rem;
+	}
+
+	.partners__slider-wrapper {
+		--slider-gap: 2rem;
+	}
+
+	.partners__slider+.partners__slider {
+		margin-top: 1.5rem;
+	}
+
+	.partners__slide-img {
+		max-height: 1.375rem;
+	}
+
+	.partners__slide-img--microbt {
+		max-height: 2.75rem;
+	}
+
+	.marquee-wrapper {
+		animation-duration: 12s;
 	}
 }
