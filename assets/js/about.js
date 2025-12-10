@@ -80,20 +80,11 @@
 		function initMarquee(slider, direction) {
 			const wrapper = slider.querySelector('.partners__slider-inner');
 			const slides = wrapper.innerHTML;
-
 			// Дублируем контент для бесшовного цикла
 			wrapper.innerHTML = slides + slides;
-
-			// Добавляем класс для инициализации стилей
+			// Добавляем класс направления
 			wrapper.classList.add('marquee-wrapper');
-
-			// Форсируем reflow для Safari
-			wrapper.offsetHeight;
-
-			// Добавляем класс направления с небольшой задержкой для Safari
-			requestAnimationFrame(() => {
-				wrapper.classList.add(direction === 'right' ? 'marquee-reverse' : 'marquee-forward');
-			});
+			wrapper.classList.add(direction === 'right' ? 'marquee-reverse' : 'marquee-forward');
 		}
 
 		// Установка transform с вендорными префиксами

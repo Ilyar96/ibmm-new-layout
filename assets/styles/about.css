@@ -633,11 +633,7 @@
 }
 
 .partners__slider {
-	overflow: hidden;
-}
-
-.partners__slider-inner {
-	display: flex;
+	overflow: visible;
 }
 
 .partners__slider+.partners__slider {
@@ -662,9 +658,6 @@
 	animation-timing-function: linear;
 	-webkit-animation-iteration-count: infinite;
 	animation-iteration-count: infinite;
-	will-change: transform;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
 }
 
 .marquee-forward {
@@ -679,49 +672,49 @@
 
 @-webkit-keyframes marquee-left {
 	0% {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
 	}
 
 	100% {
-		-webkit-transform: translate3d(-50%, 0, 0);
-		transform: translate3d(-50%, 0, 0);
+		-webkit-transform: translateX(-50%);
+		transform: translateX(-50%);
 	}
 }
 
 @keyframes marquee-left {
 	0% {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
 	}
 
 	100% {
-		-webkit-transform: translate3d(-50%, 0, 0);
-		transform: translate3d(-50%, 0, 0);
+		-webkit-transform: translateX(-50%);
+		transform: translateX(-50%);
 	}
 }
 
 @-webkit-keyframes marquee-right {
 	0% {
-		-webkit-transform: translate3d(-50%, 0, 0);
-		transform: translate3d(-50%, 0, 0);
+		-webkit-transform: translateX(-50%);
+		transform: translateX(-50%);
 	}
 
 	100% {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
 	}
 }
 
 @keyframes marquee-right {
 	0% {
-		-webkit-transform: translate3d(-50%, 0, 0);
-		transform: translate3d(-50%, 0, 0);
+		-webkit-transform: translateX(-50%);
+		transform: translateX(-50%);
 	}
 
 	100% {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
 	}
 }
 
@@ -735,9 +728,6 @@
 	-ms-flex-align: center;
 	align-items: center;
 	padding: 0 calc(var(--slider-gap) / 2);
-	-webkit-box-flex: 0;
-	-ms-flex: 0 0 auto;
-	flex: 0 0 auto;
 }
 
 .partners__slide.swiper-slide {
