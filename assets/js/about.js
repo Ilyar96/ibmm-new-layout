@@ -2,6 +2,7 @@
 	"use strict";
 
 	initSliders();
+	initImask("phone-mask1");
 
 	// Sliders
 	function initSliders() {
@@ -129,5 +130,14 @@
 				slide.style.opacity = '';
 			});
 		}
+	}
+
+	function initImask(idSelector) {
+		IMask(
+			document.getElementById(idSelector),
+			{
+				mask: '+{7} (000) 000-00-00'
+			}
+		);
 	}
 })();
