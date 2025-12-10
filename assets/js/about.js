@@ -79,9 +79,17 @@
 
 		function initMarquee(slider, direction) {
 			const wrapper = slider.querySelector('.partners__slider-inner');
-			const slides = wrapper.innerHTML;
-			// Дублируем контент для бесшовного цикла
-			wrapper.innerHTML = slides + slides;
+			const children = Array.from(wrapper.children);
+
+			// Дублируем контент для бесшовного цикла через cloneNode (лучше работает в Safari)
+			children.forEach(function (child) {
+				var clone = child.cloneNode(true);
+				wrapper.appendChild(clone);
+			});
+
+			// Принудительный reflow для Safari
+			void wrapper.offsetWidth;
+
 			// Добавляем класс направления
 			wrapper.classList.add('marquee-wrapper');
 			wrapper.classList.add(direction === 'right' ? 'marquee-reverse' : 'marquee-forward');
