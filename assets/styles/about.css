@@ -1403,7 +1403,7 @@ textarea.field__input {
 	}
 
 	.question {
-		padding: 16rem 0 20rem;
+		padding: 20rem 0 20rem;
 	}
 
 	.question__chat-img1 {
@@ -1520,7 +1520,7 @@ textarea.field__input {
 
 
 	.question {
-		padding: 11rem 0 9rem;
+		padding: 17rem 0 9rem;
 	}
 
 	.question__bg-gradient1,
@@ -1813,7 +1813,7 @@ textarea.field__input {
 
 	/* Question */
 	.question {
-		padding: 7rem 0 6rem;
+		padding: 11rem 0 6rem;
 	}
 
 	.question__description {
