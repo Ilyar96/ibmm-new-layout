@@ -646,8 +646,6 @@
 
 /* Бегущая строка партнёров */
 .marquee-wrapper {
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
 	width: -webkit-max-content;
 	width: -moz-max-content;
@@ -658,6 +656,9 @@
 	animation-timing-function: linear;
 	-webkit-animation-iteration-count: infinite;
 	animation-iteration-count: infinite;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	will-change: transform;
 }
 
 .marquee-forward {
