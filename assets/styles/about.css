@@ -509,6 +509,46 @@
 }
 
 
+.media--about {
+	margin: 15.75rem 0 0;
+	padding: 0;
+}
+
+.about-title {
+	margin: 0;
+}
+
+.media::before,
+.media::after {
+	display: none;
+}
+
+.media-card__video {
+	padding-bottom: 47%;
+}
+
+.media-card {
+	border: 0.0625rem solid var(--white-100);
+	background: var(--black-100);
+}
+
+.media-card__photo-img--argumenty-i-fakty {
+	top: 50%;
+	left: 4.75rem;
+	width: 23.1875rem;
+	height: 6.375rem;
+	transform: translateY(-50%);
+}
+
+.media-card__photo-img--forbes {
+	top: 50%;
+	left: 4.75rem;
+	width: 23.1875rem;
+	height: 5.75rem;
+	transform: translateY(-50%);
+}
+
+
 @media (hover: hover) {
 	.slider-nav-button:hover {
 		background: var(--white-100);
@@ -556,6 +596,29 @@
 		opacity: 1;
 		visibility: visible;
 	}
+
+	.media-card__title {
+		font-size: 1.875rem;
+	}
+
+	.media-card__label {
+		padding: 0.4063rem 0.5625rem;
+	}
+
+	.media-list {
+		gap: 1.25rem;
+		margin: 5.625rem 0 0;
+	}
+
+	.media-card__description {
+		font-family: var(--font-family-quinary);
+		max-width: 43.75rem;
+		margin: 0.1875rem 0 0;
+		font-size: 1.0625rem;
+		line-height: 130%;
+		letter-spacing: -0.03em;
+	}
+
 }
 
 @media (max-width: 1199px) {
@@ -766,6 +829,14 @@
 
 	.slider-nav-button {
 		--btn-size: 5rem;
+	}
+
+	.media--about {
+		margin: 7.5rem 0 0;
+	}
+
+	.media-card__description br {
+		display: none;
 	}
 }
 
@@ -994,5 +1065,9 @@
 
 	.slider-nav-button__icon {
 		--icon-size: 0.75rem;
+	}
+
+	.media--about {
+		margin: 5rem 0 0;
 	}
 }
